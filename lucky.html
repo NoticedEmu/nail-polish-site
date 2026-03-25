@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>I'm Feeling Lucky</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .page-shell {
+            max-width: 1000px;
+        }
+
+        .lucky-page-topbar {
+            margin-bottom: 18px;
+        }
+
+        .lucky-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #374151;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 8px 12px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: background 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+        }
+
+        .lucky-back-link:hover {
+            background: #f9fafb;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .lucky-panel {
+            background: white;
+            padding: 24px;
+            border-radius: 14px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .lucky-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: end;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-width: 220px;
+            flex: 1 1 220px;
+        }
+
+        .filter-group label {
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .filter-group select {
+            padding: 10px 12px;
+            border: 1px solid #d0d7de;
+            border-radius: 8px;
+            background: white;
+            font-size: 0.95rem;
+        }
+
+        #luckyButton {
+            padding: 11px 16px;
+            border: 1px solid #111827;
+            border-radius: 10px;
+            background: #111827;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+        }
+
+        #luckyButton:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+            background: #1f2937;
+        }
+
+        .lucky-helper {
+            margin-top: 14px;
+            color: #6b7280;
+            font-size: 0.92rem;
+        }
+
+        .lucky-modal[hidden] {
+            display: none;
+        }
+
+
+        .lucky-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+        }
+
+        .lucky-modal-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(2px);
+        }
+
+        
+.lucky-modal-content {
+      position: relative;
+      z-index: 1;
+      width: min(940px, calc(100vw - 32px));
+      max-height: calc(100vh - 32px);
+      overflow: auto;
+      margin: 16px auto;
+      background: linear-gradient(180deg, #aa83af 0%, #8d6a95 100%);
+      border-radius: 22px;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.18),
+        0 0 28px rgba(255, 255, 255, 0.22),
+        0 24px 60px rgba(0, 0, 0, 0.24);
+      animation: surpriseModalIn 0.22s ease;
+    }
+
+        .lucky-modal-content::before {
+            content: none;
+        }
+
+        
+.modal-card-sparkles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      border-radius: inherit;
+      z-index: 0;
+    }
+
+.modal-card-sparkles .sparkle {
+      opacity: 0.9;
+      transform-origin: center;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.45));
+    }
+
+.modal-card-sparkles .sparkle::before {
+  opacity: 1;
+  box-shadow:
+    0 0 14px currentColor,
+    0 0 28px color-mix(in srgb, currentColor 72%, white 28%),
+    0 0 48px color-mix(in srgb, currentColor 48%, white 52%);
+}
+
+        .lucky-close-button,
+        .lucky-modal-body {
+      position: relative;
+      z-index: 2;
+    }
+
+        .polish-entry-nav {
+      z-index: 2;
+    }
+
+
+        @keyframes luckyModalIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .lucky-close-button {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 5;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(234, 212, 240, 0.95);
+      border-radius: 999px;
+      background: rgba(141, 106, 149, 0.88);
+      color: white;
+      font-size: 1.7rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+    }
+
+        .lucky-close-button:hover {
+      background: rgba(160, 122, 171, 0.96);
+      transform: scale(1.04);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+    }
+
+        .lucky-modal-body {
+            display: grid;
+            grid-template-columns: minmax(260px, 380px) 1fr;
+            gap: 28px;
+            padding: 32px;
+        }
+
+        .lucky-image-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 320px;
+      width: 100%;
+    }
+
+        .lucky-result-image {
+      width: 100%;
+      max-width: 360px;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow:
+        0 0 0 10px rgba(255, 255, 255, 0.18),
+        0 0 24px rgba(255, 255, 255, 0.78),
+        0 8px 24px rgba(0, 0, 0, 0.12);
+      background: #f9fafb;
+    }
+
+        .lucky-image-fallback {
+      width: 100%;
+      max-width: 360px;
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      border-radius: 14px;
+      background: #f9fafb;
+      border: 1px dashed #d1d5db;
+      color: #6b7280;
+      font-weight: 600;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+        .lucky-image-wrap>[hidden] {
+      display: none !important;
+    }
+
+        .polish-main-image-shell {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-inline: 56px;
+      box-sizing: border-box;
+    }
+
+    .polish-gallery-nav {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .polish-gallery-arrow {
+      pointer-events: auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: rgba(141, 106, 149, 0.9);
+      border: 1px solid rgba(234, 212, 240, 0.96);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    .polish-gallery-arrow.prev { left: 0; }
+    .polish-gallery-arrow.next { right: 0; }
+
+    .polish-entry-arrow {
+      background: rgba(141, 106, 149, 0.9);
+      border: 1px solid rgba(234, 212, 240, 0.96);
+      color: white;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    @media (max-width: 720px) {
+      .polish-main-image-shell {
+        padding-inline: 48px;
+      }
+
+            .image-viewer-frame {
+                padding: 0 46px;
+            }
+
+            .image-viewer-image {
+                max-width: min(calc(96vw - 92px), 1000px);
+            }
+        }
+
+        
+.lucky-result-details {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-top: 8px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 18px;
+      padding: 18px 20px;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.96),
+        0 0 18px rgba(255, 255, 255, 0.68),
+        0 0 34px rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(6px);
+    }
+
+        .lucky-result-brand {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #3f3150;
+      letter-spacing: 0.02em;
+    }
+
+        .lucky-result-name {
+      margin: 0;
+      font-size: 2rem;
+      line-height: 1.1;
+      color: #2f243c;
+    }
+
+        .lucky-detail-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      font-size: 1rem;
+    }
+
+        .lucky-detail-label {
+      min-width: 82px;
+      font-weight: 700;
+      color: #5b4866;
+    }
+
+        .lucky-modal-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .lucky-secondary-button {
+            padding: 11px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            background: white;
+            color: #111827;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+        }
+
+        .lucky-secondary-button:hover {
+            background: #f9fafb;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        @media (max-width: 720px) {
+            .lucky-modal-body {
+                grid-template-columns: 1fr;
+                padding: 24px;
+            }
+
+            .lucky-result-name {
+                font-size: 1.6rem;
+            }
+
+            .lucky-result-image {
+                max-height: 42vh;
+            }
+        }
+
+
+        .lucky-image-stage {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lucky-result-image.is-zoomable {
+            cursor: zoom-in;
+        }
+
+        .lucky-image-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border: none;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #111827;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.16s ease, background 0.16s ease, box-shadow 0.16s ease;
+        }
+
+        .lucky-image-nav:hover {
+            background: #ffffff;
+            transform: translateY(-50%) scale(1.04);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+        }
+
+        .lucky-image-nav.prev {
+            left: 10px;
+        }
+
+        .lucky-image-nav.next {
+            right: 10px;
+        }
+
+        .lucky-image-counter,
+        .lucky-image-hint {
+            margin-top: 10px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.92rem;
+        }
+
+        .lucky-detail-row[hidden],
+        .lucky-description-block[hidden],
+        .image-zoom-modal[hidden] {
+            display: none !important;
+        }
+
+        .lucky-description-block {
+            margin-top: 4px;
+            padding-top: 12px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .lucky-description-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #4b5563;
+        }
+
+        .lucky-description-text {
+            margin: 0;
+            color: #374151;
+            line-height: 1.55;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background-sparkles" aria-hidden="true">
+        <span class="sparkle six-point s1 white tiny top-glow"></span>
+        <span class="sparkle eight-point s2 white tiny top-glow"></span>
+        <span class="sparkle six-point s3 violet tiny top-glow"></span>
+        <span class="sparkle eight-point s4 white small top-glow"></span>
+        <span class="sparkle six-point s5 white tiny top-glow"></span>
+        <span class="sparkle eight-point s6 violet tiny top-glow"></span>
+        <span class="sparkle six-point s7 peach tiny top-glow"></span>
+        <span class="sparkle eight-point s8 white tiny top-glow"></span>
+        <span class="sparkle six-point s9 white small top-glow"></span>
+        <span class="sparkle eight-point s10 violet tiny top-glow"></span>
+        <span class="sparkle six-point s11 gold tiny top-glow"></span>
+        <span class="sparkle eight-point s12 white tiny top-glow"></span>
+
+        <span class="sparkle six-point s13 white tiny"></span>
+        <span class="sparkle eight-point s14 violet small"></span>
+        <span class="sparkle six-point s15 coral tiny"></span>
+        <span class="sparkle eight-point s16 violet tiny"></span>
+        <span class="sparkle six-point s17 white small"></span>
+        <span class="sparkle eight-point s18 peach tiny"></span>
+        <span class="sparkle six-point s19 violet tiny"></span>
+        <span class="sparkle eight-point s20 white tiny"></span>
+        <span class="sparkle six-point s21 white tiny"></span>
+        <span class="sparkle eight-point s22 white small"></span>
+        <span class="sparkle six-point s23 violet tiny"></span>
+        <span class="sparkle eight-point s24 white tiny"></span>
+        <span class="sparkle six-point s25 gold tiny"></span>
+        <span class="sparkle eight-point s26 white tiny"></span>
+
+        <span class="sparkle six-point s27 violet small"></span>
+        <span class="sparkle eight-point s28 coral tiny"></span>
+        <span class="sparkle six-point s29 white tiny"></span>
+        <span class="sparkle eight-point s30 violet tiny"></span>
+        <span class="sparkle six-point s31 peach small"></span>
+        <span class="sparkle eight-point s32 white tiny"></span>
+        <span class="sparkle six-point s33 violet tiny"></span>
+        <span class="sparkle eight-point s34 gold tiny"></span>
+        <span class="sparkle six-point s35 white small"></span>
+        <span class="sparkle eight-point s36 white tiny"></span>
+        <span class="sparkle six-point s37 coral tiny"></span>
+    </div>
+
+    <div class="page-shell">
+        <div class="lucky-page-topbar">
+            <a href="index.html" id="luckyBackLink" class="lucky-back-link">← Back to Directory</a>
+        </div>
+
+        <h1>I’m Feeling Lucky</h1>
+        <p class="page-intro">Pick a color and type, then let chance choose a polish.</p>
+
+        <section class="lucky-panel">
+            <div class="lucky-controls">
+                <div class="filter-group">
+                    <label for="luckyColor">Color</label>
+                    <select id="luckyColor">
+                        <option value="">Select a color</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="luckyType">Type</label>
+                    <select id="luckyType">
+                        <option value="">Select a type</option>
+                    </select>
+                </div>
+
+                <button id="luckyButton" type="button">I’m Feeling Lucky</button>
+            </div>
+
+            <p class="lucky-helper">Choose one color and one type to get a random match.</p>
+        </section>
+    </div>
+    <div id="luckyModal" class="lucky-modal" hidden>
+        <div class="lucky-modal-overlay"></div>
+
+        <div class="lucky-modal-content" role="dialog" aria-modal="true" aria-labelledby="luckyModalTitle">
+            <button id="luckyCloseButton" class="lucky-close-button" type="button" aria-label="Close">
+                &times;
+            </button>
+
+            <div class="modal-card-sparkles" aria-hidden="true">
+          <span class="sparkle six-point s1 white tiny top-glow"></span>
+          <span class="sparkle eight-point s2 white tiny top-glow"></span>
+          <span class="sparkle six-point s3 violet tiny top-glow"></span>
+          <span class="sparkle eight-point s4 white small top-glow"></span>
+          <span class="sparkle six-point s5 white tiny top-glow"></span>
+          <span class="sparkle eight-point s6 violet tiny top-glow"></span>
+          <span class="sparkle six-point s7 peach tiny top-glow"></span>
+          <span class="sparkle eight-point s8 white tiny top-glow"></span>
+          <span class="sparkle six-point s9 white small top-glow"></span>
+          <span class="sparkle eight-point s10 violet tiny top-glow"></span>
+          <span class="sparkle six-point s11 gold tiny top-glow"></span>
+          <span class="sparkle eight-point s12 white tiny top-glow"></span>
+          <span class="sparkle six-point s13 white tiny"></span>
+          <span class="sparkle eight-point s14 violet small"></span>
+          <span class="sparkle six-point s15 coral tiny"></span>
+          <span class="sparkle eight-point s16 violet tiny"></span>
+          <span class="sparkle six-point s17 white small"></span>
+          <span class="sparkle eight-point s18 peach tiny"></span>
+          <span class="sparkle six-point s19 violet tiny"></span>
+          <span class="sparkle eight-point s20 white tiny"></span>
+          <span class="sparkle six-point s21 white tiny"></span>
+          <span class="sparkle eight-point s22 white small"></span>
+          <span class="sparkle six-point s23 violet tiny"></span>
+          <span class="sparkle eight-point s24 white tiny"></span>
+          <span class="sparkle six-point s25 gold tiny"></span>
+          <span class="sparkle eight-point s26 white tiny"></span>
+          <span class="sparkle six-point s27 violet small"></span>
+          <span class="sparkle eight-point s28 coral tiny"></span>
+          <span class="sparkle six-point s29 white tiny"></span>
+          <span class="sparkle eight-point s30 violet tiny"></span>
+          <span class="sparkle six-point s31 peach small"></span>
+          <span class="sparkle eight-point s32 white tiny"></span>
+          <span class="sparkle six-point s33 violet tiny"></span>
+          <span class="sparkle eight-point s34 gold tiny"></span>
+          <span class="sparkle six-point s35 white small"></span>
+          <span class="sparkle eight-point s36 white tiny"></span>
+          <span class="sparkle six-point s37 coral tiny"></span>
+          <span class="sparkle eight-point s38 white small"></span>
+          <span class="sparkle six-point s39 violet tiny"></span>
+          <span class="sparkle eight-point s40 peach tiny"></span>
+          <span class="sparkle six-point s41 white small"></span>
+          <span class="sparkle eight-point s42 gold tiny"></span>
+          <span class="sparkle six-point s43 violet tiny"></span>
+          <span class="sparkle eight-point s44 white tiny"></span>
+          <span class="sparkle six-point s45 coral small"></span>
+          <span class="sparkle eight-point s46 white tiny"></span>
+        </div>
+
+            <div id="luckyEntryNav" class="polish-entry-nav" hidden>
+                <button id="luckyPrevPolish" class="polish-entry-arrow prev" type="button" aria-label="Previous polish">
+                    &#8249;
+                </button>
+                <button id="luckyNextPolish" class="polish-entry-arrow next" type="button" aria-label="Next polish">
+                    &#8250;
+                </button>
+            </div>
+
+            <div class="lucky-modal-body">
+                <div class="lucky-image-wrap polish-image-panel">
+                    <div class="polish-main-image-shell">
+                        <div class="image-card">
+                            <button id="luckyImageButton" class="polish-main-image-button" type="button"
+                                aria-label="Open swatch image">
+                                <img id="luckyResultImage" src="" alt="" class="lucky-result-image polish-gallery-image" />
+                            </button>
+                        </div>
+
+                        <div id="luckyImageFallback" class="lucky-image-fallback" hidden>
+                            No swatch available
+                        </div>
+
+                        <div id="luckyGalleryNav" class="polish-gallery-nav" hidden>
+                            <button id="luckyPrevImage" class="polish-gallery-arrow prev" type="button"
+                                aria-label="Previous swatch">
+                                &#8249;
+                            </button>
+                            <button id="luckyNextImage" class="polish-gallery-arrow next" type="button"
+                                aria-label="Next swatch">
+                                &#8250;
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="polish-image-hint">Click the swatch to zoom in</div>
+                </div>
+
+                <div class="lucky-result-details">
+                    <div id="luckyResultBrand" class="lucky-result-brand"></div>
+                    <h2 id="luckyModalTitle" class="lucky-result-name"></h2>
+
+                    <div class="lucky-detail-row">
+                        <span class="lucky-detail-label">Color</span>
+                        <span id="luckyResultColor"></span>
+                    </div>
+
+                    <div class="lucky-detail-row">
+                        <span class="lucky-detail-label">Type</span>
+                        <span id="luckyResultType"></span>
+                    </div>
+
+                    <div id="luckySubtypeRow" class="lucky-detail-row" hidden>
+                        <span class="lucky-detail-label">Sub Type</span>
+                        <span id="luckyResultSubtype"></span>
+                    </div>
+
+                    <div class="lucky-detail-row">
+                        <span class="lucky-detail-label">Number</span>
+                        <span id="luckyResultNumber"></span>
+                    </div>
+
+                    <div id="luckyDescriptionBlock" class="polish-description-block" hidden>
+                        <span class="polish-description-label">Description</span>
+                        <p id="luckyResultDescription" class="polish-description-text"></p>
+                    </div>
+
+                    <div class="lucky-modal-actions">
+                        <button id="luckyRerollButton" class="lucky-secondary-button" type="button">
+                            Try Another
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="imageViewer" class="image-viewer" hidden>
+        <div class="image-viewer-overlay"></div>
+
+        <div class="image-viewer-content" role="dialog" aria-modal="true" aria-label="Expanded swatch image">
+            <div class="image-viewer-frame">
+                <img id="imageViewerImg" class="image-viewer-image" src="" alt="">
+                <button id="imageViewerClose" class="image-viewer-close" type="button"
+                    aria-label="Close enlarged image">
+                    &times;
+                </button>
+
+                <button id="imageViewerPrev" class="image-viewer-arrow prev" type="button" aria-label="Previous swatch"
+                    hidden>
+                    &#8249;
+                </button>
+                <button id="imageViewerNext" class="image-viewer-arrow next" type="button" aria-label="Next swatch"
+                    hidden>
+                    &#8250;
+                </button>
+            </div>
+        </div>
+    </div>
+<script src="app.js"></script>
+    
+    <script>
+        const luckyBackLink = document.getElementById('luckyBackLink');
+
+        const queryParams = getQueryParams();
+        const initialColor = queryParams.get('color') || '';
+        const initialType = queryParams.get('type') || '';
+
+        let luckyData = [];
+        let currentLuckyMatches = [];
+        let currentLuckyPolishKey = null;
+        let currentLuckyCyclePool = [];
+
+        let activeLuckyGallery = [];
+        let activeLuckyGalleryIndex = 0;
+        let activeLuckySequence = [];
+        let activeLuckySequenceIndex = -1;
+
+        const luckyColor = document.getElementById('luckyColor');
+        const luckyType = document.getElementById('luckyType');
+        const luckyButton = document.getElementById('luckyButton');
+
+        const luckyModal = document.getElementById('luckyModal');
+        const luckyCloseButton = document.getElementById('luckyCloseButton');
+        const luckyOverlay = document.querySelector('.lucky-modal-overlay');
+        const luckyRerollButton = document.getElementById('luckyRerollButton');
+
+        const luckyResultImage = document.getElementById('luckyResultImage');
+        const luckyImageButton = document.getElementById('luckyImageButton');
+        const luckyResultBrand = document.getElementById('luckyResultBrand');
+        const luckyResultName = document.getElementById('luckyModalTitle');
+        const luckyResultColor = document.getElementById('luckyResultColor');
+        const luckyResultType = document.getElementById('luckyResultType');
+        const luckyResultSubtype = document.getElementById('luckyResultSubtype');
+        const luckyResultNumber = document.getElementById('luckyResultNumber');
+        const luckyImageFallback = document.getElementById('luckyImageFallback');
+        const luckySubtypeRow = document.getElementById('luckySubtypeRow');
+        const luckyDescriptionBlock = document.getElementById('luckyDescriptionBlock');
+        const luckyResultDescription = document.getElementById('luckyResultDescription');
+
+        const luckyGalleryNav = document.getElementById('luckyGalleryNav');
+        const luckyPrevImage = document.getElementById('luckyPrevImage');
+        const luckyNextImage = document.getElementById('luckyNextImage');
+
+        const luckyEntryNav = document.getElementById('luckyEntryNav');
+        const luckyPrevPolish = document.getElementById('luckyPrevPolish');
+        const luckyNextPolish = document.getElementById('luckyNextPolish');
+
+        const imageViewer = document.getElementById('imageViewer');
+        const imageViewerImg = document.getElementById('imageViewerImg');
+        const imageViewerClose = document.getElementById('imageViewerClose');
+        const imageViewerOverlay = document.querySelector('.image-viewer-overlay');
+        const imageViewerPrev = document.getElementById('imageViewerPrev');
+        const imageViewerNext = document.getElementById('imageViewerNext');
+
+        function getLuckyMatches(selectedColor, selectedType) {
+            return luckyData.filter(item => {
+                const itemColor = (item.color || '').trim().toLowerCase();
+                const itemType = (item.type || '').trim().toLowerCase();
+
+                const colorMatches = !selectedColor || itemColor === selectedColor.trim().toLowerCase();
+                const typeMatches = !selectedType || itemType === selectedType.trim().toLowerCase();
+
+                return colorMatches && typeMatches;
+            });
+        }
+
+        function resetLuckyCycle(matches, excludedKey = null) {
+            let pool = shuffleArray(matches);
+
+            if (excludedKey && pool.length > 1 && getPolishKey(pool[0]) === excludedKey) {
+                const firstDifferentIndex = pool.findIndex(item => getPolishKey(item) !== excludedKey);
+
+                if (firstDifferentIndex > 0) {
+                    [pool[0], pool[firstDifferentIndex]] = [pool[firstDifferentIndex], pool[0]];
+                }
+            }
+
+            currentLuckyCyclePool = pool;
+        }
+
+        function pickNextLuckyPolish(matches, excludedKey = null) {
+            if (!matches.length) return null;
+
+            if (!currentLuckyCyclePool.length) {
+                resetLuckyCycle(matches, excludedKey);
+            }
+
+            return currentLuckyCyclePool.shift() || null;
+        }
+
+        function openLuckyModal() {
+            luckyModal.hidden = false;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLuckyModal() {
+            luckyModal.hidden = true;
+            if (imageViewer.hidden) {
+                document.body.style.overflow = '';
+            }
+        }
+
+        function renderLuckyGalleryImage() {
+            const currentImage = activeLuckyGallery[activeLuckyGalleryIndex];
+
+            luckyResultImage.onerror = null;
+
+            if (!currentImage || !currentImage.src) {
+                luckyResultImage.hidden = true;
+                luckyImageButton.hidden = true;
+                luckyImageFallback.hidden = false;
+                luckyGalleryNav.hidden = true;
+                luckyResultImage.removeAttribute('src');
+                luckyResultImage.alt = '';
+                return;
+            }
+
+            luckyImageFallback.hidden = true;
+            luckyResultImage.hidden = false;
+            luckyImageButton.hidden = false;
+            luckyResultImage.src = currentImage.src;
+            luckyResultImage.alt = currentImage.alt || '';
+
+            luckyResultImage.onerror = function () {
+                luckyResultImage.hidden = true;
+                luckyImageButton.hidden = true;
+                luckyImageFallback.hidden = false;
+                luckyGalleryNav.hidden = true;
+                luckyResultImage.removeAttribute('src');
+                luckyResultImage.alt = '';
+            };
+
+            luckyGalleryNav.hidden = activeLuckyGallery.length <= 1;
+        }
+
+        function setLuckyGallery(polish) {
+            activeLuckyGallery = getPolishGallery(polish);
+            activeLuckyGalleryIndex = 0;
+            renderLuckyGalleryImage();
+        }
+
+        function showPreviousLuckyImage() {
+            if (activeLuckyGallery.length <= 1) return;
+            activeLuckyGalleryIndex =
+                (activeLuckyGalleryIndex - 1 + activeLuckyGallery.length) % activeLuckyGallery.length;
+            renderLuckyGalleryImage();
+        }
+
+        function showNextLuckyImage() {
+            if (activeLuckyGallery.length <= 1) return;
+            activeLuckyGalleryIndex =
+                (activeLuckyGalleryIndex + 1) % activeLuckyGallery.length;
+            renderLuckyGalleryImage();
+        }
+
+        function updateLuckyEntryNav() {
+            luckyEntryNav.hidden = activeLuckySequence.length <= 1;
+        }
+
+        function showLuckyAt(index) {
+            if (!activeLuckySequence.length) return;
+
+            const normalizedIndex = (index + activeLuckySequence.length) % activeLuckySequence.length;
+            const polish = activeLuckySequence[normalizedIndex];
+            const subtype = getPolishSubtype(polish);
+            const description = getPolishDescription(polish);
+
+            activeLuckySequenceIndex = normalizedIndex;
+            currentLuckyPolishKey = getPolishKey(polish);
+
+            setLuckyGallery(polish);
+
+            luckyResultBrand.textContent = polish.brand || '';
+            luckyResultName.textContent = polish.name || '';
+            luckyResultColor.textContent = polish.color || '—';
+            luckyResultType.textContent = polish.type || '—';
+            luckyResultNumber.innerHTML = createNumberBadge(polish.type, polish.number);
+
+            luckySubtypeRow.hidden = !hasMeaningfulValue(subtype);
+            luckyResultSubtype.textContent = subtype;
+
+            luckyDescriptionBlock.hidden = !hasMeaningfulValue(description);
+            luckyResultDescription.textContent = description;
+
+            updateLuckyEntryNav();
+            openLuckyModal();
+        }
+
+        function openImageViewer() {
+            const currentImage = activeLuckyGallery[activeLuckyGalleryIndex];
+            if (!currentImage?.src) return;
+
+            imageViewerImg.src = currentImage.src;
+            imageViewerImg.alt = currentImage.alt || '';
+            imageViewer.hidden = false;
+            imageViewerPrev.hidden = activeLuckyGallery.length <= 1;
+            imageViewerNext.hidden = activeLuckyGallery.length <= 1;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageViewer() {
+            imageViewer.hidden = true;
+            imageViewerImg.removeAttribute('src');
+            imageViewerImg.alt = '';
+            if (!luckyModal.hidden) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        function syncViewerToLuckyGalleryImage() {
+            const currentImage = activeLuckyGallery[activeLuckyGalleryIndex];
+            if (!currentImage?.src) return;
+            imageViewerImg.src = currentImage.src;
+            imageViewerImg.alt = currentImage.alt || '';
+            imageViewerPrev.hidden = activeLuckyGallery.length <= 1;
+            imageViewerNext.hidden = activeLuckyGallery.length <= 1;
+        }
+
+        luckyBackLink.href = buildDirectoryUrl(initialColor, initialType);
+
+        fetchPolishData()
+            .then(data => {
+                luckyData = data;
+
+                populateSelect(luckyColor, getUniqueValues(data, 'color'), 'Select a color');
+                populateSelect(luckyType, getUniqueValues(data, 'type'), 'Select a type');
+
+                if (initialColor) luckyColor.value = initialColor;
+                if (initialType) luckyType.value = initialType;
+            })
+            .catch(error => {
+                console.error(error);
+                alert('There was a problem loading data.json.');
+            });
+
+        luckyButton.addEventListener('click', () => {
+            const selectedColor = luckyColor.value;
+            const selectedType = luckyType.value;
+
+            currentLuckyMatches = getLuckyMatches(selectedColor, selectedType);
+
+            if (!selectedColor && !selectedType) {
+                currentLuckyMatches = [...luckyData];
+            }
+
+            if (!currentLuckyMatches.length) {
+                alert('No matching polish was found. Try a different color or type.');
+                return;
+            }
+
+            currentLuckyCyclePool = [];
+            currentLuckyPolishKey = null;
+
+            const selectedPolish = pickNextLuckyPolish(currentLuckyMatches, currentLuckyPolishKey);
+
+            if (!selectedPolish) {
+                alert('No matching polish was found. Try a different color or type.');
+                return;
+            }
+
+            activeLuckySequence = currentLuckyMatches;
+            activeLuckySequenceIndex = activeLuckySequence.findIndex(item => getPolishKey(item) === getPolishKey(selectedPolish));
+            showLuckyAt(activeLuckySequenceIndex);
+        });
+
+        luckyRerollButton.addEventListener('click', () => {
+            if (!currentLuckyMatches.length) {
+                alert('Pick a polish first.');
+                return;
+            }
+
+            const selectedPolish = pickNextLuckyPolish(currentLuckyMatches, currentLuckyPolishKey);
+
+            if (!selectedPolish) {
+                alert('No matching polish was found. Try a different color or type.');
+                return;
+            }
+
+            activeLuckySequence = currentLuckyMatches;
+            activeLuckySequenceIndex = activeLuckySequence.findIndex(item => getPolishKey(item) === getPolishKey(selectedPolish));
+            showLuckyAt(activeLuckySequenceIndex);
+        });
+
+        luckyPrevPolish.addEventListener('click', () => {
+            if (activeLuckySequence.length <= 1) return;
+            showLuckyAt(activeLuckySequenceIndex - 1);
+        });
+
+        luckyNextPolish.addEventListener('click', () => {
+            if (activeLuckySequence.length <= 1) return;
+            showLuckyAt(activeLuckySequenceIndex + 1);
+        });
+
+        luckyPrevImage.addEventListener('click', showPreviousLuckyImage);
+        luckyNextImage.addEventListener('click', showNextLuckyImage);
+
+        luckyImageButton.addEventListener('click', openImageViewer);
+
+        imageViewerClose.addEventListener('click', closeImageViewer);
+        imageViewerOverlay.addEventListener('click', closeImageViewer);
+
+        imageViewerPrev.addEventListener('click', () => {
+            showPreviousLuckyImage();
+            syncViewerToLuckyGalleryImage();
+        });
+
+        imageViewerNext.addEventListener('click', () => {
+            showNextLuckyImage();
+            syncViewerToLuckyGalleryImage();
+        });
+
+        imageViewerImg.addEventListener('click', () => {
+            if (activeLuckyGallery.length <= 1) {
+                closeImageViewer();
+                return;
+            }
+
+            showNextLuckyImage();
+            syncViewerToLuckyGalleryImage();
+        });
+
+        luckyCloseButton.addEventListener('click', closeLuckyModal);
+        luckyOverlay.addEventListener('click', closeLuckyModal);
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && !imageViewer.hidden) {
+                closeImageViewer();
+                return;
+            }
+
+            if (event.key === 'Escape' && !luckyModal.hidden) {
+                closeLuckyModal();
+                return;
+            }
+
+            if (!imageViewer.hidden) {
+                if (event.key === 'ArrowLeft' && activeLuckyGallery.length > 1) {
+                    showPreviousLuckyImage();
+                    syncViewerToLuckyGalleryImage();
+                }
+                if (event.key === 'ArrowRight' && activeLuckyGallery.length > 1) {
+                    showNextLuckyImage();
+                    syncViewerToLuckyGalleryImage();
+                }
+                return;
+            }
+
+            if (!luckyModal.hidden) {
+                if (event.key === 'ArrowLeft') showLuckyAt(activeLuckySequenceIndex - 1);
+                if (event.key === 'ArrowRight') showLuckyAt(activeLuckySequenceIndex + 1);
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+<style>
+.lucky-result-image {
+  border: none;
+  background: rgba(255, 255, 255, 0.98);
+  box-sizing: border-box;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 0 14px rgba(255, 255, 255, 0.24),
+    0 0 28px rgba(255, 255, 255, 0.16),
+    0 10px 30px rgba(60, 35, 66, 0.2);
+}
+</style>

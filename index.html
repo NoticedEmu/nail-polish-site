@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nail Polish Directory</title>
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    .page-shell {
+      max-width: 1400px;
+    }
+
+    .filter-panel {
+      background: white;
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: end;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 180px;
+    }
+
+    .filter-row label {
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .filter-row select {
+      padding: 8px 10px;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      background: white;
+    }
+
+    .filter-actions-row {
+      margin-top: 12px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .table-wrap {
+      background: white;
+      padding: 18px;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      overflow-x: auto;
+    }
+
+    table.dataTable thead th {
+      font-size: 0.95rem;
+    }
+
+    table.dataTable tbody td {
+      vertical-align: middle;
+    }
+
+    .dataTables_wrapper,
+    table.dataTable {
+      width: 100% !important;
+    }
+
+    .swatch-thumb-link {
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .swatch-thumb-frame {
+      width: 72px;
+      height: 72px;
+      padding: 2px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+    }
+
+    .swatch-thumb-link:hover .swatch-thumb-frame {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+      border-color: #cbd5e1;
+    }
+
+    .swatch-thumb-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .dataTables_wrapper .dataTables_filter {
+      margin-bottom: 14px;
+    }
+
+    .dataTables_wrapper .dataTables_filter label {
+      font-weight: bold;
+    }
+
+    .dataTables_wrapper .dataTables_filter input {
+      margin-left: 8px;
+      padding: 8px 10px;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      background: white;
+    }
+
+    .dataTables_wrapper .dataTables_length select {
+      padding: 6px 8px;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      background: white;
+    }
+
+    .filter-row input {
+      padding: 8px 10px;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      background: white;
+    }
+
+    td:first-child {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .swatch-thumb-link {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swatch-thumb-link::before,
+    .swatch-thumb-link::after {
+      content: none !important;
+    }
+
+    #clearFiltersBtn {
+      padding: 9px 14px;
+      border: 1px solid #d0d7de;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #222;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+      display: inline-flex;
+      width: auto;
+    }
+
+    #clearFiltersBtn:hover {
+      background: #f9fafb;
+      border-color: #bfc7d1;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    #clearFiltersBtn:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+
+    #polishTable tbody tr {
+      transition: background-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
+    }
+
+    #polishTable tbody td:nth-child(2) {
+      font-weight: 700;
+    }
+
+    #polishTable tbody tr:hover {
+      background-color: #f8fafc;
+    }
+
+    .alpha-filter-wrap {
+      margin: 14px 0 18px 0;
+    }
+
+    .alpha-filter-bottom {
+      margin: 18px 0 0 0;
+    }
+
+    .alpha-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .alpha-btn {
+      appearance: none;
+      border: 1px solid #d0d7de;
+      background: #ffffff;
+      color: #374151;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.16s ease;
+    }
+
+    .alpha-btn:hover {
+      background: #f8fafc;
+      border-color: #bfc7d1;
+      transform: translateY(-1px);
+    }
+
+    .alpha-btn.active {
+      background: #111827;
+      color: #ffffff;
+      border-color: #111827;
+    }
+
+    .directory-topbar {
+      margin: 0 0 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .lucky-page-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #fdf2f8, #ede9fe, #eff6ff);
+      color: #374151;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: 1px solid #d8dee9;
+      box-shadow:
+        0 0 0 2px rgba(99, 102, 241, 0.06),
+        0 4px 10px rgba(0, 0, 0, 0.06);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, color 0.16s ease;
+    }
+
+    .lucky-sparkle {
+      display: inline-block;
+      transform-origin: center;
+      animation: luckySparkleTwinkle 2.2s ease-in-out infinite;
+    }
+
+    @keyframes luckySparkleTwinkle {
+      0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.9;
+      }
+
+      25% {
+        transform: scale(1.08) rotate(-6deg);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(0.98) rotate(4deg);
+        opacity: 0.92;
+      }
+
+      75% {
+        transform: scale(1.06) rotate(-3deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.9;
+      }
+    }
+
+    .surprise-dice {
+      display: inline-block;
+      transform-origin: center;
+    }
+
+    .surprise-dice.is-shuffling {
+      animation: surpriseDiceShuffle 0.45s ease;
+    }
+
+    @keyframes surpriseDiceShuffle {
+      0% {
+        transform: rotate(0deg) translateX(0) scale(1);
+      }
+
+      20% {
+        transform: rotate(-14deg) translateX(-1px) scale(1.06);
+      }
+
+      40% {
+        transform: rotate(12deg) translateX(1px) scale(1.08);
+      }
+
+      60% {
+        transform: rotate(-10deg) translateX(-1px) scale(1.05);
+      }
+
+      80% {
+        transform: rotate(8deg) translateX(1px) scale(1.03);
+      }
+
+      100% {
+        transform: rotate(0deg) translateX(0) scale(1);
+      }
+    }
+
+    .lucky-page-link:hover {
+      background: linear-gradient(135deg, #fce7f3, #e9d5ff, #dbeafe);
+      color: #111827;
+      transform: translateY(-1px);
+      box-shadow:
+        0 0 0 3px rgba(99, 102, 241, 0.12),
+        0 6px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    .surprise-me-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #fdf2f8, #ede9fe, #eff6ff);
+      color: #374151;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: 1px solid #d8dee9;
+      box-shadow:
+        0 0 0 2px rgba(99, 102, 241, 0.06),
+        0 4px 10px rgba(0, 0, 0, 0.06);
+      cursor: pointer;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, color 0.16s ease;
+    }
+
+    .surprise-me-button:hover {
+      background: linear-gradient(135deg, #fce7f3, #e9d5ff, #dbeafe);
+      color: #111827;
+      transform: translateY(-1px);
+      box-shadow:
+        0 0 0 3px rgba(99, 102, 241, 0.12),
+        0 6px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    .surprise-modal[hidden] {
+      display: none;
+    }
+
+    .surprise-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+    }
+
+    .surprise-modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(17, 24, 39, 0.6);
+      backdrop-filter: blur(2px);
+    }
+
+    .surprise-modal-content {
+      position: relative;
+      z-index: 1;
+      width: min(940px, calc(100vw - 32px));
+      max-height: calc(100vh - 32px);
+      overflow: auto;
+      margin: 16px auto;
+      background: linear-gradient(180deg, #aa83af 0%, #8d6a95 100%);
+      border-radius: 22px;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.18),
+        0 0 28px rgba(255, 255, 255, 0.22),
+        0 24px 60px rgba(0, 0, 0, 0.24);
+      animation: surpriseModalIn 0.22s ease;
+    }
+
+    .modal-card-sparkles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      border-radius: inherit;
+      z-index: 0;
+    }
+
+    .modal-card-sparkles .sparkle {
+      opacity: 0.9;
+      transform-origin: center;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.45));
+    }
+
+    .surprise-close-button,
+    .surprise-modal-body {
+      position: relative;
+      z-index: 2;
+    }
+
+    .polish-entry-nav {
+      z-index: 2;
+    }
+
+    @keyframes surpriseModalIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .surprise-close-button {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 5;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(234, 212, 240, 0.95);
+      border-radius: 999px;
+      background: rgba(141, 106, 149, 0.88);
+      color: white;
+      font-size: 1.7rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+    }
+
+    .surprise-close-button:hover {
+      background: rgba(160, 122, 171, 0.96);
+      transform: scale(1.04);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    .surprise-modal-body {
+      display: grid;
+      grid-template-columns: minmax(260px, 380px) 1fr;
+      gap: 30px;
+      padding: 34px;
+    }
+
+    .surprise-image-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 320px;
+      width: 100%;
+    }
+
+    .image-card {
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.96),
+        0 0 20px rgba(255, 255, 255, 0.72),
+        0 0 40px rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(6px);
+    }
+
+    .surprise-result-image {
+      width: 100%;
+      max-width: 360px;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow:
+        0 0 0 10px rgba(255, 255, 255, 0.18),
+        0 0 24px rgba(255, 255, 255, 0.78),
+        0 8px 24px rgba(0, 0, 0, 0.12);
+      background: #f9fafb;
+    }
+
+    .surprise-image-fallback {
+      width: 100%;
+      max-width: 360px;
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      border-radius: 14px;
+      background: #f9fafb;
+      border: 1px dashed #d1d5db;
+      color: #6b7280;
+      font-weight: 600;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .surprise-image-wrap>[hidden] {
+      display: none !important;
+    }
+
+    .surprise-result-details {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-top: 8px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 18px;
+      padding: 18px 20px;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.96),
+        0 0 18px rgba(255, 255, 255, 0.68),
+        0 0 34px rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(6px);
+    }
+
+    .surprise-result-brand {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #3f3150;
+      letter-spacing: 0.02em;
+    }
+
+    .surprise-result-name {
+      margin: 0;
+      font-size: 2rem;
+      line-height: 1.1;
+      color: #2f243c;
+    }
+
+    .surprise-detail-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      font-size: 1rem;
+    }
+
+    .surprise-detail-label {
+      min-width: 82px;
+      font-weight: 700;
+      color: #5b4866;
+    }
+
+    .surprise-modal-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .surprise-secondary-button {
+      padding: 11px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      background: white;
+      color: #111827;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .surprise-secondary-button:hover {
+      background: #f9fafb;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .s38 { top: 93%; left: 8%; animation-duration: 6.6s; animation-delay: 0.4s; }
+    .s39 { top: 95%; left: 22%; animation-duration: 7.0s; animation-delay: 1.7s; }
+    .s40 { top: 90%; left: 36%; animation-duration: 6.2s; animation-delay: 2.4s; }
+    .s41 { top: 92%; left: 48%; animation-duration: 7.4s; animation-delay: 0.9s; }
+    .s42 { top: 94%; left: 61%; animation-duration: 6.0s; animation-delay: 2.1s; }
+    .s43 { top: 89%; left: 73%; animation-duration: 6.8s; animation-delay: 1.3s; }
+    .s44 { top: 96%; left: 84%; animation-duration: 7.3s; animation-delay: 2.6s; }
+    .s45 { top: 87%; left: 92%; animation-duration: 6.4s; animation-delay: 0.6s; }
+    .s46 { top: 98%; left: 55%; animation-duration: 7.1s; animation-delay: 1.9s; }
+
+    @media (max-width: 720px) {
+      .surprise-modal-body {
+        grid-template-columns: 1fr;
+        padding: 24px;
+      }
+
+      .surprise-result-name {
+        font-size: 1.6rem;
+      }
+
+      .surprise-result-image {
+        max-height: 42vh;
+      }
+    }
+
+    #polishTable thead th:first-child {
+      text-align: center;
+    }
+
+
+    #polishTable tbody tr {
+      cursor: pointer;
+    }
+
+    .surprise-image-stage {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .surprise-result-image.is-zoomable {
+      cursor: zoom-in;
+    }
+
+    .surprise-image-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #111827;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+      font-size: 1.3rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.16s ease, background 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .surprise-image-nav:hover {
+      background: #ffffff;
+      transform: translateY(-50%) scale(1.04);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    .surprise-image-nav.prev {
+      left: 10px;
+    }
+
+    .surprise-image-nav.next {
+      right: 10px;
+    }
+
+    .surprise-image-counter,
+    .surprise-image-hint {
+      margin-top: 10px;
+      text-align: center;
+      color: #f9edf9;
+      font-size: 0.88rem;
+      background: rgba(141, 106, 149, 0.88);
+      border: 1px solid rgba(234, 212, 240, 0.95);
+      border-radius: 999px;
+      padding: 6px 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .surprise-description-block[hidden],
+    .surprise-detail-row[hidden],
+    .image-zoom-modal[hidden] {
+      display: none !important;
+    }
+
+    .surprise-description-block {
+      margin-top: 4px;
+      padding-top: 12px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .surprise-description-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #4b5563;
+    }
+
+    .surprise-description-text {
+      margin: 0;
+      color: #374151;
+      line-height: 1.55;
+    }
+
+    .image-zoom-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 10001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .image-zoom-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(17, 24, 39, 0.86);
+    }
+
+    .image-zoom-content {
+      position: relative;
+      z-index: 1;
+      max-width: min(1200px, 96vw);
+      max-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-zoom-content img {
+      max-width: 100%;
+      max-height: 92vh;
+      border-radius: 16px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      background: #ffffff;
+    }
+
+    .image-zoom-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 2;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.94);
+      color: #111827;
+      font-size: 1.8rem;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .polish-main-image-shell {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-inline: 56px;
+      box-sizing: border-box;
+    }
+
+    .polish-gallery-nav {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .polish-gallery-arrow {
+      pointer-events: auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: rgba(141, 106, 149, 0.9);
+      border: 1px solid rgba(234, 212, 240, 0.96);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    .polish-gallery-arrow.prev { left: 0; }
+    .polish-gallery-arrow.next { right: 0; }
+
+    .polish-entry-arrow {
+      background: rgba(141, 106, 149, 0.9);
+      border: 1px solid rgba(234, 212, 240, 0.96);
+      color: white;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    @media (max-width: 720px) {
+      .polish-main-image-shell {
+        padding-inline: 48px;
+      }
+    }
+
+    .image-viewer-content {
+      width: min(98vw, 1220px);
+    }
+
+    .image-viewer-frame {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding-inline: 74px;
+      box-sizing: border-box;
+    }
+
+    .image-viewer-image {
+      max-width: min(calc(92vw - 148px), 1000px);
+    }
+
+    .image-viewer-close {
+      z-index: 4;
+    }
+
+    .image-viewer-arrow.prev { left: 10px; }
+    .image-viewer-arrow.next { right: 10px; }
+
+    @media (max-width: 720px) {
+      .image-viewer-frame { padding-inline: 50px; }
+      .image-viewer-image { max-width: min(calc(96vw - 100px), 1000px); }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="background-sparkles" aria-hidden="true">
+    <span class="sparkle six-point s1 white tiny top-glow"></span>
+    <span class="sparkle eight-point s2 white tiny top-glow"></span>
+    <span class="sparkle six-point s3 violet tiny top-glow"></span>
+    <span class="sparkle eight-point s4 white small top-glow"></span>
+    <span class="sparkle six-point s5 white tiny top-glow"></span>
+    <span class="sparkle eight-point s6 violet tiny top-glow"></span>
+    <span class="sparkle six-point s7 peach tiny top-glow"></span>
+    <span class="sparkle eight-point s8 white tiny top-glow"></span>
+    <span class="sparkle six-point s9 white small top-glow"></span>
+    <span class="sparkle eight-point s10 violet tiny top-glow"></span>
+    <span class="sparkle six-point s11 gold tiny top-glow"></span>
+    <span class="sparkle eight-point s12 white tiny top-glow"></span>
+
+    <span class="sparkle six-point s13 white tiny"></span>
+    <span class="sparkle eight-point s14 violet small"></span>
+    <span class="sparkle six-point s15 coral tiny"></span>
+    <span class="sparkle eight-point s16 violet tiny"></span>
+    <span class="sparkle six-point s17 white small"></span>
+    <span class="sparkle eight-point s18 peach tiny"></span>
+    <span class="sparkle six-point s19 violet tiny"></span>
+    <span class="sparkle eight-point s20 white tiny"></span>
+    <span class="sparkle six-point s21 white tiny"></span>
+    <span class="sparkle eight-point s22 white small"></span>
+    <span class="sparkle six-point s23 violet tiny"></span>
+    <span class="sparkle eight-point s24 white tiny"></span>
+    <span class="sparkle six-point s25 gold tiny"></span>
+    <span class="sparkle eight-point s26 white tiny"></span>
+
+    <span class="sparkle six-point s27 violet small"></span>
+    <span class="sparkle eight-point s28 coral tiny"></span>
+    <span class="sparkle six-point s29 white tiny"></span>
+    <span class="sparkle eight-point s30 violet tiny"></span>
+    <span class="sparkle six-point s31 peach small"></span>
+    <span class="sparkle eight-point s32 white tiny"></span>
+    <span class="sparkle six-point s33 violet tiny"></span>
+    <span class="sparkle eight-point s34 gold tiny"></span>
+    <span class="sparkle six-point s35 white small"></span>
+    <span class="sparkle eight-point s36 white tiny"></span>
+    <span class="sparkle six-point s37 coral tiny"></span>
+  </div>
+
+  <div class="page-shell">
+    <div class="directory-topbar">
+      <a href="lucky.html" id="luckyPageLink" class="lucky-page-link">I’m Feeling Lucky <span
+          class="lucky-sparkle">✨</span></a>
+      <button id="surpriseMeButton" class="surprise-me-button" type="button">
+        Surprise Me <span id="surpriseDice" class="surprise-dice">🎲</span>
+      </button>
+    </div>
+    <h1>Nail Polish Directory</h1>
+    <p class="page-intro">A searchable, filterable directory of nail polishes in Jessica's collection.</p>
+
+    <div class="filter-panel">
+      <div class="filter-row">
+        <div class="filter-group">
+          <label for="brandFilter">Brand</label>
+          <select id="brandFilter">
+            <option value="">All</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="colorFilter">Color</label>
+          <select id="colorFilter">
+            <option value="">All</option>
+          </select>
+        </div>
+
+
+        <div class="filter-group">
+          <label for="typeFilter">Type/Effect</label>
+          <select id="typeFilter">
+            <option value="">All</option>
+          </select>
+        </div>
+
+
+        <div class="filter-group">
+          <label for="subtypeFilter">Sub Type</label>
+          <select id="subtypeFilter">
+            <option value="">All</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="numberFilter">Number</label>
+          <input type="text" id="numberFilter" placeholder="Type number..." />
+        </div>
+      </div>
+
+      <div class="filter-actions-row">
+        <button type="button" id="clearFiltersBtn">Clear Filters</button>
+      </div>
+
+    </div>
+
+    <div class="alpha-filter-wrap">
+      <div class="alpha-filter" id="alphaFilterTop">
+        <button type="button" class="alpha-btn active" data-letter="">All</button>
+        <button type="button" class="alpha-btn" data-letter="A">A</button>
+        <button type="button" class="alpha-btn" data-letter="B">B</button>
+        <button type="button" class="alpha-btn" data-letter="C">C</button>
+        <button type="button" class="alpha-btn" data-letter="D">D</button>
+        <button type="button" class="alpha-btn" data-letter="E">E</button>
+        <button type="button" class="alpha-btn" data-letter="F">F</button>
+        <button type="button" class="alpha-btn" data-letter="G">G</button>
+        <button type="button" class="alpha-btn" data-letter="H">H</button>
+        <button type="button" class="alpha-btn" data-letter="I">I</button>
+        <button type="button" class="alpha-btn" data-letter="J">J</button>
+        <button type="button" class="alpha-btn" data-letter="K">K</button>
+        <button type="button" class="alpha-btn" data-letter="L">L</button>
+        <button type="button" class="alpha-btn" data-letter="M">M</button>
+        <button type="button" class="alpha-btn" data-letter="N">N</button>
+        <button type="button" class="alpha-btn" data-letter="O">O</button>
+        <button type="button" class="alpha-btn" data-letter="P">P</button>
+        <button type="button" class="alpha-btn" data-letter="Q">Q</button>
+        <button type="button" class="alpha-btn" data-letter="R">R</button>
+        <button type="button" class="alpha-btn" data-letter="S">S</button>
+        <button type="button" class="alpha-btn" data-letter="T">T</button>
+        <button type="button" class="alpha-btn" data-letter="U">U</button>
+        <button type="button" class="alpha-btn" data-letter="V">V</button>
+        <button type="button" class="alpha-btn" data-letter="W">W</button>
+        <button type="button" class="alpha-btn" data-letter="X">X</button>
+        <button type="button" class="alpha-btn" data-letter="Y">Y</button>
+        <button type="button" class="alpha-btn" data-letter="Z">Z</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table id="polishTable" class="display">
+        <thead>
+          <tr>
+            <th>Swatch Photo</th>
+            <th>Brand</th>
+            <th>Name</th>
+            <th>Color</th>
+            <th>Type/Effect</th>
+            <th>Sub Type</th>
+            <th>Number</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alpha-filter-wrap alpha-filter-bottom">
+      <div class="alpha-filter" id="alphaFilterBottom">
+        <button type="button" class="alpha-btn active" data-letter="">All</button>
+        <button type="button" class="alpha-btn" data-letter="A">A</button>
+        <button type="button" class="alpha-btn" data-letter="B">B</button>
+        <button type="button" class="alpha-btn" data-letter="C">C</button>
+        <button type="button" class="alpha-btn" data-letter="D">D</button>
+        <button type="button" class="alpha-btn" data-letter="E">E</button>
+        <button type="button" class="alpha-btn" data-letter="F">F</button>
+        <button type="button" class="alpha-btn" data-letter="G">G</button>
+        <button type="button" class="alpha-btn" data-letter="H">H</button>
+        <button type="button" class="alpha-btn" data-letter="I">I</button>
+        <button type="button" class="alpha-btn" data-letter="J">J</button>
+        <button type="button" class="alpha-btn" data-letter="K">K</button>
+        <button type="button" class="alpha-btn" data-letter="L">L</button>
+        <button type="button" class="alpha-btn" data-letter="M">M</button>
+        <button type="button" class="alpha-btn" data-letter="N">N</button>
+        <button type="button" class="alpha-btn" data-letter="O">O</button>
+        <button type="button" class="alpha-btn" data-letter="P">P</button>
+        <button type="button" class="alpha-btn" data-letter="Q">Q</button>
+        <button type="button" class="alpha-btn" data-letter="R">R</button>
+        <button type="button" class="alpha-btn" data-letter="S">S</button>
+        <button type="button" class="alpha-btn" data-letter="T">T</button>
+        <button type="button" class="alpha-btn" data-letter="U">U</button>
+        <button type="button" class="alpha-btn" data-letter="V">V</button>
+        <button type="button" class="alpha-btn" data-letter="W">W</button>
+        <button type="button" class="alpha-btn" data-letter="X">X</button>
+        <button type="button" class="alpha-btn" data-letter="Y">Y</button>
+        <button type="button" class="alpha-btn" data-letter="Z">Z</button>
+      </div>
+    </div>
+
+    <div id="surpriseModal" class="surprise-modal" hidden>
+      <div class="surprise-modal-overlay"></div>
+
+      <div class="surprise-modal-content" role="dialog" aria-modal="true" aria-labelledby="surpriseModalTitle">
+        <div class="modal-card-sparkles" aria-hidden="true">
+          <span class="sparkle six-point s1 white tiny top-glow"></span>
+          <span class="sparkle eight-point s2 white tiny top-glow"></span>
+          <span class="sparkle six-point s3 violet tiny top-glow"></span>
+          <span class="sparkle eight-point s4 white small top-glow"></span>
+          <span class="sparkle six-point s5 white tiny top-glow"></span>
+          <span class="sparkle eight-point s6 violet tiny top-glow"></span>
+          <span class="sparkle six-point s7 peach tiny top-glow"></span>
+          <span class="sparkle eight-point s8 white tiny top-glow"></span>
+          <span class="sparkle six-point s9 white small top-glow"></span>
+          <span class="sparkle eight-point s10 violet tiny top-glow"></span>
+          <span class="sparkle six-point s11 gold tiny top-glow"></span>
+          <span class="sparkle eight-point s12 white tiny top-glow"></span>
+          <span class="sparkle six-point s13 white tiny"></span>
+          <span class="sparkle eight-point s14 violet small"></span>
+          <span class="sparkle six-point s15 coral tiny"></span>
+          <span class="sparkle eight-point s16 violet tiny"></span>
+          <span class="sparkle six-point s17 white small"></span>
+          <span class="sparkle eight-point s18 peach tiny"></span>
+          <span class="sparkle six-point s19 violet tiny"></span>
+          <span class="sparkle eight-point s20 white tiny"></span>
+          <span class="sparkle six-point s21 white tiny"></span>
+          <span class="sparkle eight-point s22 white small"></span>
+          <span class="sparkle six-point s23 violet tiny"></span>
+          <span class="sparkle eight-point s24 white tiny"></span>
+          <span class="sparkle six-point s25 gold tiny"></span>
+          <span class="sparkle eight-point s26 white tiny"></span>
+          <span class="sparkle six-point s27 violet small"></span>
+          <span class="sparkle eight-point s28 coral tiny"></span>
+          <span class="sparkle six-point s29 white tiny"></span>
+          <span class="sparkle eight-point s30 violet tiny"></span>
+          <span class="sparkle six-point s31 peach small"></span>
+          <span class="sparkle eight-point s32 white tiny"></span>
+          <span class="sparkle six-point s33 violet tiny"></span>
+          <span class="sparkle eight-point s34 gold tiny"></span>
+          <span class="sparkle six-point s35 white small"></span>
+          <span class="sparkle eight-point s36 white tiny"></span>
+          <span class="sparkle six-point s37 coral tiny"></span>
+          <span class="sparkle eight-point s38 white small"></span>
+          <span class="sparkle six-point s39 violet tiny"></span>
+          <span class="sparkle eight-point s40 peach tiny"></span>
+          <span class="sparkle six-point s41 white small"></span>
+          <span class="sparkle eight-point s42 gold tiny"></span>
+          <span class="sparkle six-point s43 violet tiny"></span>
+          <span class="sparkle eight-point s44 white tiny"></span>
+          <span class="sparkle six-point s45 coral small"></span>
+          <span class="sparkle eight-point s46 white tiny"></span>
+        </div>
+        <button id="surpriseCloseButton" class="surprise-close-button" type="button" aria-label="Close">
+          &times;
+        </button>
+
+        <div id="surpriseEntryNav" class="polish-entry-nav" hidden>
+          <button id="surprisePrevPolish" class="polish-entry-arrow prev" type="button" aria-label="Previous polish">
+            &#8249;
+          </button>
+          <button id="surpriseNextPolish" class="polish-entry-arrow next" type="button" aria-label="Next polish">
+            &#8250;
+          </button>
+        </div>
+
+        <div class="surprise-modal-body">
+          <div class="surprise-image-wrap polish-image-panel">
+            <div class="polish-main-image-shell">
+              <div class="image-card">
+                <button id="surpriseImageButton" class="polish-main-image-button" type="button"
+                  aria-label="Open swatch image">
+                  <img id="surpriseResultImage" src="" alt="" class="surprise-result-image polish-gallery-image" />
+                </button>
+              </div>
+
+              <div id="surpriseImageFallback" class="surprise-image-fallback" hidden>
+                No swatch available
+              </div>
+
+              <div id="surpriseGalleryNav" class="polish-gallery-nav" hidden>
+                <button id="surprisePrevImage" class="polish-gallery-arrow prev" type="button"
+                  aria-label="Previous swatch">
+                  &#8249;
+                </button>
+                <button id="surpriseNextImage" class="polish-gallery-arrow next" type="button" aria-label="Next swatch">
+                  &#8250;
+                </button>
+              </div>
+            </div>
+
+            <div id="surpriseImageHint" class="polish-image-hint">
+              Click the swatch to zoom in
+            </div>
+          </div>
+
+          <div class="surprise-result-details">
+            <div id="surpriseResultBrand" class="surprise-result-brand"></div>
+            <h2 id="surpriseModalTitle" class="surprise-result-name"></h2>
+
+            <div class="surprise-detail-row">
+              <span class="surprise-detail-label">Color</span>
+              <span id="surpriseResultColor"></span>
+            </div>
+
+            <div class="surprise-detail-row">
+              <span class="surprise-detail-label">Type</span>
+              <span id="surpriseResultType"></span>
+            </div>
+
+            <div id="surpriseSubtypeRow" class="surprise-detail-row" hidden>
+              <span class="surprise-detail-label">Sub Type</span>
+              <span id="surpriseResultSubtype"></span>
+            </div>
+
+            <div class="surprise-detail-row">
+              <span class="surprise-detail-label">Number</span>
+              <span id="surpriseResultNumber"></span>
+            </div>
+
+            <div id="surpriseDescriptionBlock" class="polish-description-block" hidden>
+              <span class="polish-description-label">Description</span>
+              <p id="surpriseResultDescription" class="polish-description-text"></p>
+            </div>
+
+            <div id="surpriseModalActions" class="surprise-modal-actions" hidden>
+              <button id="surpriseAgainButton" class="surprise-secondary-button" type="button">
+                Surprise Me Again
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="imageViewer" class="image-viewer" hidden>
+      <div class="image-viewer-overlay"></div>
+
+      <div class="image-viewer-content" role="dialog" aria-modal="true" aria-label="Expanded swatch image">
+        <div class="image-viewer-frame">
+          <img id="imageViewerImg" class="image-viewer-image" src="" alt="">
+          <button id="imageViewerClose" class="image-viewer-close" type="button" aria-label="Close enlarged image">
+            &times;
+          </button>
+
+          <button id="imageViewerPrev" class="image-viewer-arrow prev" type="button" aria-label="Previous swatch"
+            hidden>
+            &#8249;
+          </button>
+          <button id="imageViewerNext" class="image-viewer-arrow next" type="button" aria-label="Next swatch" hidden>
+            &#8250;
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+    <script src="app.js"></script>
+    <script>
+      const surpriseDice = document.getElementById('surpriseDice');
+      const surpriseMeButton = document.getElementById('surpriseMeButton');
+      const surpriseModal = document.getElementById('surpriseModal');
+      const surpriseCloseButton = document.getElementById('surpriseCloseButton');
+      const surpriseOverlay = document.querySelector('.surprise-modal-overlay');
+      const surpriseAgainButton = document.getElementById('surpriseAgainButton');
+
+      const surpriseResultImage = document.getElementById('surpriseResultImage');
+      const surpriseImageButton = document.getElementById('surpriseImageButton');
+      const surpriseImageFallback = document.getElementById('surpriseImageFallback');
+      const surpriseResultBrand = document.getElementById('surpriseResultBrand');
+      const surpriseResultName = document.getElementById('surpriseModalTitle');
+      const surpriseResultColor = document.getElementById('surpriseResultColor');
+      const surpriseResultType = document.getElementById('surpriseResultType');
+      const surpriseResultSubtype = document.getElementById('surpriseResultSubtype');
+      const surpriseResultNumber = document.getElementById('surpriseResultNumber');
+      const surpriseSubtypeRow = document.getElementById('surpriseSubtypeRow');
+      const surpriseDescriptionBlock = document.getElementById('surpriseDescriptionBlock');
+      const surpriseResultDescription = document.getElementById('surpriseResultDescription');
+      const surpriseModalActions = document.getElementById('surpriseModalActions');
+
+      const surpriseGalleryNav = document.getElementById('surpriseGalleryNav');
+      const surprisePrevImage = document.getElementById('surprisePrevImage');
+      const surpriseNextImage = document.getElementById('surpriseNextImage');
+
+      const surpriseEntryNav = document.getElementById('surpriseEntryNav');
+      const surprisePrevPolish = document.getElementById('surprisePrevPolish');
+      const surpriseNextPolish = document.getElementById('surpriseNextPolish');
+
+      const imageViewer = document.getElementById('imageViewer');
+      const imageViewerImg = document.getElementById('imageViewerImg');
+      const imageViewerClose = document.getElementById('imageViewerClose');
+      const imageViewerOverlay = document.querySelector('.image-viewer-overlay');
+      const imageViewerPrev = document.getElementById('imageViewerPrev');
+      const imageViewerNext = document.getElementById('imageViewerNext');
+
+      let surpriseData = [];
+      let currentSurprisePolishKey = null;
+      let currentSurpriseCyclePool = [];
+      let currentSurpriseScopeKey = '';
+
+      let activeSurpriseGallery = [];
+      let activeSurpriseGalleryIndex = 0;
+
+      let activeModalSequence = [];
+      let activeModalSequenceIndex = -1;
+      let modalAllowsReroll = false;
+
+      function animateSurpriseDice() {
+        if (!surpriseDice) return;
+        surpriseDice.classList.remove('is-shuffling');
+        void surpriseDice.offsetWidth;
+        surpriseDice.classList.add('is-shuffling');
+      }
+
+      function getScopeKey(items) {
+        return items
+          .map(item => getPolishKey(item))
+          .sort()
+          .join('###');
+      }
+
+      function resetSurpriseCycle(items, excludedKey = null) {
+        let pool = shuffleArray(items);
+
+        if (excludedKey && pool.length > 1 && getPolishKey(pool[0]) === excludedKey) {
+          const firstDifferentIndex = pool.findIndex(item => getPolishKey(item) !== excludedKey);
+
+          if (firstDifferentIndex > 0) {
+            [pool[0], pool[firstDifferentIndex]] = [pool[firstDifferentIndex], pool[0]];
+          }
+        }
+
+        currentSurpriseCyclePool = pool;
+      }
+
+      function pickNextSurprisePolish(items, excludedKey = null) {
+        if (!items || !items.length) return null;
+
+        const newScopeKey = getScopeKey(items);
+
+        if (currentSurpriseScopeKey !== newScopeKey) {
+          currentSurpriseScopeKey = newScopeKey;
+          currentSurpriseCyclePool = [];
+        }
+
+        if (!currentSurpriseCyclePool.length) {
+          resetSurpriseCycle(items, excludedKey);
+        }
+
+        return currentSurpriseCyclePool.shift() || null;
+      }
+
+      function getCurrentlyVisiblePolishes() {
+        if (!window.polishTable) return surpriseData;
+
+        return window.polishTable
+          .rows({ search: 'applied' })
+          .nodes()
+          .toArray()
+          .map(row => $(row).data('polish'))
+          .filter(Boolean);
+      }
+
+      function openSurpriseModal() {
+        surpriseModal.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeSurpriseModal() {
+        surpriseModal.hidden = true;
+        if (imageViewer.hidden) {
+          document.body.style.overflow = '';
+        }
+      }
+
+      function renderSurpriseGalleryImage() {
+        const currentImage = activeSurpriseGallery[activeSurpriseGalleryIndex];
+
+        surpriseResultImage.onerror = null;
+
+        if (!currentImage || !currentImage.src) {
+          surpriseResultImage.hidden = true;
+          surpriseImageButton.hidden = true;
+          surpriseImageFallback.hidden = false;
+          surpriseGalleryNav.hidden = true;
+          surpriseResultImage.removeAttribute('src');
+          surpriseResultImage.alt = '';
+          return;
+        }
+
+        surpriseImageFallback.hidden = true;
+        surpriseResultImage.hidden = false;
+        surpriseImageButton.hidden = false;
+        surpriseResultImage.src = currentImage.src;
+        surpriseResultImage.alt = currentImage.alt || '';
+
+        surpriseResultImage.onerror = function () {
+          surpriseResultImage.hidden = true;
+          surpriseImageButton.hidden = true;
+          surpriseImageFallback.hidden = false;
+          surpriseGalleryNav.hidden = true;
+          surpriseResultImage.removeAttribute('src');
+          surpriseResultImage.alt = '';
+        };
+
+        surpriseGalleryNav.hidden = activeSurpriseGallery.length <= 1;
+      }
+
+      function setSurpriseGallery(polish) {
+        activeSurpriseGallery = getPolishGallery(polish);
+        activeSurpriseGalleryIndex = 0;
+        renderSurpriseGalleryImage();
+      }
+
+      function showPreviousSurpriseImage() {
+        if (activeSurpriseGallery.length <= 1) return;
+        activeSurpriseGalleryIndex =
+          (activeSurpriseGalleryIndex - 1 + activeSurpriseGallery.length) % activeSurpriseGallery.length;
+        renderSurpriseGalleryImage();
+      }
+
+      function showNextSurpriseImage() {
+        if (activeSurpriseGallery.length <= 1) return;
+        activeSurpriseGalleryIndex =
+          (activeSurpriseGalleryIndex + 1) % activeSurpriseGallery.length;
+        renderSurpriseGalleryImage();
+      }
+
+      function updateModalEntryNav() {
+        surpriseEntryNav.hidden = activeModalSequence.length <= 1;
+      }
+
+      function showModalPolishAt(index, options = {}) {
+        if (!activeModalSequence.length) return;
+
+        const normalizedIndex = (index + activeModalSequence.length) % activeModalSequence.length;
+        const polish = activeModalSequence[normalizedIndex];
+        const subtype = getPolishSubtype(polish);
+        const description = getPolishDescription(polish);
+
+        activeModalSequenceIndex = normalizedIndex;
+        currentSurprisePolishKey = getPolishKey(polish);
+
+        setSurpriseGallery(polish);
+
+        surpriseResultBrand.textContent = polish.brand || '';
+        surpriseResultName.textContent = polish.name || '';
+        surpriseResultColor.textContent = polish.color || '—';
+        surpriseResultType.textContent = polish.type || '—';
+        surpriseResultNumber.innerHTML = createNumberBadge(polish.type, polish.number);
+
+        surpriseSubtypeRow.hidden = !hasMeaningfulValue(subtype);
+        surpriseResultSubtype.textContent = subtype;
+
+        surpriseDescriptionBlock.hidden = !hasMeaningfulValue(description);
+        surpriseResultDescription.textContent = description;
+
+        if (typeof options.allowReroll === 'boolean') {
+          modalAllowsReroll = options.allowReroll;
+        }
+
+        surpriseModalActions.hidden = !modalAllowsReroll;
+        updateModalEntryNav();
+        openSurpriseModal();
+      }
+
+      function showPreviousModalPolish() {
+        if (activeModalSequence.length <= 1) return;
+        showModalPolishAt(activeModalSequenceIndex - 1);
+      }
+
+      function showNextModalPolish() {
+        if (activeModalSequence.length <= 1) return;
+        showModalPolishAt(activeModalSequenceIndex + 1);
+      }
+
+      function openImageViewer() {
+        const currentImage = activeSurpriseGallery[activeSurpriseGalleryIndex];
+        if (!currentImage?.src) return;
+
+        imageViewerImg.src = currentImage.src;
+        imageViewerImg.alt = currentImage.alt || '';
+        imageViewer.hidden = false;
+        imageViewerPrev.hidden = activeSurpriseGallery.length <= 1;
+        imageViewerNext.hidden = activeSurpriseGallery.length <= 1;
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeImageViewer() {
+        imageViewer.hidden = true;
+        imageViewerImg.removeAttribute('src');
+        imageViewerImg.alt = '';
+        if (!surpriseModal.hidden) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
+      }
+
+      function syncViewerToCurrentGalleryImage() {
+        const currentImage = activeSurpriseGallery[activeSurpriseGalleryIndex];
+        if (!currentImage?.src) return;
+        imageViewerImg.src = currentImage.src;
+        imageViewerImg.alt = currentImage.alt || '';
+        imageViewerPrev.hidden = activeSurpriseGallery.length <= 1;
+        imageViewerNext.hidden = activeSurpriseGallery.length <= 1;
+      }
+
+      fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+          surpriseData = data;
+
+          let brands = new Set();
+          let types = new Set();
+          let colors = new Set();
+          let subtypes = new Set();
+
+          data.forEach(item => {
+            brands.add(item.brand);
+            types.add(item.type);
+            colors.add(item.color);
+            if (hasMeaningfulValue(item.subtype)) {
+              subtypes.add(item.subtype);
+            }
+
+            const swatchGallery = getPolishGallery(item);
+            const lightboxGroup = `polish-${getPolishKey(item).replace(/[^a-zA-Z0-9_-]/g, '-')}`;
+            const primaryImage = swatchGallery[0]?.src || item.image || item.thumb || '';
+            const primaryThumb = swatchGallery[0]?.thumb || item.thumb || item.image || '';
+            const titleText = `${item.brand || ''} ${item.name || ''}`.trim();
+
+            const lightboxAnchors = swatchGallery.map((media, index) => {
+              const hiddenClass = index === 0 ? '' : ' style="display:none"';
+              return `<a href="${escapeHTML(media.src)}" data-lightbox="${lightboxGroup}" data-title="${escapeHTML(titleText)}" class="swatch-thumb-link swatch-gallery-hidden"${hiddenClass}></a>`;
+            }).join('');
+
+            const rowHtml = `
+          <tr>
+            <td>
+              <a href="${escapeHTML(primaryImage)}" data-lightbox="${lightboxGroup}" data-title="${escapeHTML(titleText)}" class="swatch-thumb-link">
+                <span class="swatch-thumb-frame">
+                  <img src="${escapeHTML(primaryThumb)}" alt="${escapeHTML(titleText)} swatch" class="swatch-thumb-image">
+                </span>
+              </a>
+              ${lightboxAnchors}
+            </td>
+            <td>${escapeHTML(item.brand || '')}</td>
+            <td>${escapeHTML(item.name || '')}</td>
+            <td>${escapeHTML(item.color || '')}</td>
+            <td>${escapeHTML(item.type || '')}</td>
+            <td>${escapeHTML(item.subtype || '')}</td>
+            <td data-order="${escapeHTML(item.number)}" data-search="${escapeHTML(item.number)}">
+              ${createNumberBadge(item.type, item.number)}
+            </td>
+          </tr>
+        `;
+
+            const $row = $(rowHtml);
+            $row.data('polish', item);
+            $('#polishTable tbody').append($row);
+          });
+
+          [...brands].sort((a, b) => a.localeCompare(b)).forEach(b => $('#brandFilter').append(`<option>${escapeHTML(b)}</option>`));
+          [...types].sort((a, b) => a.localeCompare(b)).forEach(t => $('#typeFilter').append(`<option>${escapeHTML(t)}</option>`));
+          [...colors].sort((a, b) => a.localeCompare(b)).forEach(c => $('#colorFilter').append(`<option>${escapeHTML(c)}</option>`));
+          [...subtypes].sort((a, b) => a.localeCompare(b)).forEach(s => $('#subtypeFilter').append(`<option>${escapeHTML(s)}</option>`));
+
+          let selectedLetter = '';
+
+          window.polishTable = $('#polishTable').DataTable({
+            order: [[1, 'asc'], [2, 'asc']],
+            paging: false,
+            info: false,
+            lengthChange: false,
+            searching: true
+          });
+
+          $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+            let brand = $('#brandFilter').val().toLowerCase();
+            let type = $('#typeFilter').val().toLowerCase();
+            let color = $('#colorFilter').val().toLowerCase();
+            let subtype = $('#subtypeFilter').val().toLowerCase();
+            let number = $('#numberFilter').val().toLowerCase();
+
+            let rowBrand = (data[1] || '').toLowerCase();
+            let rowColor = (data[3] || '').toLowerCase();
+            let rowType = (data[4] || '').toLowerCase();
+            let rowSubtype = (data[5] || '').toLowerCase();
+            let rowNumber = (data[6] || '').toLowerCase();
+            let selectedLetterLower = selectedLetter.toLowerCase();
+
+            if (brand && rowBrand !== brand) return false;
+            if (type && rowType !== type) return false;
+            if (color && rowColor !== color) return false;
+            if (subtype && rowSubtype !== subtype) return false;
+            if (number && !rowNumber.includes(number)) return false;
+            if (selectedLetterLower && !rowBrand.startsWith(selectedLetterLower)) return false;
+
+            return true;
+          });
+
+          $('#polishTable tbody').on('click', '.swatch-thumb-link', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const polish = $(this).closest('tr').data('polish');
+            if (!polish) return;
+
+            setSurpriseGallery(polish);
+            openImageViewer();
+          });
+
+          $('#polishTable tbody').on('click', 'tr', function (event) {
+            if ($(event.target).closest('.swatch-thumb-link').length) {
+              return;
+            }
+
+            const polish = $(this).data('polish');
+            if (!polish) return;
+
+            const visiblePolishes = getCurrentlyVisiblePolishes();
+            activeModalSequence = getDetailModalSequence(polish, visiblePolishes);
+            activeModalSequenceIndex = activeModalSequence.findIndex(item => getPolishKey(item) === getPolishKey(polish));
+
+            if (activeModalSequenceIndex < 0) activeModalSequenceIndex = 0;
+
+            showModalPolishAt(activeModalSequenceIndex, { allowReroll: false });
+          });
+
+          surpriseMeButton.addEventListener('click', () => {
+            animateSurpriseDice();
+
+            if (!surpriseData.length) {
+              alert('Polish data is still loading. Please try again.');
+              return;
+            }
+
+            const visiblePolishes = getCurrentlyVisiblePolishes();
+
+            if (!visiblePolishes.length) {
+              alert('No matching polishes are currently visible. Try adjusting your filters.');
+              return;
+            }
+
+            currentSurprisePolishKey = null;
+            currentSurpriseCyclePool = [];
+            currentSurpriseScopeKey = '';
+
+            const selectedPolish = pickNextSurprisePolish(visiblePolishes, currentSurprisePolishKey);
+
+            if (!selectedPolish) {
+              alert('No matching polishes are currently visible. Try adjusting your filters.');
+              return;
+            }
+
+            activeModalSequence = visiblePolishes;
+            activeModalSequenceIndex = activeModalSequence.findIndex(item => getPolishKey(item) === getPolishKey(selectedPolish));
+
+            showModalPolishAt(activeModalSequenceIndex, { allowReroll: true });
+          });
+
+          surpriseAgainButton.addEventListener('click', () => {
+            animateSurpriseDice();
+
+            const visiblePolishes = getCurrentlyVisiblePolishes();
+
+            if (!visiblePolishes.length) {
+              alert('No matching polishes are currently visible. Try adjusting your filters.');
+              return;
+            }
+
+            const selectedPolish = pickNextSurprisePolish(visiblePolishes, currentSurprisePolishKey);
+
+            if (!selectedPolish) {
+              alert('No matching polishes are currently visible. Try adjusting your filters.');
+              return;
+            }
+
+            activeModalSequence = visiblePolishes;
+            activeModalSequenceIndex = activeModalSequence.findIndex(item => getPolishKey(item) === getPolishKey(selectedPolish));
+
+            showModalPolishAt(activeModalSequenceIndex, { allowReroll: true });
+          });
+
+          surprisePrevImage.addEventListener('click', showPreviousSurpriseImage);
+          surpriseNextImage.addEventListener('click', showNextSurpriseImage);
+
+          surprisePrevPolish.addEventListener('click', showPreviousModalPolish);
+          surpriseNextPolish.addEventListener('click', showNextModalPolish);
+
+          surpriseImageButton.addEventListener('click', openImageViewer);
+
+          imageViewerClose.addEventListener('click', closeImageViewer);
+          imageViewerOverlay.addEventListener('click', closeImageViewer);
+
+          imageViewerPrev.addEventListener('click', () => {
+            showPreviousSurpriseImage();
+            syncViewerToCurrentGalleryImage();
+          });
+
+          imageViewerNext.addEventListener('click', () => {
+            showNextSurpriseImage();
+            syncViewerToCurrentGalleryImage();
+          });
+
+          imageViewerImg.addEventListener('click', () => {
+            if (activeSurpriseGallery.length <= 1) {
+              closeImageViewer();
+              return;
+            }
+
+            showNextSurpriseImage();
+            syncViewerToCurrentGalleryImage();
+          });
+
+          surpriseCloseButton.addEventListener('click', closeSurpriseModal);
+          surpriseOverlay.addEventListener('click', closeSurpriseModal);
+
+          document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && !imageViewer.hidden) {
+              closeImageViewer();
+              return;
+            }
+
+            if (event.key === 'Escape' && !surpriseModal.hidden) {
+              closeSurpriseModal();
+              return;
+            }
+
+            if (!imageViewer.hidden) {
+              if (event.key === 'ArrowLeft' && activeSurpriseGallery.length > 1) {
+                showPreviousSurpriseImage();
+                syncViewerToCurrentGalleryImage();
+              }
+              if (event.key === 'ArrowRight' && activeSurpriseGallery.length > 1) {
+                showNextSurpriseImage();
+                syncViewerToCurrentGalleryImage();
+              }
+              return;
+            }
+
+            if (!surpriseModal.hidden) {
+              if (event.key === 'ArrowLeft') showPreviousModalPolish();
+              if (event.key === 'ArrowRight') showNextModalPolish();
+            }
+          });
+
+          $('#brandFilter, #typeFilter, #colorFilter, #subtypeFilter').on('change', function () {
+            window.polishTable.draw();
+          });
+
+          $('#numberFilter').on('keyup change', function () {
+            window.polishTable.draw();
+          });
+
+          $('#clearFiltersBtn').on('click', function () {
+            $('#brandFilter').val('');
+            $('#typeFilter').val('');
+            $('#colorFilter').val('');
+            $('#subtypeFilter').val('');
+            $('#numberFilter').val('');
+
+            window.polishTable.search('');
+
+            selectedLetter = '';
+            $('.alpha-btn').removeClass('active');
+            $('.alpha-btn[data-letter=""]').addClass('active');
+
+            window.polishTable.draw();
+          });
+
+          $('.alpha-btn').on('click', function () {
+            selectedLetter = $(this).data('letter') || '';
+            $('.alpha-btn').removeClass('active');
+            $(this).addClass('active');
+            window.polishTable.draw();
+          });
+
+          $('.alpha-btn[data-letter=""]').addClass('active');
+        })
+        .catch(error => {
+          console.error(error);
+          alert('There was a problem loading data.json.');
+        });
+    </script>
+  </div>
+</body>
+
+</html>

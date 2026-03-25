@@ -1,0 +1,408 @@
+[
+  {
+    "brand": "Baroness X",
+    "name": "Porthole",
+    "color": "Clear",
+    "type": "Fluid Art",
+    "subtype": "",
+    "number": 1,
+    "image": "images/Baroness_X_Porthole.jpg",
+    "thumb": "images/Baroness_X_Porthole.jpg"
+  },
+  {
+    "brand": "Lost Lake Lacquer",
+    "name": "Melting Hearts",
+    "color": "Pink",
+    "type": "Magnetic",
+    "subtype": "Flakie",
+    "number": 1,
+    "image": "images/Lost_Lake_Lacquer_Melting_Hearts.jpg",
+    "thumb": "images/Lost_Lake_Lacquer_Melting_Hearts.jpg"
+  },
+  {
+    "brand": "Mooncat",
+    "name": "Cruel Mirage",
+    "color": "Black",
+    "type": "Holographic",
+    "subtype": "",
+    "number": 2,
+    "image": "images/Mooncat_Cruel_Mirage.jpg",
+    "thumb": "images/Mooncat_Cruel_Mirage.jpg"
+  },
+  {
+    "brand": "ILNP",
+    "name": "Mega",
+    "color": "White",
+    "type": "Holographic",
+    "subtype": "",
+    "number": 1,
+    "image": "images/ILNP_Mega.jpg",
+    "thumb": "images/ILNP_Mega.jpg"
+  },
+  {
+    "brand": "Emily de Molly",
+    "name": "Lament",
+    "color": "Pink",
+    "type": "Shimmer",
+    "subtype": "Multichrome",
+    "number": 2,
+    "image": "images/Emily_de_Molly_Lament.jpg",
+    "thumb": "images/Emily_de_Molly_Lament.jpg"
+  },
+  {
+    "brand": "Cirque Colors",
+    "name": "Bisou Bisou",
+    "color": "Blue",
+    "type": "Thermal",
+    "subtype": "",
+    "number": 1,
+    "image": "images/Cirque_Colors_Bisou_Bisou.jpg",
+    "thumb": "images/Cirque_Colors_Bisou_Bisou.jpg"
+  },
+  {
+    "brand": "Loud Lacquer",
+    "name": "Soft Swap",
+    "color": "Yellow",
+    "type": "Shimmer",
+    "subtype": "",
+    "number": 3,
+    "image": "images/Loud_Lacquer_Soft_Swap.jpg",
+    "thumb": "images/Loud_Lacquer_Soft_Swap.jpg"
+  },
+  {
+    "brand": "Mooncat",
+    "name": "Root of all Evil",
+    "color": "Green",
+    "type": "Multichrome",
+    "subtype": "",
+    "number": 4,
+    "image": "images/Mooncat_Root_of_all_Evil.jpg",
+    "thumb": "images/Mooncat_Root_of_all_Evil.jpg"
+  },
+  {
+    "brand": "KB Shimmer",
+    "name": "I'll Bewitch You Shortly",
+    "color": "Purple",
+    "type": "Magnetic",
+    "subtype": "Reflective Glitter",
+    "number": 2,
+    "image": "images/KB_Shimmer_I'll_Bewitch_You_Shortly.jpg",
+    "thumb": "images/KB_Shimmer_I'll_Bewitch_You_Shortly.jpg"
+  },
+  {
+    "brand": "Fauve Cosmetics",
+    "name": "Arterial",
+    "color": "Purple",
+    "type": "Magnetic",
+    "subtype": "",
+    "number": 3,
+    "image": "images/Fauve_Cosmetics_Arterial.jpg",
+    "thumb": "images/Fauve_Cosmetics_Arterial.jpg"
+  },
+  {
+    "brand": "Victorian Varnish",
+    "name": "Yippie Ki-Yay Motherfucker",
+    "color": "Purple",
+    "type": "Magnetic",
+    "subtype": "Reflective Glitter",
+    "number": 4,
+    "image": "images/Victorian_Varnish_Yippie_Ki-Yay_Motherfucker.jpg",
+    "thumb": "images/Victorian_Varnish_Yippie_Ki-Yay_Motherfucker.jpg"
+  },
+  {
+    "brand": "Mooncat",
+    "name": "Monster Under Your Head",
+    "color": "Green",
+    "type": "Holographic",
+    "subtype": "",
+    "number": 3,
+    "image": "images/Mooncat_Monster_Under_Your_Head.jpg",
+    "thumb": "images/Mooncat_Monster_Under_Your_Head.jpg"
+  },
+  {
+    "brand": "Fail Polish",
+    "name": "The Ick",
+    "color": "Green",
+    "type": "Pearlescent",
+    "subtype": "",
+    "number": 5,
+    "image": "images/Fail_Polish_The_Ick.jpg",
+    "thumb": "images/Fail_Polish_The_Ick.jpg"
+  },
+  {
+    "brand": "Bee's Knees",
+    "name": "Chosen of Bane",
+    "color": "Black",
+    "type": "Magnetic",
+    "subtype": "Holographic",
+    "number": 5,
+    "image": "images/Bee's_Knees_Chosen_of_Bane.jpg",
+    "thumb": "images/Bee's_Knees_Chosen_of_Bane.jpg"
+  },
+  {
+    "brand": "Baroness X",
+    "name": "The Lovers",
+    "color": "Purple",
+    "type": "Reflective Glitter",
+    "subtype": "Flakie",
+    "number": 1,
+    "image": "images/Baroness_X_The_Lovers.jpg",
+    "thumb": "images/Baroness_X_The_Lovers.jpg"
+  },
+  {
+    "brand": "Lacquer 22",
+    "name": "Striking",
+    "color": "Silver",
+    "type": "Shimmer",
+    "subtype": "",
+    "number": 6,
+    "image": "images/Lacquer_22_Striking.jpg",
+    "thumb": "images/Lacquer_22_Striking.jpg"
+  },
+  {
+    "brand": "Atomic Polish",
+    "name": "Larimar",
+    "color": "Blue",
+    "type": "Shimmer",
+    "subtype": "",
+    "number": 7,
+    "image": "images/Atomic_Polish_Larimar.jpg",
+    "thumb": "images/Atomic_Polish_Larimar.jpg"
+  },
+  {
+    "brand": "Essie",
+    "name": "Bikini So Teeny",
+    "color": "Blue",
+    "type": "Creme",
+    "subtype": "",
+    "number": 8,
+    "image": "images/Essie_Bikini_So_Teeny.jpg",
+    "thumb": "images/Essie_Bikini_So_Teeny.jpg"
+  },
+  {
+    "brand": "Dam Nail Polish",
+    "name": "Storytelling by the Fire",
+    "color": "Purple",
+    "type": "Magnetic",
+    "subtype": "Pearlescent",
+    "number": 6,
+    "image": "images/Dam_Nail_Polish_Storytelling_by_the_Fire.jpg",
+    "thumb": "images/Dam_Nail_Polish_Storytelling_by_the_Fire.jpg"
+  },
+  {
+    "brand": "Victorian Varnish",
+    "name": "Sirens Singing Sea Shanties",
+    "color": "Green",
+    "type": "Thermal",
+    "subtype": "Flakie",
+    "number": 2,
+    "image": "images/Victorian_Varnish_Sirens_Singing_Sea_Shanties.jpg",
+    "thumb": "images/Victorian_Varnish_Sirens_Singing_Sea_Shanties.jpg"
+  },
+  {
+    "brand": "Beaux Reves",
+    "name": "The Little Prince",
+    "color": "Purple",
+    "type": "Shimmer",
+    "subtype": "",
+    "number": 9,
+    "image": "images/Beaux_Reves_The_Little_Prince.jpg",
+    "thumb": "images/Beaux_Reves_The_Little_Prince.jpg"
+  },
+  {
+    "brand": "Mooncat",
+    "name": "Misery is my Favorite Color",
+    "color": "Blue",
+    "type": "Shimmer",
+    "subtype": "",
+    "number": 11,
+    "image": "images/Mooncat_Misery_is_my_Favorite_Color.jpg",
+    "thumb": "images/Mooncat_Misery_is_my_Favorite_Color.jpg"
+  },
+  {
+    "brand": "Lurid Lacquer",
+    "name": "Darkened Trail",
+    "color": "Purple",
+    "type": "Reflective Glitter",
+    "subtype": "",
+    "number": 2,
+    "image": "images/Lurid_Lacquer_Darkened_Trail.jpg",
+    "thumb": "images/Lurid_Lacquer_Darkened_Trail.jpg"
+  },
+  {
+    "brand": "Garden Path Lacquers",
+    "name": "Solstice Surrender",
+    "color": "Red",
+    "type": "Holographic",
+    "subtype": "",
+    "number": 4,
+    "image": "images/Garden_Path_Lacquers_Solstice_Surrender.jpg",
+    "thumb": "images/Garden_Path_Lacquers_Solstice_Surrender.jpg"
+  },
+  {
+    "brand": "Kathleen & Co.",
+    "name": "Beads and Baubles",
+    "color": "White",
+    "type": "Flakie",
+    "subtype": "Metallic",
+    "number": 1,
+    "image": "images/Kathleen_&_Co._Beads_and_Baubles.jpg",
+    "thumb": "images/Kathleen_&_Co._Beads_and_Baubles.jpg"
+  },
+  {
+    "brand": "Holo Taco",
+    "name": "Not Milky White",
+    "color": "White",
+    "type": "Creme",
+    "subtype": "",
+    "number": 10,
+    "image": "images/Holo_Taco_Not_Milky_White.jpg",
+    "thumb": "images/Holo_Taco_Not_Milky_White.jpg"
+  },
+  {
+    "brand": "Cirque Colors",
+    "name": "Cobalt Jelly",
+    "color": "Blue",
+    "type": "Jelly",
+    "subtype": "",
+    "number": 12,
+    "image": "images/Cirque_Colors_Cobalt_Jelly.jpg",
+    "thumb": "images/Cirque_Colors_Cobalt_Jelly.jpg"
+  },
+  {
+    "brand": "Garden Path Lacquers",
+    "name": "This Offering",
+    "color": "Purple",
+    "type": "Holographic",
+    "subtype": "",
+    "number": 5,
+    "image": "images/Garden_Path_Lacquers_This_Offering.jpg",
+    "thumb": "images/Garden_Path_Lacquers_This_Offering.jpg"
+  },
+  {
+    "brand": "Mooncat",
+    "name": "Moonjelly",
+    "color": "White",
+    "type": "Flakie",
+    "subtype": "",
+    "number": 2,
+    "image": "images/Mooncat_Moonjelly.jpg",
+    "thumb": "images/Mooncat_Moonjelly.jpg"
+  },
+  {
+    "brand": "ILNP",
+    "name": "Adored",
+    "color": "Red",
+    "type": "Creme",
+    "subtype": "",
+    "number": 13,
+    "image": "images/ILNP_Adored.jpg",
+    "thumb": "images/ILNP_Adored.jpg"
+  },
+  {
+    "brand": "Pepper Polish",
+    "name": "Unpacking Dreams",
+    "color": "Purple",
+    "type": "Holographic",
+    "subtype": "",
+    "number": 6,
+    "image": "images/Pepper_Polish_Unpacking_Dreams.jpg",
+    "thumb": "images/Pepper_Polish_Unpacking_Dreams.jpg"
+  },
+  {
+    "brand": "Mooncat",
+    "name": "Imperial Stormtrooper",
+    "color": "Black",
+    "type": "Magnetic",
+    "subtype": "Thermal",
+    "number": 7,
+    "image": "images/Mooncat_Imperial_Stormtrooper.jpg",
+    "thumb": "images/Mooncat_Imperial_Stormtrooper.jpg"
+  },
+  {
+    "brand": "Dany Vianna",
+    "name": "Klimt",
+    "color": "Yellow",
+    "type": "Flakie",
+    "subtype": "",
+    "number": 3,
+    "image": "images/Dany_Vianna_Klimt.jpg",
+    "thumb": "images/Dany_Vianna_Klimt.jpg"
+  },
+  {
+    "brand": "Fail Polish",
+    "name": "Why God Why?",
+    "color": "White",
+    "type": "Pearlescent",
+    "subtype": "Shimmer",
+    "number": 14,
+    "image": "images/Fail_Polish_Why_God_Why.jpg",
+    "thumb": "images/Fail_Polish_Why_God_Why.jpg"
+  },
+  {
+    "brand": "Baroness X",
+    "name": "Amulet",
+    "color": "Purple",
+    "type": "Fluid Art",
+    "subtype": "Multichrome",
+    "number": 15,
+    "image": "images/Baroness_X_Amulet.jpg",
+    "thumb": "images/Baroness_X_Amulet.jpg"
+  },
+  {
+    "brand": "Fauve Cosmetics",
+    "name": "Broken",
+    "color": "Purple",
+    "type": "Magnetic",
+    "subtype": "Multichrome",
+    "number": 8,
+    "image": "images/Fauve_Cosmetics_Broken.jpg",
+    "thumb": "images/Fauve_Cosmetics_Broken.jpg"
+  },
+  {
+    "brand": "KB Shimmer",
+    "name": "Fear Me If You Dare",
+    "color": "Red",
+    "type": "Magnetic",
+    "subtype": "Multichrome",
+    "number": 9,
+    "image": "images/KB_Shimmer_Fear_Me_If_You_Dare.jpg",
+    "thumb": "images/KB_Shimmer_Fear_Me_If_You_Dare.jpg"
+  },
+  {
+    "brand": "Alchemy Lacquers",
+    "name": "Hot Mess Express",
+    "color": "Purple",
+    "type": "Shimmer",
+    "subtype": "",
+    "number": 16,
+    "image": "images/Alchemy_Lacquers_Hot_Mess_Express.jpg",
+    "thumb": "images/Alchemy_Lacquers_Hot_Mess_Express.jpg"
+  },
+  {
+    "brand": "Garden Path Lacquers",
+    "name": "Cloaked In Dust",
+    "color": "Black",
+    "type": "Flakie",
+    "subtype": "Metallic",
+    "number": 4,
+    "image": "images/Garden_Path_Lacquers_Cloaked_In_Dust.jpg",
+    "thumb": "images/Garden_Path_Lacquers_Cloaked_In_Dust.jpg"
+  },
+  {
+    "brand": "Lumen Nails",
+    "name": "Undying Love",
+    "color": "Blue",
+    "type": "Multichrome",
+    "subtype": "Reflective Glitter",
+    "number": "",
+    "image": "images/Lumen_Undying_Love.jpg",
+    "thumb": "images/Lumen_Undying_Love.jpg",
+    "description": "A blackened blue base saturated with a red to orange to purple shift, gold reflective and a scattered blue holo.",
+    "gallery": [
+      "images/Lumen_Undying_Love.jpg",
+      "images/Lumen_Undying_Love_angle_2.jpg",
+      "images/Lumen_Undying_Love_angle_3.jpg"
+    ]
+  }
+]
