@@ -7,7 +7,7 @@
   <title>Nail Polish Directory</title>
 
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" />
-  <link rel="stylesheet" href="styles_mobile_patch.css" />
+  <link rel="stylesheet" href="styles.css" />
 
   <style>
     .page-shell {
@@ -826,90 +826,6 @@
     @media (max-width: 720px) {
       .image-viewer-frame { padding-inline: 50px; }
       .image-viewer-image { max-width: min(calc(96vw - 100px), 1000px); }
-    }
-
-  
-
-    @media (max-width: 768px) {
-      .filter-panel {
-        padding: 16px;
-        border-radius: 12px;
-      }
-
-      .filter-row {
-        gap: 12px;
-      }
-
-      .filter-group {
-        min-width: 100%;
-        width: 100%;
-      }
-
-      .filter-row select,
-      .filter-row input,
-      #numberFilter {
-        width: 100%;
-        min-height: 44px;
-        box-sizing: border-box;
-        font-size: 16px;
-      }
-
-      .filter-actions-row {
-        margin-top: 10px;
-      }
-
-      #clearFiltersBtn {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .directory-topbar {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-      }
-
-      .lucky-page-link,
-      .surprise-me-button {
-        width: 100%;
-        box-sizing: border-box;
-        justify-content: center;
-        text-align: center;
-      }
-
-      .table-wrap {
-        padding: 12px;
-        border-radius: 12px;
-      }
-
-      .alpha-filter {
-        gap: 6px;
-      }
-
-      .alpha-btn {
-        min-height: 34px;
-        padding: 7px 10px;
-      }
-
-      .dataTables_wrapper .dataTables_filter {
-        width: 100%;
-      }
-
-      .dataTables_wrapper .dataTables_filter label {
-        display: block;
-      }
-
-      .dataTables_wrapper .dataTables_filter input {
-        width: 100%;
-        margin: 8px 0 0 0;
-        box-sizing: border-box;
-        font-size: 16px;
-      }
-
-      .swatch-thumb-frame {
-        width: 64px;
-        height: 64px;
-      }
     }
 
   </style>
