@@ -860,7 +860,7 @@
         }
 
         function updateLuckyEntryNav() {
-            luckyEntryNav.hidden = activeLuckySequence.length <= 1;
+            luckyEntryNav.hidden = true;
         }
 
         function showLuckyAt(index) {
@@ -1054,8 +1054,7 @@
             }
 
             if (!luckyModal.hidden) {
-                if (event.key === 'ArrowLeft') showLuckyAt(activeLuckySequenceIndex - 1);
-                if (event.key === 'ArrowRight') showLuckyAt(activeLuckySequenceIndex + 1);
+                return;
             }
         });
     </script>

@@ -1341,7 +1341,7 @@
       }
 
       function updateModalEntryNav() {
-        surpriseEntryNav.hidden = activeModalSequence.length <= 1;
+        surpriseEntryNav.hidden = modalAllowsReroll || activeModalSequence.length <= 1;
       }
 
       function showModalPolishAt(index, options = {}) {
@@ -1654,7 +1654,7 @@
               return;
             }
 
-            if (!surpriseModal.hidden) {
+            if (!surpriseModal.hidden && !modalAllowsReroll) {
               if (event.key === 'ArrowLeft') showPreviousModalPolish();
               if (event.key === 'ArrowRight') showNextModalPolish();
             }
