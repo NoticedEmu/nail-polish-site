@@ -596,17 +596,42 @@
     .s46 { top: 98%; left: 55%; animation-duration: 7.1s; animation-delay: 1.9s; }
 
     @media (max-width: 720px) {
+      .surprise-modal-content {
+        width: calc(100vw - 16px);
+        max-height: calc(100dvh - 16px);
+        margin: 8px auto;
+        border-radius: 18px;
+      }
+
       .surprise-modal-body {
         grid-template-columns: 1fr;
-        padding: 24px;
+        gap: 16px;
+        padding: 20px 16px 16px;
+      }
+
+      .surprise-image-wrap {
+        min-height: 0;
+      }
+
+      .polish-main-image-shell {
+        max-width: 100%;
+        padding-inline: 44px;
+      }
+
+      .surprise-result-image,
+      .surprise-image-fallback {
+        max-width: min(100%, 300px);
+        max-height: 34dvh;
+        min-height: 0;
+      }
+
+      .surprise-result-details {
+        gap: 10px;
+        padding: 14px 16px;
       }
 
       .surprise-result-name {
-        font-size: 1.6rem;
-      }
-
-      .surprise-result-image {
-        max-height: 42vh;
+        font-size: 1.45rem;
       }
     }
 
@@ -1341,7 +1366,7 @@
       }
 
       function updateModalEntryNav() {
-        surpriseEntryNav.hidden = modalAllowsReroll || activeModalSequence.length <= 1;
+        surpriseEntryNav.hidden = activeModalSequence.length <= 1;
       }
 
       function showModalPolishAt(index, options = {}) {
@@ -1654,7 +1679,7 @@
               return;
             }
 
-            if (!surpriseModal.hidden && !modalAllowsReroll) {
+            if (!surpriseModal.hidden) {
               if (event.key === 'ArrowLeft') showPreviousModalPolish();
               if (event.key === 'ArrowRight') showNextModalPolish();
             }

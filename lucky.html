@@ -379,17 +379,42 @@
         }
 
         @media (max-width: 720px) {
+            .lucky-modal-content {
+                width: calc(100vw - 16px);
+                max-height: calc(100dvh - 16px);
+                margin: 8px auto;
+                border-radius: 18px;
+            }
+
             .lucky-modal-body {
                 grid-template-columns: 1fr;
-                padding: 24px;
+                gap: 16px;
+                padding: 20px 16px 16px;
+            }
+
+            .lucky-image-wrap {
+                min-height: 0;
+            }
+
+            .polish-main-image-shell {
+                max-width: 100%;
+                padding-inline: 44px;
+            }
+
+            .lucky-result-image,
+            .lucky-image-fallback {
+                max-width: min(100%, 300px);
+                max-height: 34dvh;
+                min-height: 0;
+            }
+
+            .lucky-result-details {
+                gap: 10px;
+                padding: 14px 16px;
             }
 
             .lucky-result-name {
-                font-size: 1.6rem;
-            }
-
-            .lucky-result-image {
-                max-height: 42vh;
+                font-size: 1.45rem;
             }
         }
 
@@ -860,7 +885,7 @@
         }
 
         function updateLuckyEntryNav() {
-            luckyEntryNav.hidden = true;
+            luckyEntryNav.hidden = activeLuckySequence.length <= 1;
         }
 
         function showLuckyAt(index) {
@@ -1054,7 +1079,8 @@
             }
 
             if (!luckyModal.hidden) {
-                return;
+                if (event.key === 'ArrowLeft') showLuckyAt(activeLuckySequenceIndex - 1);
+                if (event.key === 'ArrowRight') showLuckyAt(activeLuckySequenceIndex + 1);
             }
         });
     </script>

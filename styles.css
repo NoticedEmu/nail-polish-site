@@ -1124,3 +1124,36 @@ h1 {
 .s44 { top: 96%; left: 84%; animation-duration: 7.3s; animation-delay: 2.6s; }
 .s45 { top: 87%; left: 92%; animation-duration: 6.4s; animation-delay: 0.6s; }
 .s46 { top: 98%; left: 55%; animation-duration: 7.1s; animation-delay: 1.9s; }
+
+/* =========================================================
+   Mobile-only modal fit adjustments
+   Keeps desktop and the rest of mobile styling unchanged.
+   ========================================================= */
+@media (max-width: 720px) {
+  .polish-main-image-shell {
+    max-width: 100%;
+    padding-inline: 44px;
+    box-sizing: border-box;
+  }
+
+  .polish-gallery-image {
+    max-width: min(100%, 300px);
+    max-height: 34dvh;
+  }
+
+  .polish-description-block {
+    padding: 12px 14px;
+  }
+
+  .image-viewer-content {
+    width: 100vw;
+    height: 100dvh;
+    margin: 0;
+    padding: 16px;
+  }
+
+  .image-viewer-image {
+    max-width: calc(100vw - 32px);
+    max-height: calc(100dvh - 64px);
+  }
+}
