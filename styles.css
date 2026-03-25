@@ -1124,3 +1124,103 @@ h1 {
 .s44 { top: 96%; left: 84%; animation-duration: 7.3s; animation-delay: 2.6s; }
 .s45 { top: 87%; left: 92%; animation-duration: 6.4s; animation-delay: 0.6s; }
 .s46 { top: 98%; left: 55%; animation-duration: 7.1s; animation-delay: 1.9s; }
+
+
+/* Mobile-only overrides: preserves desktop styling while improving phone layout */
+@media (max-width: 768px) {
+  .page-shell {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 1.65rem;
+  }
+
+  .page-intro {
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+  }
+
+  .modal-card,
+  .polish-modal-card,
+  .polish-modal-content,
+  .polish-detail-card,
+  .polish-modal-body {
+    width: min(100vw - 20px, 960px);
+    max-height: calc(100vh - 20px);
+    margin: 10px auto;
+    border-radius: 18px;
+  }
+
+  .polish-modal-body {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 18px;
+  }
+
+  .polish-image-wrap,
+  .polish-gallery-wrap,
+  .polish-main-image-shell {
+    min-height: 0;
+    max-width: 100%;
+  }
+
+  .polish-gallery-image,
+  .polish-result-image,
+  .polish-main-image,
+  .polish-image-fallback {
+    max-width: 100%;
+    max-height: 42vh;
+    border-radius: 12px;
+  }
+
+  .polish-gallery-arrow,
+  .gallery-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 1.2rem;
+  }
+
+  .polish-gallery-arrow.prev,
+  .gallery-arrow.prev {
+    left: 6px;
+  }
+
+  .polish-gallery-arrow.next,
+  .gallery-arrow.next {
+    right: 6px;
+  }
+
+  .polish-image-hint,
+  .image-hint {
+    font-size: 0.78rem;
+    text-align: center;
+  }
+
+  .polish-description-block,
+  .polish-details,
+  .polish-info-panel {
+    padding: 12px 14px;
+  }
+
+  .image-viewer-content {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  .image-viewer-image {
+    max-width: 94vw;
+    max-height: 78vh;
+    border-radius: 14px;
+  }
+
+  .image-viewer-close {
+    top: 8px;
+    right: 8px;
+    width: 40px;
+    height: 40px;
+  }
+}
