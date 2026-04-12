@@ -3,7 +3,10 @@
    ========================================================= */
 
 async function fetchPolishData() {
-    const response = await fetch('data.json');
+    const cacheBust = `v=${Date.now()}`;
+    const response = await fetch(`data.json?${cacheBust}`, {
+        cache: 'no-store'
+    });
 
     if (!response.ok) {
         throw new Error(`Failed to load data.json: ${response.status}`);
@@ -29,30 +32,53 @@ function getFirstMeaningfulValue(...values) {
     return '';
 }
 
+function normalizeAssetPath(value) {
+    const raw = String(value ?? '').trim();
+    if (!raw) return '';
+
+    return raw
+        .replaceAll('\\', '/')
+        .replaceAll('&amp;', '&')
+        .replace(/^\.\//, '')
+        .trim();
+}
+
 function normalizePolishEntry(entry = {}) {
     const brand = getFirstMeaningfulValue(entry.brand, entry.Brand);
     const name = getFirstMeaningfulValue(entry.name, entry.Nailpolish, entry['Nail Polish']);
     const filename = getFirstMeaningfulValue(entry.filename, entry.Filename);
-    const thumb = getFirstMeaningfulValue(entry.thumb, entry.Thumb, entry['thumb']);
-    const imageOne = getFirstMeaningfulValue(
-        entry.imageOne,
-        entry['image one'],
-        entry.image1,
-        entry['image 1'],
-        entry.image,
-        thumb
+
+    const thumb = normalizeAssetPath(
+        getFirstMeaningfulValue(entry.thumb, entry.Thumb, entry['thumb'])
     );
-    const imageTwo = getFirstMeaningfulValue(
-        entry.imageTwo,
-        entry['image two'],
-        entry.image2,
-        entry['image 2']
+
+    const imageOne = normalizeAssetPath(
+        getFirstMeaningfulValue(
+            entry.imageOne,
+            entry['image one'],
+            entry.image1,
+            entry['image 1'],
+            entry.image,
+            thumb
+        )
     );
-    const imageThree = getFirstMeaningfulValue(
-        entry.imageThree,
-        entry['image three'],
-        entry.image3,
-        entry['image 3']
+
+    const imageTwo = normalizeAssetPath(
+        getFirstMeaningfulValue(
+            entry.imageTwo,
+            entry['image two'],
+            entry.image2,
+            entry['image 2']
+        )
+    );
+
+    const imageThree = normalizeAssetPath(
+        getFirstMeaningfulValue(
+            entry.imageThree,
+            entry['image three'],
+            entry.image3,
+            entry['image 3']
+        )
     );
 
     return {
@@ -236,19 +262,19 @@ function getPolishGallery(polish) {
         let alt = '';
 
         if (typeof entry === 'string') {
-            src = entry.trim();
+            src = normalizeAssetPath(entry);
             thumb = src;
         } else if (typeof entry === 'object') {
-            src = String(
+            src = normalizeAssetPath(
                 entry.src ??
                 entry.image ??
                 entry.url ??
                 entry['image one'] ??
                 entry.imageOne ??
                 ''
-            ).trim();
+            );
 
-            thumb = String(entry.thumb ?? entry.Thumb ?? src).trim();
+            thumb = normalizeAssetPath(entry.thumb ?? entry.Thumb ?? src);
             alt = String(entry.alt ?? '').trim();
         }
 
