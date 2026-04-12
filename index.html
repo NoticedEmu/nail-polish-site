@@ -1449,24 +1449,16 @@
         imageViewerNext.hidden = activeSurpriseGallery.length <= 1;
       }
 
-      fetch('data.json')
-        .then(response => response.json())
+      fetchPolishData()
         .then(data => {
           surpriseData = data;
 
-          let brands = new Set();
-          let types = new Set();
-          let colors = new Set();
-          let subtypes = new Set();
+          populateSelect(document.getElementById('brandFilter'), getUniqueValues(data, 'brand'), 'All brands');
+          populateSelect(document.getElementById('typeFilter'), getUniqueValues(data, 'type'), 'All types');
+          populateSelect(document.getElementById('colorFilter'), getUniqueValues(data, 'color'), 'All colors');
+          populateSelect(document.getElementById('subtypeFilter'), getUniqueValues(data, 'subtype'), 'All subtypes');
 
           data.forEach(item => {
-            brands.add(item.brand);
-            types.add(item.type);
-            colors.add(item.color);
-            if (hasMeaningfulValue(item.subtype)) {
-              subtypes.add(item.subtype);
-            }
-
             const swatchGallery = getPolishGallery(item);
             const lightboxGroup = `polish-${getPolishKey(item).replace(/[^a-zA-Z0-9_-]/g, '-')}`;
             const primaryImage = swatchGallery[0]?.src || item.image || item.thumb || '';
@@ -1503,11 +1495,6 @@
             $row.data('polish', item);
             $('#polishTable tbody').append($row);
           });
-
-          [...brands].sort((a, b) => a.localeCompare(b)).forEach(b => $('#brandFilter').append(`<option>${escapeHTML(b)}</option>`));
-          [...types].sort((a, b) => a.localeCompare(b)).forEach(t => $('#typeFilter').append(`<option>${escapeHTML(t)}</option>`));
-          [...colors].sort((a, b) => a.localeCompare(b)).forEach(c => $('#colorFilter').append(`<option>${escapeHTML(c)}</option>`));
-          [...subtypes].sort((a, b) => a.localeCompare(b)).forEach(s => $('#subtypeFilter').append(`<option>${escapeHTML(s)}</option>`));
 
           let selectedLetter = '';
 

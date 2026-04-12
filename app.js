@@ -9,7 +9,80 @@ async function fetchPolishData() {
         throw new Error(`Failed to load data.json: ${response.status}`);
     }
 
-    return await response.json();
+    const rawData = await response.json();
+    return Array.isArray(rawData) ? rawData.map(normalizePolishEntry) : [];
+}
+
+function getFirstMeaningfulValue(...values) {
+    for (const value of values) {
+        if (typeof value === 'string') {
+            const trimmed = value.trim();
+            if (trimmed) return trimmed;
+            continue;
+        }
+
+        if (value !== null && value !== undefined && value !== '') {
+            return value;
+        }
+    }
+
+    return '';
+}
+
+function normalizePolishEntry(entry = {}) {
+    const brand = getFirstMeaningfulValue(entry.brand, entry.Brand);
+    const name = getFirstMeaningfulValue(entry.name, entry.Nailpolish, entry['Nail Polish']);
+    const filename = getFirstMeaningfulValue(entry.filename, entry.Filename);
+    const thumb = getFirstMeaningfulValue(entry.thumb, entry.Thumb, entry['thumb']);
+    const imageOne = getFirstMeaningfulValue(
+        entry.imageOne,
+        entry['image one'],
+        entry.image1,
+        entry['image 1'],
+        entry.image,
+        thumb
+    );
+    const imageTwo = getFirstMeaningfulValue(
+        entry.imageTwo,
+        entry['image two'],
+        entry.image2,
+        entry['image 2']
+    );
+    const imageThree = getFirstMeaningfulValue(
+        entry.imageThree,
+        entry['image three'],
+        entry.image3,
+        entry['image 3']
+    );
+
+    return {
+        ...entry,
+        brand,
+        name,
+        filename,
+        thumb,
+        image: imageOne,
+        imageOne,
+        imageTwo,
+        imageThree,
+        color: getFirstMeaningfulValue(entry.color, entry.Color),
+        type: getFirstMeaningfulValue(entry.type, entry.Type),
+        subtype: getFirstMeaningfulValue(
+            entry.subtype,
+            entry.subType,
+            entry['sub type'],
+            entry.Subtype,
+            entry['Sub Type']
+        ),
+        number: getFirstMeaningfulValue(entry.number, entry.Number),
+        description: getFirstMeaningfulValue(
+            entry.description,
+            entry.Description,
+            entry.desc,
+            entry.details,
+            entry.notes
+        )
+    };
 }
 
 /* ===== UTILITIES ===== */
@@ -153,6 +226,7 @@ function getPolishDescription(polish) {
 function getPolishGallery(polish) {
     const gallery = [];
     const seen = new Set();
+    const normalizedPolish = normalizePolishEntry(polish);
 
     function add(entry) {
         if (!entry) return;
@@ -165,8 +239,16 @@ function getPolishGallery(polish) {
             src = entry.trim();
             thumb = src;
         } else if (typeof entry === 'object') {
-            src = String(entry.src ?? entry.image ?? entry.url ?? '').trim();
-            thumb = String(entry.thumb ?? src).trim();
+            src = String(
+                entry.src ??
+                entry.image ??
+                entry.url ??
+                entry['image one'] ??
+                entry.imageOne ??
+                ''
+            ).trim();
+
+            thumb = String(entry.thumb ?? entry.Thumb ?? src).trim();
             alt = String(entry.alt ?? '').trim();
         }
 
@@ -181,9 +263,12 @@ function getPolishGallery(polish) {
     }
 
     [
-        ...(Array.isArray(polish?.gallery) ? polish.gallery : []),
-        polish?.image,
-        polish?.thumb
+        ...(Array.isArray(normalizedPolish?.gallery) ? normalizedPolish.gallery : []),
+        normalizedPolish?.imageOne,
+        normalizedPolish?.imageTwo,
+        normalizedPolish?.imageThree,
+        normalizedPolish?.image,
+        normalizedPolish?.thumb
     ].forEach(add);
 
     return gallery;
