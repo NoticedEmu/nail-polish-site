@@ -890,10 +890,10 @@
     "image three": "images/Bee's_Knees_Still_No_Fcking_Excuse/Bee's_Knees_Still_No_Fcking_Excuse_3.jpg",
     "thumb": "images/Bee's_Knees_Still_No_Fcking_Excuse/Bee's_Knees_Still_No_Fcking_Excuse_1.jpg",
     "Description": "",
-    "Color": "",
-    "Type": "",
+    "Color": "Blue",
+    "Type": "Shimmer",
     "Sub Type": "",
-    "Number": ""
+    "Number": "32"
   },
   {
     "Brand": "Bee's Knees",
@@ -1492,10 +1492,10 @@
     "image three": "images/Death_Valley_Nails_Dust_to_Dust_Bone/Death_Valley_Nails_Dust_to_Dust_Bone_3.jpg",
     "thumb": "images/Death_Valley_Nails_Dust_to_Dust_Bone/Death_Valley_Nails_Dust_to_Dust_Bone_1.jpg",
     "Description": "",
-    "Color": "",
-    "Type": "",
-    "Sub Type": "",
-    "Number": ""
+    "Color": "Black",
+    "Type": "Sheer",
+    "Sub Type": "Textured",
+    "Number": "107"
   },
   {
     "Brand": "Death Valley Nails",
@@ -1506,10 +1506,10 @@
     "image three": "images/Death_Valley_Nails_Dust_to_Dust_Celestine/Death_Valley_Nails_Dust_to_Dust_Celestine_3.jpg",
     "thumb": "images/Death_Valley_Nails_Dust_to_Dust_Celestine/Death_Valley_Nails_Dust_to_Dust_Celestine_1.jpg",
     "Description": "",
-    "Color": "",
-    "Type": "",
-    "Sub Type": "",
-    "Number": ""
+    "Color": "Blue",
+    "Type": "Shimmer",
+    "Sub Type": "Sheer",
+    "Number": "121"
   },
   {
     "Brand": "Death Valley Nails",
@@ -1604,10 +1604,10 @@
     "image three": "images/Death_Valley_Nails_Why_Do_Earthworms_Die_In_A_And_What_Are_They_Asking/Death_Valley_Nails_Why_Do_Earthworms_Die_In_A_And_What_Are_They_Asking_3.jpg",
     "thumb": "images/Death_Valley_Nails_Why_Do_Earthworms_Die_In_A_And_What_Are_They_Asking/Death_Valley_Nails_Why_Do_Earthworms_Die_In_A_And_What_Are_They_Asking_1.jpg",
     "Description": "",
-    "Color": "",
-    "Type": "",
-    "Sub Type": "",
-    "Number": ""
+    "Color": "Orange",
+    "Type": "Shimmer",
+    "Sub Type": "Sheer",
+    "Number": "122"
   },
   {
     "Brand": "Death Valley Nails",
@@ -1913,7 +1913,7 @@
     "thumb": "images/Essie_Bikini_So_Teeny/Essie_Bikini_So_Teeny_1.jpg",
     "Description": "",
     "Color": "Blue",
-    "Type": "Cr�me",
+    "Type": "Creme",
     "Sub Type": "",
     "Number": 8
   },
@@ -1982,10 +1982,10 @@
     "image three": "images/Fail_Polish_Why_God_Why/Fail_Polish_Why_God_Why_3.jpg",
     "thumb": "images/Fail_Polish_Why_God_Why/Fail_Polish_Why_God_Why_1.jpg",
     "Description": "",
-    "Color": "",
-    "Type": "",
-    "Sub Type": "",
-    "Number": ""
+    "Color": "White",
+    "Type": "Pearlescent",
+    "Sub Type": "Shimmer",
+    "Number": "14"
   },
   {
     "Brand": "Fancy Gloss",
@@ -2571,7 +2571,7 @@
     "thumb": "images/Holo_Taco_Just_Vamping/Holo_Taco_Just_Vamping_1.jpg",
     "Description": "",
     "Color": "Purple",
-    "Type": "Cr�me",
+    "Type": "Creme",
     "Sub Type": "",
     "Number": 52
   },
@@ -2599,7 +2599,7 @@
     "thumb": "images/Holo_Taco_Not_Milky_White/Holo_Taco_Not_Milky_White_1.jpg",
     "Description": "",
     "Color": "White",
-    "Type": "Cr�me",
+    "Type": "Creme",
     "Sub Type": "",
     "Number": 10
   },
@@ -2781,7 +2781,7 @@
     "thumb": "images/ILNP_Adored/ILNP_Adored_1.jpg",
     "Description": "",
     "Color": "Red",
-    "Type": "Cr�me",
+    "Type": "Creme",
     "Sub Type": "",
     "Number": 13
   },
@@ -2893,7 +2893,7 @@
     "thumb": "images/ILNP_Carried_Away/ILNP_Carried_Away_1.jpg",
     "Description": "",
     "Color": "Blue",
-    "Type": "Cr�me",
+    "Type": "Creme",
     "Sub Type": "Holographic",
     "Number": 80
   },
@@ -2949,7 +2949,7 @@
     "thumb": "images/ILNP_Dahlia/ILNP_Dahlia_1.jpg",
     "Description": "",
     "Color": "Red",
-    "Type": "Cr�me",
+    "Type": "Creme",
     "Sub Type": "",
     "Number": 19
   },
@@ -3215,7 +3215,7 @@
     "thumb": "images/ILNP_Midnight_Ink/ILNP_Midnight_Ink_1.jpg",
     "Description": "",
     "Color": "Blue",
-    "Type": "Cr�me",
+    "Type": "Creme",
     "Sub Type": "",
     "Number": 22
   },
@@ -3355,7 +3355,7 @@
     "thumb": "images/ILNP_Soulmate/ILNP_Soulmate_1.jpg",
     "Description": "",
     "Color": "White",
-    "Type": "Cr�me",
+    "Type": "Creme",
     "Sub Type": "",
     "Number": 81
   },
@@ -3383,7 +3383,7 @@
     "thumb": "images/ILNP_Tribute/ILNP_Tribute_1.jpg",
     "Description": "",
     "Color": "Blue",
-    "Type": "Cr�me",
+    "Type": "Creme",
     "Sub Type": "",
     "Number": 23
   },
@@ -3397,7 +3397,7 @@
     "thumb": "images/ILNP_Truffle/ILNP_Truffle_1.jpg",
     "Description": "",
     "Color": "Brown",
-    "Type": "Cr�me",
+    "Type": "Creme",
     "Sub Type": "",
     "Number": 71
   },
@@ -3747,7 +3747,7 @@
     "thumb": "images/Loud_Lacquer_Sleep_Police/Loud_Lacquer_Sleep_Police_1.jpg",
     "Description": "",
     "Color": "Blue",
-    "Type": "Cr�me",
+    "Type": "Creme",
     "Sub Type": "",
     "Number": 97
   },
@@ -3789,7 +3789,7 @@
     "thumb": "images/Lumen_Bloodline/Lumen_Bloodline_1.jpg",
     "Description": "",
     "Color": "Red",
-    "Type": "Cr�me",
+    "Type": "Creme",
     "Sub Type": "",
     "Number": 40
   },
@@ -3986,7 +3986,7 @@
     "Description": "",
     "Color": "Red",
     "Type": "Stamping",
-    "Sub Type": "Cr�me",
+    "Sub Type": "Creme",
     "Number": null
   },
   {
@@ -4014,7 +4014,7 @@
     "Description": "",
     "Color": "White",
     "Type": "Stamping",
-    "Sub Type": "Cr�me",
+    "Sub Type": "Creme",
     "Number": null
   },
   {
@@ -4056,7 +4056,7 @@
     "Description": "",
     "Color": "Blue",
     "Type": "Stamping",
-    "Sub Type": "Cr�me",
+    "Sub Type": "Creme",
     "Number": null
   },
   {
@@ -4084,7 +4084,7 @@
     "Description": "",
     "Color": "Blue",
     "Type": "Stamping",
-    "Sub Type": "Cr�me",
+    "Sub Type": "Creme",
     "Number": null
   },
   {
@@ -4126,7 +4126,7 @@
     "Description": "",
     "Color": "Gray",
     "Type": "Stamping",
-    "Sub Type": "Cr�me",
+    "Sub Type": "Creme",
     "Number": null
   },
   {
@@ -4196,7 +4196,7 @@
     "Description": "",
     "Color": "Red",
     "Type": "Stamping",
-    "Sub Type": "Cr�me",
+    "Sub Type": "Creme",
     "Number": null
   },
   {
@@ -4224,7 +4224,7 @@
     "Description": "",
     "Color": "Brown",
     "Type": "Stamping",
-    "Sub Type": "Cr�me",
+    "Sub Type": "Creme",
     "Number": null
   },
   {
@@ -4252,7 +4252,7 @@
     "Description": "",
     "Color": "Black",
     "Type": "Stamping",
-    "Sub Type": "Cr�me",
+    "Sub Type": "Creme",
     "Number": null
   },
   {
@@ -4376,10 +4376,10 @@
     "image three": "images/Mooncat_Am_I_Everything_You_Fear/Mooncat_Am_I_Everything_You_Fear_3.jpg",
     "thumb": "images/Mooncat_Am_I_Everything_You_Fear/Mooncat_Am_I_Everything_You_Fear_1.jpg",
     "Description": "",
-    "Color": "",
-    "Type": "",
+    "Color": "Blue",
+    "Type": "Holographic",
     "Sub Type": "",
-    "Number": ""
+    "Number": "14"
   },
   {
     "Brand": "Mooncat",
@@ -4992,10 +4992,10 @@
     "image three": "images/Penelope_Luz_Magic_Touch_Waterfall_Bath/Penelope_Luz_Magic_Touch_Waterfall_Bath_3.jpg",
     "thumb": "images/Penelope_Luz_Magic_Touch_Waterfall_Bath/Penelope_Luz_Magic_Touch_Waterfall_Bath_1.jpg",
     "Description": "",
-    "Color": "",
-    "Type": "",
-    "Sub Type": "",
-    "Number": ""
+    "Color": "Blue",
+    "Type": "Topper",
+    "Sub Type": "Flakie",
+    "Number": "26"
   },
   {
     "Brand": "Pepper Polish",
@@ -5511,7 +5511,7 @@
     "thumb": "images/Stella_Chroma_Never_Mine/Stella_Chroma_Never_Mine_1.jpg",
     "Description": "",
     "Color": "Blue",
-    "Type": "Cr�me",
+    "Type": "Creme",
     "Sub Type": "",
     "Number": 21
   },
