@@ -45,8 +45,8 @@ function normalizeAssetPath(value) {
 
     return cleaned
         .split('/')
-        .map(segment => encodeURIComponent(segment))
-        .join('/')
+        .map(segment => encodeURIComponent(decodeURIComponent(segment)))
+        .join('/');
 }
 
 function normalizePolishEntry(entry = {}) {
