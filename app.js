@@ -36,11 +36,17 @@ function normalizeAssetPath(value) {
     const raw = String(value ?? '').trim();
     if (!raw) return '';
 
-    return raw
+    const cleaned = raw
         .replaceAll('\\', '/')
         .replaceAll('&amp;', '&')
         .replace(/^\.\//, '')
         .trim();
+
+    return cleaned
+        .split('/')
+        .map(segment => encodeURIComponent(segment))
+        .join('/')
+        .replace(/%2F/g, '/');
 }
 
 function normalizePolishEntry(entry = {}) {
