@@ -40,13 +40,13 @@ function normalizeAssetPath(value) {
         .replaceAll('\\', '/')
         .replaceAll('&amp;', '&')
         .replace(/^\.\//, '')
+        .replace(/^images\//, 'Images/')
         .trim();
 
     return cleaned
         .split('/')
         .map(segment => encodeURIComponent(segment))
         .join('/')
-        .replace(/%2F/g, '/');
 }
 
 function normalizePolishEntry(entry = {}) {
