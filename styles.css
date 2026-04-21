@@ -1516,3 +1516,35 @@ h1 {
   color: white;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
+
+.dupes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.dupes-grid.centered {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dupe-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.carousel-arrow {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.dupes-selected-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin-top: 18px;
+}

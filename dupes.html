@@ -129,6 +129,7 @@
         .dupes-main-content[hidden],
         .dupes-gallery-nav[hidden],
         .dupes-image-hint[hidden],
+        .dupes-related-controls[hidden],
         .image-viewer[hidden] {
             display: none !important;
         }
@@ -235,11 +236,79 @@
             font-size: 0.95rem;
         }
 
+
         .dupes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 16px;
         }
+
+        .dupes-grid.is-centered {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .dupes-grid.is-centered .dupes-card {
+            width: calc((100% - 48px) / 4);
+            max-width: calc((100% - 48px) / 4);
+            flex: 0 0 calc((100% - 48px) / 4);
+        }
+
+        .dupes-grid.is-centered {
+            justify-content: center;
+        }
+
+        .dupes-related-controls {
+            display: none;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+            margin: 0 0 14px 0;
+        }
+
+        .dupes-related-controls.is-visible {
+            display: flex;
+        }
+
+        .dupes-related-arrow {
+            appearance: none;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #d1d5db;
+            border-radius: 999px;
+            background: white;
+            color: #111827;
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+        }
+
+        .dupes-related-arrow:hover {
+            background: #f9fafb;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .dupes-related-arrow:disabled {
+            opacity: 0.45;
+            cursor: default;
+            transform: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        .dupes-related-counter {
+            color: #6b7280;
+            font-size: 0.92rem;
+            font-weight: 700;
+            min-width: 88px;
+            text-align: center;
+        }
+
 
         .dupes-card {
             appearance: none;
@@ -388,6 +457,27 @@
 
             .dupes-description-block {
                 padding: 12px 14px;
+            }
+
+            .dupes-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .dupes-grid.is-centered {
+                display: flex;
+                justify-content: center;
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+
+            .dupes-grid.is-centered .dupes-card {
+                width: calc((100% - 16px) / 2);
+                max-width: calc((100% - 16px) / 2);
+                flex: 0 0 calc((100% - 16px) / 2);
+            }
+
+            .dupes-grid.is-centered {
+                justify-content: center;
             }
 
             .image-viewer-content {
@@ -553,6 +643,17 @@
                         <p class="dupes-related-helper">Click a polish below to swap it into the featured position.</p>
                     </div>
 
+                    <div id="dupesRelatedControls" class="dupes-related-controls" hidden>
+                        <button id="dupesRelatedPrev" class="dupes-related-arrow" type="button"
+                            aria-label="Previous dupes">
+                            &#8249;
+                        </button>
+                        <div id="dupesRelatedCounter" class="dupes-related-counter"></div>
+                        <button id="dupesRelatedNext" class="dupes-related-arrow" type="button" aria-label="Next dupes">
+                            &#8250;
+                        </button>
+                    </div>
+
                     <div id="dupesGrid" class="dupes-grid"></div>
                 </div>
             </div>
@@ -622,6 +723,10 @@
         const dupesImageHint = document.getElementById('dupesImageHint');
 
         const dupesRelatedSection = document.getElementById('dupesRelatedSection');
+        const dupesRelatedControls = document.getElementById('dupesRelatedControls');
+        const dupesRelatedPrev = document.getElementById('dupesRelatedPrev');
+        const dupesRelatedNext = document.getElementById('dupesRelatedNext');
+        const dupesRelatedCounter = document.getElementById('dupesRelatedCounter');
         const dupesGrid = document.getElementById('dupesGrid');
 
         const imageViewer = document.getElementById('imageViewer');
@@ -636,6 +741,7 @@
         let currentFeaturedPolish = null;
         let activeGallery = [];
         let activeGalleryIndex = 0;
+        let dupesCarouselIndex = 0;
 
         function getDupeGroupValue(polish) {
             return getFirstMeaningfulValue(
@@ -668,26 +774,16 @@
 
         async function fetchDupeGroups() {
             const cacheBust = `v=${Date.now()}`;
-            const candidateFiles = ['dupe_groups.json', 'dupe-groups.json'];
+            const response = await fetch(`dupe_groups.json?${cacheBust}`, {
+                cache: 'no-store'
+            });
 
-            for (const fileName of candidateFiles) {
-                try {
-                    const response = await fetch(`${fileName}?${cacheBust}`, {
-                        cache: 'no-store'
-                    });
-
-                    if (!response.ok) {
-                        continue;
-                    }
-
-                    const groups = await response.json();
-                    return Array.isArray(groups) ? groups : [];
-                } catch (error) {
-                    console.error(error);
-                }
+            if (!response.ok) {
+                throw new Error(`Failed to load dupe_groups.json: ${response.status}`);
             }
 
-            throw new Error('Failed to load dupe groups JSON.');
+            const groups = await response.json();
+            return Array.isArray(groups) ? groups : [];
         }
 
         function buildDupesGroupUrl(group) {
@@ -858,6 +954,26 @@
             return gallery[0]?.thumb || polish.thumb || polish.image || '';
         }
 
+        function updateDupesCarouselControls(totalItems, visibleCount) {
+            if (totalItems <= visibleCount) {
+                dupesRelatedControls.hidden = true;
+                dupesRelatedControls.classList.remove('is-visible');
+                dupesRelatedCounter.textContent = '';
+                dupesRelatedPrev.disabled = true;
+                dupesRelatedNext.disabled = true;
+                return;
+            }
+
+            const totalPages = Math.ceil(totalItems / visibleCount);
+            const currentPage = Math.floor(dupesCarouselIndex / visibleCount) + 1;
+
+            dupesRelatedControls.hidden = false;
+            dupesRelatedControls.classList.add('is-visible');
+            dupesRelatedCounter.textContent = `${currentPage} / ${totalPages}`;
+            dupesRelatedPrev.disabled = currentPage <= 1;
+            dupesRelatedNext.disabled = currentPage >= totalPages;
+        }
+
         function renderDupeCards() {
             const featuredIdentity = buildPolishIdentity(currentFeaturedPolish);
 
@@ -867,13 +983,35 @@
 
             if (otherDupes.length === 0) {
                 dupesRelatedSection.hidden = true;
+                dupesRelatedControls.hidden = true;
+                dupesRelatedControls.classList.remove('is-visible');
                 dupesGrid.innerHTML = '';
                 return;
             }
 
-            dupesRelatedSection.hidden = false;
+            const visibleCount = 4;
+            const totalOthers = otherDupes.length;
+            const maxStart = Math.max(0, totalOthers - visibleCount);
 
-            dupesGrid.innerHTML = otherDupes.map(item => {
+            if (dupesCarouselIndex > maxStart) {
+                dupesCarouselIndex = maxStart;
+            }
+            if (dupesCarouselIndex < 0) {
+                dupesCarouselIndex = 0;
+            }
+
+            const useCarousel = totalOthers > visibleCount;
+
+            const visibleDupes = useCarousel
+                ? otherDupes.slice(dupesCarouselIndex, dupesCarouselIndex + visibleCount)
+                : otherDupes;
+
+            dupesRelatedSection.hidden = false;
+            updateDupesCarouselControls(totalOthers, visibleCount);
+
+            dupesGrid.classList.toggle('is-centered', !useCarousel);
+
+            dupesGrid.innerHTML = visibleDupes.map(item => {
                 const thumb = getCardThumbnail(item);
                 const safeBrand = escapeHTML(item.brand || '');
                 const safeName = escapeHTML(item.name || '');
@@ -897,6 +1035,7 @@
 
         function renderFeaturedPolish(polish) {
             currentFeaturedPolish = polish;
+            dupesCarouselIndex = 0;
 
             const subtype = getPolishSubtype(polish);
             const description = getPolishDescription(polish);
@@ -1065,6 +1204,19 @@
 
             renderFeaturedPolish(nextFeatured);
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        dupesRelatedPrev.addEventListener('click', () => {
+            dupesCarouselIndex = Math.max(0, dupesCarouselIndex - 4);
+            renderDupeCards();
+        });
+
+        dupesRelatedNext.addEventListener('click', () => {
+            const otherCount = currentDupeFamily.filter(item =>
+                buildPolishIdentity(item) !== buildPolishIdentity(currentFeaturedPolish)
+            ).length;
+            dupesCarouselIndex = Math.min(Math.max(0, otherCount - 4), dupesCarouselIndex + 4);
+            renderDupeCards();
         });
 
         dupesImageButton.addEventListener('click', openImageViewer);
