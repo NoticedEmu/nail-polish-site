@@ -2,5 +2,17 @@
     {
         "group": "Purple_Green_Shimmer",
         "name": "Purple Green Shimmer"
+    },
+    {
+        "group": "Purple_Teal_Shimmer",
+        "name": "Purple Teal Shimmer"
+    },
+    {
+        "group": "Intense_Blue_Shimmer",
+        "name": "Intense Blue Shimmer"
+    },
+    {
+        "group": "Blue_Red_Shimmer",
+        "name": "Blue Red Shimmer"
     }
 ]
