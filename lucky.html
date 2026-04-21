@@ -16,27 +16,6 @@
             margin-bottom: 18px;
         }
 
-        .lucky-back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #374151;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.95rem;
-            padding: 8px 12px;
-            border-radius: 10px;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            transition: background 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
-        }
-
-        .lucky-back-link:hover {
-            background: #f9fafb;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
         .lucky-panel {
             background: white;
             padding: 24px;
@@ -95,7 +74,6 @@
             font-size: 0.92rem;
         }
 
-
         #luckyEntryNav {
             display: none !important;
         }
@@ -103,7 +81,6 @@
         .lucky-modal[hidden] {
             display: none;
         }
-
 
         .lucky-modal {
             position: fixed;
@@ -118,61 +95,40 @@
             backdrop-filter: blur(2px);
         }
 
-        
-.lucky-modal-content {
-      position: relative;
-      z-index: 1;
-      width: min(940px, calc(100vw - 32px));
-      max-height: calc(100vh - 32px);
-      overflow: auto;
-      margin: 16px auto;
-      background: linear-gradient(180deg, #aa83af 0%, #8d6a95 100%);
-      border-radius: 22px;
-      box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.18),
-        0 0 28px rgba(255, 255, 255, 0.22),
-        0 24px 60px rgba(0, 0, 0, 0.24);
-      animation: surpriseModalIn 0.22s ease;
-    }
+
+        .lucky-modal-content {
+            position: relative;
+            z-index: 1;
+            width: min(940px, calc(100vw - 32px));
+            max-height: calc(100vh - 32px);
+            overflow: auto;
+            margin: 16px auto;
+            background: linear-gradient(180deg, #aa83af 0%, #8d6a95 100%);
+            border-radius: 22px;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.18),
+                0 0 28px rgba(255, 255, 255, 0.22),
+                0 24px 60px rgba(0, 0, 0, 0.24);
+            animation: surpriseModalIn 0.22s ease;
+        }
 
         .lucky-modal-content::before {
             content: none;
         }
 
-        
-.modal-card-sparkles {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      border-radius: inherit;
-      z-index: 0;
-    }
-
-.modal-card-sparkles .sparkle {
-      opacity: 0.9;
-      transform-origin: center;
-      filter: drop-shadow(0 0 8px rgba(255,255,255,0.45));
-    }
-
-.modal-card-sparkles .sparkle::before {
-  opacity: 1;
-  box-shadow:
-    0 0 14px currentColor,
-    0 0 28px color-mix(in srgb, currentColor 72%, white 28%),
-    0 0 48px color-mix(in srgb, currentColor 48%, white 52%);
-}
+        .modal-card-sparkles .sparkle::before {
+            opacity: 1;
+            box-shadow:
+                0 0 14px currentColor,
+                0 0 28px color-mix(in srgb, currentColor 72%, white 28%),
+                0 0 48px color-mix(in srgb, currentColor 48%, white 52%);
+        }
 
         .lucky-close-button,
         .lucky-modal-body {
-      position: relative;
-      z-index: 2;
-    }
-
-        .polish-entry-nav {
-      z-index: 2;
-    }
-
+            position: relative;
+            z-index: 2;
+        }
 
         @keyframes luckyModalIn {
             from {
@@ -187,28 +143,28 @@
         }
 
         .lucky-close-button {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      z-index: 5;
-      width: 40px;
-      height: 40px;
-      border: 1px solid rgba(234, 212, 240, 0.95);
-      border-radius: 999px;
-      background: rgba(141, 106, 149, 0.88);
-      color: white;
-      font-size: 1.7rem;
-      line-height: 1;
-      cursor: pointer;
-      transition: background 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
-    }
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            z-index: 5;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(234, 212, 240, 0.95);
+            border-radius: 999px;
+            background: rgba(141, 106, 149, 0.88);
+            color: white;
+            font-size: 1.7rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: background 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+        }
 
         .lucky-close-button:hover {
-      background: rgba(160, 122, 171, 0.96);
-      transform: scale(1.04);
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
-    }
+            background: rgba(160, 122, 171, 0.96);
+            transform: scale(1.04);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+        }
 
         .lucky-modal-body {
             display: grid;
@@ -218,104 +174,63 @@
         }
 
         .lucky-image-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 320px;
-      width: 100%;
-    }
-
-        .image-card {
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: 20px;
-      padding: 16px;
-      box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.96),
-        0 0 20px rgba(255, 255, 255, 0.72),
-        0 0 40px rgba(255, 255, 255, 0.22);
-      backdrop-filter: blur(6px);
-    }
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 320px;
+            width: 100%;
+        }
 
         .lucky-result-image {
-      width: 100%;
-      max-width: 360px;
-      max-height: 70vh;
-      object-fit: contain;
-      border-radius: 16px;
-      box-shadow:
-        0 0 0 10px rgba(255, 255, 255, 0.18),
-        0 0 24px rgba(255, 255, 255, 0.78),
-        0 8px 24px rgba(0, 0, 0, 0.12);
-      background: #f9fafb;
-    }
+            width: 100%;
+            max-width: 360px;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow:
+                0 0 0 10px rgba(255, 255, 255, 0.18),
+                0 0 24px rgba(255, 255, 255, 0.78),
+                0 8px 24px rgba(0, 0, 0, 0.12);
+            background: #f9fafb;
+        }
 
         .lucky-image-fallback {
-      width: 100%;
-      max-width: 360px;
-      min-height: 320px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      border-radius: 14px;
-      background: #f9fafb;
-      border: 1px dashed #d1d5db;
-      color: #6b7280;
-      font-weight: 600;
-      text-align: center;
-      box-sizing: border-box;
-    }
+            width: 100%;
+            max-width: 360px;
+            min-height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            border-radius: 14px;
+            background: #f9fafb;
+            border: 1px dashed #d1d5db;
+            color: #6b7280;
+            font-weight: 600;
+            text-align: center;
+            box-sizing: border-box;
+        }
 
         .lucky-image-wrap>[hidden] {
-      display: none !important;
-    }
+            display: none !important;
+        }
 
         .polish-main-image-shell {
-      position: relative;
-      width: 100%;
-      max-width: 420px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-inline: 56px;
-      box-sizing: border-box;
-    }
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-inline: 56px;
+            box-sizing: border-box;
+        }
 
-    .polish-gallery-nav {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    .polish-gallery-arrow {
-      pointer-events: auto;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
-      background: rgba(141, 106, 149, 0.9);
-      border: 1px solid rgba(234, 212, 240, 0.96);
-      color: #fff;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    }
-
-    .polish-gallery-arrow.prev { left: 0; }
-    .polish-gallery-arrow.next { right: 0; }
-
-    .polish-entry-arrow {
-      background: rgba(141, 106, 149, 0.9);
-      border: 1px solid rgba(234, 212, 240, 0.96);
-      color: white;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    }
-
-    @media (max-width: 720px) {
-      .polish-main-image-shell {
-        padding-inline: 48px;
-      }
+        @media (max-width: 720px) {
+            .polish-main-image-shell {
+                padding-inline: 48px;
+            }
 
             .image-viewer-frame {
                 padding: 0 46px;
@@ -326,49 +241,49 @@
             }
         }
 
-        
-.lucky-result-details {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      padding-top: 8px;
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: 18px;
-      padding: 18px 20px;
-      box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.96),
-        0 0 18px rgba(255, 255, 255, 0.68),
-        0 0 34px rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(6px);
-    }
+
+        .lucky-result-details {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding-top: 8px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 18px;
+            padding: 18px 20px;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.96),
+                0 0 18px rgba(255, 255, 255, 0.68),
+                0 0 34px rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(6px);
+        }
 
         .lucky-result-brand {
-      font-weight: 700;
-      font-size: 1rem;
-      color: #3f3150;
-      letter-spacing: 0.02em;
-    }
+            font-weight: 700;
+            font-size: 1rem;
+            color: #3f3150;
+            letter-spacing: 0.02em;
+        }
 
         .lucky-result-name {
-      margin: 0;
-      font-size: 2rem;
-      line-height: 1.1;
-      color: #2f243c;
-    }
+            margin: 0;
+            font-size: 2rem;
+            line-height: 1.1;
+            color: #2f243c;
+        }
 
         .lucky-detail-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      font-size: 1rem;
-    }
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            font-size: 1rem;
+        }
 
         .lucky-detail-label {
-      min-width: 82px;
-      font-weight: 700;
-      color: #5b4866;
-    }
+            min-width: 82px;
+            font-weight: 700;
+            color: #5b4866;
+        }
 
         .lucky-modal-actions {
             margin-top: 10px;
@@ -437,7 +352,6 @@
                 display: none !important;
             }
         }
-
 
         .lucky-image-stage {
             position: relative;
@@ -514,6 +428,18 @@
             color: #374151;
             line-height: 1.55;
         }
+
+
+        .lucky-result-image {
+            border: none;
+            background: rgba(255, 255, 255, 0.98);
+            box-sizing: border-box;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.18),
+                0 0 14px rgba(255, 255, 255, 0.24),
+                0 0 28px rgba(255, 255, 255, 0.16),
+                0 10px 30px rgba(60, 35, 66, 0.2);
+        }
     </style>
 </head>
 
@@ -563,7 +489,16 @@
 
     <div class="page-shell">
         <div class="lucky-page-topbar">
-            <a href="index.html" id="luckyBackLink" class="lucky-back-link">← Back to Directory</a>
+            <div class="pages-dropdown">
+                <button class="pages-dropdown-toggle" type="button" aria-haspopup="true" aria-label="Open pages menu">
+                    <span class="hamburger-icon" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+                <ul class="pages-dropdown-menu"></ul>
+            </div>
         </div>
 
         <h1>I’m Feeling Lucky</h1>
@@ -600,53 +535,53 @@
             </button>
 
             <div class="modal-card-sparkles" aria-hidden="true">
-          <span class="sparkle six-point s1 white tiny top-glow"></span>
-          <span class="sparkle eight-point s2 white tiny top-glow"></span>
-          <span class="sparkle six-point s3 violet tiny top-glow"></span>
-          <span class="sparkle eight-point s4 white small top-glow"></span>
-          <span class="sparkle six-point s5 white tiny top-glow"></span>
-          <span class="sparkle eight-point s6 violet tiny top-glow"></span>
-          <span class="sparkle six-point s7 peach tiny top-glow"></span>
-          <span class="sparkle eight-point s8 white tiny top-glow"></span>
-          <span class="sparkle six-point s9 white small top-glow"></span>
-          <span class="sparkle eight-point s10 violet tiny top-glow"></span>
-          <span class="sparkle six-point s11 gold tiny top-glow"></span>
-          <span class="sparkle eight-point s12 white tiny top-glow"></span>
-          <span class="sparkle six-point s13 white tiny"></span>
-          <span class="sparkle eight-point s14 violet small"></span>
-          <span class="sparkle six-point s15 coral tiny"></span>
-          <span class="sparkle eight-point s16 violet tiny"></span>
-          <span class="sparkle six-point s17 white small"></span>
-          <span class="sparkle eight-point s18 peach tiny"></span>
-          <span class="sparkle six-point s19 violet tiny"></span>
-          <span class="sparkle eight-point s20 white tiny"></span>
-          <span class="sparkle six-point s21 white tiny"></span>
-          <span class="sparkle eight-point s22 white small"></span>
-          <span class="sparkle six-point s23 violet tiny"></span>
-          <span class="sparkle eight-point s24 white tiny"></span>
-          <span class="sparkle six-point s25 gold tiny"></span>
-          <span class="sparkle eight-point s26 white tiny"></span>
-          <span class="sparkle six-point s27 violet small"></span>
-          <span class="sparkle eight-point s28 coral tiny"></span>
-          <span class="sparkle six-point s29 white tiny"></span>
-          <span class="sparkle eight-point s30 violet tiny"></span>
-          <span class="sparkle six-point s31 peach small"></span>
-          <span class="sparkle eight-point s32 white tiny"></span>
-          <span class="sparkle six-point s33 violet tiny"></span>
-          <span class="sparkle eight-point s34 gold tiny"></span>
-          <span class="sparkle six-point s35 white small"></span>
-          <span class="sparkle eight-point s36 white tiny"></span>
-          <span class="sparkle six-point s37 coral tiny"></span>
-          <span class="sparkle eight-point s38 white small"></span>
-          <span class="sparkle six-point s39 violet tiny"></span>
-          <span class="sparkle eight-point s40 peach tiny"></span>
-          <span class="sparkle six-point s41 white small"></span>
-          <span class="sparkle eight-point s42 gold tiny"></span>
-          <span class="sparkle six-point s43 violet tiny"></span>
-          <span class="sparkle eight-point s44 white tiny"></span>
-          <span class="sparkle six-point s45 coral small"></span>
-          <span class="sparkle eight-point s46 white tiny"></span>
-        </div>
+                <span class="sparkle six-point s1 white tiny top-glow"></span>
+                <span class="sparkle eight-point s2 white tiny top-glow"></span>
+                <span class="sparkle six-point s3 violet tiny top-glow"></span>
+                <span class="sparkle eight-point s4 white small top-glow"></span>
+                <span class="sparkle six-point s5 white tiny top-glow"></span>
+                <span class="sparkle eight-point s6 violet tiny top-glow"></span>
+                <span class="sparkle six-point s7 peach tiny top-glow"></span>
+                <span class="sparkle eight-point s8 white tiny top-glow"></span>
+                <span class="sparkle six-point s9 white small top-glow"></span>
+                <span class="sparkle eight-point s10 violet tiny top-glow"></span>
+                <span class="sparkle six-point s11 gold tiny top-glow"></span>
+                <span class="sparkle eight-point s12 white tiny top-glow"></span>
+                <span class="sparkle six-point s13 white tiny"></span>
+                <span class="sparkle eight-point s14 violet small"></span>
+                <span class="sparkle six-point s15 coral tiny"></span>
+                <span class="sparkle eight-point s16 violet tiny"></span>
+                <span class="sparkle six-point s17 white small"></span>
+                <span class="sparkle eight-point s18 peach tiny"></span>
+                <span class="sparkle six-point s19 violet tiny"></span>
+                <span class="sparkle eight-point s20 white tiny"></span>
+                <span class="sparkle six-point s21 white tiny"></span>
+                <span class="sparkle eight-point s22 white small"></span>
+                <span class="sparkle six-point s23 violet tiny"></span>
+                <span class="sparkle eight-point s24 white tiny"></span>
+                <span class="sparkle six-point s25 gold tiny"></span>
+                <span class="sparkle eight-point s26 white tiny"></span>
+                <span class="sparkle six-point s27 violet small"></span>
+                <span class="sparkle eight-point s28 coral tiny"></span>
+                <span class="sparkle six-point s29 white tiny"></span>
+                <span class="sparkle eight-point s30 violet tiny"></span>
+                <span class="sparkle six-point s31 peach small"></span>
+                <span class="sparkle eight-point s32 white tiny"></span>
+                <span class="sparkle six-point s33 violet tiny"></span>
+                <span class="sparkle eight-point s34 gold tiny"></span>
+                <span class="sparkle six-point s35 white small"></span>
+                <span class="sparkle eight-point s36 white tiny"></span>
+                <span class="sparkle six-point s37 coral tiny"></span>
+                <span class="sparkle eight-point s38 white small"></span>
+                <span class="sparkle six-point s39 violet tiny"></span>
+                <span class="sparkle eight-point s40 peach tiny"></span>
+                <span class="sparkle six-point s41 white small"></span>
+                <span class="sparkle eight-point s42 gold tiny"></span>
+                <span class="sparkle six-point s43 violet tiny"></span>
+                <span class="sparkle eight-point s44 white tiny"></span>
+                <span class="sparkle six-point s45 coral small"></span>
+                <span class="sparkle eight-point s46 white tiny"></span>
+            </div>
 
             <div id="luckyEntryNav" class="polish-entry-nav" hidden>
                 <button id="luckyPrevPolish" class="polish-entry-arrow prev" type="button" aria-label="Previous polish">
@@ -663,7 +598,8 @@
                         <div class="image-card">
                             <button id="luckyImageButton" class="polish-main-image-button" type="button"
                                 aria-label="Open swatch image">
-                                <img id="luckyResultImage" src="" alt="" class="lucky-result-image polish-gallery-image" />
+                                <img id="luckyResultImage" src="" alt=""
+                                    class="lucky-result-image polish-gallery-image" />
                             </button>
                         </div>
 
@@ -717,8 +653,12 @@
 
                     <div class="lucky-modal-actions">
                         <button id="luckyRerollButton" class="lucky-secondary-button" type="button">
-                            Try Another
+                            Try Again
                         </button>
+
+                        <a id="luckyDupesButton" class="dupe-entry-button" href="#" hidden>
+                            View Dupes
+                        </a>
                     </div>
                 </div>
             </div>
@@ -747,11 +687,10 @@
             </div>
         </div>
     </div>
-<script src="app.js"></script>
-    
-    <script>
-        const luckyBackLink = document.getElementById('luckyBackLink');
+    <script src="app.js"></script>
 
+    <script>
+        initializeSharedPagesMenu();
         const queryParams = getQueryParams();
         const initialColor = queryParams.get('color') || '';
         const initialType = queryParams.get('type') || '';
@@ -774,6 +713,7 @@
         const luckyCloseButton = document.getElementById('luckyCloseButton');
         const luckyOverlay = document.querySelector('.lucky-modal-overlay');
         const luckyRerollButton = document.getElementById('luckyRerollButton');
+        const luckyDupesButton = document.getElementById('luckyDupesButton');
 
         const luckyResultImage = document.getElementById('luckyResultImage');
         const luckyImageButton = document.getElementById('luckyImageButton');
@@ -932,6 +872,7 @@
 
             luckyDescriptionBlock.hidden = !hasMeaningfulValue(description);
             luckyResultDescription.textContent = description;
+            updateDupesButton(luckyDupesButton, polish);
 
             updateLuckyEntryNav();
             openLuckyModal();
@@ -969,7 +910,46 @@
             imageViewerNext.hidden = activeLuckyGallery.length <= 1;
         }
 
-        luckyBackLink.href = buildDirectoryUrl(initialColor, initialType);
+        function getHasDupesValue(polish) {
+            return String(
+                polish?.hasDupes ??
+                polish?.['Has Dupes'] ??
+                ''
+            ).trim().toLowerCase() === 'yes';
+        }
+
+        function getDupeGroupValue(polish) {
+            return String(
+                polish?.dupeGroup ??
+                polish?.['Dupe Group'] ??
+                ''
+            ).trim();
+        }
+
+        function buildDupesUrl(polish) {
+            const params = new URLSearchParams();
+            params.set('brand', polish.brand || '');
+            params.set('name', polish.name || '');
+            return `dupes.html?${params.toString()}`;
+        }
+
+        function updateDupesButton(button, polish) {
+            if (!button) return;
+
+            const dupeGroup = getDupeGroupValue(polish);
+            const hasDupes = getHasDupesValue(polish) || Boolean(dupeGroup);
+
+            if (!hasDupes || !dupeGroup) {
+                button.hidden = true;
+                button.setAttribute('href', '#');
+                return;
+            }
+
+            button.hidden = false;
+            button.setAttribute('href', buildDupesUrl(polish));
+        }
+
+        updateSharedPagesMenuLink('index.html', buildDirectoryUrl(initialColor, initialType));
 
         fetchPolishData()
             .then(data => {
@@ -1107,16 +1087,3 @@
 </body>
 
 </html>
-
-<style>
-.lucky-result-image {
-  border: none;
-  background: rgba(255, 255, 255, 0.98);
-  box-sizing: border-box;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.18),
-    0 0 14px rgba(255, 255, 255, 0.24),
-    0 0 28px rgba(255, 255, 255, 0.16),
-    0 10px 30px rgba(60, 35, 66, 0.2);
-}
-</style>

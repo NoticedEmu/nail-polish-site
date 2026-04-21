@@ -109,7 +109,9 @@
     "Color": "Dark Red",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 96
+    "Number": 96,
+    "Has Dupes": "Yes",
+    "Dupe Group": "Purple_Green_Shimmer"
   },
   {
     "Brand": "Alchemy Lacquers",
@@ -711,7 +713,9 @@
     "Color": "Dark Red",
     "Type": "Reflective Glitter",
     "Sub Type": "",
-    "Number": 7
+    "Number": 7,
+    "Has Dupes": "Yes",
+    "Dupe Group": "Purple_Green_Shimmer"
   },
   {
     "Brand": "Bee's Knees",
@@ -1257,7 +1261,9 @@
     "Color": "Pink",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 10
+    "Number": 10,
+    "Has Dupes": "Yes",
+    "Dupe Group": "Purple_Green_Shimmer"
   },
   {
     "Brand": "Colores De Carol",
@@ -3917,7 +3923,9 @@
     "Color": "Purple",
     "Type": "Shimmer",
     "Sub Type": "Multichrome",
-    "Number": 50
+    "Number": 50,
+    "Has Dupes": "Yes",
+    "Dupe Group": "Purple_Green_Shimmer"
   },
   {
     "Brand": "Lurid Lacquer",
@@ -4729,7 +4737,9 @@
     "Color": "Burgundy",
     "Type": "Multichrome",
     "Sub Type": "",
-    "Number": 4
+    "Number": 4,
+    "Has Dupes": "Yes",
+    "Dupe Group": "Purple_Green_Shimmer"
   },
   {
     "Brand": "Mooncat",

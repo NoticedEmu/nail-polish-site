@@ -76,6 +76,65 @@
       width: 100% !important;
     }
 
+    .dataTables_wrapper .dataTables_filter {
+      display: none !important;
+    }
+
+    .search-toggle-wrap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-self: end;
+    }
+
+    #searchToggleBtn {
+      padding: 9px 14px;
+      border: 1px solid #d0d7de;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #222;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+      display: inline-flex;
+      width: auto;
+    }
+
+    #searchToggleBtn:hover {
+      background: #f9fafb;
+      border-color: #bfc7d1;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    #searchToggleBtn:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+
+    .search-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      min-width: 240px;
+      background: white;
+      border: 1px solid #d0d7de;
+      border-radius: 12px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+      padding: 10px;
+      z-index: 50;
+    }
+
+    #tableSearchInput {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px 10px;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      background: white;
+    }
+
     .swatch-thumb-link {
       display: inline-block;
       text-decoration: none;
@@ -235,61 +294,30 @@
     .directory-topbar {
       margin: 0 0 18px 0;
       display: flex;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
       gap: 12px;
-      align-items: center;
+      flex-wrap: wrap;
     }
 
-    .lucky-page-link {
-      display: inline-flex;
-      align-items: center;
+    .directory-title-wrap {
+      display: flex;
+      flex-direction: column;
       gap: 8px;
-      padding: 10px 16px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #fdf2f8, #ede9fe, #eff6ff);
-      color: #374151;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.95rem;
-      border: 1px solid #d8dee9;
-      box-shadow:
-        0 0 0 2px rgba(99, 102, 241, 0.06),
-        0 4px 10px rgba(0, 0, 0, 0.06);
-      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, color 0.16s ease;
+      min-width: 260px;
+      flex: 1 1 320px;
     }
 
-    .lucky-sparkle {
-      display: inline-block;
-      transform-origin: center;
-      animation: luckySparkleTwinkle 2.2s ease-in-out infinite;
+    .directory-actions {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      margin-left: auto;
+      padding-top: 44px;
     }
 
-    @keyframes luckySparkleTwinkle {
-      0% {
-        transform: scale(1) rotate(0deg);
-        opacity: 0.9;
-      }
-
-      25% {
-        transform: scale(1.08) rotate(-6deg);
-        opacity: 1;
-      }
-
-      50% {
-        transform: scale(0.98) rotate(4deg);
-        opacity: 0.92;
-      }
-
-      75% {
-        transform: scale(1.06) rotate(-3deg);
-        opacity: 1;
-      }
-
-      100% {
-        transform: scale(1) rotate(0deg);
-        opacity: 0.9;
-      }
-    }
 
     .surprise-dice {
       display: inline-block;
@@ -326,15 +354,6 @@
       }
     }
 
-    .lucky-page-link:hover {
-      background: linear-gradient(135deg, #fce7f3, #e9d5ff, #dbeafe);
-      color: #111827;
-      transform: translateY(-1px);
-      box-shadow:
-        0 0 0 3px rgba(99, 102, 241, 0.12),
-        0 6px 14px rgba(0, 0, 0, 0.1);
-    }
-
     .surprise-me-button {
       display: inline-flex;
       align-items: center;
@@ -362,7 +381,6 @@
         0 0 0 3px rgba(99, 102, 241, 0.12),
         0 6px 14px rgba(0, 0, 0, 0.1);
     }
-
 
     #surpriseEntryNav {
       display: none !important;
@@ -401,28 +419,9 @@
       animation: surpriseModalIn 0.22s ease;
     }
 
-    .modal-card-sparkles {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      border-radius: inherit;
-      z-index: 0;
-    }
-
-    .modal-card-sparkles .sparkle {
-      opacity: 0.9;
-      transform-origin: center;
-      filter: drop-shadow(0 0 8px rgba(255,255,255,0.45));
-    }
-
     .surprise-close-button,
     .surprise-modal-body {
       position: relative;
-      z-index: 2;
-    }
-
-    .polish-entry-nav {
       z-index: 2;
     }
 
@@ -476,17 +475,6 @@
       justify-content: center;
       min-height: 320px;
       width: 100%;
-    }
-
-    .image-card {
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: 20px;
-      padding: 16px;
-      box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.96),
-        0 0 20px rgba(255, 255, 255, 0.72),
-        0 0 40px rgba(255, 255, 255, 0.22);
-      backdrop-filter: blur(6px);
     }
 
     .surprise-result-image {
@@ -590,15 +578,68 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     }
 
-    .s38 { top: 93%; left: 8%; animation-duration: 6.6s; animation-delay: 0.4s; }
-    .s39 { top: 95%; left: 22%; animation-duration: 7.0s; animation-delay: 1.7s; }
-    .s40 { top: 90%; left: 36%; animation-duration: 6.2s; animation-delay: 2.4s; }
-    .s41 { top: 92%; left: 48%; animation-duration: 7.4s; animation-delay: 0.9s; }
-    .s42 { top: 94%; left: 61%; animation-duration: 6.0s; animation-delay: 2.1s; }
-    .s43 { top: 89%; left: 73%; animation-duration: 6.8s; animation-delay: 1.3s; }
-    .s44 { top: 96%; left: 84%; animation-duration: 7.3s; animation-delay: 2.6s; }
-    .s45 { top: 87%; left: 92%; animation-duration: 6.4s; animation-delay: 0.6s; }
-    .s46 { top: 98%; left: 55%; animation-duration: 7.1s; animation-delay: 1.9s; }
+    .s38 {
+      top: 93%;
+      left: 8%;
+      animation-duration: 6.6s;
+      animation-delay: 0.4s;
+    }
+
+    .s39 {
+      top: 95%;
+      left: 22%;
+      animation-duration: 7.0s;
+      animation-delay: 1.7s;
+    }
+
+    .s40 {
+      top: 90%;
+      left: 36%;
+      animation-duration: 6.2s;
+      animation-delay: 2.4s;
+    }
+
+    .s41 {
+      top: 92%;
+      left: 48%;
+      animation-duration: 7.4s;
+      animation-delay: 0.9s;
+    }
+
+    .s42 {
+      top: 94%;
+      left: 61%;
+      animation-duration: 6.0s;
+      animation-delay: 2.1s;
+    }
+
+    .s43 {
+      top: 89%;
+      left: 73%;
+      animation-duration: 6.8s;
+      animation-delay: 1.3s;
+    }
+
+    .s44 {
+      top: 96%;
+      left: 84%;
+      animation-duration: 7.3s;
+      animation-delay: 2.6s;
+    }
+
+    .s45 {
+      top: 87%;
+      left: 92%;
+      animation-duration: 6.4s;
+      animation-delay: 0.6s;
+    }
+
+    .s46 {
+      top: 98%;
+      left: 55%;
+      animation-duration: 7.1s;
+      animation-delay: 1.9s;
+    }
 
     @media (max-width: 720px) {
       .surprise-modal-content {
@@ -647,7 +688,6 @@
     #polishTable thead th:first-child {
       text-align: center;
     }
-
 
     #polishTable tbody tr {
       cursor: pointer;
@@ -706,7 +746,7 @@
       border: 1px solid rgba(234, 212, 240, 0.95);
       border-radius: 999px;
       padding: 6px 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     }
 
     .surprise-description-block[hidden],
@@ -797,36 +837,6 @@
       box-sizing: border-box;
     }
 
-    .polish-gallery-nav {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    .polish-gallery-arrow {
-      pointer-events: auto;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
-      background: rgba(141, 106, 149, 0.9);
-      border: 1px solid rgba(234, 212, 240, 0.96);
-      color: #fff;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    }
-
-    .polish-gallery-arrow.prev { left: 0; }
-    .polish-gallery-arrow.next { right: 0; }
-
-    .polish-entry-arrow {
-      background: rgba(141, 106, 149, 0.9);
-      border: 1px solid rgba(234, 212, 240, 0.96);
-      color: white;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    }
-
     @media (max-width: 720px) {
       .polish-main-image-shell {
         padding-inline: 48px;
@@ -854,14 +864,23 @@
       z-index: 4;
     }
 
-    .image-viewer-arrow.prev { left: 10px; }
-    .image-viewer-arrow.next { right: 10px; }
-
-    @media (max-width: 720px) {
-      .image-viewer-frame { padding-inline: 50px; }
-      .image-viewer-image { max-width: min(calc(96vw - 100px), 1000px); }
+    .image-viewer-arrow.prev {
+      left: 10px;
     }
 
+    .image-viewer-arrow.next {
+      right: 10px;
+    }
+
+    @media (max-width: 720px) {
+      .image-viewer-frame {
+        padding-inline: 50px;
+      }
+
+      .image-viewer-image {
+        max-width: min(calc(96vw - 100px), 1000px);
+      }
+    }
   </style>
 </head>
 
@@ -911,14 +930,27 @@
 
   <div class="page-shell">
     <div class="directory-topbar">
-      <a href="lucky.html" id="luckyPageLink" class="lucky-page-link">I’m Feeling Lucky <span
-          class="lucky-sparkle">✨</span></a>
-      <button id="surpriseMeButton" class="surprise-me-button" type="button">
-        Surprise Me <span id="surpriseDice" class="surprise-dice">🎲</span>
-      </button>
+      <div class="directory-title-wrap">
+        <div class="pages-dropdown">
+          <button class="pages-dropdown-toggle" type="button" aria-haspopup="true" aria-label="Open pages menu">
+            <span class="hamburger-icon" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+          <ul class="pages-dropdown-menu"></ul>
+        </div>
+
+        <h1>Nail Polish Directory</h1>
+      </div>
+
+      <div class="directory-actions">
+        <button id="surpriseMeButton" class="surprise-me-button" type="button">
+          Surprise Me <span id="surpriseDice" class="surprise-dice">🎲</span>
+        </button>
+      </div>
     </div>
-    <h1>Nail Polish Directory</h1>
-    <p class="page-intro">A searchable, filterable directory of nail polishes in Jessica's collection.</p>
 
     <div class="filter-panel">
       <div class="filter-row">
@@ -936,14 +968,12 @@
           </select>
         </div>
 
-
         <div class="filter-group">
           <label for="typeFilter">Type/Effect</label>
           <select id="typeFilter">
             <option value="">All</option>
           </select>
         </div>
-
 
         <div class="filter-group">
           <label for="subtypeFilter">Sub Type</label>
@@ -956,12 +986,16 @@
           <label for="numberFilter">Number</label>
           <input type="text" id="numberFilter" placeholder="Type number..." />
         </div>
-      </div>
 
-      <div class="filter-actions-row">
-        <button type="button" id="clearFiltersBtn">Clear Filters</button>
-      </div>
+        <button id="clearFiltersBtn">Clear Filters</button>
 
+        <div class="search-toggle-wrap">
+          <button type="button" id="searchToggleBtn">Search</button>
+          <div id="searchDropdown" class="search-dropdown" hidden>
+            <input type="text" id="tableSearchInput" placeholder="Search polishes..." />
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="alpha-filter-wrap">
@@ -1174,6 +1208,10 @@
               <button id="surpriseAgainButton" class="surprise-secondary-button" type="button">
                 Surprise Me Again
               </button>
+
+              <a id="surpriseDupesButton" class="dupe-entry-button" href="#" hidden>
+                View Dupes
+              </a>
             </div>
           </div>
         </div>
@@ -1205,6 +1243,7 @@
     <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
     <script src="app.js"></script>
     <script>
+      initializeSharedPagesMenu();
       const surpriseDice = document.getElementById('surpriseDice');
       const surpriseMeButton = document.getElementById('surpriseMeButton');
       const surpriseModal = document.getElementById('surpriseModal');
@@ -1225,6 +1264,7 @@
       const surpriseDescriptionBlock = document.getElementById('surpriseDescriptionBlock');
       const surpriseResultDescription = document.getElementById('surpriseResultDescription');
       const surpriseModalActions = document.getElementById('surpriseModalActions');
+      const surpriseDupesButton = document.getElementById('surpriseDupesButton');
 
       const surpriseGalleryNav = document.getElementById('surpriseGalleryNav');
       const surprisePrevImage = document.getElementById('surprisePrevImage');
@@ -1403,11 +1443,14 @@
         surpriseDescriptionBlock.hidden = !hasMeaningfulValue(description);
         surpriseResultDescription.textContent = description;
 
+        updateDupesButton(surpriseDupesButton, polish);
+
         if (typeof options.allowReroll === 'boolean') {
           modalAllowsReroll = options.allowReroll;
         }
 
-        surpriseModalActions.hidden = !modalAllowsReroll;
+        surpriseAgainButton.hidden = !modalAllowsReroll;
+        surpriseModalActions.hidden = surpriseAgainButton.hidden && surpriseDupesButton.hidden;
         updateModalEntryNav();
         openSurpriseModal();
       }
@@ -1452,6 +1495,45 @@
         imageViewerImg.alt = currentImage.alt || '';
         imageViewerPrev.hidden = activeSurpriseGallery.length <= 1;
         imageViewerNext.hidden = activeSurpriseGallery.length <= 1;
+      }
+
+      function getHasDupesValue(polish) {
+        return String(
+          polish?.hasDupes ??
+          polish?.['Has Dupes'] ??
+          ''
+        ).trim().toLowerCase() === 'yes';
+      }
+
+      function getDupeGroupValue(polish) {
+        return String(
+          polish?.dupeGroup ??
+          polish?.['Dupe Group'] ??
+          ''
+        ).trim();
+      }
+
+      function buildDupesUrl(polish) {
+        const params = new URLSearchParams();
+        params.set('brand', polish.brand || '');
+        params.set('name', polish.name || '');
+        return `dupes.html?${params.toString()}`;
+      }
+
+      function updateDupesButton(button, polish) {
+        if (!button) return;
+
+        const dupeGroup = getDupeGroupValue(polish);
+        const hasDupes = getHasDupesValue(polish) || Boolean(dupeGroup);
+
+        if (!hasDupes || !dupeGroup) {
+          button.hidden = true;
+          button.setAttribute('href', '#');
+          return;
+        }
+
+        button.hidden = false;
+        button.setAttribute('href', buildDupesUrl(polish));
       }
 
       fetchPolishData()
@@ -1509,6 +1591,31 @@
             info: false,
             lengthChange: false,
             searching: true
+          });
+
+          const searchToggleBtn = document.getElementById('searchToggleBtn');
+          const searchDropdown = document.getElementById('searchDropdown');
+          const tableSearchInput = document.getElementById('tableSearchInput');
+
+          searchToggleBtn.addEventListener('click', () => {
+            const isHidden = searchDropdown.hasAttribute('hidden');
+
+            if (isHidden) {
+              searchDropdown.removeAttribute('hidden');
+              tableSearchInput.focus();
+            } else {
+              searchDropdown.setAttribute('hidden', '');
+            }
+          });
+
+          tableSearchInput.addEventListener('input', () => {
+            window.polishTable.search(tableSearchInput.value).draw();
+          });
+
+          document.addEventListener('click', (event) => {
+            if (!searchToggleBtn.contains(event.target) && !searchDropdown.contains(event.target)) {
+              searchDropdown.setAttribute('hidden', '');
+            }
           });
 
           $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
@@ -1695,6 +1802,8 @@
             $('#colorFilter').val('');
             $('#subtypeFilter').val('');
             $('#numberFilter').val('');
+            $('#tableSearchInput').val('');
+            $('#searchDropdown').attr('hidden', true);
 
             window.polishTable.search('');
 

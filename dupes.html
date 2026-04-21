@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Polish Dupes</title>
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+        .page-shell {
+            max-width: 1180px;
+        }
+
+        .dupes-page-topbar {
+            margin-bottom: 18px;
+        }
+
+        .dupes-intro {
+            max-width: 760px;
+        }
+
+        .dupes-panel {
+            background: white;
+            padding: 24px;
+            border-radius: 14px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .dupes-message {
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 18px 20px;
+            color: #4b5563;
+            font-size: 1rem;
+            line-height: 1.55;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+        }
+
+        .dupes-message a {
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .dupes-message a:hover {
+            text-decoration: underline;
+        }
+
+        .dupes-layout {
+            display: grid;
+            grid-template-columns: minmax(280px, 430px) minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        .dupes-featured-media {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dupes-featured-image-wrap {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 320px;
+        }
+
+        .dupes-featured-image-shell {
+            position: relative;
+            width: 100%;
+            max-width: 430px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-inline: 56px;
+            box-sizing: border-box;
+        }
+
+        .dupes-featured-image-button {
+            appearance: none;
+            border: 0;
+            background: transparent;
+            padding: 0;
+            width: 100%;
+            cursor: zoom-in;
+        }
+
+        .dupes-featured-image {
+            width: 100%;
+            max-width: 360px;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow:
+                0 0 0 10px rgba(255, 255, 255, 0.18),
+                0 0 24px rgba(255, 255, 255, 0.78),
+                0 8px 24px rgba(0, 0, 0, 0.12);
+            background: #f9fafb;
+            display: block;
+        }
+
+        .dupes-featured-fallback {
+            width: 100%;
+            max-width: 360px;
+            min-height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            border-radius: 14px;
+            background: #f9fafb;
+            border: 1px dashed #d1d5db;
+            color: #6b7280;
+            font-weight: 600;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .dupes-featured-image-wrap>[hidden],
+        .dupes-related-section[hidden],
+        .dupes-description-block[hidden],
+        .dupes-subtype-row[hidden],
+        .dupes-message[hidden],
+        .dupes-main-content[hidden],
+        .dupes-gallery-nav[hidden],
+        .dupes-image-hint[hidden],
+        .image-viewer[hidden] {
+            display: none !important;
+        }
+
+        .dupes-gallery-nav {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .dupes-gallery-nav .polish-gallery-arrow {
+            pointer-events: auto;
+        }
+
+        .dupes-featured-details {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 18px;
+            padding: 18px 20px;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.96),
+                0 0 18px rgba(255, 255, 255, 0.68),
+                0 0 34px rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(6px);
+            min-width: 0;
+        }
+
+        .dupes-featured-brand {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #3f3150;
+            letter-spacing: 0.02em;
+        }
+
+        .dupes-featured-name {
+            margin: 0;
+            font-size: 2rem;
+            line-height: 1.1;
+            color: #2f243c;
+        }
+
+        .dupes-detail-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            font-size: 1rem;
+        }
+
+        .dupes-detail-label {
+            min-width: 82px;
+            font-weight: 700;
+            color: #5b4866;
+        }
+
+        .dupes-description-block {
+            margin-top: 4px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.8),
+                0 8px 18px rgba(0, 0, 0, 0.06);
+        }
+
+        .dupes-description-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #5b4866;
+        }
+
+        .dupes-description-text {
+            margin: 0;
+            line-height: 1.55;
+            color: #374151;
+        }
+
+        .dupes-related-section {
+            margin-top: 24px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(209, 213, 219, 0.8);
+        }
+
+        .dupes-related-header {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .dupes-related-title {
+            margin: 0;
+            font-size: 1.3rem;
+            color: #2f243c;
+        }
+
+        .dupes-related-helper {
+            margin: 0;
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .dupes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px;
+        }
+
+        .dupes-card {
+            appearance: none;
+            border: 1px solid #e5e7eb;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 16px;
+            padding: 12px;
+            text-align: left;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+            transition:
+                transform 0.16s ease,
+                box-shadow 0.16s ease,
+                border-color 0.16s ease,
+                background 0.16s ease;
+            width: 100%;
+        }
+
+        .dupes-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
+            border-color: #cdb4db;
+            background: white;
+        }
+
+        .dupes-card-thumb-frame {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 14px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        }
+
+        .dupes-card-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            background: #f9fafb;
+        }
+
+        .dupes-card-fallback {
+            width: 100%;
+            height: 100%;
+            min-height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-weight: 600;
+            text-align: center;
+            padding: 16px;
+            box-sizing: border-box;
+            background: #f9fafb;
+        }
+
+        .dupes-card-brand {
+            font-weight: 700;
+            color: #3f3150;
+            margin-bottom: 4px;
+        }
+
+        .dupes-card-name {
+            color: #1f2937;
+            line-height: 1.35;
+        }
+
+        .dupes-card-meta {
+            margin-top: 10px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .dupes-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 18px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #fdf2f8, #ede9fe, #eff6ff);
+            color: #374151;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: 1px solid #d8dee9;
+            box-shadow:
+                0 0 0 2px rgba(99, 102, 241, 0.06),
+                0 4px 10px rgba(0, 0, 0, 0.06);
+            transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, color 0.16s ease;
+        }
+
+        .dupes-back-link:hover {
+            background: linear-gradient(135deg, #fce7f3, #e9d5ff, #dbeafe);
+            color: #111827;
+            transform: translateY(-1px);
+            box-shadow:
+                0 0 0 3px rgba(99, 102, 241, 0.12),
+                0 6px 14px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 860px) {
+            .dupes-layout {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .dupes-featured-name {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .dupes-panel {
+                padding: 18px 14px;
+            }
+
+            .dupes-featured-image-shell {
+                max-width: 100%;
+                padding-inline: 44px;
+            }
+
+            .dupes-featured-image,
+            .dupes-featured-fallback {
+                max-width: min(100%, 300px);
+                max-height: 34dvh;
+                min-height: 0;
+            }
+
+            .dupes-featured-details {
+                gap: 10px;
+                padding: 12px 14px;
+            }
+
+            .dupes-featured-name {
+                font-size: 1.45rem;
+            }
+
+            .dupes-description-block {
+                padding: 12px 14px;
+            }
+
+            .image-viewer-content {
+                width: 100vw;
+                height: 100dvh;
+                margin: 0;
+                padding: 16px;
+            }
+
+            .image-viewer-image {
+                max-width: calc(100vw - 32px);
+                max-height: calc(100dvh - 64px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-sparkles" aria-hidden="true">
+        <span class="sparkle six-point s1 white small top-glow"></span>
+        <span class="sparkle eight-point s2 white tiny top-glow"></span>
+        <span class="sparkle six-point s3 violet tiny top-glow"></span>
+        <span class="sparkle eight-point s4 peach tiny top-glow"></span>
+        <span class="sparkle six-point s5 gold small top-glow"></span>
+        <span class="sparkle eight-point s6 coral tiny top-glow"></span>
+        <span class="sparkle six-point s7 white tiny top-glow"></span>
+        <span class="sparkle eight-point s8 violet small top-glow"></span>
+        <span class="sparkle six-point s9 white tiny"></span>
+        <span class="sparkle eight-point s10 peach tiny"></span>
+        <span class="sparkle six-point s11 coral small"></span>
+        <span class="sparkle eight-point s12 gold tiny"></span>
+        <span class="sparkle six-point s13 violet tiny"></span>
+        <span class="sparkle eight-point s14 white small"></span>
+        <span class="sparkle six-point s15 white tiny"></span>
+        <span class="sparkle eight-point s16 peach tiny"></span>
+        <span class="sparkle six-point s17 coral small"></span>
+        <span class="sparkle eight-point s18 violet tiny"></span>
+        <span class="sparkle six-point s19 gold tiny"></span>
+        <span class="sparkle eight-point s20 white small"></span>
+        <span class="sparkle six-point s21 white tiny"></span>
+        <span class="sparkle eight-point s22 violet tiny"></span>
+        <span class="sparkle six-point s23 peach tiny"></span>
+        <span class="sparkle eight-point s24 gold small"></span>
+        <span class="sparkle six-point s25 coral tiny"></span>
+        <span class="sparkle eight-point s26 white tiny"></span>
+        <span class="sparkle six-point s27 violet small"></span>
+        <span class="sparkle eight-point s28 peach tiny"></span>
+        <span class="sparkle six-point s29 white tiny"></span>
+        <span class="sparkle eight-point s30 violet tiny"></span>
+        <span class="sparkle six-point s31 peach small"></span>
+        <span class="sparkle eight-point s32 white tiny"></span>
+        <span class="sparkle six-point s33 violet tiny"></span>
+        <span class="sparkle eight-point s34 gold tiny"></span>
+        <span class="sparkle six-point s35 white small"></span>
+        <span class="sparkle eight-point s36 white tiny"></span>
+        <span class="sparkle six-point s37 coral tiny"></span>
+    </div>
+
+    <div class="page-shell">
+        <div class="dupes-page-topbar">
+            <div class="pages-dropdown">
+                <button class="pages-dropdown-toggle" type="button" aria-haspopup="true" aria-label="Open pages menu">
+                    <span class="hamburger-icon" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+                <ul class="pages-dropdown-menu"></ul>
+            </div>
+        </div>
+
+        <h1>Polish Dupes</h1>
+        <p class="page-intro dupes-intro">
+            Compare similar shades in the same dupe family and swap between them without leaving the page.
+        </p>
+
+        <div class="dupes-panel">
+            <div id="dupesMessage" class="dupes-message" hidden></div>
+
+            <div id="dupesGroupsSection" class="dupes-groups-section" hidden>
+                <div class="dupes-groups-header">
+                    <h2 class="dupes-groups-title">Dupe Groups</h2>
+                    <p class="dupes-groups-helper">Choose a dupe group to open its featured polish page.</p>
+                </div>
+
+                <p id="dupesGroupsEmpty" class="dupes-groups-empty" hidden>
+                    No dupe groups are available yet.
+                </p>
+
+                <div id="dupesGroupsGrid" class="dupes-groups-grid"></div>
+            </div>
+
+            <div id="dupesMainContent" class="dupes-main-content" hidden>
+                <div class="dupes-layout">
+                    <div class="dupes-featured-media polish-image-panel">
+                        <div class="dupes-featured-image-wrap">
+                            <div class="dupes-featured-image-shell">
+                                <div class="image-card">
+                                    <button id="dupesImageButton"
+                                        class="dupes-featured-image-button polish-main-image-button" type="button"
+                                        aria-label="Open swatch image">
+                                        <img id="dupesFeaturedImage" class="dupes-featured-image polish-gallery-image"
+                                            src="" alt="" />
+                                    </button>
+                                </div>
+
+                                <div id="dupesImageFallback" class="dupes-featured-fallback" hidden>
+                                    No swatch available
+                                </div>
+
+                                <div id="dupesGalleryNav" class="dupes-gallery-nav polish-gallery-nav" hidden>
+                                    <button id="dupesPrevImage" class="polish-gallery-arrow prev" type="button"
+                                        aria-label="Previous swatch">
+                                        &#8249;
+                                    </button>
+                                    <button id="dupesNextImage" class="polish-gallery-arrow next" type="button"
+                                        aria-label="Next swatch">
+                                        &#8250;
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="dupesImageHint" class="dupes-image-hint polish-image-hint">Click the swatch to zoom in
+                        </div>
+                    </div>
+
+                    <div class="dupes-featured-details">
+                        <div id="dupesFeaturedBrand" class="dupes-featured-brand"></div>
+                        <h2 id="dupesFeaturedName" class="dupes-featured-name"></h2>
+
+                        <div class="dupes-detail-row">
+                            <span class="dupes-detail-label">Color</span>
+                            <span id="dupesFeaturedColor"></span>
+                        </div>
+
+                        <div class="dupes-detail-row">
+                            <span class="dupes-detail-label">Type</span>
+                            <span id="dupesFeaturedType"></span>
+                        </div>
+
+                        <div id="dupesSubtypeRow" class="dupes-detail-row dupes-subtype-row" hidden>
+                            <span class="dupes-detail-label">Sub Type</span>
+                            <span id="dupesFeaturedSubtype"></span>
+                        </div>
+
+                        <div class="dupes-detail-row">
+                            <span class="dupes-detail-label">Number</span>
+                            <span id="dupesFeaturedNumber"></span>
+                        </div>
+
+                        <div id="dupesDescriptionBlock" class="dupes-description-block" hidden>
+                            <span class="dupes-description-label">Description</span>
+                            <p id="dupesFeaturedDescription" class="dupes-description-text"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="dupesRelatedSection" class="dupes-related-section" hidden>
+                    <div class="dupes-related-header">
+                        <h3 class="dupes-related-title">Other dupes in this group</h3>
+                        <p class="dupes-related-helper">Click a polish below to swap it into the featured position.</p>
+                    </div>
+
+                    <div id="dupesGrid" class="dupes-grid"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="dupesSelectedActions" class="dupes-selected-actions" hidden>
+            <a id="dupesGroupsBackLink" class="dupes-back-link" href="dupes.html">← Return to dupe groups</a>
+            <a id="dupesBackLink" class="dupes-back-link" href="index.html">← Back to directory</a>
+        </div>
+    </div>
+
+    <div id="imageViewer" class="image-viewer" hidden>
+        <div class="image-viewer-overlay"></div>
+
+        <div class="image-viewer-content" role="dialog" aria-modal="true" aria-label="Expanded swatch image">
+            <div class="image-viewer-frame">
+                <img id="imageViewerImg" class="image-viewer-image" src="" alt="">
+                <button id="imageViewerClose" class="image-viewer-close" type="button"
+                    aria-label="Close enlarged image">
+                    &times;
+                </button>
+
+                <button id="imageViewerPrev" class="image-viewer-arrow prev" type="button" aria-label="Previous swatch"
+                    hidden>
+                    &#8249;
+                </button>
+                <button id="imageViewerNext" class="image-viewer-arrow next" type="button" aria-label="Next swatch"
+                    hidden>
+                    &#8250;
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+
+    <script>
+        initializeSharedPagesMenu();
+        const directoryPageLink = document.getElementById('directoryPageLink');
+        const dupesBackLink = document.getElementById('dupesBackLink');
+
+        const dupesMessage = document.getElementById('dupesMessage');
+        const dupesMainContent = document.getElementById('dupesMainContent');
+        const dupesGroupsSection = document.getElementById('dupesGroupsSection');
+        const dupesGroupsGrid = document.getElementById('dupesGroupsGrid');
+        const dupesGroupsEmpty = document.getElementById('dupesGroupsEmpty');
+        const dupesSelectedActions = document.getElementById('dupesSelectedActions');
+        const dupesGroupsBackLink = document.getElementById('dupesGroupsBackLink');
+
+        const dupesFeaturedBrand = document.getElementById('dupesFeaturedBrand');
+        const dupesFeaturedName = document.getElementById('dupesFeaturedName');
+        const dupesFeaturedColor = document.getElementById('dupesFeaturedColor');
+        const dupesFeaturedType = document.getElementById('dupesFeaturedType');
+        const dupesFeaturedSubtype = document.getElementById('dupesFeaturedSubtype');
+        const dupesFeaturedNumber = document.getElementById('dupesFeaturedNumber');
+        const dupesFeaturedDescription = document.getElementById('dupesFeaturedDescription');
+
+        const dupesSubtypeRow = document.getElementById('dupesSubtypeRow');
+        const dupesDescriptionBlock = document.getElementById('dupesDescriptionBlock');
+
+        const dupesImageButton = document.getElementById('dupesImageButton');
+        const dupesFeaturedImage = document.getElementById('dupesFeaturedImage');
+        const dupesImageFallback = document.getElementById('dupesImageFallback');
+        const dupesGalleryNav = document.getElementById('dupesGalleryNav');
+        const dupesPrevImage = document.getElementById('dupesPrevImage');
+        const dupesNextImage = document.getElementById('dupesNextImage');
+        const dupesImageHint = document.getElementById('dupesImageHint');
+
+        const dupesRelatedSection = document.getElementById('dupesRelatedSection');
+        const dupesGrid = document.getElementById('dupesGrid');
+
+        const imageViewer = document.getElementById('imageViewer');
+        const imageViewerImg = document.getElementById('imageViewerImg');
+        const imageViewerClose = document.getElementById('imageViewerClose');
+        const imageViewerOverlay = document.querySelector('.image-viewer-overlay');
+        const imageViewerPrev = document.getElementById('imageViewerPrev');
+        const imageViewerNext = document.getElementById('imageViewerNext');
+
+        let allPolishes = [];
+        let currentDupeFamily = [];
+        let currentFeaturedPolish = null;
+        let activeGallery = [];
+        let activeGalleryIndex = 0;
+
+        function getDupeGroupValue(polish) {
+            return getFirstMeaningfulValue(
+                polish?.dupeGroup,
+                polish?.['Dupe Group'],
+                polish?.['dupe group']
+            ).toString().trim();
+        }
+
+        function buildPolishIdentity(polish) {
+            return `${(polish?.brand || '').trim().toLowerCase()}||${(polish?.name || '').trim().toLowerCase()}`;
+        }
+
+        function findPolishByBrandAndName(data, brand, name) {
+            const targetBrand = (brand || '').trim().toLowerCase();
+            const targetName = (name || '').trim().toLowerCase();
+
+            return data.find(item =>
+                (item.brand || '').trim().toLowerCase() === targetBrand &&
+                (item.name || '').trim().toLowerCase() === targetName
+            ) || null;
+        }
+
+        function buildDupesUrl(polish) {
+            const params = new URLSearchParams();
+            params.set('brand', polish.brand || '');
+            params.set('name', polish.name || '');
+            return `dupes.html?${params.toString()}`;
+        }
+
+        async function fetchDupeGroups() {
+            const cacheBust = `v=${Date.now()}`;
+            const candidateFiles = ['dupe_groups.json', 'dupe-groups.json'];
+
+            for (const fileName of candidateFiles) {
+                try {
+                    const response = await fetch(`${fileName}?${cacheBust}`, {
+                        cache: 'no-store'
+                    });
+
+                    if (!response.ok) {
+                        continue;
+                    }
+
+                    const groups = await response.json();
+                    return Array.isArray(groups) ? groups : [];
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+
+            throw new Error('Failed to load dupe groups JSON.');
+        }
+
+        function buildDupesGroupUrl(group) {
+            const params = new URLSearchParams();
+            params.set('group', group);
+            return `dupes.html?${params.toString()}`;
+        }
+
+        function getDupeGroupDisplayName(groupValue, groupDefinitions) {
+            const match = groupDefinitions.find(item => String(item.group || '').trim() === groupValue);
+            return match?.name || groupValue;
+        }
+
+        function getAlphabeticalFirstPolishInGroup(groupValue) {
+            const matches = allPolishes
+                .filter(item => getDupeGroupValue(item) === groupValue)
+                .sort((a, b) => {
+                    const brandCompare = (a.brand || '').localeCompare(b.brand || '');
+                    if (brandCompare !== 0) return brandCompare;
+                    return (a.name || '').localeCompare(b.name || '');
+                });
+
+            return matches[0] || null;
+        }
+
+        function showGroupsMode() {
+            dupesMessage.hidden = true;
+            dupesMainContent.hidden = true;
+            dupesGroupsSection.hidden = false;
+            dupesSelectedActions.hidden = true;
+        }
+
+        function showSelectedMode() {
+            dupesMessage.hidden = true;
+            dupesGroupsSection.hidden = true;
+            dupesMainContent.hidden = false;
+            dupesSelectedActions.hidden = false;
+        }
+
+        function renderDupeGroups(groupDefinitions) {
+            const validGroups = groupDefinitions.filter(item => {
+                const groupValue = String(item.group || '').trim();
+                return groupValue && allPolishes.some(polish => getDupeGroupValue(polish) === groupValue);
+            });
+
+            dupesGroupsGrid.innerHTML = '';
+            dupesGroupsEmpty.hidden = validGroups.length > 0;
+
+            if (!validGroups.length) {
+                showGroupsMode();
+                return;
+            }
+
+            dupesGroupsGrid.innerHTML = validGroups.map(item => {
+                const groupValue = String(item.group || '').trim();
+                const groupName = String(item.name || groupValue).trim();
+                const count = allPolishes.filter(polish => getDupeGroupValue(polish) === groupValue).length;
+
+                return `
+          <button class="dupes-group-card" type="button" data-dupe-group="${escapeHTML(groupValue)}">
+            <div class="dupes-group-card-name">${escapeHTML(groupName)}</div>
+            <div class="dupes-group-card-meta">${count} polish${count === 1 ? '' : 'es'}</div>
+          </button>
+        `;
+            }).join('');
+
+            showGroupsMode();
+        }
+
+        function showMessage(html) {
+            dupesMainContent.hidden = true;
+            dupesMessage.hidden = false;
+            dupesMessage.innerHTML = html;
+        }
+
+        function showContent() {
+            showSelectedMode();
+        }
+
+        function setGallery(polish) {
+            activeGallery = getPolishGallery(polish);
+            activeGalleryIndex = 0;
+            renderGalleryImage();
+        }
+
+        function renderGalleryImage() {
+            const currentImage = activeGallery[activeGalleryIndex];
+
+            dupesFeaturedImage.onerror = null;
+
+            if (!currentImage || !currentImage.src) {
+                dupesFeaturedImage.hidden = true;
+                dupesImageButton.hidden = true;
+                dupesImageFallback.hidden = false;
+                dupesGalleryNav.hidden = true;
+                dupesImageHint.hidden = true;
+                dupesFeaturedImage.removeAttribute('src');
+                dupesFeaturedImage.alt = '';
+                return;
+            }
+
+            dupesImageFallback.hidden = true;
+            dupesFeaturedImage.hidden = false;
+            dupesImageButton.hidden = false;
+            dupesImageHint.hidden = false;
+            dupesFeaturedImage.src = currentImage.src;
+            dupesFeaturedImage.alt = currentImage.alt || '';
+
+            dupesFeaturedImage.onerror = function () {
+                dupesFeaturedImage.hidden = true;
+                dupesImageButton.hidden = true;
+                dupesImageFallback.hidden = false;
+                dupesGalleryNav.hidden = true;
+                dupesImageHint.hidden = true;
+                dupesFeaturedImage.removeAttribute('src');
+                dupesFeaturedImage.alt = '';
+            };
+
+            dupesGalleryNav.hidden = activeGallery.length <= 1;
+        }
+
+        function showPreviousImage() {
+            if (activeGallery.length <= 1) return;
+            activeGalleryIndex = (activeGalleryIndex - 1 + activeGallery.length) % activeGallery.length;
+            renderGalleryImage();
+            syncViewerToCurrentGalleryImage();
+        }
+
+        function showNextImage() {
+            if (activeGallery.length <= 1) return;
+            activeGalleryIndex = (activeGalleryIndex + 1) % activeGallery.length;
+            renderGalleryImage();
+            syncViewerToCurrentGalleryImage();
+        }
+
+        function openImageViewer() {
+            const currentImage = activeGallery[activeGalleryIndex];
+            if (!currentImage?.src) return;
+
+            imageViewerImg.src = currentImage.src;
+            imageViewerImg.alt = currentImage.alt || '';
+            imageViewer.hidden = false;
+            imageViewerPrev.hidden = activeGallery.length <= 1;
+            imageViewerNext.hidden = activeGallery.length <= 1;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageViewer() {
+            imageViewer.hidden = true;
+            imageViewerImg.removeAttribute('src');
+            imageViewerImg.alt = '';
+            document.body.style.overflow = '';
+        }
+
+        function syncViewerToCurrentGalleryImage() {
+            if (imageViewer.hidden) return;
+            const currentImage = activeGallery[activeGalleryIndex];
+            if (!currentImage?.src) return;
+
+            imageViewerImg.src = currentImage.src;
+            imageViewerImg.alt = currentImage.alt || '';
+            imageViewerPrev.hidden = activeGallery.length <= 1;
+            imageViewerNext.hidden = activeGallery.length <= 1;
+        }
+
+        function getCardThumbnail(polish) {
+            const gallery = getPolishGallery(polish);
+            return gallery[0]?.thumb || polish.thumb || polish.image || '';
+        }
+
+        function renderDupeCards() {
+            const featuredIdentity = buildPolishIdentity(currentFeaturedPolish);
+
+            const otherDupes = currentDupeFamily.filter(item =>
+                buildPolishIdentity(item) !== featuredIdentity
+            );
+
+            if (otherDupes.length === 0) {
+                dupesRelatedSection.hidden = true;
+                dupesGrid.innerHTML = '';
+                return;
+            }
+
+            dupesRelatedSection.hidden = false;
+
+            dupesGrid.innerHTML = otherDupes.map(item => {
+                const thumb = getCardThumbnail(item);
+                const safeBrand = escapeHTML(item.brand || '');
+                const safeName = escapeHTML(item.name || '');
+                const safeKey = escapeHTML(buildPolishIdentity(item));
+
+                return `
+          <button class="dupes-card" type="button" data-polish-key="${safeKey}" aria-label="Show ${safeBrand} ${safeName} as featured">
+            <div class="dupes-card-thumb-frame">
+              ${thumb
+                        ? `<img src="${escapeHTML(thumb)}" alt="${safeBrand} ${safeName} swatch" class="dupes-card-thumb" onerror="this.replaceWith(Object.assign(document.createElement('div'), { className: 'dupes-card-fallback', textContent: 'No swatch available' }))">`
+                        : `<div class="dupes-card-fallback">No swatch available</div>`
+                    }
+            </div>
+            <div class="dupes-card-brand">${safeBrand}</div>
+            <div class="dupes-card-name">${safeName}</div>
+            <div class="dupes-card-meta">${createNumberBadge(item.type, item.number)}</div>
+          </button>
+        `;
+            }).join('');
+        }
+
+        function renderFeaturedPolish(polish) {
+            currentFeaturedPolish = polish;
+
+            const subtype = getPolishSubtype(polish);
+            const description = getPolishDescription(polish);
+
+            dupesFeaturedBrand.textContent = polish.brand || '';
+            dupesFeaturedName.textContent = polish.name || '';
+            dupesFeaturedColor.textContent = polish.color || '—';
+            dupesFeaturedType.textContent = polish.type || '—';
+            dupesFeaturedNumber.innerHTML = createNumberBadge(polish.type, polish.number);
+
+            dupesSubtypeRow.hidden = !hasMeaningfulValue(subtype);
+            dupesFeaturedSubtype.textContent = subtype;
+
+            dupesDescriptionBlock.hidden = !hasMeaningfulValue(description);
+            dupesFeaturedDescription.textContent = description;
+
+            setGallery(polish);
+            renderDupeCards();
+
+            history.replaceState({}, '', buildDupesUrl(polish));
+            showContent();
+        }
+
+        async function initializeDupesPage() {
+            const queryParams = getQueryParams();
+            const brand = queryParams.get('brand') || '';
+            const name = queryParams.get('name') || '';
+            const group = queryParams.get('group') || '';
+
+            if (directoryPageLink) {
+                directoryPageLink.href = 'index.html';
+            }
+
+            if (dupesBackLink) {
+                dupesBackLink.href = 'index.html';
+            }
+
+            if (dupesGroupsBackLink) {
+                dupesGroupsBackLink.href = 'dupes.html';
+            }
+
+            let groupDefinitions = [];
+
+            try {
+                groupDefinitions = await fetchDupeGroups();
+            } catch (error) {
+                console.error(error);
+            }
+
+            if (!brand && !name && !group) {
+                renderDupeGroups(groupDefinitions);
+                return;
+            }
+
+            if (group && !brand && !name) {
+                const firstPolish = getAlphabeticalFirstPolishInGroup(group);
+
+                if (!firstPolish) {
+                    showMessage(`
+                I couldn’t find any polishes in the dupe group
+                <strong>${escapeHTML(getDupeGroupDisplayName(group, groupDefinitions))}</strong>.
+            `);
+                    dupesSelectedActions.hidden = true;
+                    return;
+                }
+
+                currentDupeFamily = allPolishes.filter(item => getDupeGroupValue(item) === group);
+
+                if (currentDupeFamily.length <= 1) {
+                    renderFeaturedPolish(firstPolish);
+                    dupesRelatedSection.hidden = true;
+                    showSelectedMode();
+                    return;
+                }
+
+                renderFeaturedPolish(firstPolish);
+                showSelectedMode();
+                return;
+            }
+
+            if (!brand || !name) {
+                showMessage(`
+            No polish was selected for this page. You can return to the
+            <a href="dupes.html">dupe groups list</a>
+            or go back to the
+            <a href="index.html">Nail Polish Directory</a>.
+        `);
+                dupesSelectedActions.hidden = true;
+                return;
+            }
+
+            const selectedPolish = findPolishByBrandAndName(allPolishes, brand, name);
+
+            if (!selectedPolish) {
+                showMessage(`
+            I couldn’t find that polish in your data file. Please check the URL parameters for
+            <strong>brand</strong> and <strong>name</strong>, then try again.
+        `);
+                dupesSelectedActions.hidden = true;
+                return;
+            }
+
+            const dupeGroup = getDupeGroupValue(selectedPolish);
+
+            if (!dupeGroup) {
+                showMessage(`
+            <strong>${escapeHTML(selectedPolish.brand || '')} — ${escapeHTML(selectedPolish.name || '')}</strong>
+            doesn’t currently have a Dupe Group in your JSON, so there isn’t a dupes page to show yet.
+        `);
+                dupesSelectedActions.hidden = true;
+                return;
+            }
+
+            currentDupeFamily = allPolishes.filter(item => getDupeGroupValue(item) === dupeGroup);
+
+            if (!currentDupeFamily.length) {
+                showMessage(`
+            A dupe group was found, but no matching family members could be loaded from your data.
+        `);
+                dupesSelectedActions.hidden = true;
+                return;
+            }
+
+            if (currentDupeFamily.length === 1) {
+                renderFeaturedPolish(selectedPolish);
+                dupesRelatedSection.hidden = true;
+                showSelectedMode();
+                return;
+            }
+
+            renderFeaturedPolish(selectedPolish);
+            showSelectedMode();
+        }
+
+        fetchPolishData()
+            .then(async data => {
+                allPolishes = data;
+                await initializeDupesPage();
+            })
+            .catch(error => {
+                console.error(error);
+                const message = error && error.message && error.message.includes('data.json')
+                    ? 'There was a problem loading data.json.'
+                    : 'There was a problem opening the dupes page.';
+                showMessage(message);
+            });
+
+        dupesGroupsGrid.addEventListener('click', event => {
+            const card = event.target.closest('.dupes-group-card');
+            if (!card) return;
+
+            const groupValue = card.dataset.dupeGroup || '';
+            if (!groupValue) return;
+
+            window.location.href = buildDupesGroupUrl(groupValue);
+        });
+
+        dupesGrid.addEventListener('click', event => {
+            const card = event.target.closest('.dupes-card');
+            if (!card) return;
+
+            const key = card.dataset.polishKey || '';
+            const nextFeatured = currentDupeFamily.find(item => buildPolishIdentity(item) === key);
+
+            if (!nextFeatured) return;
+
+            renderFeaturedPolish(nextFeatured);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        dupesImageButton.addEventListener('click', openImageViewer);
+        dupesPrevImage.addEventListener('click', showPreviousImage);
+        dupesNextImage.addEventListener('click', showNextImage);
+
+        imageViewerClose.addEventListener('click', closeImageViewer);
+        imageViewerOverlay.addEventListener('click', closeImageViewer);
+
+        imageViewerPrev.addEventListener('click', () => {
+            if (activeGallery.length <= 1) return;
+            activeGalleryIndex = (activeGalleryIndex - 1 + activeGallery.length) % activeGallery.length;
+            syncViewerToCurrentGalleryImage();
+            renderGalleryImage();
+        });
+
+        imageViewerNext.addEventListener('click', () => {
+            if (activeGallery.length <= 1) return;
+            activeGalleryIndex = (activeGalleryIndex + 1) % activeGallery.length;
+            syncViewerToCurrentGalleryImage();
+            renderGalleryImage();
+        });
+
+        document.addEventListener('keydown', event => {
+            if (!imageViewer.hidden) {
+                if (event.key === 'Escape') {
+                    closeImageViewer();
+                    return;
+                }
+
+                if (event.key === 'ArrowLeft' && activeGallery.length > 1) {
+                    activeGalleryIndex = (activeGalleryIndex - 1 + activeGallery.length) % activeGallery.length;
+                    syncViewerToCurrentGalleryImage();
+                    renderGalleryImage();
+                }
+
+                if (event.key === 'ArrowRight' && activeGallery.length > 1) {
+                    activeGalleryIndex = (activeGalleryIndex + 1) % activeGallery.length;
+                    syncViewerToCurrentGalleryImage();
+                    renderGalleryImage();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

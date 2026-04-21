@@ -183,6 +183,82 @@ function createNumberBadge(type, number) {
   `;
 }
 
+/* ===== SHARED PAGE NAV ===== */
+
+async function fetchSitePages() {
+    const cacheBust = `v=${Date.now()}`;
+    const response = await fetch(`pages.json?${cacheBust}`, {
+        cache: 'no-store'
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to load pages.json: ${response.status}`);
+    }
+
+    const pages = await response.json();
+    return Array.isArray(pages) ? pages : [];
+}
+
+function normalizePagePath(path) {
+    const value = String(path || '').trim();
+    if (!value) return '';
+
+    const withoutHash = value.split('#')[0];
+    const withoutQuery = withoutHash.split('?')[0];
+
+    return withoutQuery
+        .replace(/^\.?\//, '')
+        .toLowerCase();
+}
+
+function getCurrentPagePath() {
+    const pathname = window.location.pathname || '';
+    const fileName = pathname.split('/').pop() || 'index.html';
+    return normalizePagePath(fileName);
+}
+
+function createPageMenuLink(page) {
+    const safeHref = escapeHTML(page.href || '#');
+    const safeTitle = escapeHTML(page.title || '');
+
+    if (page.sparkle) {
+        return `<a href="${safeHref}">${safeTitle} <span class="lucky-sparkle">✨</span></a>`;
+    }
+
+    return `<a href="${safeHref}">${safeTitle}</a>`;
+}
+
+async function initializeSharedPagesMenu() {
+    const menu = document.querySelector('.pages-dropdown-menu');
+    if (!menu) return;
+
+    try {
+        const pages = await fetchSitePages();
+        const currentPage = getCurrentPagePath();
+
+        const visiblePages = pages.filter(page => {
+            const hrefPath = normalizePagePath(page.href);
+            return hrefPath && hrefPath !== currentPage;
+        });
+
+        menu.innerHTML = visiblePages
+            .map(page => `<li>${createPageMenuLink(page)}</li>`)
+            .join('');
+    } catch (error) {
+        console.error('Unable to initialize shared pages menu:', error);
+    }
+}
+
+function updateSharedPagesMenuLink(hrefMatch, newHref) {
+    const links = document.querySelectorAll('.pages-dropdown-menu a');
+
+    links.forEach(link => {
+        if (normalizePagePath(link.getAttribute('href')) === normalizePagePath(hrefMatch)) {
+            link.setAttribute('href', newHref);
+        }
+    });
+}
+
 /* ===== FILTER HELPERS ===== */
 
 function populateSelect(selectElement, values, defaultLabel) {

@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Nail Polish Directory",
+    "href": "index.html"
+  },
+  {
+    "title": "I’m Feeling Lucky",
+    "href": "lucky.html",
+    "sparkle": true
+  },
+  {
+    "title": "Dupes",
+    "href": "dupes.html"
+  }
+]
