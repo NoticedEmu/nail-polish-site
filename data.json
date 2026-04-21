@@ -39,7 +39,9 @@
     "Color": "Purple",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 95
+    "Number": 95,
+    "Has Dupes": "Yes",
+    "Dupe Group": "Intense_Blue_Shimmer"
   },
   {
     "Brand": "Alchemy Lacquers",
@@ -139,7 +141,9 @@
     "Color": "Plum",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 94
+    "Number": 94,
+    "Has Dupes": "Yes",
+    "Dupe Group": "Purple_Teal_Shimmer"
   },
   {
     "Brand": "Alchemy Lacquers",
@@ -153,7 +157,9 @@
     "Color": "Mauve",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 92
+    "Number": 92,
+    "Has Dupes": "Yes",
+    "Dupe Group": "Purple_Teal_Shimmer"
   },
   {
     "Brand": "ANLAC",
@@ -167,7 +173,9 @@
     "Color": "Purple",
     "Type": "Thermal",
     "Sub Type": "",
-    "Number": 11
+    "Number": 11,
+    "Has Dupes": "Yes",
+    "Dupe Group": "Purple_Teal_Shimmer"
   },
   {
     "Brand": "ANLAC",
@@ -251,7 +259,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 42
+    "Number": 42,
+    "Has Dupes": "Yes",
+    "Dupe Group": "Blue_Red_Shimmer"
   },
   {
     "Brand": "Arcana",
@@ -925,7 +935,9 @@
     "Color": "Dark Blue",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 12
+    "Number": 12,
+    "Has Dupes": "Yes",
+    "Dupe Group": "Blue_Red_Shimmer"
   },
   {
     "Brand": "Bee's Knees",
@@ -3069,7 +3081,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 75
+    "Number": 75,
+    "Has Dupes": "Yes",
+    "Dupe Group": "Blue_Red_Shimmer"
   },
   {
     "Brand": "ILNP",
@@ -3433,7 +3447,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "Unicorn Pee (UP)",
-    "Number": 100
+    "Number": 100,
+    "Has Dupes": "Yes",
+    "Dupe Group": "Blue_Red_Shimmer"
   },
   {
     "Brand": "ILNP",
@@ -4513,7 +4529,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 69
+    "Number": 69,
+    "Has Dupes": "Yes",
+    "Dupe Group": "Intense_Blue_Shimmer"
   },
   {
     "Brand": "Mooncat",
@@ -5551,7 +5569,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 20
+    "Number": 20,
+    "Has Dupes": "Yes",
+    "Dupe Group": "Intense_Blue_Shimmer"
   },
   {
     "Brand": "Uno Mas Colors",
