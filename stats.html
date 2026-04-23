@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Polish Stats</title>
+
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        .page-shell {
+            max-width: 1320px;
+        }
+
+        .stats-page-topbar {
+            margin-bottom: 18px;
+        }
+
+        .stats-intro {
+            max-width: 820px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .stats-card {
+            background: rgba(26, 26, 32, 0.95);
+            border: 1px solid rgba(88, 78, 98, 0.55);
+            border-radius: 18px;
+            padding: 22px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stats-card.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .stats-card-header {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .stats-card-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .stats-card-heading {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-width: 0;
+            flex: 1 1 260px;
+        }
+
+        .stats-card-title {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #f4ebf9;
+        }
+
+        .stats-card-subtitle {
+            margin: 0;
+            color: rgba(226, 217, 236, 0.72);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .stats-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .stats-summary-card {
+            background: rgba(26, 26, 32, 0.9);
+            border: 1px solid rgba(88, 78, 98, 0.55);
+            border-radius: 16px;
+            padding: 16px 18px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .stats-summary-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: rgba(226, 217, 236, 0.72);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .stats-summary-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1;
+            color: #f4ebf9;
+        }
+
+        .chart-wrap {
+            position: relative;
+            width: 100%;
+            flex: 1;
+        }
+
+        .chart-wrap.pie-chart-wrap {
+            height: 360px;
+            min-height: 360px;
+        }
+
+        .chart-wrap.brand-chart-wrap {
+            height: 175px;
+            min-height: 175px;
+        }
+
+        .color-chart-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .header-filter-wrap {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex: 0 0 auto;
+        }
+
+        .header-filter-wrap .stats-filter-group,
+        .header-filter-wrap .stats-filter-group-small {
+            min-width: 170px;
+            max-width: 220px;
+        }
+
+        .header-filter-wrap .stats-filter-group label,
+        .header-filter-wrap .stats-filter-group-small label {
+            font-size: 0.82rem;
+            margin-bottom: 2px;
+        }
+
+        .header-filter-wrap .stats-filter-group select,
+        .header-filter-wrap .stats-filter-group-small select {
+            padding: 8px 10px;
+            font-size: 0.9rem;
+        }
+
+        .stats-filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-width: 240px;
+            max-width: 320px;
+        }
+
+        .stats-filter-group-small {
+            min-width: 180px;
+            max-width: 240px;
+        }
+
+        .stats-filter-group label {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #ece5f4;
+        }
+
+        .stats-filter-group select {
+            padding: 10px 12px;
+            border: 1px solid rgba(88, 78, 98, 0.72);
+            border-radius: 10px;
+            background: #1a1a20;
+            font-size: 0.95rem;
+            color: #ece5f4;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+            transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
+        }
+
+        .stats-filter-group select:hover {
+            border-color: rgba(137, 122, 162, 0.8);
+        }
+
+        .stats-filter-group select:focus {
+            outline: none;
+            border-color: rgba(182, 152, 210, 0.92);
+            box-shadow: 0 0 0 3px rgba(167, 139, 176, 0.16);
+        }
+
+        .stats-status {
+            background: rgba(26, 26, 32, 0.9);
+            border: 1px solid rgba(88, 78, 98, 0.55);
+            border-radius: 14px;
+            padding: 18px 20px;
+            color: rgba(232, 223, 241, 0.82);
+            line-height: 1.55;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+        }
+
+        .stats-empty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 220px;
+            border-radius: 14px;
+            background: #1d1b20;
+            border: 1px dashed rgba(117, 119, 145, 0.72);
+            color: rgba(226, 217, 236, 0.72);
+            font-weight: 600;
+            text-align: center;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+
+        .stats-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: end;
+            margin-bottom: 18px;
+        }
+
+        .stats-brand-summary {
+            margin-top: 14px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: rgba(26, 28, 38, 0.94);
+            border: 1px solid rgba(83, 88, 118, 0.56);
+            box-shadow:
+                0 0 0 1px rgba(27, 28, 38, 0.9),
+                0 8px 18px rgba(0, 0, 0, 0.06);
+            color: rgba(232, 223, 241, 0.82);
+            line-height: 1.5;
+        }
+
+        .stats-brand-summary strong {
+            color: #f4ebf9;
+        }
+
+        @media (max-width: 980px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-summary-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .chart-wrap.pie-chart-wrap {
+                height: 340px;
+                min-height: 340px;
+            }
+
+            .chart-wrap.brand-chart-wrap {
+                height: 240px;
+                min-height: 240px;
+            }
+
+            .header-filter-wrap {
+                width: 100%;
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .stats-summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-card {
+                padding: 18px;
+            }
+
+            .chart-wrap.pie-chart-wrap {
+                height: 300px;
+                min-height: 300px;
+            }
+
+            .chart-wrap.brand-chart-wrap {
+                height: 220px;
+                min-height: 220px;
+            }
+
+            .stats-filter-group,
+            .stats-filter-group-small,
+            .header-filter-wrap .stats-filter-group,
+            .header-filter-wrap .stats-filter-group-small {
+                min-width: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-sparkles" aria-hidden="true">
+        <span class="sparkle six-point s1 white small top-glow"></span>
+        <span class="sparkle eight-point s2 violet tiny top-glow"></span>
+        <span class="sparkle six-point s3 gold small top-glow"></span>
+        <span class="sparkle eight-point s4 white tiny top-glow"></span>
+        <span class="sparkle six-point s5 coral small top-glow"></span>
+        <span class="sparkle eight-point s6 peach tiny top-glow"></span>
+        <span class="sparkle six-point s7 white small top-glow"></span>
+        <span class="sparkle eight-point s8 violet tiny top-glow"></span>
+        <span class="sparkle six-point s9 gold small top-glow"></span>
+        <span class="sparkle eight-point s10 white tiny top-glow"></span>
+        <span class="sparkle six-point s11 coral small"></span>
+        <span class="sparkle eight-point s12 peach tiny"></span>
+        <span class="sparkle six-point s13 white small"></span>
+        <span class="sparkle eight-point s14 violet tiny"></span>
+        <span class="sparkle six-point s15 gold small"></span>
+        <span class="sparkle eight-point s16 white tiny"></span>
+        <span class="sparkle six-point s17 coral small"></span>
+        <span class="sparkle eight-point s18 peach tiny"></span>
+        <span class="sparkle six-point s19 white small"></span>
+        <span class="sparkle eight-point s20 violet tiny"></span>
+        <span class="sparkle six-point s21 gold small"></span>
+        <span class="sparkle eight-point s22 white tiny"></span>
+        <span class="sparkle six-point s23 coral small"></span>
+        <span class="sparkle eight-point s24 peach tiny"></span>
+        <span class="sparkle six-point s25 white small"></span>
+        <span class="sparkle eight-point s26 violet tiny"></span>
+        <span class="sparkle six-point s27 gold small"></span>
+        <span class="sparkle eight-point s28 white tiny"></span>
+        <span class="sparkle six-point s29 coral small"></span>
+        <span class="sparkle eight-point s30 peach tiny"></span>
+        <span class="sparkle six-point s31 white small"></span>
+        <span class="sparkle eight-point s32 violet tiny"></span>
+        <span class="sparkle six-point s33 gold small"></span>
+        <span class="sparkle eight-point s34 white tiny"></span>
+        <span class="sparkle six-point s35 peach small"></span>
+        <span class="sparkle eight-point s36 white tiny"></span>
+        <span class="sparkle six-point s37 coral tiny"></span>
+        <span class="sparkle eight-point s38 violet small"></span>
+        <span class="sparkle six-point s39 white tiny"></span>
+        <span class="sparkle eight-point s40 gold small"></span>
+        <span class="sparkle six-point s41 peach tiny"></span>
+        <span class="sparkle eight-point s42 white small"></span>
+        <span class="sparkle six-point s43 violet tiny"></span>
+        <span class="sparkle eight-point s44 coral small"></span>
+        <span class="sparkle six-point s45 gold tiny"></span>
+        <span class="sparkle eight-point s46 white small"></span>
+    </div>
+
+    <div class="page-shell">
+        <div class="stats-page-topbar">
+            <div class="pages-dropdown">
+                <button class="pages-dropdown-toggle" type="button" aria-haspopup="true" aria-label="Open pages menu">
+                    <span class="hamburger-icon" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+                <ul class="pages-dropdown-menu"></ul>
+            </div>
+        </div>
+
+        <h1>Polish Stats</h1>
+        <p class="page-intro stats-intro">
+            A visual look at your collection by color, finish, and brand.
+        </p>
+
+        <div id="statsStatus" class="stats-status">Loading your polish data…</div>
+
+        <div id="statsContent" hidden>
+            <section class="stats-summary-grid" aria-label="Collection summary">
+                <div class="stats-summary-card">
+                    <span class="stats-summary-label">Total Polishes</span>
+                    <div id="totalPolishesValue" class="stats-summary-value">—</div>
+                </div>
+
+                <div class="stats-summary-card">
+                    <span class="stats-summary-label">Brands</span>
+                    <div id="totalBrandsValue" class="stats-summary-value">—</div>
+                </div>
+
+                <div class="stats-summary-card">
+                    <span class="stats-summary-label">Colors Listed</span>
+                    <div id="totalColorsValue" class="stats-summary-value">—</div>
+                </div>
+
+                <div class="stats-summary-card">
+                    <span class="stats-summary-label">Types Listed</span>
+                    <div id="totalTypesValue" class="stats-summary-value">—</div>
+                </div>
+            </section>
+
+            <section class="stats-grid">
+                <div class="stats-card">
+                    <div class="stats-card-header">
+                        <div class="stats-card-header-row">
+                            <div class="stats-card-heading">
+                                <h2 class="stats-card-title">Color Distribution</h2>
+                                <p class="stats-card-subtitle">
+                                    Individual color percentages as well as color group percentages.
+                                </p>
+                            </div>
+
+                            <div class="header-filter-wrap">
+                                <div class="stats-filter-group stats-filter-group-small">
+                                    <label for="colorFamilySelect">Highlight family</label>
+                                    <select id="colorFamilySelect">
+                                        <option value="">None</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="color-chart-layout">
+                        <div id="colorChartWrap" class="chart-wrap pie-chart-wrap">
+                            <canvas id="colorChart" aria-label="Color distribution pie chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-card-header">
+                        <h2 class="stats-card-title">Type Distribution</h2>
+                        <p class="stats-card-subtitle">
+                            Based on a polish's main type.
+                        </p>
+                    </div>
+                    <div id="typeChartWrap" class="chart-wrap pie-chart-wrap">
+                        <canvas id="typeChart" aria-label="Type distribution pie chart"></canvas>
+                    </div>
+                </div>
+
+                <div class="stats-card full-width">
+                    <div class="stats-card-header">
+                        <h2 class="stats-card-title">Brand Finish Breakdown</h2>
+                        <p class="stats-card-subtitle">
+                            Choose a brand to see its distribution of types.<br>
+                        </p>
+                    </div>
+
+                    <div class="stats-controls">
+                        <div class="stats-filter-group">
+                            <label for="brandStatsSelect">Brand</label>
+                            <select id="brandStatsSelect"></select>
+                        </div>
+                    </div>
+
+                    <div id="brandChartWrap" class="chart-wrap brand-chart-wrap">
+                        <canvas id="brandTypeChart"
+                            aria-label="Horizontal stacked bar chart for selected brand"></canvas>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        let colorChartInstance = null;
+        let typeChartInstance = null;
+        let brandTypeChartInstance = null;
+        let statsPolishData = [];
+        let colorFamilyEntries = [];
+        let activeColorFamily = '';
+
+        function createTopperShimmerGradient(ctx, left, top, right, bottom, phase = 0) {
+            const width = Math.max(1, right - left);
+            const height = Math.max(1, bottom - top);
+            const travel = width + height;
+            const offset = ((phase % 1) * travel * 1.45) - (travel * 0.35);
+
+            const gradient = ctx.createLinearGradient(
+                left - travel + offset,
+                top,
+                right + travel + offset,
+                bottom
+            );
+
+            const colors = [
+                '#ff6ec4', // pink
+                '#c4b5fd', // lavender
+                '#4ade80', // green
+                '#38bdf8', // blue
+                '#facc15', // gold
+                '#7f1d1d'  // maroon
+            ];
+
+            const stops = [
+                [0.00, colors[0]],
+                [0.14, colors[1]],
+                [0.30, colors[2]],
+                [0.46, colors[3]],
+                [0.62, colors[4]],
+                [0.78, colors[5]],
+                [0.92, colors[0]],
+                [1.00, colors[1]]
+            ];
+
+            stops.forEach(([stop, color]) => gradient.addColorStop(stop, color));
+            return gradient;
+        }
+
+        function createHoloSheenGradient(ctx, left, top, right, bottom, phase = 0) {
+            const width = Math.max(1, right - left);
+            const height = Math.max(1, bottom - top);
+            const travel = width + height;
+            const offset = ((phase % 1) * travel * 1.65) - (travel * 0.55);
+
+            const gradient = ctx.createLinearGradient(
+                left - travel + offset,
+                bottom,
+                right + travel + offset,
+                top
+            );
+
+            gradient.addColorStop(0.00, 'rgba(255,255,255,0)');
+            gradient.addColorStop(0.42, 'rgba(255,255,255,0)');
+            gradient.addColorStop(0.50, 'rgba(255,255,255,0.34)');
+            gradient.addColorStop(0.58, 'rgba(255,255,255,0)');
+            gradient.addColorStop(1.00, 'rgba(255,255,255,0)');
+            return gradient;
+        }
+
+
+        function traceRoundedRect(ctx, x, y, width, height, radius) {
+            const r = Math.max(0, Math.min(radius, height / 2, width / 2));
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.lineTo(x + width - r, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + r);
+            ctx.lineTo(x + width, y + height - r);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - r, y + height);
+            ctx.lineTo(x + r, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - r);
+            ctx.lineTo(x, y + r);
+            ctx.quadraticCurveTo(x, y, x + r, y);
+            ctx.closePath();
+        }
+
+        function traceArcSlice(ctx, props) {
+            ctx.beginPath();
+            ctx.arc(props.x, props.y, props.outerRadius, props.startAngle, props.endAngle);
+            ctx.arc(props.x, props.y, props.innerRadius, props.endAngle, props.startAngle, true);
+            ctx.closePath();
+        }
+
+        const topperShimmerPlugin = {
+            id: 'topperShimmerPlugin',
+            afterInit(chart) {
+                if (!chart.canvas || !['typeChart', 'brandTypeChart'].includes(chart.canvas.id)) return;
+
+                let frameId = null;
+
+                function animate() {
+                    if (chart._destroyed) return;
+                    chart.draw();
+                    frameId = requestAnimationFrame(animate);
+                }
+
+                frameId = requestAnimationFrame(animate);
+                chart.$topperShimmerFrame = frameId;
+            },
+            afterDatasetsDraw(chart) {
+                if (!chart.canvas || !['typeChart', 'brandTypeChart'].includes(chart.canvas.id)) return;
+
+                const ctx = chart.ctx;
+
+                const raw = (Date.now() % 50000) / 50000;
+                const pingPong = raw < 0.5 ? raw * 2 : (1 - raw) * 2;
+                const phase = 0.5 - 0.5 * Math.cos(pingPong * Math.PI);
+
+                if (chart.canvas.id === 'typeChart') {
+                    const labels = chart.data?.labels || [];
+                    const topperIndex = labels.findIndex(label => String(label).trim().toLowerCase() === 'topper');
+                    if (topperIndex === -1) return;
+
+                    const meta = chart.getDatasetMeta(0);
+                    const arc = meta?.data?.[topperIndex];
+                    if (!arc) return;
+
+                    const props = arc.getProps([
+                        'x',
+                        'y',
+                        'startAngle',
+                        'endAngle',
+                        'innerRadius',
+                        'outerRadius'
+                    ], true);
+
+                    const left = props.x - props.outerRadius;
+                    const top = props.y - props.outerRadius;
+                    const right = props.x + props.outerRadius;
+                    const bottom = props.y + props.outerRadius;
+
+                    ctx.save();
+                    traceArcSlice(ctx, props);
+                    ctx.fillStyle = createTopperShimmerGradient(ctx, left, top, right, bottom, phase);
+                    ctx.fill();
+
+                    ctx.globalCompositeOperation = 'lighter';
+                    traceArcSlice(ctx, props);
+                    ctx.fillStyle = createHoloSheenGradient(ctx, left, top, right, bottom, phase);
+                    ctx.fill();
+
+                    ctx.globalCompositeOperation = 'source-over';
+                    traceArcSlice(ctx, props);
+                    ctx.lineWidth = 2;
+                    ctx.strokeStyle = 'rgba(255,255,255,0.92)';
+                    ctx.stroke();
+                    ctx.restore();
+                    return;
+                }
+
+                const datasets = chart.data?.datasets || [];
+                datasets.forEach((dataset, datasetIndex) => {
+                    if (String(dataset.label).trim().toLowerCase() !== 'topper') return;
+                    const meta = chart.getDatasetMeta(datasetIndex);
+                    if (!meta?.data?.length) return;
+
+                    meta.data.forEach(bar => {
+                        const props = bar.getProps(['x', 'y', 'base', 'height', 'width'], true);
+                        const left = Math.min(props.base, props.x);
+                        const right = Math.max(props.base, props.x);
+                        const top = props.y - props.height / 2;
+                        const width = right - left;
+                        const height = props.height;
+                        const radius = Math.min(10, height / 2, width / 2);
+                        if (width <= 0 || height <= 0) return;
+
+                        ctx.save();
+                        traceRoundedRect(ctx, left, top, width, height, radius);
+                        ctx.fillStyle = createTopperShimmerGradient(ctx, left, top, right, top + height, phase);
+                        ctx.fill();
+
+                        ctx.globalCompositeOperation = 'lighter';
+                        traceRoundedRect(ctx, left, top, width, height, radius);
+                        ctx.fillStyle = createHoloSheenGradient(ctx, left, top, right, top + height, phase);
+                        ctx.fill();
+
+                        ctx.globalCompositeOperation = 'source-over';
+                        traceRoundedRect(ctx, left, top, width, height, radius);
+                        ctx.lineWidth = 1;
+                        ctx.strokeStyle = 'rgba(255,255,255,0.45)';
+                        ctx.stroke();
+                        ctx.restore();
+                    });
+                });
+            },
+            beforeDestroy(chart) {
+                if (chart.$topperShimmerFrame) {
+                    cancelAnimationFrame(chart.$topperShimmerFrame);
+                }
+            }
+        };
+
+
+        const colorFamilyCalloutPlugin = {
+            id: 'colorFamilyCalloutPlugin',
+            afterDatasetsDraw(chart) {
+                if (chart.canvas?.id !== 'colorChart' || !activeColorFamily || !colorFamilyEntries.length) return;
+
+                const dataset = chart.data.datasets?.[0];
+                const meta = chart.getDatasetMeta(0);
+                if (!dataset || !meta?.data?.length) return;
+
+                const matchingIndices = colorFamilyEntries
+                    .map((entry, index) => entry.family === activeColorFamily ? index : -1)
+                    .filter(index => index !== -1);
+
+                if (!matchingIndices.length) return;
+
+                const firstArc = meta.data[matchingIndices[0]];
+                const lastArc = meta.data[matchingIndices[matchingIndices.length - 1]];
+                if (!firstArc || !lastArc) return;
+
+                const familyTotal = matchingIndices.reduce((sum, index) => sum + Number(dataset.data[index] || 0), 0);
+                const grandTotal = dataset.data.reduce((sum, value) => sum + Number(value || 0), 0);
+                if (!grandTotal) return;
+
+                const percent = ((familyTotal / grandTotal) * 100).toFixed(1) + '%';
+                const midAngle = (firstArc.startAngle + lastArc.endAngle) / 2;
+                const directionX = Math.cos(midAngle);
+                const directionY = Math.sin(midAngle);
+                const textOnRight = directionX >= 0;
+
+                const startRadius = firstArc.outerRadius + 14;
+                const elbowRadius = firstArc.outerRadius + 32;
+                const startX = firstArc.x + directionX * startRadius;
+                const startY = firstArc.y + directionY * startRadius;
+                const elbowX = firstArc.x + directionX * elbowRadius;
+                const elbowY = firstArc.y + directionY * elbowRadius;
+                const endX = elbowX + (textOnRight ? 34 : -34);
+                const endY = elbowY;
+
+                const ctx = chart.ctx;
+                ctx.save();
+                ctx.font = '700 13px Arial';
+                const textWidth = ctx.measureText(percent).width;
+                const safePadding = 16;
+                const rawTextX = endX + (textOnRight ? 8 : -8);
+                const rawTextY = endY - 3;
+                const textX = textOnRight
+                    ? Math.min(rawTextX, chart.width - textWidth - safePadding)
+                    : Math.max(rawTextX, textWidth + safePadding);
+                const textY = Math.max(safePadding, Math.min(rawTextY, chart.height - safePadding));
+
+                ctx.strokeStyle = 'rgba(229, 231, 235, 0.85)';
+                ctx.lineWidth = 1.75;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.lineTo(elbowX, elbowY);
+                ctx.lineTo(endX, endY);
+                ctx.stroke();
+
+                ctx.fillStyle = 'rgba(229, 231, 235, 0.92)';
+                ctx.beginPath();
+                ctx.arc(startX, startY, 2.5, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.textAlign = textOnRight ? 'left' : 'right';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(percent, textX, textY);
+                ctx.restore();
+            }
+        };
+
+        function normalizeLabel(value, fallback = 'Unknown') {
+            const text = String(value ?? '').trim();
+            return text || fallback;
+        }
+
+        function countBy(items, getter) {
+            return items.reduce((acc, item) => {
+                const key = normalizeLabel(getter(item));
+                acc[key] = (acc[key] || 0) + 1;
+                return acc;
+            }, {});
+        }
+
+        function sortCountsObject(counts) {
+            return Object.entries(counts).sort((a, b) => {
+                if (b[1] !== a[1]) return b[1] - a[1];
+                return a[0].localeCompare(b[0]);
+            });
+        }
+
+        function getColorFamily(rawColor) {
+            const color = normalizeLabel(rawColor).toLowerCase();
+
+            const familyMatchers = [
+                { family: 'Red', keywords: ['red', 'wine', 'burgundy', 'berry', 'cranberry', 'maroon', 'ruby', 'garnet', 'scarlet', 'rosewood', 'mahogany', 'oxblood'] },
+                { family: 'Pink', keywords: ['pink', 'mauve', 'rose', 'blush', 'fuchsia', 'magenta', 'hot pink', 'dusty rose'] },
+                { family: 'Orange', keywords: ['orange', 'coral', 'tangerine', 'apricot', 'peach', 'rust', 'copper', 'terracotta', 'burnt orange'] },
+                { family: 'Yellow', keywords: ['yellow', 'gold', 'mustard', 'lemon', 'chartreuse', 'amber', 'honey'] },
+                { family: 'Green', keywords: ['green', 'emerald', 'olive', 'mint', 'sage', 'lime', 'forest', 'seafoam', 'avocado', 'moss', 'jade'] },
+                { family: 'Teal', keywords: ['teal', 'turquoise', 'aqua', 'cyan', 'blue-green', 'sea glass'] },
+                { family: 'Blue', keywords: ['blue', 'navy', 'denim', 'cobalt', 'indigo', 'periwinkle', 'sky', 'cerulean'] },
+                { family: 'Purple', keywords: ['purple', 'plum', 'violet', 'lavender', 'lilac', 'orchid', 'eggplant', 'grape'] },
+                { family: 'Brown', keywords: ['brown', 'taupe', 'mocha', 'chocolate', 'espresso', 'caramel', 'tan', 'beige', 'nude'] },
+                { family: 'Gray', keywords: ['gray', 'grey', 'charcoal', 'slate', 'silver', 'smoke', 'gunmetal'] },
+                { family: 'Black', keywords: ['black'] },
+                { family: 'White', keywords: ['white', 'ivory', 'cream'] },
+                { family: 'Clear', keywords: ['clear', 'transparent'] }
+            ];
+
+            for (const matcher of familyMatchers) {
+                if (matcher.keywords.some(keyword => color.includes(keyword))) {
+                    return matcher.family;
+                }
+            }
+
+            return 'Other';
+        }
+
+        function getColorHex(rawColor, family) {
+            const color = normalizeLabel(rawColor).toLowerCase();
+
+            const directColorMap = {
+                'black': '#1f2937',
+                'white': '#f9fafb',
+                'clear': 'rgba(255,255,255,0.55)',
+                'gray': '#9ca3af',
+                'grey': '#9ca3af',
+                'light gray': '#cbd5e1',
+                'dark gray': '#6b7280',
+                'silver': '#bfc7d6',
+
+                'red': '#d84a5a',
+                'dark red': '#8f2436',
+                'wine': '#7b2946',
+                'burgundy': '#6f1d3a',
+                'berry': '#a3365a',
+                'rose': '#d48aa0',
+
+                'pink': '#ec8fb4',
+                'light pink': '#f4bfd3',
+                'hot pink': '#e8569f',
+                'mauve': '#b784a7',
+                'blush': '#eab5bf',
+
+                'orange': '#eb8b48',
+                'dark orange': '#c96a2d',
+                'peach': '#f2b292',
+                'coral': '#ef8c86',
+                'rust': '#b8603c',
+                'copper': '#b87333',
+
+                'yellow': '#e5c95e',
+                'gold': '#d8b54a',
+                'mustard': '#b9932f',
+
+                'green': '#6fbf73',
+                'dark green': '#2f7d4f',
+                'light green': '#a6d88d',
+                'emerald': '#1f8a70',
+                'olive': '#7a8a3a',
+                'mint': '#9cdbbb',
+                'sage': '#a2b89b',
+                'jade': '#42b883',
+
+                'teal': '#3fa7a3',
+                'dark teal': '#2e7d79',
+                'turquoise': '#52b9c6',
+                'aqua': '#79d5de',
+                'seafoam': '#9ad8c2',
+
+                'blue': '#6297d6',
+                'light blue': '#a9ccf5',
+                'dark blue': '#2f5d9b',
+                'deep blue': '#335c99',
+                'navy blue': '#2a4365',
+                'navy': '#2a4365',
+                'denim blue': '#4f6fae',
+                'periwinkle': '#8c95d7',
+
+                'purple': '#8d70c9',
+                'light purple': '#c0a8ea',
+                'dark purple': '#5f4b8b',
+                'plum': '#7c4d79',
+                'lavender': '#b8a0ea',
+                'violet': '#8f7ae5',
+                'lilac': '#c8b0e9',
+
+                'brown': '#9a6a4f',
+                'taupe': '#9f8b7c',
+                'beige': '#ccb8a3',
+                'nude': '#c79f8d'
+            };
+
+            if (directColorMap[color]) {
+                return directColorMap[color];
+            }
+
+            const familyMap = {
+                'Red': '#c6465d',
+                'Pink': '#df8bb3',
+                'Orange': '#e59a61',
+                'Yellow': '#d7bb58',
+                'Green': '#67aa71',
+                'Teal': '#4ba8ab',
+                'Blue': '#6f91d8',
+                'Purple': '#9278ca',
+                'Brown': '#a27c67',
+                'Gray': '#99a1af',
+                'Black': '#374151',
+                'White': '#f3f4f6',
+                'Clear': 'rgba(255,255,255,0.55)',
+                'Other': '#b38bb8'
+            };
+
+            return familyMap[family] || familyMap.Other;
+        }
+
+        function getTypeColor(type) {
+            const normalized = normalizeLabel(type).toLowerCase();
+
+            const typeColors = {
+                'magnetic': '#cbb4ff',
+                'shimmer': '#8ecae6',
+                'holographic': '#f6b6d9',
+                'thermal': '#f5b971',
+                'flakie': '#f28b82',
+                'topper': '#d9c0ff',
+                'reflective glitter': '#7dd3a7',
+                'crackle': '#7aa6ff',
+                'creme': '#f3d7b6',
+                'stamping': '#94a3b8',
+                'multichrome': '#b794f4',
+                'neon': '#d8f06d',
+                'fluid art': '#9bd3c7',
+                'base coat': '#d4c4b7',
+                'glitter': '#f9a8d4'
+            };
+
+            return typeColors[normalized] || '#b9a3c9';
+        }
+
+        function buildColorDistribution(data) {
+            const colorCounts = countBy(data, polish => polish.color);
+            const entries = Object.entries(colorCounts).map(([label, count]) => {
+                const family = getColorFamily(label);
+                return {
+                    label,
+                    count,
+                    family,
+                    color: getColorHex(label, family)
+                };
+            });
+
+            const familyOrder = ['Red', 'Pink', 'Orange', 'Yellow', 'Green', 'Teal', 'Blue', 'Purple', 'Brown', 'Gray', 'Black', 'White', 'Clear', 'Other'];
+
+            entries.sort((a, b) => {
+                const familyCompare = familyOrder.indexOf(a.family) - familyOrder.indexOf(b.family);
+                if (familyCompare !== 0) return familyCompare;
+                if (b.count !== a.count) return b.count - a.count;
+                return a.label.localeCompare(b.label);
+            });
+
+            return entries;
+        }
+
+        function buildTypeDistribution(data) {
+            const typeCounts = countBy(data, polish => polish.type);
+
+            const coloredTypes = new Set([
+                'magnetic',
+                'holographic',
+                'thermal',
+                'flakie',
+                'crackle',
+                'reflective glitter',
+                'topper'
+            ]);
+
+            return Object.entries(typeCounts)
+                .map(([label, count]) => {
+                    const normalized = normalizeLabel(label).toLowerCase();
+                    const isDefaultBlack = !coloredTypes.has(normalized);
+
+                    return {
+                        label,
+                        count,
+                        isDefaultBlack,
+                        color: isDefaultBlack ? '#111827' : getTypeColor(label)
+                    };
+                })
+                .sort((a, b) => {
+                    if (a.isDefaultBlack !== b.isDefaultBlack) {
+                        return a.isDefaultBlack ? -1 : 1;
+                    }
+
+                    if (b.count !== a.count) {
+                        return b.count - a.count;
+                    }
+
+                    return a.label.localeCompare(b.label);
+                });
+        }
+
+        function updateSummary(data) {
+            const uniqueBrands = [...new Set(data.map(item => normalizeLabel(item.brand)).filter(Boolean))];
+            const uniqueColors = [...new Set(data.map(item => normalizeLabel(item.color)).filter(Boolean))];
+            const uniqueTypes = [...new Set(data.map(item => normalizeLabel(item.type)).filter(Boolean))];
+
+            document.getElementById('totalPolishesValue').textContent = data.length;
+            document.getElementById('totalBrandsValue').textContent = uniqueBrands.length;
+            document.getElementById('totalColorsValue').textContent = uniqueColors.length;
+            document.getElementById('totalTypesValue').textContent = uniqueTypes.length;
+        }
+
+        function showEmptyState(wrapperId, message) {
+            const wrapper = document.getElementById(wrapperId);
+            if (!wrapper) return;
+            wrapper.innerHTML = `<div class="stats-empty">${message}</div>`;
+        }
+
+        function destroyCharts() {
+            if (colorChartInstance) colorChartInstance.destroy();
+            if (typeChartInstance) typeChartInstance.destroy();
+            if (brandTypeChartInstance) brandTypeChartInstance.destroy();
+        }
+
+        function applyColorFamilyHighlight() {
+            if (!colorChartInstance || !colorFamilyEntries.length) return;
+
+            const selectedFamily = activeColorFamily;
+            const dataset = colorChartInstance.data.datasets[0];
+
+            dataset.offset = colorFamilyEntries.map(entry => {
+                if (!selectedFamily) return 0;
+                return entry.family === selectedFamily ? 18 : 0;
+            });
+
+            dataset.backgroundColor = colorFamilyEntries.map(entry => {
+                if (!selectedFamily) return entry.color;
+                return entry.family === selectedFamily ? entry.color : `${entry.color}CC`;
+            });
+
+            dataset.borderWidth = colorFamilyEntries.map(entry => {
+                if (!selectedFamily) return 2;
+                return entry.family === selectedFamily ? 3 : 2;
+            });
+
+            colorChartInstance.update();
+        }
+
+        function populateColorFamilyDropdown(entries) {
+            const select = document.getElementById('colorFamilySelect');
+            if (!select) return;
+
+            const familyCounts = entries.reduce((acc, entry) => {
+                acc[entry.family] = (acc[entry.family] || 0) + entry.count;
+                return acc;
+            }, {});
+
+            const familyOrder = ['Red', 'Pink', 'Orange', 'Yellow', 'Green', 'Teal', 'Blue', 'Purple', 'Brown', 'Gray', 'Black', 'White', 'Clear', 'Other'];
+            const presentFamilies = familyOrder.filter(family => familyCounts[family]);
+
+            select.innerHTML = `
+                <option value="">None</option>
+                ${presentFamilies.map(family => `<option value="${family}">${family}</option>`).join('')}
+            `;
+
+            select.addEventListener('change', () => {
+                activeColorFamily = select.value;
+                applyColorFamilyHighlight();
+            });
+        }
+
+        function createColorChart(data) {
+            if (!data.length) {
+                showEmptyState('colorChartWrap', 'No color data was available to chart.');
+                return;
+            }
+
+            colorFamilyEntries = data;
+            populateColorFamilyDropdown(data);
+
+            const ctx = document.getElementById('colorChart').getContext('2d');
+
+            colorChartInstance = new Chart(ctx, {
+                plugins: [colorFamilyCalloutPlugin],
+                type: 'pie',
+                data: {
+                    labels: data.map(item => item.label),
+                    datasets: [{
+                        data: data.map(item => item.count),
+                        backgroundColor: data.map(item => item.color),
+                        borderColor: 'rgba(255,255,255,0.92)',
+                        borderWidth: 2,
+                        offset: data.map(() => 0),
+                        hoverOffset: 6,
+                        radius: '88%'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            top: 0,
+                            bottom: 12,
+                            left: 2,
+                            right: 2,
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(47, 36, 60, 0.94)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#f3f4f6',
+                            cornerRadius: 12,
+                            padding: 12,
+                            displayColors: true,
+                            callbacks: {
+                                label: function (context) {
+                                    const item = data[context.dataIndex];
+                                    const total = data.reduce((sum, entry) => sum + entry.count, 0);
+                                    const percent = total ? ((item.count / total) * 100).toFixed(1) : '0.0';
+                                    return `${item.label}: ${item.count} (${percent}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            applyColorFamilyHighlight();
+        }
+
+        function createTypeChart(data) {
+            if (!data.length) {
+                showEmptyState('typeChartWrap', 'No type data was available to chart.');
+                return;
+            }
+
+            const ctx = document.getElementById('typeChart').getContext('2d');
+
+            typeChartInstance = new Chart(ctx, {
+                plugins: [topperShimmerPlugin],
+                type: 'pie',
+                data: {
+                    labels: data.map(item => item.label),
+                    datasets: [{
+                        data: data.map(item => item.count),
+                        backgroundColor: data.map(item => item.color),
+                        borderColor: 'rgba(255,255,255,0.92)',
+                        borderWidth: 2,
+                        hoverOffset: 6,
+                        radius: '84%'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: 6
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(47, 36, 60, 0.94)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#f3f4f6',
+                            cornerRadius: 12,
+                            padding: 12,
+                            callbacks: {
+                                label: function (context) {
+                                    const total = data.reduce((sum, entry) => sum + entry.count, 0);
+                                    const value = context.parsed;
+                                    const percent = total ? ((value / total) * 100).toFixed(1) : '0.0';
+                                    return `${context.label}: ${value} (${percent}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function populateBrandDropdown(data) {
+            const select = document.getElementById('brandStatsSelect');
+
+            const brands = [...new Set(data.map(item => normalizeLabel(item.brand)).filter(Boolean))]
+                .filter(brand => {
+                    const typesForBrand = [...new Set(
+                        data
+                            .filter(item => normalizeLabel(item.brand) === brand)
+                            .map(item => normalizeLabel(item.type))
+                            .filter(Boolean)
+                    )];
+
+                    return typesForBrand.length > 1;
+                })
+                .sort((a, b) => a.localeCompare(b));
+
+            select.innerHTML = brands.map(brand => `<option value="${brand}">${brand}</option>`).join('');
+        }
+
+        function buildSingleBrandTypeData(data, brand) {
+            const brandItems = data.filter(item => normalizeLabel(item.brand) === brand);
+            const typeCounts = countBy(brandItems, polish => polish.type);
+            const sorted = sortCountsObject(typeCounts);
+
+            return {
+                brand,
+                total: brandItems.length,
+                labels: [brand],
+                datasets: sorted.map(([type, count]) => ({
+                    label: type,
+                    data: [count],
+                    backgroundColor: getTypeColor(type),
+                    borderColor: 'rgba(255,255,255,0.72)',
+                    borderWidth: 1,
+                    borderRadius: 10,
+                    borderSkipped: false,
+                    stack: 'types'
+                }))
+            };
+        }
+
+        function createSingleBrandChart(result) {
+            if (!result.total || !result.datasets.length) {
+                showEmptyState('brandChartWrap', 'No type data was available for this brand.');
+                return;
+            }
+
+            const ctx = document.getElementById('brandTypeChart').getContext('2d');
+
+            brandTypeChartInstance = new Chart(ctx, {
+                plugins: [topperShimmerPlugin],
+                type: 'bar',
+                data: {
+                    labels: result.labels,
+                    datasets: result.datasets
+                },
+                options: {
+                    indexAxis: 'y',
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    layout: {
+                        padding: {
+                            top: 4,
+                            right: 10,
+                            bottom: 4,
+                            left: 8
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0,
+                                color: '#d7cbe5',
+                                font: {
+                                    family: 'Arial',
+                                    size: 12
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(107, 114, 128, 0.14)',
+                                drawBorder: false
+                            }
+                        },
+                        y: {
+                            stacked: true,
+                            ticks: {
+                                color: '#d7cbe5',
+                                font: {
+                                    family: 'Arial',
+                                    size: 12
+                                }
+                            },
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 12,
+                                boxHeight: 12,
+                                padding: 12,
+                                color: '#d7cbe5',
+                                font: {
+                                    size: 12,
+                                    family: 'Arial'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(47, 36, 60, 0.94)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#f3f4f6',
+                            cornerRadius: 12,
+                            padding: 12
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateBrandSummary(result) {
+            const summary = document.getElementById('brandStatsSummary');
+            const breakdown = result.datasets
+                .map(dataset => `<strong>${dataset.label}</strong>: ${dataset.data[0]}`)
+                .join(' · ');
+
+            summary.innerHTML = `<strong>${result.brand}</strong> has <strong>${result.total}</strong> polish${result.total === 1 ? '' : 'es'} in the directory. ${breakdown}`;
+        }
+
+        function renderSelectedBrandChart() {
+            const select = document.getElementById('brandStatsSelect');
+            const brand = select.value;
+
+            if (brandTypeChartInstance) {
+                brandTypeChartInstance.destroy();
+                brandTypeChartInstance = null;
+            }
+
+            const result = buildSingleBrandTypeData(statsPolishData, brand);
+            createSingleBrandChart(result);
+        }
+
+        async function initializeStatsPage() {
+            const status = document.getElementById('statsStatus');
+            const content = document.getElementById('statsContent');
+
+            initializeSharedPagesMenu();
+
+            try {
+                const data = await fetchPolishData();
+                const cleanedData = data.filter(item => item && (item.brand || item.name || item.color || item.type));
+
+                if (!cleanedData.length) {
+                    status.textContent = 'No polish records were found in data.json.';
+                    return;
+                }
+
+                statsPolishData = cleanedData;
+
+                updateSummary(cleanedData);
+
+                const colorData = buildColorDistribution(cleanedData);
+                const typeData = buildTypeDistribution(cleanedData);
+
+                destroyCharts();
+                createColorChart(colorData);
+                createTypeChart(typeData);
+
+                populateBrandDropdown(cleanedData);
+                renderSelectedBrandChart();
+
+                document.getElementById('brandStatsSelect').addEventListener('change', renderSelectedBrandChart);
+
+                status.hidden = true;
+                content.hidden = false;
+            } catch (error) {
+                console.error(error);
+                status.innerHTML = `
+                    There was a problem loading <strong>data.json</strong> for the stats page.
+                    Please make sure <strong>data.json</strong>, <strong>app.js</strong>, and
+                    <strong>pages.json</strong> are in the same place as <strong>stats.html</strong>.
+                `;
+            }
+        }
+
+        initializeStatsPage();
+    </script>
+</body>
+
+</html>

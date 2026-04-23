@@ -17,7 +17,7 @@
         }
 
         .lucky-panel {
-            background: white;
+            background: #1a1a20;
             padding: 24px;
             border-radius: 14px;
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
@@ -41,36 +41,40 @@
         .filter-group label {
             font-weight: bold;
             font-size: 0.95rem;
+            color: #ece5f4;
         }
 
         .filter-group select {
             padding: 10px 12px;
             border: 1px solid #d0d7de;
             border-radius: 8px;
-            background: white;
+            background: #1a1a20;
+            color: #ece5f4;
             font-size: 0.95rem;
         }
 
         #luckyButton {
-            padding: 11px 16px;
-            border: 1px solid #111827;
+            padding: 9px 14px;
+            border: 1px solid rgba(88, 78, 98, 0.72);
             border-radius: 10px;
-            background: #111827;
-            color: white;
+            background: #1a1a20;
+            color: #f4eef8;
             font-weight: 700;
             cursor: pointer;
-            transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+            transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.22);
         }
 
         #luckyButton:hover {
+            background: #1d1b20;
+            border-color: rgba(137, 122, 162, 0.8);
             transform: translateY(-1px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-            background: #1f2937;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
         }
 
         .lucky-helper {
             margin-top: 14px;
-            color: #6b7280;
+            color: rgba(226, 217, 236, 0.72);
             font-size: 0.92rem;
         }
 
@@ -91,7 +95,7 @@
         .lucky-modal-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(17, 24, 39, 0.6);
+            background: rgba(4, 6, 12, 0.72);
             backdrop-filter: blur(2px);
         }
 
@@ -103,11 +107,11 @@
             max-height: calc(100vh - 32px);
             overflow: auto;
             margin: 16px auto;
-            background: linear-gradient(180deg, #aa83af 0%, #8d6a95 100%);
+            background: linear-gradient(180deg, #bb97c9 0%, #9a7da8 100%);
             border-radius: 22px;
             box-shadow:
-                0 0 0 1px rgba(255, 255, 255, 0.18),
-                0 0 28px rgba(255, 255, 255, 0.22),
+                0 0 0 1px rgba(22, 21, 30, 0.72),
+                0 0 36px rgba(11, 9, 18, 0.26),
                 0 24px 60px rgba(0, 0, 0, 0.24);
             animation: surpriseModalIn 0.22s ease;
         }
@@ -149,10 +153,10 @@
             z-index: 5;
             width: 40px;
             height: 40px;
-            border: 1px solid rgba(234, 212, 240, 0.95);
+            border: 1px solid rgba(186, 166, 201, 0.68);
             border-radius: 999px;
-            background: rgba(141, 106, 149, 0.88);
-            color: white;
+            background: rgba(96, 84, 108, 0.9);
+            color: #f6f0fb;
             font-size: 1.7rem;
             line-height: 1;
             cursor: pointer;
@@ -161,7 +165,7 @@
         }
 
         .lucky-close-button:hover {
-            background: rgba(160, 122, 171, 0.96);
+            background: rgba(112, 98, 125, 0.96);
             transform: scale(1.04);
             box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
         }
@@ -192,7 +196,7 @@
                 0 0 0 10px rgba(255, 255, 255, 0.18),
                 0 0 24px rgba(255, 255, 255, 0.78),
                 0 8px 24px rgba(0, 0, 0, 0.12);
-            background: #f9fafb;
+            background: #1d1b20;
         }
 
         .lucky-image-fallback {
@@ -204,9 +208,9 @@
             justify-content: center;
             padding: 24px;
             border-radius: 14px;
-            background: #f9fafb;
-            border: 1px dashed #d1d5db;
-            color: #6b7280;
+            background: #1d1b20;
+            border: 1px dashed rgba(117, 119, 145, 0.72);
+            color: rgba(226, 217, 236, 0.72);
             font-weight: 600;
             text-align: center;
             box-sizing: border-box;
@@ -247,20 +251,20 @@
             flex-direction: column;
             gap: 14px;
             padding-top: 8px;
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(54, 47, 66, 0.78);
             border-radius: 18px;
             padding: 18px 20px;
             box-shadow:
-                0 0 0 1px rgba(255, 255, 255, 0.96),
-                0 0 18px rgba(255, 255, 255, 0.68),
-                0 0 34px rgba(255, 255, 255, 0.18);
+                0 0 0 1px rgba(26, 25, 35, 0.75),
+                0 0 18px rgba(22, 17, 32, 0.38),
+                0 0 34px rgba(10, 8, 18, 0.28);
             backdrop-filter: blur(6px);
         }
 
         .lucky-result-brand {
             font-weight: 700;
             font-size: 1rem;
-            color: #3f3150;
+            color: #efe6f8;
             letter-spacing: 0.02em;
         }
 
@@ -268,7 +272,7 @@
             margin: 0;
             font-size: 2rem;
             line-height: 1.1;
-            color: #2f243c;
+            color: #f6edf9;
         }
 
         .lucky-detail-row {
@@ -282,7 +286,7 @@
         .lucky-detail-label {
             min-width: 82px;
             font-weight: 700;
-            color: #5b4866;
+            color: #dbc8ea;
         }
 
         .lucky-modal-actions {
@@ -294,17 +298,17 @@
 
         .lucky-secondary-button {
             padding: 11px 16px;
-            border: 1px solid #d1d5db;
+            border: 1px solid rgba(85, 91, 118, 0.65);
             border-radius: 10px;
-            background: white;
-            color: #111827;
+            background: #121212;
+            color: #f6f0fb;
             font-weight: 700;
             cursor: pointer;
             transition: background 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
         }
 
         .lucky-secondary-button:hover {
-            background: #f9fafb;
+            background: #1d1b20;
             transform: translateY(-1px);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
         }
@@ -373,8 +377,8 @@
             height: 42px;
             border: none;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.92);
-            color: #111827;
+            background: rgba(33, 34, 44, 0.92);
+            color: #f6f0fb;
             box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
             font-size: 1.3rem;
             font-weight: 700;
@@ -400,7 +404,7 @@
         .lucky-image-hint {
             margin-top: 10px;
             text-align: center;
-            color: #6b7280;
+            color: rgba(226, 217, 236, 0.72);
             font-size: 0.92rem;
         }
 
