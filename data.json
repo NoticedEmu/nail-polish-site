@@ -11,7 +11,9 @@
     "Color": "Teal",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 72
+    "Number": 72,
+    "Region": "North America",
+    "Local": "North Carolina"
   },
   {
     "Brand": "Alchemy Lacquers",
@@ -25,7 +27,9 @@
     "Color": "Wine",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 68
+    "Number": 68,
+    "Region": "North America",
+    "Local": "Pennsylvania"
   },
   {
     "Brand": "Alchemy Lacquers",
@@ -40,8 +44,11 @@
     "Type": "Shimmer",
     "Sub Type": "",
     "Number": 95,
+    "Region": "North America",
+    "Local": "Pennsylvania",
     "Has Dupes": "Yes",
     "Dupe Group": "Intense_Blue_Shimmer"
+  
   },
   {
     "Brand": "Alchemy Lacquers",
@@ -55,7 +62,9 @@
     "Color": "Dark Teal",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 31
+    "Number": 31,
+    "Region": "North America",
+    "Local": "Pennsylvania"
   },
   {
     "Brand": "Alchemy Lacquers",
@@ -69,7 +78,9 @@
     "Color": "Purple",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 91
+    "Number": 91,
+    "Region": "North America",
+    "Local": "Pennsylvania"
   },
   {
     "Brand": "Alchemy Lacquers",
@@ -83,7 +94,9 @@
     "Color": "Purple",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 93
+    "Number": 93,
+    "Region": "North America",
+    "Local": "Pennsylvania"
   },
   {
     "Brand": "Alchemy Lacquers",
@@ -97,7 +110,9 @@
     "Color": "Green",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 88
+    "Number": 88,
+    "Region": "North America",
+    "Local": "Pennsylvania"
   },
   {
     "Brand": "Alchemy Lacquers",
@@ -112,6 +127,8 @@
     "Type": "Shimmer",
     "Sub Type": "",
     "Number": 96,
+    "Region": "North America",
+    "Local": "Pennsylvania",
     "Has Dupes": "Yes",
     "Dupe Group": "Purple_Green_Shimmer"
   },
@@ -127,7 +144,9 @@
     "Color": "Turquoise",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 16
+    "Number": 16,
+    "Region": "North America",
+    "Local": "Pennsylvania"
   },
   {
     "Brand": "Alchemy Lacquers",
@@ -142,6 +161,8 @@
     "Type": "Shimmer",
     "Sub Type": "",
     "Number": 94,
+    "Region": "North America",
+    "Local": "Pennsylvania",
     "Has Dupes": "Yes",
     "Dupe Group": "Purple_Teal_Shimmer"
   },
@@ -158,6 +179,8 @@
     "Type": "Shimmer",
     "Sub Type": "",
     "Number": 92,
+    "Region": "North America",
+    "Local": "Pennsylvania",
     "Has Dupes": "Yes",
     "Dupe Group": "Purple_Teal_Shimmer"
   },
@@ -174,6 +197,8 @@
     "Type": "Thermal",
     "Sub Type": "",
     "Number": 11,
+    "Region": "North America",
+    "Local": "British Columbia, Canada",
     "Has Dupes": "Yes",
     "Dupe Group": "Purple_Teal_Shimmer"
   },
@@ -189,7 +214,9 @@
     "Color": "Light Pink",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 66
+    "Number": 66,
+    "Region": "North America",
+    "Local": "British Columbia, Canada"
   },
   {
     "Brand": "ANLAC",
@@ -203,7 +230,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "Flakie",
-    "Number": 82
+    "Number": 82,
+    "Region": "North America",
+    "Local": "British Columbia, Canada"
   },
   {
     "Brand": "ANLAC",
@@ -217,7 +246,9 @@
     "Color": "Light Blue",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 64
+    "Number": 64,
+    "Region": "North America",
+    "Local": "British Columbia, Canada"
   },
   {
     "Brand": "ANLAC",
@@ -231,7 +262,9 @@
     "Color": "Green",
     "Type": "Topper",
     "Sub Type": "Shimmer",
-    "Number": 54
+    "Number": 54,
+    "Region": "North America",
+    "Local": "British Columbia, Canada"
   },
   {
     "Brand": "ANLAC",
@@ -245,7 +278,9 @@
     "Color": "Blue",
     "Type": "Topper",
     "Sub Type": "Shimmer",
-    "Number": 50
+    "Number": 50,
+    "Region": "North America",
+    "Local": "British Columbia, Canada"
   },
   {
     "Brand": "Arcana",
@@ -260,6 +295,8 @@
     "Type": "Shimmer",
     "Sub Type": "",
     "Number": 42,
+    "Region": "North America",
+    "Local": "Maryland",
     "Has Dupes": "Yes",
     "Dupe Group": "Blue_Red_Shimmer"
   },
@@ -275,7 +312,9 @@
     "Color": "Dark Teal",
     "Type": "Magnetic",
     "Sub Type": "Flakie",
-    "Number": 32
+    "Number": 32,
+    "Region": "North America",
+    "Local": "Maryland"
   },
   {
     "Brand": "Arcana",
@@ -289,7 +328,9 @@
     "Color": "Green",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 41
+    "Number": 41,
+    "Region": "North America",
+    "Local": "Maryland"
   },
   {
     "Brand": "Arcana",
@@ -303,7 +344,9 @@
     "Color": "Teal",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 35
+    "Number": 35,
+    "Region": "North America",
+    "Local": "Maryland"
   },
   {
     "Brand": "Arcana",
@@ -317,7 +360,9 @@
     "Color": "Navy Blue",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 34
+    "Number": 34,
+    "Region": "North America",
+    "Local": "Maryland"
   },
   {
     "Brand": "Atomic Polish",
@@ -331,7 +376,9 @@
     "Color": "Light Purple",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 74
+    "Number": 74,
+    "Region": "North America",
+    "Local": "Minnesota"
   },
   {
     "Brand": "Atomic Polish",
@@ -345,7 +392,9 @@
     "Color": "Deep blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 77
+    "Number": 77,
+    "Region": "North America",
+    "Local": "Minnesota"
   },
   {
     "Brand": "Atomic Polish",
@@ -359,7 +408,9 @@
     "Color": "Light Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 7
+    "Number": 7,
+    "Region": "North America",
+    "Local": "Minnesota"
   },
   {
     "Brand": "Atomic Polish",
@@ -373,7 +424,9 @@
     "Color": "Green",
     "Type": "Neon",
     "Sub Type": "",
-    "Number": 18
+    "Number": 18,
+    "Region": "North America",
+    "Local": "Minnesota"
   },
   {
     "Brand": "Atomic Polish",
@@ -387,7 +440,9 @@
     "Color": "Green",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 28
+    "Number": 28,
+    "Region": "North America",
+    "Local": "Minnesota"
   },
   {
     "Brand": "Atomic Polish",
@@ -401,7 +456,9 @@
     "Color": "Light Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 73
+    "Number": 73,
+    "Region": "North America",
+    "Local": "Minnesota"
   },
   {
     "Brand": "Baroness X",
@@ -415,7 +472,9 @@
     "Color": "Purple",
     "Type": "Fluid Art",
     "Sub Type": "Multichrome",
-    "Number": 15
+    "Number": 15,
+    "Region": "North America",
+    "Local": "Massachusetts"
   },
   {
     "Brand": "Baroness X",
@@ -429,7 +488,9 @@
     "Color": "Purple",
     "Type": "Base Coat",
     "Sub Type": "Sticky Base Coat",
-    "Number": 129
+    "Number": 129,
+    "Region": "North America",
+    "Local": "Massachusetts"
   },
   {
     "Brand": "Baroness X",
@@ -443,7 +504,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 51
+    "Number": 51,
+    "Region": "North America",
+    "Local": "Massachusetts"
   },
   {
     "Brand": "Baroness X",
@@ -457,7 +520,9 @@
     "Color": "Gray",
     "Type": "Magnetic",
     "Sub Type": "Thermal",
-    "Number": 77
+    "Number": 77,
+    "Region": "North America",
+    "Local": "Massachusetts"
   },
   {
     "Brand": "Baroness X",
@@ -471,7 +536,9 @@
     "Color": "Clear",
     "Type": "Fluid Art",
     "Sub Type": "",
-    "Number": 1
+    "Number": 1,
+    "Region": "North America",
+    "Local": "Massachusetts"
   },
   {
     "Brand": "Baroness X",
@@ -485,7 +552,9 @@
     "Color": "Gray",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 51
+    "Number": 51,
+    "Region": "North America",
+    "Local": "Massachusetts"
   },
   {
     "Brand": "Baroness X",
@@ -499,7 +568,9 @@
     "Color": "Dark Green",
     "Type": "Magnetic",
     "Sub Type": "Flakie",
-    "Number": 52
+    "Number": 52,
+    "Region": "North America",
+    "Local": "Massachusetts"
   },
   {
     "Brand": "Beaux Reves",
@@ -513,7 +584,9 @@
     "Color": "Rose",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 45
+    "Number": 45,
+    "Region": "North America",
+    "Local": "Minnesota"
   },
   {
     "Brand": "Beaux Reves",
@@ -527,7 +600,9 @@
     "Color": "Light Gray",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 46
+    "Number": 46,
+    "Region": "North America",
+    "Local": "Minnesota"
   },
   {
     "Brand": "Beaux Reves",
@@ -541,7 +616,9 @@
     "Color": "Plum",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 44
+    "Number": 44,
+    "Region": "North America",
+    "Local": "Minnesota"
   },
   {
     "Brand": "Beaux Reves",
@@ -555,7 +632,9 @@
     "Color": "Indigo",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 9
+    "Number": 9,
+    "Region": "North America",
+    "Local": "Minnesota"
   },
   {
     "Brand": "Bee's Knees",
@@ -569,7 +648,9 @@
     "Color": "Green",
     "Type": "Pearlescent",
     "Sub Type": "Shimmer",
-    "Number": 37
+    "Number": 37,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -583,7 +664,9 @@
     "Color": "Green",
     "Type": "Reflective Glitter",
     "Sub Type": "",
-    "Number": 6
+    "Number": 6,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -597,7 +680,9 @@
     "Color": "Green",
     "Type": "Reflective Glitter",
     "Sub Type": "",
-    "Number": 4
+    "Number": 4,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -611,7 +696,9 @@
     "Color": "Red",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 14
+    "Number": 14,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -625,7 +712,9 @@
     "Color": "Maroon",
     "Type": "Pearlescent",
     "Sub Type": "",
-    "Number": 27
+    "Number": 27,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -639,7 +728,9 @@
     "Color": "Purple",
     "Type": "Multichrome",
     "Sub Type": "Shimmer",
-    "Number": 28
+    "Number": 28,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -653,7 +744,9 @@
     "Color": "Violet",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 13
+    "Number": 13,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -667,7 +760,9 @@
     "Color": "Teal",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 30
+    "Number": 30,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -681,7 +776,9 @@
     "Color": "Dark Teal",
     "Type": "Magnetic",
     "Sub Type": "Holographic",
-    "Number": 5
+    "Number": 5,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -695,7 +792,9 @@
     "Color": "Dark Purple",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 11
+    "Number": 11,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -709,7 +808,9 @@
     "Color": "Brown",
     "Type": "Reflective Glitter",
     "Sub Type": "Shimmer",
-    "Number": 9
+    "Number": 9,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -724,6 +825,8 @@
     "Type": "Reflective Glitter",
     "Sub Type": "",
     "Number": 7,
+    "Region": "North America",
+    "Local": "Virgina",
     "Has Dupes": "Yes",
     "Dupe Group": "Purple_Green_Shimmer"
   },
@@ -739,7 +842,9 @@
     "Color": "Dark Teal",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 31
+    "Number": 31,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -753,7 +858,9 @@
     "Color": "Dark Red",
     "Type": "Magnetic",
     "Sub Type": "Mosaic",
-    "Number": 11
+    "Number": 11,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -767,7 +874,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 29
+    "Number": 29,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -781,7 +890,9 @@
     "Color": "Silver",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 6
+    "Number": 6,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -795,7 +906,9 @@
     "Color": "Green",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 31
+    "Number": 31,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -809,7 +922,9 @@
     "Color": "Green",
     "Type": "Magnetic",
     "Sub Type": "Mosaic",
-    "Number": 12
+    "Number": 12,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -823,7 +938,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "Sheer",
-    "Number": 33
+    "Number": 33,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -837,7 +954,9 @@
     "Color": "Light Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 26
+    "Number": 26,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -851,7 +970,9 @@
     "Color": "Blue",
     "Type": "Reflective Glitter",
     "Sub Type": "Shimmer",
-    "Number": 8
+    "Number": 8,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -865,7 +986,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "Reflective Glitter",
-    "Number": 28
+    "Number": 28,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -879,7 +1002,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "Mosaic",
-    "Number": 27
+    "Number": 27,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -893,7 +1018,9 @@
     "Color": "Green",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 25
+    "Number": 25,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -907,7 +1034,9 @@
     "Color": "Dark Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": "32"
+    "Number": "32",
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -921,7 +1050,9 @@
     "Color": "Plum",
     "Type": "Pearlescent",
     "Sub Type": "Multichrome",
-    "Number": 24
+    "Number": 24,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -936,6 +1067,8 @@
     "Type": "Flakie",
     "Sub Type": "",
     "Number": 12,
+    "Region": "North America",
+    "Local": "Virgina",
     "Has Dupes": "Yes",
     "Dupe Group": "Blue_Red_Shimmer"
   },
@@ -951,7 +1084,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "Reflective Glitter",
-    "Number": 10
+    "Number": 10,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -965,7 +1100,9 @@
     "Color": "Silver",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 35
+    "Number": 35,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "Bee's Knees",
@@ -979,7 +1116,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 36
+    "Number": 36,
+    "Region": "North America",
+    "Local": "Virgina"
   },
   {
     "Brand": "By Vanessa Molina",
@@ -993,7 +1132,9 @@
     "Color": "Black",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 16
+    "Number": 16,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Cadillacquer",
@@ -1008,6 +1149,8 @@
     "Type": "Topper",
     "Sub Type": "Reflective Glitter",
     "Number": 68
+    "Region": "Europe",
+    "Local": "Switzerland"
   },
   {
     "Brand": "Cirque Colors",
@@ -1021,7 +1164,9 @@
     "Color": "Light Blue",
     "Type": "Thermal",
     "Sub Type": "",
-    "Number": 1
+    "Number": 1,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Cirque Colors",
@@ -1035,7 +1180,9 @@
     "Color": "Blue",
     "Type": "Jelly",
     "Sub Type": "",
-    "Number": 12
+    "Number": 12,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Cirque Colors",
@@ -1049,7 +1196,9 @@
     "Color": "Black",
     "Type": "Jelly",
     "Sub Type": "",
-    "Number": 98
+    "Number": 98,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Cirque Colors",
@@ -1063,7 +1212,9 @@
     "Color": "Clear",
     "Type": "Base Coat",
     "Sub Type": "Peely Base Coat",
-    "Number": 128
+    "Number": 128,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Clionadh Cosmetics",
@@ -1077,7 +1228,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 17
+    "Number": 17,
+    "Region": "North America",
+    "Local": "Ontario, Canada"
   },
   {
     "Brand": "Clionadh Cosmetics",
@@ -1091,7 +1244,9 @@
     "Color": "Red",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 18
+    "Number": 18,
+    "Region": "North America",
+    "Local": "Ontario, Canada"
   },
   {
     "Brand": "Clionadh Cosmetics",
@@ -1105,7 +1260,9 @@
     "Color": "Green",
     "Type": "Magnetic",
     "Sub Type": "Flakie",
-    "Number": 19
+    "Number": 19,
+    "Region": "North America",
+    "Local": "Ontario, Canada"
   },
   {
     "Brand": "Clionadh Cosmetics",
@@ -1119,7 +1276,9 @@
     "Color": "Green",
     "Type": "Magnetic",
     "Sub Type": "Flakie",
-    "Number": 15
+    "Number": 15,
+    "Region": "North America",
+    "Local": "Ontario, Canada"
   },
   {
     "Brand": "Clionadh Cosmetics",
@@ -1133,7 +1292,9 @@
     "Color": "Green",
     "Type": "Magnetic",
     "Sub Type": "Flakie",
-    "Number": 26
+    "Number": 26,
+    "Region": "North America",
+    "Local": "Ontario, Canada"
   },
   {
     "Brand": "Clionadh Cosmetics",
@@ -1147,7 +1308,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 24
+    "Number": 24,
+    "Region": "North America",
+    "Local": "Ontario, Canada"
   },
   {
     "Brand": "Clionadh Cosmetics",
@@ -1161,7 +1324,9 @@
     "Color": "Pink",
     "Type": "Magnetic",
     "Sub Type": "Flakie",
-    "Number": 21
+    "Number": 21,
+    "Region": "North America",
+    "Local": "Ontario, Canada"
   },
   {
     "Brand": "Clionadh Cosmetics",
@@ -1175,7 +1340,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "Flakie",
-    "Number": 16
+    "Number": 16,
+    "Region": "North America",
+    "Local": "Ontario, Canada"
   },
   {
     "Brand": "Clionadh Cosmetics",
@@ -1189,7 +1356,9 @@
     "Color": "Green",
     "Type": "Magnetic",
     "Sub Type": "Flakie",
-    "Number": 20
+    "Number": 20,
+    "Region": "North America",
+    "Local": "Ontario, Canada"
   },
   {
     "Brand": "Clionadh Cosmetics",
@@ -1203,7 +1372,9 @@
     "Color": "Teal",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 23
+    "Number": 23,
+    "Region": "North America",
+    "Local": "Ontario, Canada"
   },
   {
     "Brand": "Clionadh Cosmetics",
@@ -1217,7 +1388,9 @@
     "Color": "Pink",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 25
+    "Number": 25,
+    "Region": "North America",
+    "Local": "Ontario, Canada"
   },
   {
     "Brand": "Clionadh Cosmetics",
@@ -1231,7 +1404,9 @@
     "Color": "White",
     "Type": "Pearlescent",
     "Sub Type": "Shimmer",
-    "Number": 30
+    "Number": 30,
+    "Region": "North America",
+    "Local": "Ontario, Canada"
   },
   {
     "Brand": "Clionadh Cosmetics",
@@ -1245,7 +1420,9 @@
     "Color": "Light Purple",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 29
+    "Number": 29,
+    "Region": "North America",
+    "Local": "Ontario, Canada"
   },
   {
     "Brand": "Clionadh Cosmetics",
@@ -1259,7 +1436,9 @@
     "Color": "Blue",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 22
+    "Number": 22,
+    "Region": "North America",
+    "Local": "Ontario, Canada"
   },
   {
     "Brand": "Clionadh Cosmetics",
@@ -1274,6 +1453,8 @@
     "Type": "Flakie",
     "Sub Type": "",
     "Number": 10,
+    "Region": "North America",
+    "Local": "Ontario, Canada",
     "Has Dupes": "Yes",
     "Dupe Group": "Purple_Green_Shimmer"
   },
@@ -1289,7 +1470,9 @@
     "Color": "Blue",
     "Type": "Topper",
     "Sub Type": "Crackle",
-    "Number": 51
+    "Number": 51,
+    "Region": "North America",
+    "Local": "Connecticut"
   },
   {
     "Brand": "Colores De Carol",
@@ -1303,7 +1486,9 @@
     "Color": "Silver",
     "Type": "Topper",
     "Sub Type": "Crackle",
-    "Number": 44
+    "Number": 44,
+    "Region": "North America",
+    "Local": "Connecticut"
   },
   {
     "Brand": "Cracked",
@@ -1317,7 +1502,9 @@
     "Color": "Mauve",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 103
+    "Number": 103,
+    "Region": "North America",
+    "Local": "Washington"
   },
   {
     "Brand": "Cracked",
@@ -1331,7 +1518,9 @@
     "Color": "Green",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 61
+    "Number": 61,
+    "Region": "North America",
+    "Local": "Washington"
   },
   {
     "Brand": "Cracked",
@@ -1345,7 +1534,9 @@
     "Color": "Blue",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 31
+    "Number": 31,
+    "Region": "North America",
+    "Local": "Washington"
   },
   {
     "Brand": "Cracked",
@@ -1359,7 +1550,9 @@
     "Color": "Orange",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 99
+    "Number": 99,
+    "Region": "North America",
+    "Local": "Washington"
   },
   {
     "Brand": "Cracked",
@@ -1373,7 +1566,9 @@
     "Color": "Pink",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 69
+    "Number": 69,
+    "Region": "North America",
+    "Local": "Washington"
   },
   {
     "Brand": "Cracked",
@@ -1387,7 +1582,9 @@
     "Color": "Black",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 70
+    "Number": 70,
+    "Region": "North America",
+    "Local": "Washington"
   },
   {
     "Brand": "Cracked",
@@ -1401,7 +1598,9 @@
     "Color": "Gray",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 72
+    "Number": 72,
+    "Region": "North America",
+    "Local": "Washington"
   },
   {
     "Brand": "Cracked",
@@ -1415,21 +1614,25 @@
     "Color": "Orange",
     "Type": "Topper",
     "Sub Type": "Magnetic",
-    "Number": 60
+    "Number": 60,
+    "Region": "North America",
+    "Local": "Washington"
   },
   {
-    "Brand": "Dam Nail Poliah",
+    "Brand": "Dam Nail Polish",
     "Nailpolish": "Permit to Hermit",
-    "Filename": "Dam_Nail_Poliah_Permit_to_Hermit",
-    "image one": "images/Dam_Nail_Poliah_Permit_to_Hermit/Dam_Nail_Poliah_Permit_to_Hermit_1.jpg",
-    "image two": "images/Dam_Nail_Poliah_Permit_to_Hermit/Dam_Nail_Poliah_Permit_to_Hermit_2.jpg",
+    "Filename": "Dam_Nail_Polish_Permit_to_Hermit",
+    "image one": "images/Dam_Nail_Polish_Permit_to_Hermit/Dam_Nail_Polish_Permit_to_Hermit_1.jpg",
+    "image two": "images/Dam_Nail_Polish_Permit_to_Hermit/Dam_Nail_Polish_Permit_to_Hermit_2.jpg",
     "image three": "",
-    "thumb": "images/Dam_Nail_Poliah_Permit_to_Hermit/Dam_Nail_Poliah_Permit_to_Hermit_1.jpg",
+    "thumb": "images/Dam_Nail_Polish_Permit_to_Hermit/Dam_Nail_Polish_Permit_to_Hermit_1.jpg",
     "Description": "A teal/purple/pink shifting multicrhome flake and green reflective glitter.",
     "Color": "Green",
     "Type": "Reflective Glitter",
     "Sub Type": "",
-    "Number": 5
+    "Number": 5,
+    "Region": "North America",
+    "Local": "Virginia"
   },
   {
     "Brand": "Dam Nail Polish",
@@ -1443,7 +1646,9 @@
     "Color": "Black",
     "Type": "Reflective Glitter",
     "Sub Type": "Multichrome",
-    "Number": 12
+    "Number": 12,
+    "Region": "North America",
+    "Local": "Virginia"
   },
   {
     "Brand": "Dam Nail Polish",
@@ -1457,7 +1662,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "Pearlescent",
-    "Number": 6
+    "Number": 6,
+    "Region": "North America",
+    "Local": "Virginia"
   },
   {
     "Brand": "Dany Vianna",
@@ -1471,7 +1678,9 @@
     "Color": "Yellow",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 3
+    "Number": 3,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Dany Vianna",
@@ -1485,7 +1694,9 @@
     "Color": "Purple",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 16
+    "Number": 16,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Dany Vianna",
@@ -1499,7 +1710,9 @@
     "Color": "Green",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 15
+    "Number": 15,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Death Valley Nails",
@@ -1513,7 +1726,9 @@
     "Color": "Black",
     "Type": "Sheer",
     "Sub Type": "Textured",
-    "Number": "107"
+    "Number": "107",
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Death Valley Nails",
@@ -1527,7 +1742,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "Sheer",
-    "Number": "121"
+    "Number": "121",
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Death Valley Nails",
@@ -1541,7 +1758,9 @@
     "Color": "White",
     "Type": "Topper",
     "Sub Type": "Shimmer",
-    "Number": 11
+    "Number": 11,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Death Valley Nails",
@@ -1555,7 +1774,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 105
+    "Number": 105,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Death Valley Nails",
@@ -1569,7 +1790,9 @@
     "Color": "Purple",
     "Type": "Shimmer",
     "Sub Type": "Flakie",
-    "Number": 110
+    "Number": 110,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Death Valley Nails",
@@ -1583,7 +1806,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 117
+    "Number": 117,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Death Valley Nails",
@@ -1597,7 +1822,9 @@
     "Color": "Black",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 118
+    "Number": 118,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Death Valley Nails",
@@ -1611,7 +1838,9 @@
     "Color": "Blue",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 80
+    "Number": 80,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Death Valley Nails",
@@ -1625,7 +1854,9 @@
     "Color": "Orange",
     "Type": "Shimmer",
     "Sub Type": "Sheer",
-    "Number": "122"
+    "Number": "122",
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Death Valley Nails",
@@ -1639,7 +1870,9 @@
     "Color": "White",
     "Type": "Photochromatic",
     "Sub Type": "Flakie",
-    "Number": 119
+    "Number": 119,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "DRK Nails",
@@ -1653,7 +1886,9 @@
     "Color": "Purple",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 22
+    "Number": 22,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "DRK Nails",
@@ -1667,7 +1902,9 @@
     "Color": "Clear",
     "Type": "Topper",
     "Sub Type": "",
-    "Number": 58
+    "Number": 58,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "DRK Nails",
@@ -1681,7 +1918,9 @@
     "Color": "Clear",
     "Type": "Topper",
     "Sub Type": "",
-    "Number": 59
+    "Number": 59,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Emily de Molly",
@@ -1695,7 +1934,9 @@
     "Color": "Pink",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 40
+    "Number": 40,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -1709,7 +1950,9 @@
     "Color": "Purple",
     "Type": "Thermal",
     "Sub Type": "",
-    "Number": 4
+    "Number": 4,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -1723,7 +1966,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 44
+    "Number": 44,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -1737,7 +1982,9 @@
     "Color": "Clear",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 13
+    "Number": 13,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -1751,7 +1998,9 @@
     "Color": "Pink",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 46
+    "Number": 46,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -1765,7 +2014,9 @@
     "Color": "Purple",
     "Type": "Multichrome",
     "Sub Type": "",
-    "Number": 43
+    "Number": 43,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -1779,7 +2030,9 @@
     "Color": "Pink",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 43
+    "Number": 43,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -1793,7 +2046,9 @@
     "Color": "Red",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 39
+    "Number": 39,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -1807,7 +2062,9 @@
     "Color": "Orange",
     "Type": "Magnetic",
     "Sub Type": "Flakie",
-    "Number": 41
+    "Number": 41,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -1821,7 +2078,9 @@
     "Color": "Blue",
     "Type": "Topper",
     "Sub Type": "Shimmer",
-    "Number": 53
+    "Number": 53,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -1835,7 +2094,9 @@
     "Color": "Light Blue",
     "Type": "Shimmer",
     "Sub Type": "Multichrome",
-    "Number": 2
+    "Number": 2,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -1849,7 +2110,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "Flakie",
-    "Number": 42
+    "Number": 42,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -1863,7 +2126,9 @@
     "Color": "Purple",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 13
+    "Number": 13,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -1877,7 +2142,9 @@
     "Color": "Black",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 37
+    "Number": 37,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -1891,7 +2158,9 @@
     "Color": "White",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 14
+    "Number": 14,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -1905,7 +2174,9 @@
     "Color": "Pink",
     "Type": "Thermal",
     "Sub Type": "",
-    "Number": 3
+    "Number": 3,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -1919,7 +2190,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 45
+    "Number": 45,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Essie",
@@ -1933,7 +2206,9 @@
     "Color": "Blue",
     "Type": "Creme",
     "Sub Type": "",
-    "Number": 8
+    "Number": 8,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Fail Polish",
@@ -1947,7 +2222,9 @@
     "Color": "Pink",
     "Type": "Neon",
     "Sub Type": "",
-    "Number": 127
+    "Number": 127,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fail Polish",
@@ -1961,7 +2238,9 @@
     "Color": "White",
     "Type": "Creme",
     "Sub Type": "",
-    "Number": 128
+    "Number": 128,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fail Polish",
@@ -1975,7 +2254,9 @@
     "Color": "Yellow",
     "Type": "Neon",
     "Sub Type": "",
-    "Number": 101
+    "Number": 101,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fail Polish",
@@ -1989,7 +2270,9 @@
     "Color": "Green",
     "Type": "Pearlescent",
     "Sub Type": "",
-    "Number": 5
+    "Number": 5,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fail Polish",
@@ -2003,7 +2286,9 @@
     "Color": "White",
     "Type": "Pearlescent",
     "Sub Type": "Shimmer",
-    "Number": "14"
+    "Number": "14",
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -2017,7 +2302,9 @@
     "Color": "Black",
     "Type": "Topper",
     "Sub Type": "Thermal",
-    "Number": 34
+    "Number": 34,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -2031,7 +2318,9 @@
     "Color": "Maroon",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 90
+    "Number": 90,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -2045,7 +2334,9 @@
     "Color": "Maroon",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 89
+    "Number": 89,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -2059,7 +2350,9 @@
     "Color": "Green",
     "Type": "Thermal",
     "Sub Type": "",
-    "Number": 7
+    "Number": 7,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -2073,7 +2366,9 @@
     "Color": "Green",
     "Type": "Topper",
     "Sub Type": "Magnetic",
-    "Number": 31
+    "Number": 31,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -2087,7 +2382,9 @@
     "Color": "Purple",
     "Type": "Thermal",
     "Sub Type": "",
-    "Number": 8
+    "Number": 8,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -2101,7 +2398,9 @@
     "Color": "Purple",
     "Type": "Thermal",
     "Sub Type": "Flakie",
-    "Number": 9
+    "Number": 9,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -2115,7 +2414,9 @@
     "Color": "Blue",
     "Type": "Topper",
     "Sub Type": "Magnetic",
-    "Number": 30
+    "Number": 30,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -2129,7 +2430,9 @@
     "Color": "Rainbow",
     "Type": "Topper",
     "Sub Type": "Shimmer",
-    "Number": 24
+    "Number": 24,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -2143,7 +2446,9 @@
     "Color": "Orange",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 56
+    "Number": 56,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -2157,7 +2462,9 @@
     "Color": "Green",
     "Type": "Thermal",
     "Sub Type": "",
-    "Number": 10
+    "Number": 10,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -2171,7 +2478,9 @@
     "Color": "Purple",
     "Type": "Topper",
     "Sub Type": "Magnetic",
-    "Number": 28
+    "Number": 28,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -2185,7 +2494,9 @@
     "Color": "Red",
     "Type": "Topper",
     "Sub Type": "Magnetic",
-    "Number": 29
+    "Number": 29,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -2199,7 +2510,9 @@
     "Color": "Green",
     "Type": "Magnetic",
     "Sub Type": "Multichrome",
-    "Number": 67
+    "Number": 67,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -2213,7 +2526,9 @@
     "Color": "Silver",
     "Type": "Topper",
     "Sub Type": "Magnetic",
-    "Number": 64
+    "Number": 64,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -2227,7 +2542,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 65
+    "Number": 65,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fauve Cosmetics",
@@ -2241,7 +2558,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 3
+    "Number": 3,
+    "Region": "North America",
+    "Local": "Massachusetts"
   },
   {
     "Brand": "Fauve Cosmetics",
@@ -2255,7 +2574,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "Multichrome",
-    "Number": 8
+    "Number": 8,
+    "Region": "North America",
+    "Local": "Massachusetts"
   },
   {
     "Brand": "Fauve Cosmetics",
@@ -2269,7 +2590,9 @@
     "Color": "Green",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 35
+    "Number": 35,
+    "Region": "North America",
+    "Local": "Massachusetts"
   },
   {
     "Brand": "Garden Path Lacquers",
@@ -2283,7 +2606,9 @@
     "Color": "White",
     "Type": "Flakie",
     "Sub Type": "Metallic",
-    "Number": 8
+    "Number": 8,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Garden Path Lacquers",
@@ -2297,7 +2622,9 @@
     "Color": "Black",
     "Type": "Flakie",
     "Sub Type": "Metallic",
-    "Number": 4
+    "Number": 4,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Garden Path Lacquers",
@@ -2311,7 +2638,9 @@
     "Color": "Blue",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 7
+    "Number": 7,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Garden Path Lacquers",
@@ -2325,7 +2654,9 @@
     "Color": "Yellow",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 11
+    "Number": 11,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Garden Path Lacquers",
@@ -2339,7 +2670,9 @@
     "Color": "Pink",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 9
+    "Number": 9,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Garden Path Lacquers",
@@ -2353,7 +2686,9 @@
     "Color": "Red",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 4
+    "Number": 4,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Garden Path Lacquers",
@@ -2367,7 +2702,9 @@
     "Color": "Pink",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 8
+    "Number": 8,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Garden Path Lacquers",
@@ -2381,7 +2718,9 @@
     "Color": "Purple",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 10
+    "Number": 10,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Garden Path Lacquers",
@@ -2395,7 +2734,9 @@
     "Color": "Purple",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 5
+    "Number": 5,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Garden Path Lacquers",
@@ -2409,7 +2750,9 @@
     "Color": "Orange",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 7
+    "Number": 7,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Garden Path Lacquers",
@@ -2423,7 +2766,9 @@
     "Color": "Green",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 12
+    "Number": 12,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Glitch",
@@ -2437,7 +2782,9 @@
     "Color": "Orange",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 109
+    "Number": 109,
+    "Region": "North America",
+    "Local": "California"
   },
   {
     "Brand": "Haunted Polish",
@@ -2451,7 +2798,9 @@
     "Color": "Red",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 48
+    "Number": 48,
+    "Region": "North America",
+    "Local": "Florida"
   },
   {
     "Brand": "Haunted Polish",
@@ -2465,7 +2814,9 @@
     "Color": "Pink",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 47
+    "Number": 47,
+    "Region": "North America",
+    "Local": "Florida"
   },
   {
     "Brand": "Haunted Polish",
@@ -2479,7 +2830,9 @@
     "Color": "Purple",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 47
+    "Number": 47,
+    "Region": "North America",
+    "Local": "Florida"
   },
   {
     "Brand": "Haunted Polish",
@@ -2493,7 +2846,9 @@
     "Color": "Purple",
     "Type": "Topper",
     "Sub Type": "Multichrome",
-    "Number": 10
+    "Number": 10,
+    "Region": "North America",
+    "Local": "Florida"
   },
   {
     "Brand": "Haunted Polish",
@@ -2507,7 +2862,9 @@
     "Color": "Silver",
     "Type": "Topper",
     "Sub Type": "Reflective Glitter",
-    "Number": 65
+    "Number": 65,
+    "Region": "North America",
+    "Local": "Florida"
   },
   {
     "Brand": "Holo Taco",
@@ -2521,7 +2878,9 @@
     "Color": "Black",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 38
+    "Number": 38, 
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holo Taco",
@@ -2535,7 +2894,9 @@
     "Color": "Pink",
     "Type": "Topper",
     "Sub Type": "Reflective Glitter",
-    "Number": 67
+    "Number": 67,
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holo Taco",
@@ -2549,7 +2910,9 @@
     "Color": "Silver",
     "Type": "Topper",
     "Sub Type": "Holographic",
-    "Number": 74
+    "Number": 74,
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holo Taco",
@@ -2563,7 +2926,9 @@
     "Color": "Gold",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 36
+    "Number": 36,
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holo Taco",
@@ -2577,7 +2942,9 @@
     "Color": "Silver",
     "Type": "Topper",
     "Sub Type": "Magnetic",
-    "Number": 70
+    "Number": 70,
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holo Taco",
@@ -2591,7 +2958,9 @@
     "Color": "Purple",
     "Type": "Creme",
     "Sub Type": "",
-    "Number": 52
+    "Number": 52,
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holo Taco",
@@ -2605,7 +2974,9 @@
     "Color": "Silver",
     "Type": "Topper",
     "Sub Type": "Holographic",
-    "Number": 71
+    "Number": 71,
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holo Taco",
@@ -2619,7 +2990,9 @@
     "Color": "White",
     "Type": "Creme",
     "Sub Type": "",
-    "Number": 10
+    "Number": 10,
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holo Taco",
@@ -2633,7 +3006,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "Flakie",
-    "Number": 53
+    "Number": 53,
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holo Taco",
@@ -2647,7 +3022,9 @@
     "Color": "Black",
     "Type": "Creme",
     "Sub Type": "",
-    "Number": 132
+    "Number": 132,
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holo Taco",
@@ -2661,7 +3038,9 @@
     "Color": "Red",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 37
+    "Number": 37,
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holo Taco",
@@ -2675,7 +3054,9 @@
     "Color": "Silver",
     "Type": "Topper",
     "Sub Type": "Reflective Glitter",
-    "Number": 66
+    "Number": 66,
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holo Taco",
@@ -2689,7 +3070,9 @@
     "Color": "Pink",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 35
+    "Number": 35,
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holo Taco",
@@ -2703,7 +3086,9 @@
     "Color": "Silver",
     "Type": "Topper",
     "Sub Type": "Holographic",
-    "Number": 72
+    "Number": 72,
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holo Taco",
@@ -2717,7 +3102,9 @@
     "Color": "Red",
     "Type": "Topper",
     "Sub Type": "Shimmer",
-    "Number": 69
+    "Number": 69,
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holo Taco",
@@ -2731,7 +3118,9 @@
     "Color": "Purple",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 75
+    "Number": 75,
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holo Taco",
@@ -2745,7 +3134,9 @@
     "Color": "Purple",
     "Type": "Topper",
     "Sub Type": "Shimmer",
-    "Number": 76
+    "Number": 76,
+    "Region": "North America",
+    "Local": "New Jersey"
   },
   {
     "Brand": "Holy Order Of Perpetual Lacquer",
@@ -2759,7 +3150,9 @@
     "Color": "Gold",
     "Type": "Topper",
     "Sub Type": "Holographic",
-    "Number": 3
+    "Number": 3,
+    "Region": "North America",
+    "Local": "California"
   },
   {
     "Brand": "Holy Order Of Perpetual Lacquer",
@@ -2773,7 +3166,9 @@
     "Color": "Pink",
     "Type": "Topper",
     "Sub Type": "Crushed Opal",
-    "Number": 2
+    "Number": 2,
+    "Region": "North America",
+    "Local": "California"
   },
   {
     "Brand": "Holy Order Of Perpetual Lacquer",
@@ -2787,7 +3182,9 @@
     "Color": "Blue",
     "Type": "Topper",
     "Sub Type": "Crushed Opal",
-    "Number": 1
+    "Number": 1,
+    "Region": "North America",
+    "Local": "California"
   },
   {
     "Brand": "ILNP",
@@ -2801,7 +3198,9 @@
     "Color": "Red",
     "Type": "Creme",
     "Sub Type": "",
-    "Number": 13
+    "Number": 13,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -2815,7 +3214,9 @@
     "Color": "Red",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 29
+    "Number": 29,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -2829,7 +3230,9 @@
     "Color": "Burgundy",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 22
+    "Number": 22,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -2843,7 +3246,9 @@
     "Color": "Blue",
     "Type": "Flakie",
     "Sub Type": "Jelly",
-    "Number": 30
+    "Number": 30,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -2857,7 +3262,9 @@
     "Color": "Blue",
     "Type": "Topper",
     "Sub Type": "Holographic",
-    "Number": 42
+    "Number": 42,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -2871,7 +3278,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 79
+    "Number": 79,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -2885,7 +3294,9 @@
     "Color": "Blue",
     "Type": "Holographic",
     "Sub Type": "Shimmer",
-    "Number": 25
+    "Number": 25,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -2899,7 +3310,9 @@
     "Color": "Purple",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 20
+    "Number": 20,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -2913,7 +3326,9 @@
     "Color": "Blue",
     "Type": "Creme",
     "Sub Type": "Holographic",
-    "Number": 80
+    "Number": 80,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -2927,7 +3342,9 @@
     "Color": "Pink",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 29
+    "Number": 29,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -2941,7 +3358,9 @@
     "Color": "Blue",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 63
+    "Number": 63,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -2955,7 +3374,9 @@
     "Color": "Purple",
     "Type": "Holographic",
     "Sub Type": "Multichrome",
-    "Number": 24
+    "Number": 24,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -2969,7 +3390,9 @@
     "Color": "Maroon",
     "Type": "Jelly",
     "Sub Type": "",
-    "Number": 19
+    "Number": 19,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -2983,7 +3406,9 @@
     "Color": "Burgundy",
     "Type": "Multichrome",
     "Sub Type": "",
-    "Number": 76
+    "Number": 76,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -2997,7 +3422,9 @@
     "Color": "Pink",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 27
+    "Number": 27,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3011,7 +3438,9 @@
     "Color": "Orange",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 60
+    "Number": 60,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3025,7 +3454,9 @@
     "Color": "Black",
     "Type": "Multichrome",
     "Sub Type": "",
-    "Number": 108
+    "Number": 108,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3039,7 +3470,9 @@
     "Color": "Pink",
     "Type": "Topper",
     "Sub Type": "Holographic",
-    "Number": 43
+    "Number": 43,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3053,7 +3486,9 @@
     "Color": "Magenta",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 61
+    "Number": 61,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3067,7 +3502,9 @@
     "Color": "Clear",
     "Type": "Topper",
     "Sub Type": "Matte Topper",
-    "Number": 63
+    "Number": 63,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3082,6 +3519,8 @@
     "Type": "Shimmer",
     "Sub Type": "",
     "Number": 75,
+    "Region": "North America",
+    "Local": "Nevada"
     "Has Dupes": "Yes",
     "Dupe Group": "Blue_Red_Shimmer"
   },
@@ -3097,7 +3536,9 @@
     "Color": "Deep Green",
     "Type": "Holographic",
     "Sub Type": "Jelly",
-    "Number": 28
+    "Number": 28,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3111,7 +3552,9 @@
     "Color": "Blue",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 26
+    "Number": 26,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3125,7 +3568,9 @@
     "Color": "Orange",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 62
+    "Number": 62,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3139,7 +3584,9 @@
     "Color": "Blue",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 21
+    "Number": 21,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3153,7 +3600,9 @@
     "Color": "Green",
     "Type": "Jelly",
     "Sub Type": "",
-    "Number": 78
+    "Number": 78,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3167,7 +3616,9 @@
     "Color": "Deep Purple",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 26
+    "Number": 26,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3181,7 +3632,9 @@
     "Color": "Burgundy",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 30
+    "Number": 30,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3195,7 +3648,9 @@
     "Color": "Green",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 59
+    "Number": 59,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3209,7 +3664,9 @@
     "Color": "Blue",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 23
+    "Number": 23,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3223,7 +3680,9 @@
     "Color": "Silver",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 1
+    "Number": 1,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3237,7 +3696,9 @@
     "Color": "Dark Blue",
     "Type": "Jelly",
     "Sub Type": "",
-    "Number": 22
+    "Number": 22,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3251,7 +3712,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 58
+    "Number": 58,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3265,7 +3728,9 @@
     "Color": "Dark Purple",
     "Type": "Jelly",
     "Sub Type": "",
-    "Number": 86
+    "Number": 86,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3279,7 +3744,9 @@
     "Color": "Dark Blue",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 23
+    "Number": 23,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3293,7 +3760,9 @@
     "Color": "White",
     "Type": "Jelly",
     "Sub Type": "Shimmer",
-    "Number": 82
+    "Number": 82,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3307,7 +3776,9 @@
     "Color": "Purple",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 24
+    "Number": 24,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3321,7 +3792,9 @@
     "Color": "Pink",
     "Type": "Jelly",
     "Sub Type": "Shimmer",
-    "Number": 87
+    "Number": 87,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3335,7 +3808,9 @@
     "Color": "Light Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 85
+    "Number": 85,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3349,7 +3824,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 83
+    "Number": 83,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3363,7 +3840,9 @@
     "Color": "Dark Red",
     "Type": "Flakie",
     "Sub Type": "Shimmer",
-    "Number": 25
+    "Number": 25,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3377,7 +3856,9 @@
     "Color": "Beige",
     "Type": "Creme",
     "Sub Type": "",
-    "Number": 81
+    "Number": 81,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3391,7 +3872,9 @@
     "Color": "Silver",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 12
+    "Number": 12,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3405,7 +3888,9 @@
     "Color": "Blue",
     "Type": "Creme",
     "Sub Type": "",
-    "Number": 23
+    "Number": 23,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3419,7 +3904,9 @@
     "Color": "Dark Brown",
     "Type": "Creme",
     "Sub Type": "",
-    "Number": 71
+    "Number": 71,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "ILNP",
@@ -3433,7 +3920,9 @@
     "Color": "Blue",
     "Type": "Crelly",
     "Sub Type": "Shimmer",
-    "Number": 84
+    "Number": 84,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "Indigo Bananas",
@@ -3448,6 +3937,8 @@
     "Type": "Shimmer",
     "Sub Type": "Unicorn Pee (UP)",
     "Number": 100,
+    "Region": "North America",
+    "Local": "Oregon",
     "Has Dupes": "Yes",
     "Dupe Group": "Blue_Red_Shimmer"
   },
@@ -3463,7 +3954,9 @@
     "Color": "Green",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 27
+    "Number": 27,
+    "Region": "North America",
+    "Local": "Nevada"
   },
   {
     "Brand": "Jen & Berries",
@@ -3477,7 +3970,9 @@
     "Color": "Yellow",
     "Type": "Flakie",
     "Sub Type": "Jelly",
-    "Number": 5
+    "Number": 5,
+    "Region": "North America",
+    "Local": "Colorado"
   },
   {
     "Brand": "Kathleen & Co.",
@@ -3491,7 +3986,9 @@
     "Color": "Silver",
     "Type": "Flakie",
     "Sub Type": "Metallic",
-    "Number": 1
+    "Number": 1,
+    "Region": "North America",
+    "Local": "Louisiana"
   },
   {
     "Brand": "KB Shimmer",
@@ -3505,7 +4002,9 @@
     "Color": "Clear",
     "Type": "Topper",
     "Sub Type": "",
-    "Number": 9
+    "Number": 9,
+    "Region": "North America",
+    "Local": "Indiana"
   },
   {
     "Brand": "KB Shimmer",
@@ -3519,7 +4018,9 @@
     "Color": "Red",
     "Type": "Magnetic",
     "Sub Type": "Multichrome",
-    "Number": 9
+    "Number": 9,
+    "Region": "North America",
+    "Local": "Indiana"
   },
   {
     "Brand": "KB Shimmer",
@@ -3533,7 +4034,9 @@
     "Color": "Green",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 2
+    "Number": 2,
+    "Region": "North America",
+    "Local": "Indiana"
   },
   {
     "Brand": "KB Shimmer",
@@ -3547,7 +4050,9 @@
     "Color": "Blue",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 32
+    "Number": 32,
+    "Region": "North America",
+    "Local": "Indiana"
   },
   {
     "Brand": "KB Shimmer",
@@ -3561,7 +4066,9 @@
     "Color": "Silver",
     "Type": "Topper",
     "Sub Type": "Magnetic",
-    "Number": 25
+    "Number": 25,
+    "Region": "North America",
+    "Local": "Indiana"
   },
   {
     "Brand": "KB Shimmer",
@@ -3575,7 +4082,9 @@
     "Color": "Light Purple",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 27
+    "Number": 27,
+    "Region": "North America",
+    "Local": "Indiana"
   },
   {
     "Brand": "KB Shimmer",
@@ -3589,7 +4098,9 @@
     "Color": "Clear",
     "Type": "Topper",
     "Sub Type": "Glitter Grabber",
-    "Number": 4
+    "Number": 4,
+    "Region": "North America",
+    "Local": "Indiana"
   },
   {
     "Brand": "KB Shimmer",
@@ -3603,7 +4114,9 @@
     "Color": "Rainbow",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 33
+    "Number": 33,
+    "Region": "North America",
+    "Local": "Indiana"
   },
   {
     "Brand": "Lacquer 22",
@@ -3617,7 +4130,9 @@
     "Color": "Pink",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 125
+    "Number": 125,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Lacquer 22",
@@ -3631,7 +4146,9 @@
     "Color": "Light Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 124
+    "Number": 124,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Lacquer 22",
@@ -3645,7 +4162,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 114
+    "Number": 114,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Lacquer 22",
@@ -3659,7 +4178,9 @@
     "Color": "Light Yellow",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 126
+    "Number": 126,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Lacquer 22",
@@ -3673,7 +4194,9 @@
     "Color": "Silver",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 120
+    "Number": 120,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Lacquer 22",
@@ -3687,7 +4210,9 @@
     "Color": "Gold",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 123
+    "Number": 123,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Lacquer 22",
@@ -3701,7 +4226,9 @@
     "Color": "Dark Orange",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 111
+    "Number": 111,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Lacquer 22",
@@ -3715,7 +4242,9 @@
     "Color": "Silver",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 6
+    "Number": 6,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Lost Lake Lacquer",
@@ -3729,7 +4258,9 @@
     "Color": "Light Blue",
     "Type": "Magnetic",
     "Sub Type": "Flakie",
-    "Number": 1
+    "Number": 1,
+    "Region": "North America",
+    "Local": "Colorado"
   },
   {
     "Brand": "Loud Lacquer",
@@ -3743,7 +4274,9 @@
     "Color": "Burgundy",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 34
+    "Number": 34,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Loud Lacquer",
@@ -3757,7 +4290,9 @@
     "Color": "Black",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 32
+    "Number": 32,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Loud Lacquer",
@@ -3771,7 +4306,9 @@
     "Color": "Blue",
     "Type": "Creme",
     "Sub Type": "",
-    "Number": 97
+    "Number": 97,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Loud Lacquer",
@@ -3785,7 +4322,9 @@
     "Color": "Yellow",
     "Type": "Creme",
     "Sub Type": "Shimmer",
-    "Number": 3
+    "Number": 3,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Loud Lacquer",
@@ -3799,7 +4338,9 @@
     "Color": "Blue",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 33
+    "Number": 33,
+    "Region": "North America",
+    "Local": "Texas"
   },
   {
     "Brand": "Lumen",
@@ -3813,7 +4354,9 @@
     "Color": "Burgundy",
     "Type": "Creme",
     "Sub Type": "",
-    "Number": 40
+    "Number": 40,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Lumen",
@@ -3827,7 +4370,9 @@
     "Color": "Black",
     "Type": "Multichrome",
     "Sub Type": "",
-    "Number": 39
+    "Number": 39,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Lumen",
@@ -3841,7 +4386,9 @@
     "Color": "Blue",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 40
+    "Number": 40,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Lumen",
@@ -3855,7 +4402,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 38
+    "Number": 38,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Lumen",
@@ -3869,7 +4418,9 @@
     "Color": "Pink",
     "Type": "Topper",
     "Sub Type": "Holographic",
-    "Number": 41
+    "Number": 41,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Lumen",
@@ -3883,7 +4434,9 @@
     "Color": "Blue",
     "Type": "Reflective Glitter",
     "Sub Type": "",
-    "Number": 3
+    "Number": 3,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Lurid Lacquer",
@@ -3897,7 +4450,9 @@
     "Color": "Dark Red",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 54
+    "Number": 54,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Lurid Lacquer",
@@ -3911,7 +4466,9 @@
     "Color": "Purple",
     "Type": "Reflective Glitter",
     "Sub Type": "",
-    "Number": 2
+    "Number": 2,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Lurid Lacquer",
@@ -3925,7 +4482,9 @@
     "Color": "Light brown",
     "Type": "Jelly",
     "Sub Type": "Shimmer",
-    "Number": 49
+    "Number": 49,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Lurid Lacquer",
@@ -3940,6 +4499,8 @@
     "Type": "Shimmer",
     "Sub Type": "Multichrome",
     "Number": 50,
+    "Region": "North America",
+    "Local": "",
     "Has Dupes": "Yes",
     "Dupe Group": "Purple_Green_Shimmer"
   },
@@ -3955,7 +4516,9 @@
     "Color": "Berry",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 55
+    "Number": 55,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Lurid Lacquer",
@@ -3969,7 +4532,9 @@
     "Color": "Navy Blue",
     "Type": "Jelly",
     "Sub Type": "Shimmer",
-    "Number": 53
+    "Number": 53,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Lurid Lacquer",
@@ -3983,7 +4548,9 @@
     "Color": "Dusty Rose",
     "Type": "Reflective Glitter",
     "Sub Type": "Multichrome",
-    "Number": 10
+    "Number": 10,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Lurid Lacquer",
@@ -3997,7 +4564,9 @@
     "Color": "Wine",
     "Type": "Jelly",
     "Sub Type": "Shimmer",
-    "Number": 17
+    "Number": 17,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Maniology",
@@ -4011,7 +4580,9 @@
     "Color": "Mauve",
     "Type": "Stamping",
     "Sub Type": "Creme",
-    "Number": null
+    "Number": null,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4025,7 +4596,9 @@
     "Color": "Clear",
     "Type": "Topper",
     "Sub Type": "Water Topper",
-    "Number": 62
+    "Number": 62,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4039,7 +4612,9 @@
     "Color": "White",
     "Type": "Stamping",
     "Sub Type": "Creme",
-    "Number": null
+    "Number": null,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4053,7 +4628,9 @@
     "Color": "Dark Silver",
     "Type": "Stamping",
     "Sub Type": "Pearlescent",
-    "Number": null
+    "Number": null,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4067,7 +4644,9 @@
     "Color": "Black",
     "Type": "Stamping",
     "Sub Type": "Holographic",
-    "Number": null
+    "Number": null,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4081,7 +4660,9 @@
     "Color": "Blue",
     "Type": "Stamping",
     "Sub Type": "Creme",
-    "Number": null
+    "Number": null,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4095,7 +4676,9 @@
     "Color": "Orange",
     "Type": "Flakie",
     "Sub Type": "Holographic",
-    "Number": 38
+    "Number": 38,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4109,7 +4692,9 @@
     "Color": "Navy Blue",
     "Type": "Stamping",
     "Sub Type": "Creme",
-    "Number": null
+    "Number": null,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4123,7 +4708,9 @@
     "Color": "Red",
     "Type": "Stamping",
     "Sub Type": "Shimmer",
-    "Number": null
+    "Number": null,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4137,7 +4724,9 @@
     "Color": "Dark Teal",
     "Type": "Stamping",
     "Sub Type": "Holographic",
-    "Number": null
+    "Number": null,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4151,7 +4740,9 @@
     "Color": "Gray",
     "Type": "Stamping",
     "Sub Type": "Creme",
-    "Number": null
+    "Number": null,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4165,7 +4756,9 @@
     "Color": "Blue",
     "Type": "Stamping",
     "Sub Type": "Pearlescent",
-    "Number": null
+    "Number": null,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4179,7 +4772,9 @@
     "Color": "Gold",
     "Type": "Stamping",
     "Sub Type": "Holographic",
-    "Number": null
+    "Number": null,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4193,7 +4788,9 @@
     "Color": "Purple",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 57
+    "Number": 57,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4207,7 +4804,9 @@
     "Color": "Light Blue",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 55
+    "Number": 55,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4221,7 +4820,9 @@
     "Color": "Dark Red",
     "Type": "Stamping",
     "Sub Type": "Creme",
-    "Number": null
+    "Number": null,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4235,7 +4836,9 @@
     "Color": "White Gold",
     "Type": "Stamping",
     "Sub Type": "Shimmer",
-    "Number": null
+    "Number": null,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4249,7 +4852,9 @@
     "Color": "Dark Orange",
     "Type": "Stamping",
     "Sub Type": "Creme",
-    "Number": null
+    "Number": null,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4263,7 +4868,9 @@
     "Color": "Clear",
     "Type": "Base Coat",
     "Sub Type": "Sticky Base Coat",
-    "Number": 131
+    "Number": 131,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4277,7 +4884,9 @@
     "Color": "Black",
     "Type": "Stamping",
     "Sub Type": "Creme",
-    "Number": null
+    "Number": null,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Maniology",
@@ -4291,7 +4900,9 @@
     "Color": "Blue",
     "Type": "Stamping",
     "Sub Type": "Shimmer",
-    "Number": null
+    "Number": null,
+    "Region": "North America",
+    "Local": "Hawaii"
   },
   {
     "Brand": "Monarch",
@@ -4305,7 +4916,9 @@
     "Color": "Yellow",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 15
+    "Number": 15,
+    "Region": "North America",
+    "Local": "Minnesota"
   },
   {
     "Brand": "Monarch",
@@ -4319,7 +4932,9 @@
     "Color": "Teal",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 14
+    "Number": 14,
+    "Region": "North America",
+    "Local": "Minnesota"
   },
   {
     "Brand": "Monarch",
@@ -4333,7 +4948,9 @@
     "Color": "Red",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 19
+    "Number": 19,
+    "Region": "North America",
+    "Local": "Minnesota"
   },
   {
     "Brand": "Monarch Lacquer",
@@ -4347,7 +4964,9 @@
     "Color": "Dark Brown",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 17
+    "Number": 17,
+    "Region": "North America",
+    "Local": "Minnesota"
   },
   {
     "Brand": "Monarch Lacquer",
@@ -4361,7 +4980,9 @@
     "Color": "Red",
     "Type": "Reflective Glitter",
     "Sub Type": "Jelly",
-    "Number": 11
+    "Number": 11,
+    "Region": "North America",
+    "Local": "Minnesota"
   },
   {
     "Brand": "Mooncat",
@@ -4375,7 +4996,9 @@
     "Color": "Blue",
     "Type": "Magnetic",
     "Sub Type": "Holographic",
-    "Number": 56
+    "Number": 56,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4389,7 +5012,9 @@
     "Color": "Purple",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 61
+    "Number": 61,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4403,7 +5028,9 @@
     "Color": "Blue",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": "14"
+    "Number": "14",
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4417,7 +5044,9 @@
     "Color": "Gray",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 16
+    "Number": 16,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4431,7 +5060,9 @@
     "Color": "Maroon",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 18
+    "Number": 18,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4445,7 +5076,9 @@
     "Color": "Black",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 2
+    "Number": 2,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4459,7 +5092,9 @@
     "Color": "Blue",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 57
+    "Number": 57,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4473,7 +5108,9 @@
     "Color": "Pink",
     "Type": "Flakie",
     "Sub Type": "Multichrome",
-    "Number": 18
+    "Number": 18,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4487,7 +5124,9 @@
     "Color": "Pink",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 20
+    "Number": 20,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4501,7 +5140,9 @@
     "Color": "Purple",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 64
+    "Number": 64,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4515,7 +5156,9 @@
     "Color": "White",
     "Type": "Glow in the Dark",
     "Sub Type": "",
-    "Number": 56
+    "Number": 56,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4530,6 +5173,8 @@
     "Type": "Shimmer",
     "Sub Type": "",
     "Number": 69,
+    "Region": "North America",
+    "Local": "New York",
     "Has Dupes": "Yes",
     "Dupe Group": "Intense_Blue_Shimmer"
   },
@@ -4545,7 +5190,9 @@
     "Color": "Black",
     "Type": "Magnetic",
     "Sub Type": "Thermal",
-    "Number": 7
+    "Number": 7,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4559,7 +5206,9 @@
     "Color": "Mauve",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 19
+    "Number": 19,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4573,7 +5222,9 @@
     "Color": "Green",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 68
+    "Number": 68,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4587,7 +5238,9 @@
     "Color": "Pink",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 17
+    "Number": 17,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4601,7 +5254,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 11
+    "Number": 11,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4615,7 +5270,9 @@
     "Color": "Dark Green",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 3
+    "Number": 3,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4629,7 +5286,9 @@
     "Color": "White",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 2
+    "Number": 2,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4643,7 +5302,9 @@
     "Color": "Purple",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 66
+    "Number": 66,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4657,7 +5318,9 @@
     "Color": "Dark Purple",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 62
+    "Number": 62,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4671,7 +5334,9 @@
     "Color": "Dark Teal",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 55
+    "Number": 55,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4685,7 +5350,9 @@
     "Color": "Dark Blue",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 19
+    "Number": 19,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4699,7 +5366,9 @@
     "Color": "White",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 60
+    "Number": 60,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4713,7 +5382,9 @@
     "Color": "Purple",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 21
+    "Number": 21,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4727,7 +5398,9 @@
     "Color": "Maroon",
     "Type": "Thermal",
     "Sub Type": "",
-    "Number": 12
+    "Number": 12,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4741,7 +5414,9 @@
     "Color": "Black",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 65
+    "Number": 65,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4756,6 +5431,8 @@
     "Type": "Multichrome",
     "Sub Type": "",
     "Number": 4,
+    "Region": "North America",
+    "Local": "New York",
     "Has Dupes": "Yes",
     "Dupe Group": "Purple_Green_Shimmer"
   },
@@ -4771,7 +5448,9 @@
     "Color": "Green",
     "Type": "Multichrome",
     "Sub Type": "",
-    "Number": 67
+    "Number": 67,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4785,7 +5464,9 @@
     "Color": "Pink",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 15
+    "Number": 15,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4799,7 +5480,9 @@
     "Color": "Pink",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 13
+    "Number": 13,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4813,7 +5496,9 @@
     "Color": "Pink",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 58
+    "Number": 58,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4827,7 +5512,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 70
+    "Number": 70,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4841,7 +5528,9 @@
     "Color": "Red",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 63
+    "Number": 63,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4855,7 +5544,9 @@
     "Color": "Purple",
     "Type": "Thermal",
     "Sub Type": "",
-    "Number": 6
+    "Number": 6,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4869,7 +5560,9 @@
     "Color": "Light Purple",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 57
+    "Number": 57,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4883,7 +5576,9 @@
     "Color": "Blue",
     "Type": "Thermal",
     "Sub Type": "",
-    "Number": 5
+    "Number": 5,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Mooncat",
@@ -4897,7 +5592,9 @@
     "Color": "Peach",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 59
+    "Number": 59,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Nothing Basic",
@@ -4911,7 +5608,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 49
+    "Number": 49,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Pahlish",
@@ -4925,7 +5624,9 @@
     "Color": "Champagne",
     "Type": "Topper",
     "Sub Type": "Holographic",
-    "Number": 21
+    "Number": 21,
+    "Region": "North America",
+    "Local": "Minnesota"
   },
   {
     "Brand": "Parrot Polish",
@@ -4939,7 +5640,9 @@
     "Color": "Maroon",
     "Type": "Thermal",
     "Sub Type": "",
-    "Number": 15
+    "Number": 15,
+    "Region": "North America",
+    "Local": "Florida"
   },
   {
     "Brand": "Parrot Polish",
@@ -4953,7 +5656,9 @@
     "Color": "Deep Blue",
     "Type": "Thermal",
     "Sub Type": "",
-    "Number": 16
+    "Number": 16,
+    "Region": "North America",
+    "Local": "Florida"
   },
   {
     "Brand": "Parrot Polish",
@@ -4967,7 +5672,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 134
+    "Number": 134,
+    "Region": "North America",
+    "Local": "Florida"
   },
   {
     "Brand": "Parrot Polish",
@@ -4981,7 +5688,9 @@
     "Color": "Pink",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 133
+    "Number": 133,
+    "Region": "North America",
+    "Local": "Florida"
   },
   {
     "Brand": "Parrot Polish",
@@ -4995,7 +5704,9 @@
     "Color": "Navy Blue",
     "Type": "Thermal",
     "Sub Type": "",
-    "Number": 14
+    "Number": 14,
+    "Region": "North America",
+    "Local": "Florida"
   },
   {
     "Brand": "Patty Lopez x Pepper Polish",
@@ -5009,7 +5720,9 @@
     "Color": "Blue",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 48
+    "Number": 48,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Penelope Luz",
@@ -5023,7 +5736,9 @@
     "Color": "Light Blue",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": "26"
+    "Number": "26",
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Pepper Polish",
@@ -5037,7 +5752,9 @@
     "Color": "Rose",
     "Type": "Topper",
     "Sub Type": "Holographic",
-    "Number": 20
+    "Number": 20,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Pepper Polish",
@@ -5051,7 +5768,9 @@
     "Color": "Blue",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 9
+    "Number": 9,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Pepper Polish",
@@ -5065,7 +5784,9 @@
     "Color": "Purple",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 6
+    "Number": 6,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Phoenix",
@@ -5079,7 +5800,9 @@
     "Color": "Blue",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 17
+    "Number": 17,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Phoenix",
@@ -5093,7 +5816,9 @@
     "Color": "Red",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 18
+    "Number": 18,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Phoenix",
@@ -5107,7 +5832,9 @@
     "Color": "Blue",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 54
+    "Number": 54,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Phoenix",
@@ -5121,7 +5848,9 @@
     "Color": "Green",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 50
+    "Number": 50,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Rogue Lacquer",
@@ -5135,7 +5864,9 @@
     "Color": "Orange",
     "Type": "Topper",
     "Sub Type": "Crackle",
-    "Number": 49
+    "Number": 49,
+    "Region": "North America",
+    "Local": "Arizona"
   },
   {
     "Brand": "Rogue Lacquer",
@@ -5149,7 +5880,9 @@
     "Color": "Purple",
     "Type": "Topper",
     "Sub Type": "Crackle",
-    "Number": 48
+    "Number": 48,
+    "Region": "North America",
+    "Local": "Arizona"
   },
   {
     "Brand": "Rogue Lacquer",
@@ -5163,7 +5896,9 @@
     "Color": "Purple",
     "Type": "Topper",
     "Sub Type": "Crackle",
-    "Number": 47
+    "Number": 47,
+    "Region": "North America",
+    "Local": "Arizona"
   },
   {
     "Brand": "Rogue Lacquer",
@@ -5177,7 +5912,9 @@
     "Color": "Green",
     "Type": "Topper",
     "Sub Type": "Crackle",
-    "Number": 46
+    "Number": 46,
+    "Region": "North America",
+    "Local": "Arizona"
   },
   {
     "Brand": "Rogue Lacquer",
@@ -5191,7 +5928,9 @@
     "Color": "Purple",
     "Type": "Topper",
     "Sub Type": "Crackle",
-    "Number": 45
+    "Number": 45,
+    "Region": "North America",
+    "Local": "Arizona"
   },
   {
     "Brand": "Sally Hansen",
@@ -5205,7 +5944,9 @@
     "Color": "Clear",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 8
+    "Number": 8,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Sally Hansen",
@@ -5219,7 +5960,9 @@
     "Color": "Clear",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 5
+    "Number": 5,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Sally Hansen",
@@ -5233,7 +5976,9 @@
     "Color": "Clear",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 6
+    "Number": 6,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Sally Hansen",
@@ -5247,7 +5992,9 @@
     "Color": "Clear",
     "Type": "Topper",
     "Sub Type": "Shimmer",
-    "Number": 7
+    "Number": 7,
+    "Region": "North America",
+    "Local": "New York"
   },
   {
     "Brand": "Sassy Sauce",
@@ -5261,7 +6008,9 @@
     "Color": "White",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 76
+    "Number": 76,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Sassy Sauce",
@@ -5275,7 +6024,9 @@
     "Color": "Purple",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 106
+    "Number": 106,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Sassy Sauce",
@@ -5289,7 +6040,9 @@
     "Color": "Yellow",
     "Type": "Shimmer",
     "Sub Type": "Neon",
-    "Number": 104
+    "Number": 104,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Sassy Sauce",
@@ -5303,7 +6056,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 78
+    "Number": 78,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Sassy Sauce",
@@ -5317,7 +6072,9 @@
     "Color": "Green",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 75
+    "Number": 75,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Sassy Sauce",
@@ -5331,7 +6088,9 @@
     "Color": "Green",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 34
+    "Number": 34,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Sassy Sauce",
@@ -5345,7 +6104,9 @@
     "Color": "Blue",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 33
+    "Number": 33,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Sassy Sauce",
@@ -5359,7 +6120,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 79
+    "Number": 79,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Sassy Sauce",
@@ -5373,7 +6136,9 @@
     "Color": "Yellow",
     "Type": "Topper",
     "Sub Type": "Multichrome",
-    "Number": 22
+    "Number": 22,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Sassy Sauce",
@@ -5387,7 +6152,9 @@
     "Color": "Champagne",
     "Type": "Topper",
     "Sub Type": "Shimmer",
-    "Number": 23
+    "Number": 23,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Sassy Sauce",
@@ -5401,7 +6168,9 @@
     "Color": "White",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 32
+    "Number": 32,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Sassy Sauce",
@@ -5415,7 +6184,9 @@
     "Color": "Blue",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 52
+    "Number": 52,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Sassy Sauce",
@@ -5429,7 +6200,9 @@
     "Color": "Pink",
     "Type": "Topper",
     "Sub Type": "Flakie",
-    "Number": 39
+    "Number": 39,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Sassy Sauce",
@@ -5443,7 +6216,9 @@
     "Color": "Purple",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 36
+    "Number": 36,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Sassy Sauce",
@@ -5457,7 +6232,9 @@
     "Color": "Pink",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 102
+    "Number": 102,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Sassy Sauce",
@@ -5471,7 +6248,9 @@
     "Color": "Black",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 81
+    "Number": 81,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Starrily",
@@ -5485,7 +6264,9 @@
     "Color": "Black",
     "Type": "Multichrome",
     "Sub Type": "Shimmer",
-    "Number": 113
+    "Number": 113,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Starrily",
@@ -5499,7 +6280,9 @@
     "Color": "Rainbow",
     "Type": "Topper",
     "Sub Type": "Holographic",
-    "Number": 77
+    "Number": 77,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Starrily",
@@ -5513,7 +6296,9 @@
     "Color": "Light Purple",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 71
+    "Number": 71,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Starrily",
@@ -5527,7 +6312,9 @@
     "Color": "Silver",
     "Type": "Topper",
     "Sub Type": "Holographic",
-    "Number": 73
+    "Number": 73,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Stella Chroma",
@@ -5541,7 +6328,9 @@
     "Color": "Light Blue",
     "Type": "Creme",
     "Sub Type": "",
-    "Number": 21
+    "Number": 21,
+    "Region": "North America",
+    "Local": "Kentucky"
   },
   {
     "Brand": "Stella Chroma",
@@ -5555,7 +6344,9 @@
     "Color": "Purple",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 35
+    "Number": 35,
+    "Region": "North America",
+    "Local": "Kentucky"
   },
   {
     "Brand": "Uno Mas Colors",
@@ -5570,6 +6361,8 @@
     "Type": "Shimmer",
     "Sub Type": "",
     "Number": 20,
+    "Region": "North America",
+    "Local": "California",
     "Has Dupes": "Yes",
     "Dupe Group": "Intense_Blue_Shimmer"
   },
@@ -5585,7 +6378,9 @@
     "Color": "Green",
     "Type": "Glow in the Dark",
     "Sub Type": "",
-    "Number": 115
+    "Number": 115,
+    "Region": "North America",
+    "Local": "California"
   },
   {
     "Brand": "Uno Mas Colors",
@@ -5599,7 +6394,9 @@
     "Color": "White",
     "Type": "Thermal",
     "Sub Type": "Glow in the Dark",
-    "Number": 13
+    "Number": 13,
+    "Region": "North America",
+    "Local": "California"
   },
   {
     "Brand": "Victorian Varnish",
@@ -5613,7 +6410,9 @@
     "Color": "Dark Blue",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 38
+    "Number": 38,
+    "Region": "North America",
+    "Local": "Alabama"
   },
   {
     "Brand": "Victorian Varnish",
@@ -5627,7 +6426,9 @@
     "Color": "Red",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 37
+    "Number": 37,
+    "Region": "North America",
+    "Local": "Alabama"
   },
   {
     "Brand": "Victorian Varnish",
@@ -5641,7 +6442,9 @@
     "Color": "Blue",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 33
+    "Number": 33,
+    "Region": "North America",
+    "Local": "Alabama"
   },
   {
     "Brand": "Victorian Varnish",
@@ -5655,7 +6458,9 @@
     "Color": "Green",
     "Type": "Thermal",
     "Sub Type": "Flakie",
-    "Number": 2
+    "Number": 2,
+    "Region": "North America",
+    "Local": "Alabama"
   },
   {
     "Brand": "Victorian Varnish",
@@ -5669,7 +6474,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 36
+    "Number": 36,
+    "Region": "North America",
+    "Local": "Alabama"
   },
   {
     "Brand": "Victorian Varnish",
@@ -5683,7 +6490,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "Reflective Glitter",
-    "Number": 4
+    "Number": 4,
+    "Region": "North America",
+    "Local": "Alabama"
   },
   {
     "Brand": "What's Up Polish",
@@ -5697,7 +6506,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "Flakie",
-    "Number": 74
+    "Number": 74,
+    "Region": "North America",
+    "Local": "Arizona"
   },
   {
     "Brand": "What's Up Polish",
@@ -5711,7 +6522,9 @@
     "Color": "Dark Blue",
     "Type": "Magnetic",
     "Sub Type": "Flakie",
-    "Number": 73
+    "Number": 73,
+    "Region": "North America",
+    "Local": "Arizona"
   },
   {
     "Brand": "Zoya",
@@ -5725,7 +6538,9 @@
     "Color": "Red",
     "Type": "Creme",
     "Sub Type": "",
-    "Number": 116
+    "Number": 116,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Zoya",
@@ -5739,7 +6554,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "",
-    "Number": 112
+    "Number": 112,
+    "Region": "North America",
+    "Local": "Ohio"
   },
   {
     "Brand": "Emily de Molly",
@@ -5753,7 +6570,9 @@
     "Color": "Purple",
     "Type": "Magnetic",
     "Sub Type": "",
-    "Number": 83
+    "Number": 83,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -5767,7 +6586,9 @@
     "Color": "Orange",
     "Type": "Multichrome",
     "Sub Type": "",
-    "Number": 135
+    "Number": 135,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Emily de Molly",
@@ -5781,7 +6602,9 @@
     "Color": "Pink",
     "Type": "Holographic",
     "Sub Type": "",
-    "Number": 36
+    "Number": 36,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Bee's Knees",
@@ -5795,7 +6618,9 @@
     "Color": "Red",
     "Type": "Magnetic",
     "Sub Type": "Multichrome",
-    "Number": 84
+    "Number": 84,
+    "Region": "North America",
+    "Local": "Virginia"
   },
   {
     "Brand": "Bee's Knees",
@@ -5809,7 +6634,9 @@
     "Color": "Blue",
     "Type": "Thermal",
     "Sub Type": "Magnetic",
-    "Number": 85
+    "Number": 85,
+    "Region": "North America",
+    "Local": "Virginia"
   },
   {
     "Brand": "Bee's Knees",
@@ -5823,7 +6650,9 @@
     "Color": "Blue",
     "Type": "Shimmer",
     "Sub Type": "Sheer",
-    "Number": 136
+    "Number": 136,
+    "Region": "North America",
+    "Local": "Virginia"
   },
   {
     "Brand": "Fancy Gloss",
@@ -5837,7 +6666,9 @@
     "Color": "Blue",
     "Type": "Topper",
     "Sub Type": "Magnetic",
-    "Number": 78
+    "Number": 78,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "psyche minerals",
@@ -5851,7 +6682,9 @@
     "Color": "Light Blue",
     "Type": "Reflective Glitter",
     "Sub Type": "",
-    "Number": 13
+    "Number": 13,
+    "Region": "North America",
+    "Local": "Illinois"
   },
   {
     "Brand": "Fancy Gloss",
@@ -5865,7 +6698,9 @@
     "Color": "Gold",
     "Type": "Topper",
     "Sub Type": "Magnetic",
-    "Number": 79
+    "Number": 79,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Fancy Gloss",
@@ -5879,7 +6714,9 @@
     "Color": "Light Purple",
     "Type": "Topper",
     "Sub Type": "Magnetic",
-    "Number": 80
+    "Number": 80,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "Lyn B Designs",
@@ -5893,7 +6730,9 @@
     "Color": "Light Purple",
     "Type": "Glow in the Dark",
     "Sub Type": "Shimmer",
-    "Number": 137
+    "Number": 137,
+    "Region": "North America",
+    "Local": "Michigan"
   },
   {
     "Brand": "Lyn B Designs",
@@ -5907,7 +6746,9 @@
     "Color": "Purple",
     "Type": "Creme",
     "Sub Type": "",
-    "Number": 138
+    "Number": 138,
+    "Region": "North America",
+    "Local": "Michigan"
   },
   {
     "Brand": "Fancy Gloss",
@@ -5921,7 +6762,9 @@
     "Color": "Light Blue",
     "Type": "Topper",
     "Sub Type": "Magnetic",
-    "Number": 81
+    "Number": 81,
+    "Region": "North America",
+    "Local": ""
   },
   {
     "Brand": "All Mixed Up Lacquers",
@@ -5935,7 +6778,9 @@
     "Color": "Light Pink",
     "Type": "Reflective Glitter",
     "Sub Type": "",
-    "Number": 14
+    "Number": 14,
+    "Region": "North America",
+    "Local": "Florida"
   },
   {
     "Brand": "Emily de Molly",
@@ -5949,7 +6794,9 @@
     "Color": "Red",
     "Type": "Thermal",
     "Sub Type": "Flakie",
-    "Number": 17
+    "Number": 17,
+    "Region": "Oceania",
+    "Local": "Australia"
   },
   {
     "Brand": "Penelope Luz",
@@ -5963,7 +6810,9 @@
     "Color": "Magenta",
     "Type": "Magnetic",
     "Sub Type": "Fine Particle",
-    "Number": 82
+    "Number": 82,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Nothing Basic",
@@ -5977,7 +6826,9 @@
     "Color": "Light Blue",
     "Type": "Flakie",
     "Sub Type": "",
-    "Number": 18
+    "Number": 18,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Phoenix",
@@ -5991,7 +6842,9 @@
     "Color": "Red",
     "Type": "Magnetic",
     "Sub Type": "Flakie",
-    "Number": 83
+    "Number": 83,
+    "Region": "South America",
+    "Local": "Brazil"
   },
   {
     "Brand": "Peculiar Polish",
@@ -6005,6 +6858,8 @@
     "Color": "Clear",
     "Type": "Topper",
     "Sub Type": "Magnetic",
-    "Number": ""
+    "Number": "",
+    "Region": "North America",
+    "Local": "Texas"
   }
 ]
