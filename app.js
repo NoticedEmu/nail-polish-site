@@ -40,12 +40,18 @@ function normalizeAssetPath(value) {
         .replaceAll('\\', '/')
         .replaceAll('&amp;', '&')
         .replace(/^\.\//, '')
-        .replace(/^images\//, 'Images/')
+        .replace(/^images\//i, 'images/')
         .trim();
 
     return cleaned
         .split('/')
-        .map(segment => encodeURIComponent(decodeURIComponent(segment)))
+        .map(segment => {
+            try {
+                return encodeURIComponent(decodeURIComponent(segment));
+            } catch {
+                return encodeURIComponent(segment);
+            }
+        })
         .join('/');
 }
 
@@ -90,8 +96,11 @@ function normalizePolishEntry(entry = {}) {
     return {
         ...entry,
         brand,
+        Brand: brand,
         name,
+        Nailpolish: name,
         filename,
+        Filename: filename,
         thumb,
         image: imageOne,
         imageOne,
@@ -113,7 +122,11 @@ function normalizePolishEntry(entry = {}) {
             entry.desc,
             entry.details,
             entry.notes
-        )
+        ),
+        region: getFirstMeaningfulValue(entry.region, entry.Region),
+        local: getFirstMeaningfulValue(entry.local, entry.Local),
+        hasDupes: getFirstMeaningfulValue(entry.hasDupes, entry['Has Dupes']),
+        dupeGroup: getFirstMeaningfulValue(entry.dupeGroup, entry['Dupe Group'])
     };
 }
 
@@ -217,20 +230,90 @@ function getCurrentPagePath() {
     return normalizePagePath(fileName);
 }
 
-function createPageMenuLink(page) {
+function createPageMenuLink(page, currentPage = '') {
     const safeHref = escapeHTML(page.href || '#');
     const safeTitle = escapeHTML(page.title || '');
+    const hrefPath = normalizePagePath(page.href);
+    const activeClass = hrefPath === currentPage ? ' class="is-active" aria-current="page"' : '';
+    const sparkle = page.sparkle ? ' <span class="lucky-sparkle">✨</span>' : '';
 
-    if (page.sparkle) {
-        return `<a href="${safeHref}">${safeTitle} <span class="lucky-sparkle">✨</span></a>`;
+    return `<a href="${safeHref}"${activeClass}>${safeTitle}${sparkle}</a>`;
+}
+
+function createStatsIconSvg() {
+    return `
+        <svg class="stats-bar-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path class="stats-bar-icon-baseline" d="M4.5 20h15"></path>
+            <rect class="stats-bar-icon-bar" x="6" y="12" width="3.2" height="8" rx="1.2"></rect>
+            <rect class="stats-bar-icon-bar" x="10.4" y="8" width="3.2" height="12" rx="1.2"></rect>
+            <rect class="stats-bar-icon-bar" x="14.8" y="4" width="3.2" height="16" rx="1.2"></rect>
+        </svg>
+    `;
+}
+
+function updateStatsIconButton() {
+    document.querySelectorAll('.stats-icon-button').forEach(statsButton => {
+        statsButton.innerHTML = createStatsIconSvg();
+    });
+}
+
+function initializeTopActionButtons() {
+    const pageShell = document.querySelector('.page-shell');
+    if (!pageShell) return;
+
+    const topbar = pageShell.querySelector('.directory-topbar, .lucky-page-topbar, .dupes-page-topbar, .moods-page-topbar, .stats-page-topbar');
+    if (!topbar) return;
+
+    topbar.classList.add('site-topbar');
+
+    const isDirectoryTopbar = topbar.classList.contains('directory-topbar');
+
+    let actions = topbar.querySelector('.directory-actions, .site-top-actions');
+    if (!actions) {
+        actions = document.createElement('div');
+        actions.className = 'site-top-actions';
+        topbar.appendChild(actions);
+    } else {
+        actions.classList.add('site-top-actions');
     }
 
-    return `<a href="${safeHref}">${safeTitle}</a>`;
+    if (isDirectoryTopbar) {
+        const searchToggleWrap = document.querySelector('.search-toggle-wrap');
+        if (searchToggleWrap && !actions.contains(searchToggleWrap)) {
+            actions.insertBefore(searchToggleWrap, actions.firstChild);
+        }
+
+        if (!actions.querySelector('.add-polish-button')) {
+            const addButton = document.createElement('button');
+            addButton.type = 'button';
+            addButton.className = 'add-polish-button';
+            addButton.innerHTML = '<span aria-hidden="true">＋</span> Add Polish';
+            addButton.addEventListener('click', () => {
+                alert('Add Polish is set up as a placeholder for now. A future add.html page or form can be connected here.');
+            });
+            actions.appendChild(addButton);
+        }
+    }
+
+    if (!actions.querySelector('.stats-icon-button')) {
+        const statsButton = document.createElement('a');
+        statsButton.className = 'stats-icon-button';
+        statsButton.href = 'stats.html';
+        statsButton.setAttribute('aria-label', 'Open polish stats');
+        statsButton.setAttribute('title', 'Open polish stats');
+        statsButton.innerHTML = createStatsIconSvg();
+        actions.appendChild(statsButton);
+    }
+
+    updateStatsIconButton();
 }
 
 async function initializeSharedPagesMenu() {
-    const menu = document.querySelector('.pages-dropdown-menu');
-    if (!menu) return;
+    const menus = document.querySelectorAll('.pages-dropdown-menu');
+    if (!menus.length) {
+        initializeTopActionButtons();
+        return;
+    }
 
     try {
         const pages = await fetchSitePages();
@@ -238,14 +321,54 @@ async function initializeSharedPagesMenu() {
 
         const visiblePages = pages.filter(page => {
             const hrefPath = normalizePagePath(page.href);
-            return hrefPath && hrefPath !== currentPage;
+            return hrefPath && hrefPath !== currentPage && hrefPath !== 'stats.html';
         });
 
-        menu.innerHTML = visiblePages
-            .map(page => `<li>${createPageMenuLink(page)}</li>`)
-            .join('');
+        menus.forEach(menu => {
+            menu.innerHTML = visiblePages
+                .map(page => `<li>${createPageMenuLink(page, currentPage)}</li>`)
+                .join('');
+        });
+
+        document.querySelectorAll('.pages-dropdown').forEach(nav => {
+            nav.classList.add('site-nav');
+
+            const toggle = nav.querySelector('.pages-dropdown-toggle');
+            const menu = nav.querySelector('.pages-dropdown-menu');
+
+            if (toggle && menu && !toggle.dataset.menuBound) {
+                toggle.dataset.menuBound = 'true';
+                toggle.setAttribute('aria-expanded', 'false');
+
+                toggle.addEventListener('click', event => {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    const isOpen = nav.classList.toggle('is-open');
+                    toggle.setAttribute('aria-expanded', String(isOpen));
+                });
+
+                menu.addEventListener('click', event => {
+                    event.stopPropagation();
+                });
+            }
+        });
+
+        if (!document.documentElement.dataset.sharedMenuCloseBound) {
+            document.documentElement.dataset.sharedMenuCloseBound = 'true';
+            document.addEventListener('click', () => {
+                document.querySelectorAll('.pages-dropdown.is-open').forEach(nav => {
+                    nav.classList.remove('is-open');
+                    const toggle = nav.querySelector('.pages-dropdown-toggle');
+                    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+
+        initializeTopActionButtons();
     } catch (error) {
         console.error('Unable to initialize shared pages menu:', error);
+        initializeTopActionButtons();
     }
 }
 

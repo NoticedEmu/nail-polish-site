@@ -1,0 +1,129 @@
+[
+  {
+    "id": "galaxy",
+    "name": "Galaxy",
+    "image": "images/moods/galaxy.jpg",
+    "description": "Deep, sparkly, celestial polishes with starry shifts, dark bases, holographic shimmer, and cosmic glow.",
+    "polishes": [
+      "Beaux_Reves_Stars_Above",
+      "ANLAC_Starveil_Shimmer_Top_Coat",
+      "Bee's_Knees_Still_No_Fcking_Excuse",
+      "ILNP_Interstellar",
+      "ILNP_Supernova",
+      "ILNP_Cygnus_Loop",
+      "ILNP_Hush",
+      "ILNP_Nocturnal",
+      "ILNP_Nightshade",
+      "ILNP_Interstellar",
+      "Starrily_Reality_Shift",
+      "Indigo_Bananas_Dark_Star",
+      "Alchemy_Lacquers_Darkness_of_Night",
+      "Alchemy_Lacquers_Black_&_Bloom",
+      "Mooncat_Queen_of_the_Dead",
+      "Sassy_Sauce_A_Comet's_Tail"
+    ]
+  },
+  {
+    "id": "opulent",
+    "name": "Opulent",
+    "image": "images/moods/opulent.jpg",
+    "description": "Luminous finishes that shimmer with depth and radiance, like light caught in raw gemstones.",
+    "polishes": [
+      "Starrily_Ultima"
+    ]
+  },
+  {
+    "id": "ethereal",
+    "name": "Ethereal",
+    "image": "images/moods/ethereal.jpg",
+    "description": "Soft shimmer, delicate glow, and airy finishes.",
+    "polishes": [
+      "ANLAC_Fuyu",
+      "Alchemy_Lacquers_Timeless_Love",
+      "Emily_de_Molly_Disarm",
+      "Emily_de_Molly_Key_Drama",
+      "Emily_de_Molly_Lament",
+      "Emily_de_Molly_Once_Forgotten",
+      "Emily_de_Molly_Catalyst",
+      "Atomic_Polish_Uranium",
+      "Atomic_Polish_Selenium",
+      "ILNP_Hallucinate"
+    ]
+  },
+  {
+    "id": "mermaid",
+    "name": "Mermaid",
+    "image": "images/moods/mermaid.jpg",
+    "description": "Aquatic blues, teals, greens, seafoam shifts, watery shimmer, and glowy scale-like sparkle.",
+    "polishes": [
+      "1002_Summer_Sea_Glass",
+      "Bee's_Knees_Bog_Dweller",
+      "Arcana_My_Life_as_a_Shrimp",
+      "ILNP_Blue_Lagoon",
+      "ILNP_Rainshower",
+      "ANLAC_Seafoam_Tear_Shimmer_Top_Coat"
+    ]
+  },
+  {
+    "id": "enchanted-forest",
+    "name": "Enchanted Forest",
+    "image": "images/moods/forest.jpg",
+    "description": "Greens, mossy shades, jewel tones, mysterious shimmer, and woodland-magic finishes.",
+    "polishes": [
+      "Baroness_X_Tiki_Totem",
+      "Bee's_Knees_It_Happens",
+      "Bee's_Knees_A_Terrible_Price",
+      "Bee's_Knees_Decay_Nurtures_Death",
+      "Alchemy_Lacquers_Green_Elf_Cup"
+    ]
+  },
+  {
+    "id": "grunge",
+    "name": "Grunge",
+    "image": "images/moods/grunge.jpg",
+    "description": "Muted, smoky, or industrial tones.",
+    "polishes": [
+      "ILNP_Truffle",
+      "ILNP_Wall_Flower",
+      "Loud_Lacquer_Sleep_Police",
+      "Loud_Lacquer_Mel"
+    ]
+  },
+  {
+    "id": "neon_bright",
+    "name": "Neon & Loud",
+    "image": "images/moods/neon.jpg",
+    "description": "Bright, bold, high-impact colors.",
+    "polishes": [
+      "Maniology_Blue_Glue",
+      "ILNP_Pink_Flamingo",
+      "ILNP_Pool_Party"
+    ]
+  },
+  {
+    "id": "vampy",
+    "name": "Vampy",
+    "image": "images/moods/vampy.jpg",
+    "description": "Dark reds, plums, blackened jewel tones, moody shimmer, and dramatic gothic sparkle.",
+    "polishes": [
+      "Bee's_Knees_Astarion's_Juice_Box",
+      "Alchemy_Lacquers_Black_&_Bloom",
+      "Alchemy_Lacquers_Haunted_Thicket",
+      "Bee's_Knees_Devourer_of_Souls",
+      "Cracked_Heir_Apparent"
+    ]
+  },
+  {
+    "id": "fairycore",
+    "name": "Fairycore",
+    "image": "images/moods/fairy.jpg",
+    "description": "Soft glowy shimmers, delicate pinks, spring greens, iridescent shifts, and ethereal sparkle.",
+    "polishes": [
+      "ANLAC_Fuyu",
+      "Bee's_Knees_She_was_His_Light",
+      "Atomic_Polish_Larimar",
+      "Clionadh_Cosmetics_Radiance",
+      "Beaux_Reves_Silver_Lining"
+    ]
+  }
+]

@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moods</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    .page-shell {
+      max-width: 1180px;
+    }
+
+    .moods-page-topbar {
+      margin-bottom: 18px;
+    }
+
+    .moods-intro {
+      max-width: 820px;
+    }
+
+    .moods-status,
+    .moods-empty {
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 18px 20px;
+      color: #4b5563;
+      line-height: 1.55;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    }
+
+    .moods-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .mood-card {
+      appearance: none;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 188px;
+      width: 100%;
+      text-align: left;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 24px;
+      background-color: #aa83af !important;
+      background-image:
+        linear-gradient(180deg, rgba(18, 11, 24, 0.20), rgba(18, 11, 24, 0.38)),
+        var(--mood-card-image, linear-gradient(135deg, #cdb4db, #aa83af)) !important;
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      padding: 20px;
+      cursor: pointer;
+      box-shadow:
+        0 18px 38px rgba(58, 37, 65, 0.18),
+        0 0 0 1px rgba(255, 255, 255, 0.28) inset;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, filter 0.16s ease;
+    }
+
+    .mood-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(1.5px) saturate(1.12);
+      -webkit-backdrop-filter: blur(1.5px) saturate(1.12);
+    }
+
+    .mood-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 18% 14%, rgba(255, 255, 255, 0.34), transparent 28%),
+        linear-gradient(180deg, rgba(18, 11, 24, 0.10), rgba(18, 11, 24, 0.38));
+      pointer-events: none;
+    }
+
+    .mood-card:hover,
+    .mood-card.is-active {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.95);
+      filter: saturate(1.06) brightness(1.03);
+      box-shadow:
+        0 22px 46px rgba(58, 37, 65, 0.24),
+        0 0 0 1px rgba(255, 255, 255, 0.44) inset,
+        0 0 26px rgba(255, 255, 255, 0.18);
+    }
+
+    .mood-card.is-active {
+      box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.42),
+        0 22px 46px rgba(58, 37, 65, 0.24),
+        0 0 28px rgba(205, 180, 219, 0.42);
+    }
+
+    .mood-card-topline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .mood-card-emoji {
+      display: none !important;
+    }
+
+    .mood-card-title {
+      margin: 0;
+      color: #fff7ff;
+      font-size: 1.35rem;
+      line-height: 1.15;
+      letter-spacing: 0.01em;
+      text-shadow:
+        0 0 8px rgba(255, 255, 255, 0.34),
+        0 2px 7px rgba(24, 12, 31, 0.78),
+        0 6px 18px rgba(24, 12, 31, 0.42);
+    }
+
+    .mood-card-description {
+      margin: 0 0 14px 0;
+      color: rgba(255, 250, 255, 0.96);
+      line-height: 1.45;
+      font-size: 0.96rem;
+      font-weight: 600;
+      text-shadow:
+        0 0 6px rgba(255, 255, 255, 0.22),
+        0 2px 7px rgba(24, 12, 31, 0.76),
+        0 5px 16px rgba(24, 12, 31, 0.42);
+    }
+
+    .mood-card-count {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: rgba(255, 255, 255, 0.62);
+      color: #2f243c;
+      border: 1px solid rgba(255, 255, 255, 0.88);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+
+    .selected-mood-panel {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(229, 231, 235, 0.95);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    .selected-mood-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .selected-mood-kicker {
+      display: block;
+      color: #6b7280;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .selected-mood-title {
+      margin: 0 0 8px 0;
+      font-size: 1.7rem;
+      color: #2f243c;
+    }
+
+    .selected-mood-description {
+      margin: 0;
+      max-width: 760px;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+
+    .moods-back-button {
+      appearance: none;
+      border: 1px solid #d8dee9;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #fdf2f8, #ede9fe, #eff6ff);
+      color: #374151;
+      cursor: pointer;
+      font-weight: 700;
+      padding: 10px 14px;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .moods-back-button:hover {
+      transform: translateY(-1px);
+      background: linear-gradient(135deg, #fce7f3, #e9d5ff, #dbeafe);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    .moods-polish-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .moods-polish-card {
+      appearance: none;
+      content-visibility: auto;
+      contain-intrinsic-size: 260px;
+      width: 100%;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.92);
+      padding: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+      cursor: pointer;
+      text-align: left;
+      font: inherit;
+    }
+
+    .moods-polish-card:hover {
+      transform: translateY(-2px);
+      border-color: #cdb4db;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
+    }
+
+    .moods-polish-image-button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      width: 100%;
+      cursor: pointer;
+      display: block;
+      text-align: inherit;
+    }
+
+    .moods-polish-image-button:focus-visible {
+      outline: 2px solid #111827;
+      outline-offset: 4px;
+      border-radius: 14px;
+    }
+
+    .moods-polish-thumb-frame {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+
+    .moods-polish-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      background: #f9fafb;
+    }
+
+    .moods-polish-fallback {
+      width: 100%;
+      height: 100%;
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+      font-weight: 600;
+      text-align: center;
+      padding: 16px;
+      box-sizing: border-box;
+      background: #f9fafb;
+    }
+
+    .moods-polish-brand {
+      font-weight: 700;
+      color: #3f3150;
+      margin-bottom: 4px;
+    }
+
+    .moods-polish-name {
+      color: #1f2937;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .moods-polish-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+
+    .moods-directory-link {
+      display: inline-flex;
+      margin-top: 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #4b3155;
+      text-decoration: none;
+    }
+
+    .moods-directory-link:hover {
+      text-decoration: underline;
+    }
+
+
+    .moods-modal[hidden] {
+      display: none !important;
+    }
+
+    .moods-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+    }
+
+    .moods-modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(17, 24, 39, 0.6);
+      backdrop-filter: blur(2px);
+    }
+
+    .moods-modal-content {
+      position: relative;
+      z-index: 1;
+      width: min(1060px, calc(100vw - 32px));
+      max-height: calc(100vh - 32px);
+      overflow: auto;
+      margin: 16px auto;
+      background: linear-gradient(180deg, #aa83af 0%, #8d6a95 100%);
+      border-radius: 22px;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.18),
+        0 0 28px rgba(255, 255, 255, 0.22),
+        0 24px 60px rgba(0, 0, 0, 0.24);
+      animation: moodsModalIn 0.22s ease;
+    }
+
+    @keyframes moodsModalIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .moods-modal-close,
+    .moods-modal-body {
+      position: relative;
+      z-index: 2;
+    }
+
+    .moods-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 5;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(234, 212, 240, 0.95);
+      border-radius: 999px;
+      background: rgba(141, 106, 149, 0.88);
+      color: white;
+      font-size: 1.7rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+    }
+
+    .moods-modal-close:hover {
+      background: rgba(160, 122, 171, 0.96);
+      transform: scale(1.04);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    .moods-modal-body {
+      display: grid;
+      grid-template-columns: minmax(320px, 470px) 1fr;
+      gap: 30px;
+      padding: 34px;
+    }
+
+    .moods-modal-image-shell {
+      max-width: 470px;
+      padding-inline: 56px;
+      box-sizing: border-box;
+    }
+
+    .moods-modal-image {
+      border: none;
+      background: rgba(255, 255, 255, 0.98);
+      box-sizing: border-box;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.18),
+        0 0 14px rgba(255, 255, 255, 0.24),
+        0 0 28px rgba(255, 255, 255, 0.16),
+        0 10px 30px rgba(60, 35, 66, 0.2);
+    }
+
+    .moods-modal-details {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 18px;
+      padding: 18px 20px;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.96),
+        0 0 18px rgba(255, 255, 255, 0.68),
+        0 0 34px rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(6px);
+      min-width: 0;
+    }
+
+    .moods-modal-brand {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #3f3150;
+      letter-spacing: 0.02em;
+    }
+
+    .moods-modal-title {
+      margin: 0;
+      font-size: 2rem;
+      line-height: 1.1;
+      color: #2f243c;
+    }
+
+    .moods-modal-detail-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      font-size: 1rem;
+    }
+
+    .moods-modal-detail-label {
+      min-width: 82px;
+      font-weight: 700;
+      color: #5b4866;
+    }
+
+    .moods-modal-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 760px) {
+      .moods-modal-content {
+        width: calc(100vw - 16px);
+        max-height: calc(100dvh - 16px);
+        margin: 8px auto;
+        border-radius: 18px;
+      }
+
+      .moods-modal-body {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 18px 14px 14px;
+      }
+
+      .moods-modal-image-shell {
+        max-width: 100%;
+        padding-inline: 40px;
+      }
+
+      .moods-modal-image {
+        max-width: min(100%, 300px);
+        max-height: 34dvh;
+      }
+
+      .moods-modal-details {
+        gap: 10px;
+        padding: 12px 14px;
+      }
+
+      .moods-modal-title {
+        font-size: 1.45rem;
+      }
+    }
+
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 980px) {
+      .moods-grid,
+      .moods-polish-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .moods-grid,
+      .moods-polish-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .selected-mood-panel {
+        padding: 18px 14px;
+      }
+    }
+  
+
+    /* Match the directory polish detail modal sizing/behavior. */
+    .moods-modal-content {
+      width: min(940px, calc(100vw - 32px));
+    }
+
+    .moods-modal-body {
+      grid-template-columns: minmax(260px, 380px) 1fr;
+      gap: 30px;
+      padding: 34px;
+    }
+
+    .moods-modal-image-shell {
+      max-width: 420px;
+      padding-inline: 56px;
+      box-sizing: border-box;
+    }
+
+    .moods-modal-details {
+      padding: 18px 20px;
+    }
+
+    @media (max-width: 720px) {
+      .moods-modal-content {
+        width: calc(100vw - 16px);
+        max-height: calc(100dvh - 16px);
+        margin: 8px auto;
+        border-radius: 18px;
+      }
+
+      .moods-modal-body {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 18px 14px 14px;
+      }
+
+      .moods-modal-image-shell {
+        max-width: 100%;
+        padding-inline: 40px;
+      }
+
+      .moods-modal-image {
+        max-width: min(100%, 280px);
+        max-height: 28dvh;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="background-sparkles" aria-hidden="true">
+    <span class="sparkle six-point s1 white small top-glow"></span>
+    <span class="sparkle eight-point s2 violet tiny top-glow"></span>
+    <span class="sparkle six-point s3 gold small top-glow"></span>
+    <span class="sparkle eight-point s4 white tiny top-glow"></span>
+    <span class="sparkle six-point s5 coral small top-glow"></span>
+    <span class="sparkle eight-point s6 peach tiny top-glow"></span>
+    <span class="sparkle six-point s7 white small top-glow"></span>
+    <span class="sparkle eight-point s8 violet tiny top-glow"></span>
+    <span class="sparkle six-point s9 gold small top-glow"></span>
+    <span class="sparkle eight-point s10 white tiny top-glow"></span>
+    <span class="sparkle six-point s11 coral small"></span>
+    <span class="sparkle eight-point s12 peach tiny"></span>
+    <span class="sparkle six-point s13 white small"></span>
+    <span class="sparkle eight-point s14 violet tiny"></span>
+    <span class="sparkle six-point s15 gold small"></span>
+    <span class="sparkle eight-point s16 white tiny"></span>
+    <span class="sparkle six-point s17 coral small"></span>
+    <span class="sparkle eight-point s18 peach tiny"></span>
+    <span class="sparkle six-point s19 white small"></span>
+    <span class="sparkle eight-point s20 violet tiny"></span>
+    <span class="sparkle six-point s21 gold small"></span>
+    <span class="sparkle eight-point s22 white tiny"></span>
+    <span class="sparkle six-point s23 coral small"></span>
+    <span class="sparkle eight-point s24 peach tiny"></span>
+    <span class="sparkle six-point s25 white small"></span>
+    <span class="sparkle eight-point s26 violet tiny"></span>
+    <span class="sparkle six-point s27 gold small"></span>
+    <span class="sparkle eight-point s28 white tiny"></span>
+    <span class="sparkle six-point s29 coral small"></span>
+    <span class="sparkle eight-point s30 peach tiny"></span>
+    <span class="sparkle six-point s31 white small"></span>
+    <span class="sparkle eight-point s32 violet tiny"></span>
+    <span class="sparkle six-point s33 gold small"></span>
+    <span class="sparkle eight-point s34 white tiny"></span>
+    <span class="sparkle six-point s35 peach small"></span>
+    <span class="sparkle eight-point s36 white tiny"></span>
+    <span class="sparkle six-point s37 coral tiny"></span>
+  </div>
+
+  <div class="page-shell">
+    <div class="moods-page-topbar">
+      <div class="pages-dropdown">
+        <button class="pages-dropdown-toggle" type="button" aria-haspopup="true" aria-label="Open pages menu">
+          <span class="hamburger-icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+        <ul class="pages-dropdown-menu"></ul>
+      </div>
+    </div>
+
+    <h1>Moods</h1>
+    <p class="page-intro moods-intro">
+      Browse polishes by aesthetic, inspiration, and overall vibe.
+    </p>
+
+    <div id="moodsStatus" class="moods-status">Loading moods…</div>
+
+    <main id="moodsContent" hidden>
+      <section id="moodsGrid" class="moods-grid" aria-label="Mood list"></section>
+
+      <section id="selectedMoodPanel" class="selected-mood-panel" hidden>
+        <div class="selected-mood-header">
+          <div>
+            <span class="selected-mood-kicker">Selected Mood</span>
+            <h2 id="selectedMoodTitle" class="selected-mood-title"></h2>
+            <p id="selectedMoodDescription" class="selected-mood-description"></p>
+          </div>
+          <button id="showAllMoodsButton" class="moods-back-button" type="button">Show All Moods</button>
+        </div>
+
+        <div id="selectedMoodEmpty" class="moods-empty" hidden>
+          No matching polishes were found for this mood. Check the filenames listed in moods.json.
+        </div>
+
+        <div id="moodsPolishGrid" class="moods-polish-grid"></div>
+      </section>
+    </main>
+  </div>
+
+
+  <div id="moodsPolishModal" class="moods-modal" hidden>
+    <div class="moods-modal-overlay"></div>
+
+    <div class="moods-modal-content" role="dialog" aria-modal="true" aria-labelledby="moodsModalTitle">
+      <button id="moodsModalClose" class="moods-modal-close" type="button" aria-label="Close">
+        &times;
+      </button>
+
+      <div class="modal-card-sparkles" aria-hidden="true">
+        <span class="sparkle six-point s1 white tiny top-glow"></span>
+        <span class="sparkle eight-point s2 violet tiny top-glow"></span>
+        <span class="sparkle six-point s3 gold tiny top-glow"></span>
+        <span class="sparkle eight-point s4 white small top-glow"></span>
+        <span class="sparkle six-point s13 white tiny"></span>
+        <span class="sparkle eight-point s14 violet small"></span>
+        <span class="sparkle six-point s15 coral tiny"></span>
+        <span class="sparkle eight-point s20 white tiny"></span>
+        <span class="sparkle six-point s27 violet small"></span>
+        <span class="sparkle eight-point s31 peach small"></span>
+      </div>
+
+      <div class="moods-modal-body">
+        <div class="polish-image-panel">
+          <div class="polish-main-image-shell moods-modal-image-shell">
+            <button id="moodsModalImageButton" class="polish-main-image-button" type="button" aria-label="Open enlarged swatch image">
+              <img id="moodsModalImage" class="polish-gallery-image moods-modal-image" alt="" />
+            </button>
+
+            <div id="moodsModalFallback" class="moods-polish-fallback" hidden>No swatch available</div>
+
+            <div id="moodsModalGalleryNav" class="polish-gallery-nav" hidden>
+              <button id="moodsModalPrevImage" class="polish-gallery-arrow prev" type="button" aria-label="Previous swatch image">‹</button>
+              <button id="moodsModalNextImage" class="polish-gallery-arrow next" type="button" aria-label="Next swatch image">›</button>
+            </div>
+          </div>
+
+          <div id="moodsModalImageHint" class="polish-image-hint" hidden>Click image or arrows to view more swatches</div>
+        </div>
+
+        <div class="moods-modal-details">
+          <div id="moodsModalBrand" class="moods-modal-brand"></div>
+          <h2 id="moodsModalTitle" class="moods-modal-title"></h2>
+
+          <div class="moods-modal-detail-row">
+            <span class="moods-modal-detail-label">Color:</span>
+            <span id="moodsModalColor"></span>
+          </div>
+
+          <div class="moods-modal-detail-row">
+            <span class="moods-modal-detail-label">Type:</span>
+            <span id="moodsModalType"></span>
+          </div>
+
+          <div id="moodsModalSubtypeRow" class="moods-modal-detail-row" hidden>
+            <span class="moods-modal-detail-label">Sub Type:</span>
+            <span id="moodsModalSubtype"></span>
+          </div>
+
+          <div class="moods-modal-detail-row">
+            <span class="moods-modal-detail-label">Number:</span>
+            <span id="moodsModalNumber"></span>
+          </div>
+
+          <div id="moodsModalDescriptionBlock" class="polish-description-block" hidden>
+            <span class="polish-description-label">Description</span>
+            <p id="moodsModalDescription" class="polish-description-text"></p>
+          </div>
+
+          <div id="moodsModalActions" class="moods-modal-actions polish-modal-actions" hidden>
+            <a id="moodsModalDupesButton" class="dupe-entry-button" href="#" hidden>View Dupes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="imageViewer" class="image-viewer" hidden>
+    <div class="image-viewer-overlay"></div>
+
+    <div class="image-viewer-content" role="dialog" aria-modal="true" aria-label="Expanded swatch image">
+      <div class="image-viewer-frame">
+        <img id="imageViewerImg" class="image-viewer-image" alt="" loading="eager" decoding="async">
+        <button id="imageViewerClose" class="image-viewer-close" type="button" aria-label="Close enlarged image">
+          &times;
+        </button>
+
+        <button id="imageViewerPrev" class="image-viewer-arrow prev" type="button" aria-label="Previous swatch" hidden>
+          &#8249;
+        </button>
+        <button id="imageViewerNext" class="image-viewer-arrow next" type="button" aria-label="Next swatch" hidden>
+          &#8250;
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+
+    let allPolishes = [];
+    let allMoods = [];
+    let activeMoodId = '';
+    let activeMoodMatches = [];
+    let activeModalGallery = [];
+    let activeModalGalleryIndex = 0;
+
+    const moodsStatus = document.getElementById('moodsStatus');
+    const moodsContent = document.getElementById('moodsContent');
+    const moodsGrid = document.getElementById('moodsGrid');
+    const selectedMoodPanel = document.getElementById('selectedMoodPanel');
+    const selectedMoodTitle = document.getElementById('selectedMoodTitle');
+    const selectedMoodDescription = document.getElementById('selectedMoodDescription');
+    const selectedMoodEmpty = document.getElementById('selectedMoodEmpty');
+    const moodsPolishGrid = document.getElementById('moodsPolishGrid');
+    const showAllMoodsButton = document.getElementById('showAllMoodsButton');
+
+    const moodsPolishModal = document.getElementById('moodsPolishModal');
+    const moodsModalClose = document.getElementById('moodsModalClose');
+    const moodsModalOverlay = document.querySelector('.moods-modal-overlay');
+    const moodsModalImageButton = document.getElementById('moodsModalImageButton');
+    const moodsModalImage = document.getElementById('moodsModalImage');
+    const moodsModalFallback = document.getElementById('moodsModalFallback');
+    const moodsModalGalleryNav = document.getElementById('moodsModalGalleryNav');
+    const moodsModalPrevImage = document.getElementById('moodsModalPrevImage');
+    const moodsModalNextImage = document.getElementById('moodsModalNextImage');
+    const moodsModalImageHint = document.getElementById('moodsModalImageHint');
+    const moodsModalBrand = document.getElementById('moodsModalBrand');
+    const moodsModalTitle = document.getElementById('moodsModalTitle');
+    const moodsModalColor = document.getElementById('moodsModalColor');
+    const moodsModalType = document.getElementById('moodsModalType');
+    const moodsModalSubtypeRow = document.getElementById('moodsModalSubtypeRow');
+    const moodsModalSubtype = document.getElementById('moodsModalSubtype');
+    const moodsModalNumber = document.getElementById('moodsModalNumber');
+    const moodsModalDescriptionBlock = document.getElementById('moodsModalDescriptionBlock');
+    const moodsModalDescription = document.getElementById('moodsModalDescription');
+    const moodsModalActions = document.getElementById('moodsModalActions');
+    const moodsModalDupesButton = document.getElementById('moodsModalDupesButton');
+    const imageViewer = document.getElementById('imageViewer');
+    const imageViewerImg = document.getElementById('imageViewerImg');
+    const imageViewerClose = document.getElementById('imageViewerClose');
+    const imageViewerOverlay = document.querySelector('.image-viewer-overlay');
+    const imageViewerPrev = document.getElementById('imageViewerPrev');
+    const imageViewerNext = document.getElementById('imageViewerNext');
+
+    async function fetchMoodsData() {
+      const cacheBust = `v=${Date.now()}`;
+      const response = await fetch(`moods.json?${cacheBust}`, { cache: 'no-store' });
+
+      if (!response.ok) {
+        throw new Error(`Failed to load moods.json: ${response.status}`);
+      }
+
+      const moods = await response.json();
+      return Array.isArray(moods) ? moods : [];
+    }
+
+    function getMoodPolishIds(mood) {
+      return Array.isArray(mood?.polishes)
+        ? mood.polishes.map(value => String(value || '').trim()).filter(Boolean)
+        : [];
+    }
+
+    function getPolishByFilenameMap(polishes) {
+      return polishes.reduce((map, polish) => {
+        if (polish.filename) {
+          map.set(polish.filename, polish);
+        }
+        return map;
+      }, new Map());
+    }
+
+    function getMoodMatches(mood) {
+      const polishMap = getPolishByFilenameMap(allPolishes);
+      return getMoodPolishIds(mood)
+        .map(filename => polishMap.get(filename))
+        .filter(Boolean);
+    }
+
+    function getMoodImagePath(mood) {
+      const imageFromJson = String(mood?.image || mood?.Image || '').trim();
+
+      if (imageFromJson) {
+        return imageFromJson.replaceAll('\\', '/').replace(/^\.\//, '');
+      }
+
+      const moodId = String(mood?.id || '').trim();
+      return moodId ? `images/moods/${moodId}.jpg` : '';
+    }
+
+    function renderMoodCards() {
+      moodsGrid.innerHTML = allMoods.map(mood => {
+        const moodId = String(mood.id || '').trim();
+        const moodName = String(mood.name || moodId || 'Untitled Mood').trim();
+        const moodDescription = String(mood.description || '').trim();
+        const matches = getMoodMatches(mood);
+        const isActive = moodId === activeMoodId;
+        const moodBackground = getMoodImagePath(mood);
+        const backgroundStyle = moodBackground
+          ? `--mood-card-image: url(&quot;${escapeHTML(moodBackground)}&quot;);`
+          : '';
+
+        return `
+          <button class="mood-card${isActive ? ' is-active' : ''}" type="button" data-mood-id="${escapeHTML(moodId)}" style="${backgroundStyle}">
+            <div class="mood-card-topline">
+              <h2 class="mood-card-title">${escapeHTML(moodName)}</h2>
+            </div>
+            <p class="mood-card-description">${escapeHTML(moodDescription)}</p>
+            <span class="mood-card-count">${matches.length} polish${matches.length === 1 ? '' : 'es'}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function renderPolishCard(polish, index) {
+      const thumb = polish.imageOne || polish.image || '';
+      const subtype = getPolishSubtype(polish);
+      const titleText = `${polish.brand || ''} ${polish.name || ''}`.trim();
+
+      return `
+        <button class="moods-polish-card" type="button" data-polish-index="${index}" aria-label="Open ${escapeHTML(titleText)} details">
+          <div class="moods-polish-thumb-frame">
+            ${thumb
+          ? `<img class="moods-polish-thumb" src="${escapeHTML(thumb)}" alt="${escapeHTML(titleText)} swatch" loading="lazy" decoding="async">`
+          : `<div class="moods-polish-fallback">No swatch available</div>`
+        }
+          </div>
+          <div class="moods-polish-brand">${escapeHTML(polish.brand || 'Unknown Brand')}</div>
+          <div class="moods-polish-name">${escapeHTML(polish.name || 'Unnamed Polish')}</div>
+          <div class="moods-polish-meta">
+            <span>${escapeHTML(polish.color || 'Unknown color')}</span>
+            <span>•</span>
+            <span>${escapeHTML(polish.type || 'Unknown type')}</span>
+            ${subtype ? `<span>•</span><span>${escapeHTML(subtype)}</span>` : ''}
+          </div>
+          <div class="moods-polish-meta" style="margin-top: 10px;">
+            ${createNumberBadge(polish.type, polish.number)}
+          </div>
+        </button>
+      `;
+    }
+
+
+    function getHasDupesValue(polish) {
+      return String(
+        polish?.hasDupes ??
+        polish?.['Has Dupes'] ??
+        ''
+      ).trim().toLowerCase() === 'yes';
+    }
+
+    function getDupeGroupValue(polish) {
+      return String(
+        polish?.dupeGroup ??
+        polish?.['Dupe Group'] ??
+        ''
+      ).trim();
+    }
+
+    function buildDupesUrl(polish) {
+      const params = new URLSearchParams();
+      params.set('brand', polish.brand || '');
+      params.set('name', polish.name || '');
+      return `dupes.html?${params.toString()}`;
+    }
+
+    function updateMoodsDupesButton(polish) {
+      const dupeGroup = getDupeGroupValue(polish);
+      const hasDupes = getHasDupesValue(polish) || Boolean(dupeGroup);
+
+      if (!hasDupes || !dupeGroup) {
+        moodsModalDupesButton.hidden = true;
+        moodsModalDupesButton.setAttribute('href', '#');
+        moodsModalActions.hidden = true;
+        return;
+      }
+
+      moodsModalDupesButton.hidden = false;
+      moodsModalDupesButton.setAttribute('href', buildDupesUrl(polish));
+      moodsModalActions.hidden = false;
+    }
+
+
+    function getMoodsPolishGallery(polish) {
+      return getPolishGallery(polish);
+    }
+
+    function renderModalGalleryImage() {
+      const currentImage = activeModalGallery[activeModalGalleryIndex];
+      moodsModalImage.onerror = null;
+
+      if (!currentImage || !currentImage.src) {
+        moodsModalImage.hidden = true;
+        moodsModalImageButton.hidden = true;
+        moodsModalFallback.hidden = false;
+        moodsModalGalleryNav.hidden = true;
+        moodsModalImageHint.hidden = true;
+        moodsModalImage.removeAttribute('src');
+        moodsModalImage.alt = '';
+        return;
+      }
+
+      moodsModalFallback.hidden = true;
+      moodsModalImage.hidden = false;
+      moodsModalImageButton.hidden = false;
+      moodsModalImageHint.hidden = activeModalGallery.length <= 1;
+      moodsModalImage.src = currentImage.src;
+      moodsModalImage.alt = currentImage.alt || '';
+
+      moodsModalImage.onerror = function () {
+        moodsModalImage.hidden = true;
+        moodsModalImageButton.hidden = true;
+        moodsModalFallback.hidden = false;
+        moodsModalGalleryNav.hidden = true;
+        moodsModalImageHint.hidden = true;
+        moodsModalImage.removeAttribute('src');
+        moodsModalImage.alt = '';
+      };
+
+      moodsModalGalleryNav.hidden = activeModalGallery.length <= 1;
+    }
+
+    function setModalGallery(polish) {
+      activeModalGallery = getMoodsPolishGallery(polish);
+      activeModalGalleryIndex = 0;
+      renderModalGalleryImage();
+    }
+
+    function showPreviousModalImage() {
+      if (activeModalGallery.length <= 1) return;
+      activeModalGalleryIndex = (activeModalGalleryIndex - 1 + activeModalGallery.length) % activeModalGallery.length;
+      renderModalGalleryImage();
+    }
+
+    function showNextModalImage() {
+      if (activeModalGallery.length <= 1) return;
+      activeModalGalleryIndex = (activeModalGalleryIndex + 1) % activeModalGallery.length;
+      renderModalGalleryImage();
+    }
+
+    function openPolishModal(polish) {
+      if (!polish) return;
+
+      const subtype = getPolishSubtype(polish);
+      const description = getPolishDescription(polish);
+      const titleText = `${polish.brand || ''} ${polish.name || ''}`.trim();
+
+      setModalGallery(polish);
+      moodsModalBrand.textContent = polish.brand || '';
+      moodsModalTitle.textContent = polish.name || '';
+      moodsModalColor.textContent = polish.color || '—';
+      moodsModalType.textContent = polish.type || '—';
+      moodsModalNumber.innerHTML = createNumberBadge(polish.type, polish.number);
+
+      moodsModalSubtypeRow.hidden = !hasMeaningfulValue(subtype);
+      moodsModalSubtype.textContent = subtype;
+
+      moodsModalDescriptionBlock.hidden = !hasMeaningfulValue(description);
+      moodsModalDescription.textContent = description;
+
+      updateMoodsDupesButton(polish);
+
+      moodsPolishModal.hidden = false;
+      moodsPolishModal.setAttribute('aria-label', `${titleText} details`);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePolishModal() {
+      moodsPolishModal.hidden = true;
+      moodsModalImage.removeAttribute('src');
+      moodsModalImage.alt = '';
+      activeModalGallery = [];
+      activeModalGalleryIndex = 0;
+      document.body.style.overflow = '';
+    }
+
+    function selectMood(moodId, updateUrl = true) {
+      activeMoodId = moodId;
+      const mood = allMoods.find(item => String(item.id || '').trim() === moodId);
+
+      renderMoodCards();
+
+      if (!mood) {
+        selectedMoodPanel.hidden = true;
+        return;
+      }
+
+      const matches = getMoodMatches(mood);
+      activeMoodMatches = matches;
+      selectedMoodTitle.textContent = `${mood.name || mood.id}`;
+      selectedMoodDescription.textContent = mood.description || '';
+      moodsPolishGrid.innerHTML = matches.map(renderPolishCard).join('');
+      selectedMoodEmpty.hidden = matches.length > 0;
+      selectedMoodPanel.hidden = false;
+
+      if (updateUrl) {
+        const params = new URLSearchParams(window.location.search);
+        params.set('mood', moodId);
+        history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
+      }
+
+      selectedMoodPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function showAllMoods() {
+      activeMoodId = '';
+      activeMoodMatches = [];
+      selectedMoodPanel.hidden = true;
+      renderMoodCards();
+      history.replaceState(null, '', window.location.pathname);
+    }
+
+
+    function syncViewerToCurrentGalleryImage() {
+      const currentImage = activeModalGallery[activeModalGalleryIndex];
+
+      if (!currentImage || !currentImage.src) {
+        imageViewerImg.removeAttribute('src');
+        imageViewerImg.alt = '';
+        imageViewerPrev.hidden = true;
+        imageViewerNext.hidden = true;
+        return;
+      }
+
+      imageViewerImg.src = currentImage.src;
+      imageViewerImg.alt = currentImage.alt || moodsModalImage.alt || 'Expanded swatch image';
+      imageViewerPrev.hidden = activeModalGallery.length <= 1;
+      imageViewerNext.hidden = activeModalGallery.length <= 1;
+    }
+
+    function openImageViewer() {
+      if (!activeModalGallery.length) return;
+
+      syncViewerToCurrentGalleryImage();
+      imageViewer.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeImageViewer() {
+      imageViewer.hidden = true;
+      imageViewerImg.removeAttribute('src');
+      imageViewerImg.alt = '';
+
+      if (moodsPolishModal.hidden) {
+        document.body.style.overflow = '';
+      }
+    }
+
+    function bindMoodEvents() {
+      moodsGrid.addEventListener('click', event => {
+        const card = event.target.closest('.mood-card');
+        if (!card) return;
+
+        selectMood(card.dataset.moodId || '');
+      });
+
+      moodsPolishGrid.addEventListener('click', event => {
+        const card = event.target.closest('.moods-polish-card');
+        if (!card) return;
+
+        const polishIndex = Number(card.dataset.polishIndex);
+        openPolishModal(activeMoodMatches[polishIndex]);
+      });
+
+      showAllMoodsButton.addEventListener('click', showAllMoods);
+      moodsModalClose.addEventListener('click', closePolishModal);
+      moodsModalOverlay.addEventListener('click', closePolishModal);
+      moodsModalPrevImage.addEventListener('click', showPreviousModalImage);
+      moodsModalNextImage.addEventListener('click', showNextModalImage);
+      moodsModalImageButton.addEventListener('click', openImageViewer);
+
+      imageViewerClose.addEventListener('click', closeImageViewer);
+      imageViewerOverlay.addEventListener('click', closeImageViewer);
+
+      imageViewerPrev.addEventListener('click', () => {
+        showPreviousModalImage();
+        syncViewerToCurrentGalleryImage();
+      });
+
+      imageViewerNext.addEventListener('click', () => {
+        showNextModalImage();
+        syncViewerToCurrentGalleryImage();
+      });
+
+      imageViewerImg.addEventListener('click', () => {
+        if (activeModalGallery.length <= 1) {
+          closeImageViewer();
+          return;
+        }
+
+        showNextModalImage();
+        syncViewerToCurrentGalleryImage();
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && !imageViewer.hidden) {
+          closeImageViewer();
+          return;
+        }
+
+        if (moodsPolishModal.hidden) return;
+
+        if (event.key === 'Escape') {
+          closePolishModal();
+          return;
+        }
+
+        if (event.key === 'ArrowLeft') {
+          showPreviousModalImage();
+        }
+
+        if (event.key === 'ArrowRight') {
+          showNextModalImage();
+        }
+      });
+    }
+
+    async function initializeMoodsPage() {
+      try {
+        initializeSharedPagesMenu();
+        bindMoodEvents();
+
+        const [polishes, moods] = await Promise.all([
+          fetchPolishData(),
+          fetchMoodsData()
+        ]);
+
+        allPolishes = polishes;
+        allMoods = moods;
+
+        renderMoodCards();
+        moodsStatus.hidden = true;
+        moodsContent.hidden = false;
+
+        const initialMood = new URLSearchParams(window.location.search).get('mood');
+        if (initialMood) {
+          selectMood(initialMood, false);
+        }
+      } catch (error) {
+        console.error('Unable to initialize moods page:', error);
+        moodsStatus.textContent = 'Unable to load moods. Check that data.json and moods.json are both available and valid.';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initializeMoodsPage);
+  </script>
+</body>
+
+</html>

@@ -1,18 +1,22 @@
 [
     {
         "group": "Purple_Green_Shimmer",
-        "name": "Purple Green Shimmer"
+        "name": "Purple Green Shimmer",
+        "image": "images/dupes/Purple_Green_Shimmer.webp"
     },
     {
         "group": "Purple_Teal_Shimmer",
-        "name": "Purple Teal Shimmer"
+        "name": "Purple Teal Shimmer",
+        "image": "images/dupes/Purple_Teal_Shimmer.webp"
     },
     {
         "group": "Intense_Blue_Shimmer",
-        "name": "Intense Blue Shimmer"
+        "name": "Intense Blue Shimmer",
+        "image": "images/dupes/Intense_Blue_Shimmer.webp"
     },
     {
         "group": "Blue_Red_Shimmer",
-        "name": "Blue Red Shimmer"
+        "name": "Blue Red Shimmer",
+        "image": "images/dupes/Blue_Red_Shimmer.webp"
     }
 ]

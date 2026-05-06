@@ -30,8 +30,8 @@
         }
 
         .stats-card {
-            background: rgba(26, 26, 32, 0.95);
-            border: 1px solid rgba(88, 78, 98, 0.55);
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(229, 231, 235, 0.95);
             border-radius: 18px;
             padding: 22px;
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
@@ -70,12 +70,12 @@
         .stats-card-title {
             margin: 0;
             font-size: 1.2rem;
-            color: #f4ebf9;
+            color: #2f243c;
         }
 
         .stats-card-subtitle {
             margin: 0;
-            color: rgba(226, 217, 236, 0.72);
+            color: #6b7280;
             font-size: 0.95rem;
             line-height: 1.5;
         }
@@ -88,8 +88,8 @@
         }
 
         .stats-summary-card {
-            background: rgba(26, 26, 32, 0.9);
-            border: 1px solid rgba(88, 78, 98, 0.55);
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid #e5e7eb;
             border-radius: 16px;
             padding: 16px 18px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -100,7 +100,7 @@
             font-size: 0.85rem;
             font-weight: 700;
             letter-spacing: 0.02em;
-            color: rgba(226, 217, 236, 0.72);
+            color: #6b7280;
             margin-bottom: 8px;
             text-transform: uppercase;
         }
@@ -109,7 +109,7 @@
             font-size: 1.8rem;
             font-weight: 700;
             line-height: 1;
-            color: #f4ebf9;
+            color: #2f243c;
         }
 
         .chart-wrap {
@@ -175,7 +175,7 @@
         .stats-filter-group label {
             font-weight: 700;
             font-size: 0.95rem;
-            color: #ece5f4;
+            color: #3f3150;
         }
 
         .stats-filter-group select {
@@ -184,27 +184,27 @@
             border-radius: 10px;
             background: #1a1a20;
             font-size: 0.95rem;
-            color: #ece5f4;
+            color: #3f3150;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
             transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
         }
 
         .stats-filter-group select:hover {
-            border-color: rgba(137, 122, 162, 0.8);
+            border-color: #bfc7d1;
         }
 
         .stats-filter-group select:focus {
             outline: none;
-            border-color: rgba(182, 152, 210, 0.92);
+            border-color: #a78bb0;
             box-shadow: 0 0 0 3px rgba(167, 139, 176, 0.16);
         }
 
         .stats-status {
-            background: rgba(26, 26, 32, 0.9);
-            border: 1px solid rgba(88, 78, 98, 0.55);
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid #e5e7eb;
             border-radius: 14px;
             padding: 18px 20px;
-            color: rgba(232, 223, 241, 0.82);
+            color: #4b5563;
             line-height: 1.55;
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
         }
@@ -217,7 +217,7 @@
             border-radius: 14px;
             background: #1d1b20;
             border: 1px dashed rgba(117, 119, 145, 0.72);
-            color: rgba(226, 217, 236, 0.72);
+            color: #6b7280;
             font-weight: 600;
             text-align: center;
             padding: 24px;
@@ -236,17 +236,17 @@
             margin-top: 14px;
             padding: 14px 16px;
             border-radius: 14px;
-            background: rgba(26, 28, 38, 0.94);
-            border: 1px solid rgba(83, 88, 118, 0.56);
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.95);
             box-shadow:
-                0 0 0 1px rgba(27, 28, 38, 0.9),
+                0 0 0 1px rgba(255, 255, 255, 0.8),
                 0 8px 18px rgba(0, 0, 0, 0.06);
-            color: rgba(232, 223, 241, 0.82);
+            color: #4b5563;
             line-height: 1.5;
         }
 
         .stats-brand-summary strong {
-            color: #f4ebf9;
+            color: #2f243c;
         }
 
 
@@ -312,7 +312,7 @@
             border-radius: 999px;
             border: 1px solid rgba(244, 235, 249, .76);
             background: rgba(26, 26, 32, .88);
-            color: #f4ebf9;
+            color: #2f243c;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
@@ -468,7 +468,7 @@
         }
 
         .stats-selected-filter strong {
-            color: #f4ebf9;
+            color: #2f243c;
         }
 
         .stats-chart-area[hidden] {
@@ -492,7 +492,7 @@
         .stats-map-placeholder strong {
             display: block;
             margin-bottom: 6px;
-            color: #f4ebf9;
+            color: #2f243c;
             font-size: 1.1rem;
         }
 
@@ -585,6 +585,250 @@
                 max-width: 100%;
             }
         }
+
+        /* ===== Source-style light polish for functional map page ===== */
+        .stats-map-card::before {
+            background:
+                radial-gradient(circle at 16% 18%, rgba(246, 163, 215, 0.20), transparent 28%),
+                radial-gradient(circle at 74% 28%, rgba(196, 181, 253, 0.18), transparent 32%),
+                radial-gradient(circle at 56% 72%, rgba(250, 204, 21, 0.10), transparent 32%);
+        }
+
+        .stats-map-shell {
+            border: 1px solid rgba(205, 180, 219, 0.72);
+            background:
+                radial-gradient(circle at 50% 48%, rgba(255, 255, 255, 0.68), transparent 42%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(247, 241, 249, 0.92));
+            box-shadow:
+                inset 0 0 38px rgba(255, 255, 255, 0.44),
+                0 8px 22px rgba(58, 37, 65, 0.08);
+        }
+
+        .stats-map-shell::before {
+            background-image:
+                radial-gradient(circle, rgba(170, 131, 175, 0.22) 0 1px, transparent 1.8px),
+                radial-gradient(circle, rgba(190, 172, 255, 0.18) 0 1px, transparent 1.6px);
+            opacity: 0.34;
+        }
+
+        .stats-map-globe-button {
+            border: 1px solid rgba(205, 180, 219, 0.86);
+            background: rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #3f3150;
+            box-shadow:
+                0 0 0 6px rgba(255, 255, 255, 0.42),
+                0 0 18px rgba(205, 180, 219, 0.28),
+                0 8px 18px rgba(58, 37, 65, 0.14);
+        }
+
+        .stats-map-globe-button.is-active {
+            background: rgba(63, 49, 80, 0.55);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #ffffff;
+            border-color: rgba(63, 49, 80, 0.45);
+            box-shadow:
+                0 0 0 7px rgba(205, 180, 219, 0.22),
+                0 0 28px rgba(170, 131, 175, 0.34),
+                0 10px 22px rgba(58, 37, 65, 0.20);
+        }
+
+        .continent-region .continent-shape {
+            stroke: rgba(255, 255, 255, 0.76);
+        }
+
+        .continent-label,
+        .continent-count {
+            stroke: rgba(63, 49, 80, 0.86);
+            filter: drop-shadow(0 2px 5px rgba(255, 255, 255, 0.42));
+        }
+
+        .continent-label {
+            fill: #fff7ff;
+        }
+
+        .continent-count {
+            fill: rgba(255, 250, 255, 0.96);
+        }
+
+        .stats-map-tooltip {
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(205, 180, 219, 0.92);
+            color: #4b5563;
+            box-shadow: 0 14px 30px rgba(58, 37, 65, 0.18);
+        }
+
+        .stats-map-tooltip strong {
+            color: #2f243c;
+        }
+
+        .stats-map-instruction,
+        .stats-selected-filter {
+            color: #6b7280;
+        }
+
+        .stats-selected-filter {
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(229, 231, 235, 0.95);
+        }
+
+        .stats-selected-filter strong {
+            color: #2f243c;
+        }
+
+        .stats-map-placeholder {
+            border: 1px dashed rgba(205, 180, 219, 0.82);
+            background: rgba(255, 255, 255, 0.82);
+            color: #6b7280;
+        }
+
+        .stats-map-placeholder strong {
+            color: #2f243c;
+        }
+
+
+        /* ===== Map-on-single-card cleanup =====
+           Keep #statsMapShell for tooltip positioning, but remove the inner card look
+           so the map sits visually on the same card as the Collection Map title. */
+        .stats-map-shell {
+            border: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+        }
+
+        .stats-map-shell::before {
+            content: none !important;
+        }
+
+        .continent-map-svg {
+            margin-top: 2px;
+        }
+
+
+
+        /* ===== Glass card matching pass =====
+           These controls should read like the page cards instead of solid white UI. */
+        :root {
+            --stats-glass-card-bg: transparent;
+            --stats-glass-card-border: rgba(255, 255, 255, 0.78);
+            --stats-glass-card-shadow: none;
+            --stats-glass-card-text: #2f243c;
+            --stats-glass-card-muted: #4b5563;
+        }
+
+        .stats-map-placeholder,
+        .stats-selected-filter,
+        .stats-map-globe-button,
+        #brandStatsSelect,
+        .stats-icon-button {
+            background: var(--stats-glass-card-bg) !important;
+            border: 1px solid var(--stats-glass-card-border) !important;
+            color: var(--stats-glass-card-text) !important;
+            box-shadow: var(--stats-glass-card-shadow) !important;
+            backdrop-filter: blur(8px) saturate(1.08) !important;
+            -webkit-backdrop-filter: blur(8px) saturate(1.08) !important;
+        }
+
+        .stats-map-placeholder {
+            color: var(--stats-glass-card-muted) !important;
+        }
+
+        .stats-map-placeholder strong,
+        .stats-selected-filter strong {
+            color: var(--stats-glass-card-text) !important;
+        }
+
+        #brandStatsSelect option {
+            background: #f4ebf9;
+            color: #2f243c;
+        }
+
+        .stats-map-globe-button:hover,
+        .stats-icon-button:hover,
+        #brandStatsSelect:hover {
+            background: transparent !important;
+            border-color: rgba(205, 180, 219, 0.92) !important;
+            box-shadow:
+                0 0 0 3px rgba(205, 180, 219, 0.14),
+                0 8px 18px rgba(58, 37, 65, 0.12) !important;
+        }
+
+        .stats-map-globe-button.is-active {
+            background: transparent !important;
+            color: #3f3150 !important;
+            border-color: rgba(255, 255, 255, 0.72) !important;
+            box-shadow:
+                0 0 0 6px rgba(205, 180, 219, 0.22),
+                0 0 24px rgba(170, 131, 175, 0.28),
+                0 10px 22px rgba(58, 37, 65, 0.18) !important;
+        }
+
+        .stats-icon-button svg {
+            width: 22px;
+            height: 22px;
+            display: block;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .stats-icon-button .stats-bar-icon {
+            width: 22px;
+            height: 22px;
+            display: block;
+            stroke: currentColor;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .stats-icon-button .stats-bar-icon-baseline {
+            stroke-width: 2.2;
+            opacity: 0.72;
+        }
+
+        .stats-icon-button .stats-bar-icon-bar {
+            fill: currentColor;
+            stroke: none;
+            opacity: 0.9;
+        }
+
+        /* ===== Fully transparent stats controls ===== */
+        #brandStatsSelect,
+        #brandStatsSelect:hover,
+        #brandStatsSelect:focus,
+        .stats-map-globe-button,
+        .stats-map-globe-button:hover,
+        .stats-map-globe-button:focus,
+        .stats-map-globe-button.is-active,
+        .stats-selected-filter,
+        .stats-map-placeholder {
+            background: transparent !important;
+            background-color: transparent !important;
+            box-shadow: none !important;
+        }
+
+        #brandStatsSelect {
+            appearance: auto;
+            -webkit-appearance: auto;
+            color: #2f243c !important;
+        }
+
+        #brandStatsSelect option {
+            background-color: #f4ebf9;
+            color: #2f243c;
+        }
+
+        .stats-map-globe-button,
+        .stats-map-globe-button.is-active {
+            color: #3f3150 !important;
+        }
+
     </style>
 </head>
 
@@ -652,6 +896,11 @@
             </div>
         </div>
 
+        <h1>Polish Stats</h1>
+        <p class="page-intro stats-intro">
+            A visual look at your collection by color, finish, brand, and region.
+        </p>
+
         <div id="statsStatus" class="stats-status">Loading your polish data…</div>
 
         <div id="statsContent" hidden>
@@ -704,7 +953,6 @@
                                 </feMerge>
                             </filter>
                         </defs>
-                        <rect width="960" height="547" rx="18" fill="rgba(10, 9, 16, 0.08)"></rect>
                         <g class="continent-region" data-region="North America" tabindex="0" role="button"
                             aria-label="Show North America stats" fill="rgba(236, 143, 180, 0.74)">
                             <title>North America</title>
@@ -1280,7 +1528,7 @@
                     : Math.max(rawTextX, textWidth + safePadding);
                 const textY = Math.max(safePadding, Math.min(rawTextY, chart.height - safePadding));
 
-                ctx.strokeStyle = 'rgba(229, 231, 235, 0.85)';
+                ctx.strokeStyle = 'rgba(17, 24, 39, 0.86)';
                 ctx.lineWidth = 1.75;
                 ctx.lineCap = 'round';
                 ctx.lineJoin = 'round';
@@ -1290,7 +1538,7 @@
                 ctx.lineTo(endX, endY);
                 ctx.stroke();
 
-                ctx.fillStyle = 'rgba(229, 231, 235, 0.92)';
+                ctx.fillStyle = 'rgba(17, 24, 39, 0.92)';
                 ctx.beginPath();
                 ctx.arc(startX, startY, 2.5, 0, Math.PI * 2);
                 ctx.fill();
@@ -1795,7 +2043,7 @@
                             beginAtZero: true,
                             ticks: {
                                 precision: 0,
-                                color: '#d7cbe5',
+                                color: '#4b5563',
                                 font: {
                                     family: 'Arial',
                                     size: 12
@@ -1809,7 +2057,7 @@
                         y: {
                             stacked: true,
                             ticks: {
-                                color: '#d7cbe5',
+                                color: '#4b5563',
                                 font: {
                                     family: 'Arial',
                                     size: 12
@@ -1828,7 +2076,7 @@
                                 boxWidth: 12,
                                 boxHeight: 12,
                                 padding: 12,
-                                color: '#d7cbe5',
+                                color: '#4b5563',
                                 font: {
                                     size: 12,
                                     family: 'Arial'
@@ -1902,7 +2150,20 @@
             }
         }
 
-        initializeStatsPage();
+        function updateStatsIconButton() {
+            const statsButton = document.querySelector('.stats-icon-button');
+            if (!statsButton) return;
+            statsButton.innerHTML = `
+                <svg class="stats-bar-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path class="stats-bar-icon-baseline" d="M4.5 19.5h15"></path>
+                    <rect class="stats-bar-icon-bar" x="6" y="12" width="3.2" height="7.5" rx="1.2"></rect>
+                    <rect class="stats-bar-icon-bar" x="10.4" y="8" width="3.2" height="11.5" rx="1.2"></rect>
+                    <rect class="stats-bar-icon-bar" x="14.8" y="10.5" width="3.2" height="9" rx="1.2"></rect>
+                </svg>
+            `;
+        }
+
+        initializeStatsPage().then(updateStatsIconButton);
     </script>
 </body>
 
