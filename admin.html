@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin | Nail Polish Directory</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+
+<body>
+  <div class="page-shell">
+    <h1>Admin</h1>
+    <p class="page-intro">Add and manage polishes here.</p>
+
+    <div id="loggedOutPanel">
+      <p>You need to log in to use this page.</p>
+      <button type="button" onclick="netlifyIdentity.open()">Log In</button>
+    </div>
+
+    <div id="adminPanel" hidden>
+      <p>You are logged in.</p>
+
+      <h2>Add Polish</h2>
+
+      <form id="addPolishForm">
+        <label>
+          Brand
+          <input name="Brand" required />
+        </label>
+
+        <label>
+          Nail polish name
+          <input name="Nailpolish" required />
+        </label>
+
+        <label>
+          Description
+          <textarea name="Description"></textarea>
+        </label>
+
+        <label>
+          Color
+          <input name="Color" />
+        </label>
+
+        <label>
+          Type
+          <input name="Type" />
+        </label>
+
+        <label>
+          Sub Type
+          <input name="Sub Type" />
+        </label>
+
+        <label>
+          Number
+          <input name="Number" />
+        </label>
+
+        <label>
+          Region
+          <input name="Region" />
+        </label>
+
+        <label>
+          Local
+          <input name="Local" />
+        </label>
+
+        <button type="submit">Save Polish</button>
+      </form>
+
+      <button type="button" onclick="netlifyIdentity.logout()">Log Out</button>
+    </div>
+  </div>
+
+  <script>
+    function updateAdminView() {
+      const user = netlifyIdentity.currentUser();
+      document.getElementById('loggedOutPanel').hidden = !!user;
+      document.getElementById('adminPanel').hidden = !user;
+    }
+
+    netlifyIdentity.on('init', updateAdminView);
+    netlifyIdentity.on('login', () => {
+      updateAdminView();
+      netlifyIdentity.close();
+    });
+    netlifyIdentity.on('logout', updateAdminView);
+
+    netlifyIdentity.init();
+
+    document.getElementById('addPolishForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      alert('Form is working. Saving to GitHub comes next.');
+    });
+  </script>
+</body>
+
+</html>
