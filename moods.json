@@ -36,7 +36,7 @@
     "id": "ethereal",
     "name": "Ethereal",
     "image": "images/moods/ethereal.jpg",
-    "description": "Soft shimmer, delicate glow, and airy finishes.",
+    "description": "Glowing aurora shimmer, luminous color shifts, and soft ethereal finishes that seem lit from within.",
     "polishes": [
       "ANLAC_Fuyu",
       "Alchemy_Lacquers_Timeless_Love",
@@ -65,10 +65,10 @@
     ]
   },
   {
-    "id": "enchanted-forest",
-    "name": "Enchanted Forest",
+    "id": "verdant_forest",
+    "name": "Verdant Forest",
     "image": "images/moods/forest.jpg",
-    "description": "Greens, mossy shades, jewel tones, mysterious shimmer, and woodland-magic finishes.",
+    "description": "Greens, mossy shades, jewel tones, mysterious shimmer, and dark finishes.",
     "polishes": [
       "Baroness_X_Tiki_Totem",
       "Bee's_Knees_It_Happens",
@@ -91,9 +91,9 @@
   },
   {
     "id": "neon_bright",
-    "name": "Neon & Loud",
-    "image": "images/moods/neon.jpg",
-    "description": "Bright, bold, high-impact colors.",
+    "name": "Plasma",
+    "image": "images/moods/plasma.jpg",
+    "description": "Bright, bold, high-impact colors and electric finishes.",
     "polishes": [
       "Maniology_Blue_Glue",
       "ILNP_Pink_Flamingo",
@@ -114,10 +114,10 @@
     ]
   },
   {
-    "id": "fairycore",
-    "name": "Fairycore",
-    "image": "images/moods/fairy.jpg",
-    "description": "Soft glowy shimmers, delicate pinks, spring greens, iridescent shifts, and ethereal sparkle.",
+    "id": "maximalist",
+    "name": "Maximalist",
+    "image": "images/moods/maximalist.jpg",
+    "description": "Over-the-top sparkle, layered finishes, bold textures, and unapologetically extra polish.",
     "polishes": [
       "ANLAC_Fuyu",
       "Bee's_Knees_She_was_His_Light",
