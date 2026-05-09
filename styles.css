@@ -1615,6 +1615,7 @@ h1 {
   gap: 12px;
   margin-top: 18px;
 }
+
 /* =========================================================
    Luxe frosted-glass refresh
    ========================================================= */
@@ -1677,6 +1678,13 @@ h1 {
   background-position: 24px 14px, 60px 48px, 10px 86px;
   filter: blur(0.45px);
   opacity: 0.28;
+}
+
+/* Remove the faint dotted/grid overlay while keeping the hand-placed sparkle layer. */
+.background-sparkles::before,
+.background-sparkles::after {
+  content: none !important;
+  background: none !important;
 }
 
 .sparkle {
@@ -1906,13 +1914,13 @@ h1 {
   opacity: 0.68;
 }
 
-.table-wrap > *,
-.filter-panel > *,
-.lucky-panel > *,
-.dupes-panel > *,
-.selected-mood-panel > *,
-.stats-card > *,
-.stats-summary-card > * {
+.table-wrap>*,
+.filter-panel>*,
+.lucky-panel>*,
+.dupes-panel>*,
+.selected-mood-panel>*,
+.stats-card>*,
+.stats-summary-card>* {
   position: relative;
   z-index: 1;
 }
@@ -2032,7 +2040,7 @@ table.dataTable tbody tr:hover {
 
 .number-badge {
   border-color: rgba(255, 255, 255, 0.54);
-  box-shadow: 0 8px 16px rgba(91, 54, 103, 0.10), inset 0 1px 0 rgba(255,255,255,0.36);
+  box-shadow: 0 8px 16px rgba(91, 54, 103, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.36);
 }
 
 .surprise-modal-content,
@@ -2043,6 +2051,7 @@ table.dataTable tbody tr:hover {
 }
 
 @media (max-width: 820px) {
+
   .site-topbar,
   .directory-topbar {
     align-items: flex-start;

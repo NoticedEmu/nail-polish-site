@@ -518,6 +518,7 @@
     }
 
     @media (max-width: 980px) {
+
       .moods-grid,
       .moods-polish-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -525,6 +526,7 @@
     }
 
     @media (max-width: 640px) {
+
       .moods-grid,
       .moods-polish-grid {
         grid-template-columns: 1fr;
@@ -534,7 +536,7 @@
         padding: 18px 14px;
       }
     }
-  
+
 
     /* Match the directory polish detail modal sizing/behavior. */
     .moods-modal-content {
@@ -581,7 +583,6 @@
         max-height: 28dvh;
       }
     }
-
   </style>
 </head>
 
@@ -694,19 +695,23 @@
       <div class="moods-modal-body">
         <div class="polish-image-panel">
           <div class="polish-main-image-shell moods-modal-image-shell">
-            <button id="moodsModalImageButton" class="polish-main-image-button" type="button" aria-label="Open enlarged swatch image">
+            <button id="moodsModalImageButton" class="polish-main-image-button" type="button"
+              aria-label="Open enlarged swatch image">
               <img id="moodsModalImage" class="polish-gallery-image moods-modal-image" alt="" />
             </button>
 
             <div id="moodsModalFallback" class="moods-polish-fallback" hidden>No swatch available</div>
 
             <div id="moodsModalGalleryNav" class="polish-gallery-nav" hidden>
-              <button id="moodsModalPrevImage" class="polish-gallery-arrow prev" type="button" aria-label="Previous swatch image">‹</button>
-              <button id="moodsModalNextImage" class="polish-gallery-arrow next" type="button" aria-label="Next swatch image">›</button>
+              <button id="moodsModalPrevImage" class="polish-gallery-arrow prev" type="button"
+                aria-label="Previous swatch image">‹</button>
+              <button id="moodsModalNextImage" class="polish-gallery-arrow next" type="button"
+                aria-label="Next swatch image">›</button>
             </div>
           </div>
 
-          <div id="moodsModalImageHint" class="polish-image-hint" hidden>Click image or arrows to view more swatches</div>
+          <div id="moodsModalImageHint" class="polish-image-hint" hidden>Click image or arrows to view more swatches
+          </div>
         </div>
 
         <div class="moods-modal-details">

@@ -36,23 +36,14 @@ function normalizeAssetPath(value) {
     const raw = String(value ?? '').trim();
     if (!raw) return '';
 
-    const cleaned = raw
+    // Keep image paths as close to data.json as possible.
+    // GitHub Pages is case-sensitive, and encoding/case-normalizing local file paths
+    // can break thumbnails when file or folder names contain punctuation.
+    return raw
         .replaceAll('\\', '/')
         .replaceAll('&amp;', '&')
         .replace(/^\.\//, '')
-        .replace(/^images\//i, 'images/')
         .trim();
-
-    return cleaned
-        .split('/')
-        .map(segment => {
-            try {
-                return encodeURIComponent(decodeURIComponent(segment));
-            } catch {
-                return encodeURIComponent(segment);
-            }
-        })
-        .join('/');
 }
 
 function normalizePolishEntry(entry = {}) {
@@ -70,8 +61,7 @@ function normalizePolishEntry(entry = {}) {
             entry['image one'],
             entry.image1,
             entry['image 1'],
-            entry.image,
-            thumb
+            entry.image
         )
     );
 
@@ -102,7 +92,7 @@ function normalizePolishEntry(entry = {}) {
         filename,
         Filename: filename,
         thumb,
-        image: imageOne,
+        image: imageOne || thumb,
         imageOne,
         imageTwo,
         imageThree,
@@ -458,8 +448,14 @@ function getPolishGallery(polish) {
     const gallery = [];
     const seen = new Set();
     const normalizedPolish = normalizePolishEntry(polish);
+    const fallbackThumb = normalizedPolish?.thumb || '';
 
-    function add(entry) {
+    function isLikelyImagePath(path) {
+        const value = String(path ?? '').trim();
+        return /\.(avif|gif|jpe?g|png|svg|webp)(?:[?#].*)?$/i.test(value);
+    }
+
+    function add(entry, options = {}) {
         if (!entry) return;
 
         let src = '';
@@ -468,7 +464,7 @@ function getPolishGallery(polish) {
 
         if (typeof entry === 'string') {
             src = normalizeAssetPath(entry);
-            thumb = src;
+            thumb = options.useFallbackThumb ? fallbackThumb : src;
         } else if (typeof entry === 'object') {
             src = normalizeAssetPath(
                 entry.src ??
@@ -479,28 +475,38 @@ function getPolishGallery(polish) {
                 ''
             );
 
-            thumb = normalizeAssetPath(entry.thumb ?? entry.Thumb ?? src);
+            thumb = normalizeAssetPath(entry.thumb ?? entry.Thumb ?? (options.useFallbackThumb ? fallbackThumb : src));
             alt = String(entry.alt ?? '').trim();
         }
 
-        if (!src || seen.has(src)) return;
+        if (!src || !isLikelyImagePath(src) || seen.has(src)) return;
         seen.add(src);
 
         gallery.push({
             src,
-            thumb: thumb || src,
+            thumb: isLikelyImagePath(thumb) ? thumb : src,
             alt
         });
     }
 
+    // Only real gallery/full-size image fields should create next/previous image slots.
+    // The thumbnail is used for previews, but it should not become an extra blank/low-res slide.
     [
         ...(Array.isArray(normalizedPolish?.gallery) ? normalizedPolish.gallery : []),
         normalizedPolish?.imageOne,
         normalizedPolish?.imageTwo,
-        normalizedPolish?.imageThree,
-        normalizedPolish?.image,
-        normalizedPolish?.thumb
-    ].forEach(add);
+        normalizedPolish?.imageThree
+    ].forEach(entry => add(entry, { useFallbackThumb: true }));
+
+    // Support older data that only has `image`, but avoid adding the thumbnail as a duplicate slide.
+    if (normalizedPolish?.image && normalizedPolish.image !== fallbackThumb) {
+        add(normalizedPolish.image, { useFallbackThumb: true });
+    }
+
+    // If a polish truly has no full-size image, fall back to its thumbnail as the only image.
+    if (!gallery.length && fallbackThumb) {
+        add(fallbackThumb);
+    }
 
     return gallery;
 }

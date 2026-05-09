@@ -1542,6 +1542,44 @@
         button.setAttribute('href', buildDupesUrl(polish));
       }
 
+
+      function buildImagePathAlternates(path) {
+        const value = String(path || '').trim();
+        if (!value) return [];
+
+        const alternates = new Set([value]);
+
+        if (/^images\//i.test(value)) {
+          alternates.add(value.replace(/^images\//i, 'Images/'));
+          alternates.add(value.replace(/^images\//i, 'images/'));
+        }
+
+        alternates.add(value.replace('/thumb/', '/Thumb/'));
+        alternates.add(value.replace('/Thumb/', '/thumb/'));
+
+        return [...alternates].filter(Boolean);
+      }
+
+      function handleDirectoryThumbError(img) {
+        if (!img) return;
+
+        const candidates = String(img.dataset.fallbackSrcs || '')
+          .split('|')
+          .map(value => value.trim())
+          .filter(Boolean);
+
+        const currentSrc = decodeURIComponent((img.getAttribute('src') || '').split('?')[0]);
+        const nextSrc = candidates.find(candidate => candidate !== currentSrc && candidate !== img.getAttribute('src'));
+
+        if (nextSrc) {
+          img.dataset.fallbackSrcs = candidates.filter(candidate => candidate !== nextSrc).join('|');
+          img.src = nextSrc;
+          return;
+        }
+
+        img.onerror = null;
+      }
+
       fetchPolishData()
         .then(data => {
           surpriseData = data;
@@ -1554,13 +1592,18 @@
           data.forEach(item => {
             const swatchGallery = getPolishGallery(item);
             const lightboxGroup = `polish-${getPolishKey(item).replace(/[^a-zA-Z0-9_-]/g, '-')}`;
-            const primaryImage = swatchGallery[0]?.src || item.image || item.thumb || '';
-            const primaryThumb = swatchGallery[0]?.thumb || item.thumb || item.image || '';
+            const rawThumb = getFirstMeaningfulValue(item.thumb, item.Thumb, item['thumb']);
+            const primaryImage = swatchGallery[0]?.src || item.image || item.imageOne || normalizeAssetPath(rawThumb) || '';
+            const primaryThumb = normalizeAssetPath(rawThumb) || swatchGallery[0]?.thumb || primaryImage || '';
+            const thumbFallbackCandidates = [
+              ...buildImagePathAlternates(primaryThumb),
+              ...buildImagePathAlternates(primaryImage),
+              ...buildImagePathAlternates(swatchGallery[0]?.thumb || '')
+            ].filter(Boolean);
             const titleText = `${item.brand || ''} ${item.name || ''}`.trim();
 
-            const lightboxAnchors = swatchGallery.map((media, index) => {
-              const hiddenClass = index === 0 ? '' : ' style="display:none"';
-              return `<a href="${escapeHTML(media.src)}" data-lightbox="${lightboxGroup}" data-title="${escapeHTML(titleText)}" class="swatch-thumb-link swatch-gallery-hidden"${hiddenClass}></a>`;
+            const lightboxAnchors = swatchGallery.slice(1).map(media => {
+              return `<a href="${escapeHTML(media.src)}" data-lightbox="${lightboxGroup}" data-title="${escapeHTML(titleText)}" class="swatch-thumb-link swatch-gallery-hidden" style="display:none"></a>`;
             }).join('');
 
             const rowHtml = `
@@ -1568,7 +1611,7 @@
             <td>
               <a href="${escapeHTML(primaryImage)}" data-lightbox="${lightboxGroup}" data-title="${escapeHTML(titleText)}" class="swatch-thumb-link">
                 <span class="swatch-thumb-frame">
-                  <img src="${escapeHTML(primaryThumb)}" alt="${escapeHTML(titleText)} swatch" class="swatch-thumb-image">
+                  <img src="${escapeHTML(primaryThumb)}" data-fallback-srcs="${escapeHTML(thumbFallbackCandidates.join('|'))}" alt="${escapeHTML(titleText)} swatch" class="swatch-thumb-image" onerror="handleDirectoryThumbError(this)">
                 </span>
               </a>
               ${lightboxAnchors}
