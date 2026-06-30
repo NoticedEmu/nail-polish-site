@@ -2142,7 +2142,6 @@ table.dataTable tbody tr:hover {
 /* ===== Unified modal/action button style =====
    Keeps return/navigation buttons unchanged while matching Surprise Me,
    Try Again, Surprise Me Again, and View Dupes buttons sitewide. */
-.surprise-me-button,
 .lucky-secondary-button,
 .surprise-secondary-button,
 .dupe-entry-button {
@@ -2170,7 +2169,6 @@ table.dataTable tbody tr:hover {
   transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, color 0.16s ease !important;
 }
 
-.surprise-me-button:hover,
 .lucky-secondary-button:hover,
 .surprise-secondary-button:hover,
 .dupe-entry-button:hover {
@@ -2180,4 +2178,54 @@ table.dataTable tbody tr:hover {
   box-shadow:
     0 0 0 3px rgba(99, 102, 241, 0.12),
     0 6px 14px rgba(0, 0, 0, 0.1) !important;
+}
+
+
+/* =========================================================
+   Directory page-level action button alignment
+   Keeps modal action buttons on the gradient style while making
+   Directory Search + Surprise Me match Add Polish.
+   ========================================================= */
+.directory-actions #searchToggleBtn,
+.directory-actions .surprise-me-button,
+.directory-actions .add-polish-button {
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 255, 255, 0.62) !important;
+  background: rgba(255, 255, 255, 0.34) !important;
+  color: #55256f !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 760 !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  box-sizing: border-box !important;
+  padding: 0 16px !important;
+  line-height: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  box-shadow:
+    0 10px 22px rgba(91, 54, 103, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55) !important;
+  backdrop-filter: blur(12px) saturate(1.15) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(1.15) !important;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, color 0.16s ease !important;
+}
+
+.directory-actions #searchToggleBtn:hover,
+.directory-actions .surprise-me-button:hover,
+.directory-actions .add-polish-button:hover {
+  transform: translateY(-1px) !important;
+  background: rgba(255, 255, 255, 0.56) !important;
+  color: #55256f !important;
+  box-shadow:
+    0 14px 30px rgba(91, 54, 103, 0.17),
+    0 0 18px rgba(255, 255, 255, 0.25) !important;
+}
+
+.directory-actions .search-toggle-wrap {
+  align-self: center !important;
 }
