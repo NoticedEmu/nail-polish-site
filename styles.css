@@ -1783,6 +1783,7 @@ h1 {
 .surprise-me-button,
 .lucky-secondary-button,
 .surprise-secondary-button,
+.dupe-entry-button,
 .moods-back-button,
 .dupes-back-link {
   border-radius: 999px !important;
@@ -1794,8 +1795,14 @@ h1 {
   backdrop-filter: blur(12px) saturate(1.15);
 }
 
+.dupe-entry-button {
+  min-height: 42px;
+  box-sizing: border-box;
+}
+
 .surprise-me-button,
-.add-polish-button {
+.add-polish-button,
+.dupe-entry-button {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.42), rgba(224, 190, 237, 0.50)) !important;
 }
 
@@ -1825,6 +1832,7 @@ h1 {
 .surprise-me-button:hover,
 .lucky-secondary-button:hover,
 .surprise-secondary-button:hover,
+.dupe-entry-button:hover,
 .moods-back-button:hover,
 .dupes-back-link:hover {
   transform: translateY(-1px);
@@ -2130,4 +2138,46 @@ table.dataTable tbody tr:hover {
   height: 44px !important;
   min-height: 44px !important;
   box-sizing: border-box !important;
+}
+/* ===== Unified modal/action button style =====
+   Keeps return/navigation buttons unchanged while matching Surprise Me,
+   Try Again, Surprise Me Again, and View Dupes buttons sitewide. */
+.surprise-me-button,
+.lucky-secondary-button,
+.surprise-secondary-button,
+.dupe-entry-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 10px 16px !important;
+  min-height: 42px !important;
+  border: 1px solid #d8dee9 !important;
+  border-radius: 10px !important;
+  background: linear-gradient(135deg, #fdf2f8, #ede9fe, #eff6ff) !important;
+  color: #374151 !important;
+  font-family: Arial, sans-serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  box-shadow:
+    0 0 0 2px rgba(99, 102, 241, 0.06),
+    0 4px 10px rgba(0, 0, 0, 0.06) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, color 0.16s ease !important;
+}
+
+.surprise-me-button:hover,
+.lucky-secondary-button:hover,
+.surprise-secondary-button:hover,
+.dupe-entry-button:hover {
+  background: linear-gradient(135deg, #fce7f3, #e9d5ff, #dbeafe) !important;
+  color: #111827 !important;
+  transform: translateY(-1px) !important;
+  box-shadow:
+    0 0 0 3px rgba(99, 102, 241, 0.12),
+    0 6px 14px rgba(0, 0, 0, 0.1) !important;
 }

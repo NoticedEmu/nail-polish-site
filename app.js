@@ -556,15 +556,15 @@ function getPolishGallery(polish) {
 /* ===== MODAL SEQUENCE (NEXT/PREV POLISH) ===== */
 
 function getDetailModalSequence(polish, list = []) {
-    if (!polish) return list;
+    if (!polish) return Array.isArray(list) ? list : [];
 
-    const brand = (polish.brand || '').toLowerCase();
-    const name = (polish.name || '').toLowerCase();
+    const sequence = Array.isArray(list) ? list.filter(Boolean) : [];
+    const polishKey = getPolishKey(polish);
+    const includesCurrentPolish = sequence.some(item => getPolishKey(item) === polishKey);
 
-    const matches = list.filter(item =>
-        (item.brand || '').toLowerCase() === brand &&
-        (item.name || '').toLowerCase() === name
-    );
-
-    return matches.length ? matches : list;
+    // The directory detail modal should move through the visible directory results,
+    // in the current filtered/sorted table order. An earlier version narrowed this
+    // to only duplicate brand/name matches, which usually left the sequence with
+    // one item and kept the Previous/Next controls hidden.
+    return includesCurrentPolish ? sequence : [polish, ...sequence];
 }

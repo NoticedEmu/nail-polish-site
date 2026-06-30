@@ -452,6 +452,61 @@
       display: none !important;
     }
 
+    #surpriseModal.is-directory-detail #surpriseEntryNav:not([hidden]) {
+      position: relative !important;
+      left: auto !important;
+      bottom: auto !important;
+      transform: none !important;
+      width: min(940px, calc(100vw - 32px));
+      margin: 0 auto 18px auto;
+      display: flex !important;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 0 28px;
+      box-sizing: border-box;
+      z-index: 10002;
+      pointer-events: none;
+    }
+
+    #surpriseModal.is-directory-detail .surprise-modal-content {
+      margin-bottom: 10px;
+    }
+
+    #surpriseEntryNav .polish-entry-arrow {
+      appearance: none;
+      position: static !important;
+      top: auto !important;
+      right: auto !important;
+      left: auto !important;
+      transform: none !important;
+      width: auto;
+      height: auto;
+      min-width: 138px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: rgba(141, 106, 149, 0.94);
+      border: 1px solid rgba(234, 212, 240, 0.96);
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 800;
+      line-height: 1;
+      cursor: pointer;
+      pointer-events: auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: background 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    #surpriseEntryNav .polish-entry-arrow:hover {
+      background: rgba(160, 122, 171, 0.98);
+      transform: translateY(-1px) !important;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+    }
+
     .surprise-modal[hidden] {
       display: none;
     }
@@ -460,6 +515,9 @@
       position: fixed;
       inset: 0;
       z-index: 9999;
+      overflow-y: auto;
+      padding-bottom: max(10px, env(safe-area-inset-bottom));
+      box-sizing: border-box;
     }
 
     .surprise-modal-overlay {
@@ -746,8 +804,23 @@
         font-size: 1.45rem;
       }
 
-      #surpriseEntryNav {
-        display: none !important;
+      #surpriseModal.is-directory-detail #surpriseEntryNav:not([hidden]) {
+        width: calc(100vw - 24px);
+        margin: 0 auto 12px auto;
+        gap: 10px;
+        padding: 0 14px;
+        box-sizing: border-box;
+      }
+
+      #surpriseModal.is-directory-detail .surprise-modal-content {
+        margin-bottom: 8px;
+      }
+
+      #surpriseEntryNav .polish-entry-arrow {
+        min-width: 0;
+        flex: 1 1 0;
+        padding: 11px 12px;
+        font-size: 0.9rem;
       }
     }
 
@@ -1208,15 +1281,6 @@
           &times;
         </button>
 
-        <div id="surpriseEntryNav" class="polish-entry-nav" hidden>
-          <button id="surprisePrevPolish" class="polish-entry-arrow prev" type="button" aria-label="Previous polish">
-            &#8249;
-          </button>
-          <button id="surpriseNextPolish" class="polish-entry-arrow next" type="button" aria-label="Next polish">
-            &#8250;
-          </button>
-        </div>
-
         <div class="surprise-modal-body">
           <div class="surprise-image-wrap polish-image-panel">
             <div class="polish-main-image-shell">
@@ -1287,6 +1351,16 @@
             </div>
           </div>
         </div>
+
+      </div>
+
+      <div id="surpriseEntryNav" class="polish-entry-nav" hidden>
+        <button id="surprisePrevPolish" class="polish-entry-arrow prev" type="button" aria-label="Previous polish">
+          <span aria-hidden="true">&#8249;</span> Previous Polish
+        </button>
+        <button id="surpriseNextPolish" class="polish-entry-arrow next" type="button" aria-label="Next polish">
+          Next Polish <span aria-hidden="true">&#8250;</span>
+        </button>
       </div>
     </div>
 
@@ -1313,7 +1387,7 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js?v=2026-06-30-modal-nav"></script>
     <script>
       initializeSharedPagesMenu();
       const surpriseDice = document.getElementById('surpriseDice');
@@ -1428,6 +1502,8 @@
 
       function closeSurpriseModal() {
         surpriseModal.hidden = true;
+        surpriseEntryNav.hidden = true;
+        surpriseModal.classList.remove('is-directory-detail');
         if (imageViewer.hidden) {
           document.body.style.overflow = '';
         }
@@ -1487,7 +1563,11 @@
       }
 
       function updateModalEntryNav() {
-        surpriseEntryNav.hidden = activeModalSequence.length <= 1;
+        // Only show polish-to-polish navigation when the modal was opened from a directory row.
+        // Surprise Me uses the same modal shell, so keep these controls hidden for that mode.
+        const shouldShowDirectoryNav = !modalAllowsReroll && activeModalSequence.length > 1;
+        surpriseEntryNav.hidden = !shouldShowDirectoryNav;
+        surpriseModal.classList.toggle('is-directory-detail', shouldShowDirectoryNav);
       }
 
       function showModalPolishAt(index, options = {}) {
