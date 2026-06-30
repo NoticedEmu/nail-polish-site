@@ -2,11 +2,11 @@
    Shared Javascript
    ========================================================= */
 
+// Update this value when you want browsers to force-refresh JSON files.
+const SITE_DATA_VERSION = '2026-06-03';
+
 async function fetchPolishData() {
-    const cacheBust = `v=${Date.now()}`;
-    const response = await fetch(`data.json?${cacheBust}`, {
-        cache: 'no-store'
-    });
+    const response = await fetch(`data.json?v=${SITE_DATA_VERSION}`);
 
     if (!response.ok) {
         throw new Error(`Failed to load data.json: ${response.status}`);
@@ -189,10 +189,7 @@ function createNumberBadge(type, number) {
 /* ===== SHARED PAGE NAV ===== */
 
 async function fetchSitePages() {
-    const cacheBust = `v=${Date.now()}`;
-    const response = await fetch(`pages.json?${cacheBust}`, {
-        cache: 'no-store'
-    });
+    const response = await fetch(`pages.json?v=${SITE_DATA_VERSION}`);
 
     if (!response.ok) {
         throw new Error(`Failed to load pages.json: ${response.status}`);
@@ -383,6 +380,51 @@ function populateSelect(selectElement, values, defaultLabel) {
         option.textContent = value;
         selectElement.appendChild(option);
     });
+}
+
+
+function normalizeColorLabel(value, fallback = 'Unknown') {
+    const text = String(value ?? '').trim();
+    return text || fallback;
+}
+
+function getColorFamily(rawColor) {
+    const color = normalizeColorLabel(rawColor).toLowerCase();
+
+    const familyMatchers = [
+        { family: 'Red', keywords: ['red', 'wine', 'burgundy', 'berry', 'cranberry', 'maroon', 'ruby', 'garnet', 'scarlet', 'rosewood', 'mahogany', 'oxblood'] },
+        { family: 'Pink', keywords: ['pink', 'mauve', 'rose', 'blush', 'fuchsia', 'magenta', 'hot pink', 'dusty rose'] },
+        { family: 'Orange', keywords: ['orange', 'coral', 'tangerine', 'apricot', 'peach', 'rust', 'copper', 'terracotta', 'burnt orange'] },
+        { family: 'Yellow', keywords: ['yellow', 'gold', 'mustard', 'lemon', 'chartreuse', 'amber', 'honey'] },
+        { family: 'Green', keywords: ['green', 'emerald', 'olive', 'mint', 'sage', 'lime', 'forest', 'seafoam', 'avocado', 'moss', 'jade'] },
+        { family: 'Teal', keywords: ['teal', 'turquoise', 'aqua', 'cyan', 'blue-green', 'sea glass'] },
+        { family: 'Blue', keywords: ['blue', 'navy', 'denim', 'cobalt', 'indigo', 'periwinkle', 'sky', 'cerulean'] },
+        { family: 'Purple', keywords: ['purple', 'plum', 'violet', 'lavender', 'lilac', 'orchid', 'eggplant', 'grape'] },
+        { family: 'Brown', keywords: ['brown', 'taupe', 'mocha', 'chocolate', 'espresso', 'caramel', 'tan', 'beige', 'nude'] },
+        { family: 'Gray', keywords: ['gray', 'grey', 'charcoal', 'slate', 'silver', 'smoke', 'gunmetal'] },
+        { family: 'Black', keywords: ['black'] },
+        { family: 'White', keywords: ['white', 'ivory', 'cream'] },
+        { family: 'Clear', keywords: ['clear', 'transparent'] }
+    ];
+
+    for (const matcher of familyMatchers) {
+        if (matcher.keywords.some(keyword => color.includes(keyword))) {
+            return matcher.family;
+        }
+    }
+
+    return 'Other';
+}
+
+function getColorFamilyOptions(data) {
+    const familyOrder = ['Red', 'Pink', 'Orange', 'Yellow', 'Green', 'Teal', 'Blue', 'Purple', 'Brown', 'Gray', 'Black', 'White', 'Clear', 'Other'];
+    const presentFamilies = new Set(
+        data
+            .map(item => getColorFamily(item.color))
+            .filter(Boolean)
+    );
+
+    return familyOrder.filter(family => presentFamilies.has(family));
 }
 
 function getQueryParams() {

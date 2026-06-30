@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Auric Archive</title>
+  <title>Nail Polish Directory</title>
 
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" />
   <link rel="stylesheet" href="styles.css" />
@@ -962,7 +962,7 @@
         </div>
 
         <div class="filter-group">
-          <label for="colorFilter">Color</label>
+          <label for="colorFilter">Color Family</label>
           <select id="colorFilter">
             <option value="">All</option>
           </select>
@@ -1157,7 +1157,7 @@
               <div class="image-card">
                 <button id="surpriseImageButton" class="polish-main-image-button" type="button"
                   aria-label="Open swatch image">
-                  <img id="surpriseResultImage" src="" alt="" class="surprise-result-image polish-gallery-image" />
+                  <img id="surpriseResultImage" src="" alt="" class="surprise-result-image polish-gallery-image" decoding="async" />
                 </button>
               </div>
 
@@ -1229,7 +1229,7 @@
 
       <div class="image-viewer-content" role="dialog" aria-modal="true" aria-label="Expanded swatch image">
         <div class="image-viewer-frame">
-          <img id="imageViewerImg" class="image-viewer-image" src="" alt="">
+          <img id="imageViewerImg" class="image-viewer-image" src="" alt="" decoding="async">
           <button id="imageViewerClose" class="image-viewer-close" type="button" aria-label="Close enlarged image">
             &times;
           </button>
@@ -1586,7 +1586,7 @@
 
           populateSelect(document.getElementById('brandFilter'), getUniqueValues(data, 'brand'), 'All brands');
           populateSelect(document.getElementById('typeFilter'), getUniqueValues(data, 'type'), 'All types');
-          populateSelect(document.getElementById('colorFilter'), getUniqueValues(data, 'color'), 'All colors');
+          populateSelect(document.getElementById('colorFilter'), getColorFamilyOptions(data), 'All color families');
           populateSelect(document.getElementById('subtypeFilter'), getUniqueValues(data, 'subtype'), 'All subtypes');
 
           data.forEach(item => {
@@ -1611,7 +1611,7 @@
             <td>
               <a href="${escapeHTML(primaryImage)}" data-lightbox="${lightboxGroup}" data-title="${escapeHTML(titleText)}" class="swatch-thumb-link">
                 <span class="swatch-thumb-frame">
-                  <img src="${escapeHTML(primaryThumb)}" data-fallback-srcs="${escapeHTML(thumbFallbackCandidates.join('|'))}" alt="${escapeHTML(titleText)} swatch" class="swatch-thumb-image" onerror="handleDirectoryThumbError(this)">
+                  <img src="${escapeHTML(primaryThumb)}" data-fallback-srcs="${escapeHTML(thumbFallbackCandidates.join('|'))}" alt="${escapeHTML(titleText)} swatch" class="swatch-thumb-image" loading="lazy" decoding="async" onerror="handleDirectoryThumbError(this)">
                 </span>
               </a>
               ${lightboxAnchors}
@@ -1636,7 +1636,7 @@
 
           const filterDisplayConfig = [
             { id: 'brandFilter', label: 'Brand' },
-            { id: 'colorFilter', label: 'Color' },
+            { id: 'colorFilter', label: 'Color Family' },
             { id: 'typeFilter', label: 'Type' },
             { id: 'subtypeFilter', label: 'Sub Type' },
             { id: 'numberFilter', label: 'Number' },
@@ -1731,6 +1731,7 @@
 
             let rowBrand = (data[1] || '').toLowerCase();
             let rowColor = (data[3] || '').toLowerCase();
+            let rowColorFamily = getColorFamily(rowColor).toLowerCase();
             let rowType = (data[4] || '').toLowerCase();
             let rowSubtype = (data[5] || '').toLowerCase();
             let rowNumber = (data[6] || '').toLowerCase();
@@ -1738,7 +1739,7 @@
 
             if (brand && rowBrand !== brand) return false;
             if (type && rowType !== type) return false;
-            if (color && rowColor !== color) return false;
+            if (color && rowColorFamily !== color) return false;
             if (subtype && rowSubtype !== subtype) return false;
             if (number && !rowNumber.includes(number)) return false;
             if (selectedLetterLower && !rowBrand.startsWith(selectedLetterLower)) return false;
