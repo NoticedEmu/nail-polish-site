@@ -141,6 +141,7 @@
     }
 
     .swatch-thumb-frame {
+      position: relative;
       width: 72px;
       height: 72px;
       padding: 2px;
@@ -149,6 +150,58 @@
       border: 1px solid #e5e7eb;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
       transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+      overflow: hidden;
+    }
+
+    .swatch-thumb-frame::before {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      border-radius: 10px;
+      background:
+        linear-gradient(110deg,
+          rgba(244, 235, 249, 0.68) 0%,
+          rgba(255, 255, 255, 0.9) 42%,
+          rgba(244, 235, 249, 0.68) 78%);
+      background-size: 220% 100%;
+      animation: swatchThumbLoading 1.15s ease-in-out infinite;
+      opacity: 1;
+      transition: opacity 0.18s ease;
+      pointer-events: none;
+    }
+
+    .swatch-thumb-frame.is-loaded::before,
+    .swatch-thumb-frame.is-error::before {
+      opacity: 0;
+      animation: none;
+    }
+
+    .swatch-thumb-frame.is-error::after {
+      content: "No image";
+      position: absolute;
+      inset: 2px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f9fafb;
+      color: #6b7280;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.1;
+      padding: 6px;
+      box-sizing: border-box;
+    }
+
+    @keyframes swatchThumbLoading {
+      0% {
+        background-position: 130% 0;
+      }
+
+      100% {
+        background-position: -130% 0;
+      }
     }
 
     .swatch-thumb-link:hover .swatch-thumb-frame {
@@ -158,12 +211,25 @@
     }
 
     .swatch-thumb-image {
+      position: relative;
+      z-index: 1;
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
       border-radius: 10px;
       display: block;
+      opacity: 0;
+      transition: opacity 0.18s ease;
+      background: transparent;
+    }
+
+    .swatch-thumb-frame.is-loaded .swatch-thumb-image {
+      opacity: 1;
+    }
+
+    .swatch-thumb-frame.is-error .swatch-thumb-image {
+      display: none;
     }
 
     .dataTables_wrapper .dataTables_filter {
@@ -1560,24 +1626,53 @@
         return [...alternates].filter(Boolean);
       }
 
+      function setDirectoryThumbState(img, state) {
+        const frame = img?.closest?.('.swatch-thumb-frame');
+        if (!frame) return;
+
+        frame.classList.toggle('is-loaded', state === 'loaded');
+        frame.classList.toggle('is-error', state === 'error');
+      }
+
+      function handleDirectoryThumbLoad(img) {
+        if (!img) return;
+        setDirectoryThumbState(img, 'loaded');
+      }
+
       function handleDirectoryThumbError(img) {
         if (!img) return;
+
+        setDirectoryThumbState(img, 'loading');
+
+        const tried = new Set(
+          String(img.dataset.triedSrcs || '')
+            .split('|')
+            .map(value => value.trim())
+            .filter(Boolean)
+        );
+
+        const currentSrc = decodeURIComponent((img.getAttribute('src') || '').split('?')[0]);
+        if (currentSrc) tried.add(currentSrc);
+        if (img.getAttribute('src')) tried.add(img.getAttribute('src'));
 
         const candidates = String(img.dataset.fallbackSrcs || '')
           .split('|')
           .map(value => value.trim())
           .filter(Boolean);
 
-        const currentSrc = decodeURIComponent((img.getAttribute('src') || '').split('?')[0]);
-        const nextSrc = candidates.find(candidate => candidate !== currentSrc && candidate !== img.getAttribute('src'));
+        const nextSrc = candidates.find(candidate => !tried.has(candidate));
 
         if (nextSrc) {
-          img.dataset.fallbackSrcs = candidates.filter(candidate => candidate !== nextSrc).join('|');
-          img.src = nextSrc;
+          img.dataset.triedSrcs = [...tried, nextSrc].join('|');
+          window.requestAnimationFrame(() => {
+            img.src = nextSrc;
+          });
           return;
         }
 
         img.onerror = null;
+        img.onload = null;
+        setDirectoryThumbState(img, 'error');
       }
 
       fetchPolishData()
@@ -1596,9 +1691,8 @@
             const primaryImage = swatchGallery[0]?.src || item.image || item.imageOne || normalizeAssetPath(rawThumb) || '';
             const primaryThumb = normalizeAssetPath(rawThumb) || swatchGallery[0]?.thumb || primaryImage || '';
             const thumbFallbackCandidates = [
-              ...buildImagePathAlternates(primaryThumb),
-              ...buildImagePathAlternates(primaryImage),
-              ...buildImagePathAlternates(swatchGallery[0]?.thumb || '')
+              primaryThumb,
+              primaryImage
             ].filter(Boolean);
             const titleText = `${item.brand || ''} ${item.name || ''}`.trim();
 
@@ -1611,7 +1705,7 @@
             <td>
               <a href="${escapeHTML(primaryImage)}" data-lightbox="${lightboxGroup}" data-title="${escapeHTML(titleText)}" class="swatch-thumb-link">
                 <span class="swatch-thumb-frame">
-                  <img src="${escapeHTML(primaryThumb)}" data-fallback-srcs="${escapeHTML(thumbFallbackCandidates.join('|'))}" alt="${escapeHTML(titleText)} swatch" class="swatch-thumb-image" loading="lazy" decoding="async" onerror="handleDirectoryThumbError(this)">
+                  <img src="${escapeHTML(primaryThumb)}" data-fallback-srcs="${escapeHTML(thumbFallbackCandidates.join('|'))}" alt="${escapeHTML(titleText)} swatch" class="swatch-thumb-image" loading="lazy" decoding="async" onload="handleDirectoryThumbLoad(this)" onerror="handleDirectoryThumbError(this)">
                 </span>
               </a>
               ${lightboxAnchors}

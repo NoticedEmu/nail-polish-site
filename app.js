@@ -3,7 +3,7 @@
    ========================================================= */
 
 // Update this value when you want browsers to force-refresh JSON files.
-const SITE_DATA_VERSION = '2026-06-03';
+const SITE_DATA_VERSION = '2026-06-30-image-loading';
 
 async function fetchPolishData() {
     const response = await fetch(`data.json?v=${SITE_DATA_VERSION}`);
