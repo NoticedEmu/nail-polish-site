@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Synapse</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="synapse.css" />
+</head>
+<body>
+  <div class="background-sparkles" aria-hidden="true"></div>
+  <div class="page-shell synapse-page-shell">
+    <div class="synapse-page-topbar">
+      <div class="pages-dropdown">
+        <button class="pages-dropdown-toggle" type="button" aria-haspopup="true" aria-label="Open pages menu">
+          <span class="hamburger-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+        <ul class="pages-dropdown-menu"></ul>
+      </div>
+    </div>
+
+    <h1>Synapse</h1>
+    <p class="page-intro synapse-intro">Follow the relationships between color and emotion, or let the collection choose where the path begins.</p>
+
+    <div class="synapse-mode-picker" role="tablist" aria-label="Synapse views">
+      <button class="synapse-mode-button is-active" data-mode="explore" type="button">Follow a Synapse</button>
+      <button class="synapse-mode-button" data-mode="fly" type="button">Ask the Fly</button>
+      <button class="synapse-mode-button" data-mode="wheel" type="button">Vibe Map</button>
+    </div>
+
+    <section class="synapse-view is-active" id="exploreView" data-view="explore">
+      <div class="synapse-section-heading">
+        <div><h2>Follow a Synapse</h2><p>Choose a starting polish, then follow one connection at a time. The view moves with you through the collection.</p></div>
+        <label class="synapse-start-control">Start with
+          <select id="polishSelect"><option value="">Choose a polish…</option></select>
+        </label>
+      </div>
+
+      <div class="synapse-stage" id="synapseStage">
+        <div id="synapseWorld" class="synapse-world" aria-hidden="false">
+          <svg id="neuralField" class="neural-field" aria-hidden="true" preserveAspectRatio="none"></svg>
+          <canvas id="brainCanvas" aria-label="Interactive close-up neural path through the nail polish collection"></canvas>
+          <div id="nodeLayer" class="synapse-node-layer" aria-live="polite"></div>
+        </div>
+        <div class="synapse-stage-vignette" aria-hidden="true"></div>
+        <div class="synapse-stage-hint" id="stageHint">Choose a polish above, or begin somewhere unexpected.</div>
+        <button id="randomStart" class="synapse-soft-button stage-start-button" type="button">Choose for me</button>
+      </div>
+
+      <div id="focusCard" class="synapse-focus-card" hidden>
+        <div class="focus-image-ring"><img id="focusImage" alt="" /></div>
+        <div class="focus-copy">
+          <p class="focus-kicker">Neural Focus</p>
+          <h3 id="focusName"></h3>
+          <p id="focusMeta" class="focus-meta"></p>
+          <p id="focusDescription" class="focus-description"></p>
+          <div id="focusReasons" class="focus-reasons"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="synapse-view" id="flyView" data-view="fly" hidden>
+      <div class="synapse-section-heading"><div><h2>Ask the Fly</h2><p>Give the collection an emotional or color cue. A little chaos decides how faithfully the path follows it.</p></div></div>
+      <div class="fly-card fly-neural-card">
+        <canvas id="flyNeuronCanvas" class="fly-neuron-canvas" aria-label="Rotating 3D reconstruction of real MaleCNS neurons"></canvas>
+        <div class="fly-neuron-shade" aria-hidden="true"></div>
+        <div class="fly-neuron-provenance"><span id="mcnsStatus">Loading MaleCNS v1.0 morphology…</span></div>
+        <div class="fly-controls fly-controls-over">
+          <label>Vibe<select id="flyVibe"><option value="">Any Vibe</option></select></label>
+          <label>Color<select id="flyColor"><option value="">Any Color</option></select></label>
+          <label>Chaos <span id="chaosValue">35%</span><input id="chaosRange" type="range" min="0" max="100" value="35" /></label>
+          <button id="consultBtn" class="synapse-gold-button" type="button">Consult the Brain</button>
+        </div>
+        <div id="connectomePath" class="connectome-path" hidden aria-live="polite"></div>
+        <div id="flyResult" class="fly-result" hidden>
+          <div class="focus-image-ring"><img id="flyImage" alt="" /></div>
+          <div><p class="focus-kicker">The Fly Has Decided</p><h3 id="flyName"></h3><p id="flyMeta" class="focus-meta"></p><button id="followResult" class="synapse-soft-button" type="button">Follow this Synapse</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="synapse-view" id="wheelView" data-view="wheel" hidden>
+      <div class="synapse-section-heading"><div><h2>Vibe Map</h2><p>The emotional structure behind the neural relationships. Neighboring Vibes are closer; opposite areas are more emotionally distant.</p></div></div>
+      <div class="vibe-map-card"><div id="vibeWheel" class="vibe-wheel" aria-label="Vibe relationship wheel"></div><div class="vibe-axis-copy"><strong>Bright / Luminous</strong><span>↕</span><strong>Dark / Inward</strong><hr><strong>Energetic / Rebellious</strong><span>↔</span><strong>Soft / Reflective</strong></div></div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="synapse.js"></script>
+  <script>
+    // Match the initialization used by the other Auric Archive pages.
+    if (typeof initializeSharedPagesMenu === "function") initializeSharedPagesMenu();
+  </script>
+</body>
+</html>

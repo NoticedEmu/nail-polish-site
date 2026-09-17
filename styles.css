@@ -2229,3 +2229,186 @@ table.dataTable tbody tr:hover {
 .directory-actions .search-toggle-wrap {
   align-self: center !important;
 }
+
+
+/* =========================================================
+   Exclusive polish markers / modal badge
+   ========================================================= */
+.directory-swatch-cell { display:inline-flex; align-items:center; justify-content:center; position:relative; }
+.exclusive-directory-sparkle { position:absolute; right:calc(100% + 7px); top:50%; transform:translateY(-50%); display:inline-flex; align-items:center; justify-content:center; width:18px; color:#7b4d8f; font-size:1.15rem; line-height:1; text-shadow:0 0 5px rgba(255,255,255,.96),0 0 10px rgba(205,180,219,.78); }
+.exclusive-badge-slot[hidden] { display:none !important; }
+.exclusive-badge-slot { display:flex; align-items:center; flex-wrap:wrap; }
+.exclusive-release-badge { display:inline-flex; align-items:center; gap:7px; width:fit-content; padding:7px 11px; border-radius:999px; background:rgba(205,180,219,.30); border:1px solid rgba(123,77,143,.28); color:#3f3150; font-size:.82rem; font-weight:800; letter-spacing:.015em; box-shadow:0 5px 12px rgba(70,42,82,.08), inset 0 1px 0 rgba(255,255,255,.48); }
+.exclusive-release-badge-sparkle { color:#7b4d8f; font-size:.96em; line-height:1; }
+
+
+/* Directory exclusive-only filter — sized to match Clear Filters */
+.exclusive-filter-button {
+  padding: 9px 14px;
+  border: 1px solid #d0d7de !important;
+  border-radius: 10px !important;
+  background: #ffffff !important;
+  color: #55256f !important;
+  font-weight: 700 !important;
+  cursor: pointer;
+  transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  display: inline-flex;
+  width: auto;
+}
+.exclusive-filter-button:hover {
+  background: #f9fafb !important;
+  border-color: #bfc7d1 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08) !important;
+}
+.exclusive-filter-button.is-active,
+.exclusive-filter-button[aria-pressed="true"] {
+  background: rgba(127, 91, 137, 0.82) !important;
+  color: #fff !important;
+  border-color: rgba(127, 91, 137, 0.95) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* =========================================================
+   Exclusive UI corrections — 2026-09-09
+   Keep the directory Exclusives filter visually matched to
+   Clear Filters, including while the filter is active.
+   ========================================================= */
+#exclusiveFilterBtn,
+#exclusiveFilterBtn.is-active,
+#exclusiveFilterBtn[aria-pressed="true"] {
+  padding: 9px 14px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 255, 255, 0.62) !important;
+  background: rgba(255, 255, 255, 0.34) !important;
+  color: #55256f !important;
+  font-weight: 760 !important;
+  box-shadow: 0 10px 22px rgba(91, 54, 103, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.55) !important;
+  backdrop-filter: blur(12px) saturate(1.15) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(1.15) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  min-height: 0 !important;
+  line-height: normal !important;
+}
+
+#exclusiveFilterBtn:hover,
+#exclusiveFilterBtn.is-active:hover,
+#exclusiveFilterBtn[aria-pressed="true"]:hover {
+  background: rgba(255, 255, 255, 0.56) !important;
+  color: #55256f !important;
+  border-color: rgba(255, 255, 255, 0.72) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 14px 30px rgba(91, 54, 103, 0.17), 0 0 18px rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Match the badge lettering to the dark description-box surface
+   shown in dark mode. -webkit-text-fill-color helps prevent browser
+   dark-mode recoloring from turning this text lavender/light. */
+.exclusive-release-badge,
+.exclusive-release-badge-sparkle {
+  color: #272028 !important;
+  -webkit-text-fill-color: #272028 !important;
+  forced-color-adjust: none;
+}
+
+/* =========================================================
+   Exclusive UI precision corrections — 2026-09-09
+   ========================================================= */
+
+/* Match the Clear Filters control's physical button box exactly.
+   Remove the retained focus/active ring that made this control
+   appear larger and more heavily outlined after it was clicked. */
+#exclusiveFilterBtn,
+#exclusiveFilterBtn.is-active,
+#exclusiveFilterBtn[aria-pressed="true"] {
+  box-sizing: border-box !important;
+  height: 37px !important;
+  min-height: 37px !important;
+  padding: 9px 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.62) !important;
+  outline: 0 !important;
+}
+
+#exclusiveFilterBtn:focus,
+#exclusiveFilterBtn:focus-visible,
+#exclusiveFilterBtn:active,
+#exclusiveFilterBtn.is-active:focus,
+#exclusiveFilterBtn[aria-pressed="true"]:focus {
+  outline: 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.62) !important;
+}
+
+/* In normal/light rendering, use the intended dark ink directly. */
+.exclusive-release-badge > span,
+.exclusive-release-badge-sparkle {
+  color: #282229 !important;
+  -webkit-text-fill-color: #282229 !important;
+}
+
+/* Edge's automatic dark rendering can remap dark foreground colors to
+   light text. In a dark color scheme, paint the badge lettering with the
+   same glass surface used by the modal description card, clipped to the
+   glyphs. This lets the browser transform it as a background surface
+   rather than as foreground text. */
+@media (prefers-color-scheme: dark) {
+  .exclusive-release-badge > span,
+  .exclusive-release-badge-sparkle {
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    background: var(--luxe-glass) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+  }
+}
+
+
+/* =========================================================
+   Exclusive UI final visual refinements — 2026-09-09
+   ========================================================= */
+
+/* The sparkle glyph has a slightly taller line box than plain text,
+   so reduce only the vertical padding by 1px to visually match
+   Clear Filters without changing the pill width or typography. */
+#exclusiveFilterBtn,
+#exclusiveFilterBtn.is-active,
+#exclusiveFilterBtn[aria-pressed="true"] {
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 8px 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.62) !important;
+  outline: 0 !important;
+}
+
+/* Preserve the badge's original translucent lavender surface.
+   Only the glyphs use the dark modal/clear-filter surface color. */
+.exclusive-release-badge {
+  background: rgba(205, 180, 219, 0.30) !important;
+  border: 1px solid rgba(123, 77, 143, 0.28) !important;
+}
+
+
+/* Override the earlier background-clipped text treatment. */
+.exclusive-release-badge > span,
+.exclusive-release-badge-sparkle {
+  color: #282229 !important;
+  -webkit-text-fill-color: #282229 !important;
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  forced-color-adjust: none !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .exclusive-release-badge > span,
+  .exclusive-release-badge-sparkle {
+    color: #282229 !important;
+    -webkit-text-fill-color: #282229 !important;
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+  }
+}

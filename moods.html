@@ -717,6 +717,7 @@
         <div class="moods-modal-details">
           <div id="moodsModalBrand" class="moods-modal-brand"></div>
           <h2 id="moodsModalTitle" class="moods-modal-title"></h2>
+          <div id="moodsExclusiveBadge" class="exclusive-badge-slot" hidden></div>
 
           <div class="moods-modal-detail-row">
             <span class="moods-modal-detail-label">Color:</span>
@@ -803,6 +804,7 @@
     const moodsModalImageHint = document.getElementById('moodsModalImageHint');
     const moodsModalBrand = document.getElementById('moodsModalBrand');
     const moodsModalTitle = document.getElementById('moodsModalTitle');
+    const moodsExclusiveBadge = document.getElementById('moodsExclusiveBadge');
     const moodsModalColor = document.getElementById('moodsModalColor');
     const moodsModalType = document.getElementById('moodsModalType');
     const moodsModalSubtypeRow = document.getElementById('moodsModalSubtypeRow');
@@ -1023,6 +1025,7 @@
       setModalGallery(polish);
       moodsModalBrand.textContent = polish.brand || '';
       moodsModalTitle.textContent = polish.name || '';
+      updateExclusiveBadge(moodsExclusiveBadge, polish);
       moodsModalColor.textContent = polish.color || '—';
       moodsModalType.textContent = polish.type || '—';
       moodsModalNumber.innerHTML = createNumberBadge(polish.type, polish.number);

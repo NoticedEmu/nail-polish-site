@@ -1,0 +1,76 @@
+:root{--syn-mauve:#aa83af;--syn-mauve-deep:#7f5b89;--syn-ink:#3a2150;--syn-gold:#b88a43;--syn-gold-light:#d8b66f;--syn-glass:rgba(255,255,255,.46);--syn-border:rgba(255,255,255,.62)}
+.synapse-page-shell{max-width:1180px}.synapse-page-topbar{margin-bottom:18px}.synapse-intro{max-width:780px;line-height:1.6}.synapse-mode-picker{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 20px}.synapse-mode-button,.synapse-soft-button{border:1px solid rgba(255,255,255,.58);background:rgba(255,255,255,.34);color:var(--syn-ink);border-radius:999px;padding:10px 16px;font:inherit;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(74,44,86,.08);backdrop-filter:blur(12px);transition:.18s ease}.synapse-mode-button:hover,.synapse-mode-button.is-active,.synapse-soft-button:hover{background:rgba(255,255,255,.66);transform:translateY(-1px);box-shadow:0 10px 24px rgba(74,44,86,.13)}.synapse-mode-button.is-active{box-shadow:inset 0 -2px 0 rgba(184,138,67,.65),0 10px 24px rgba(74,44,86,.12)}
+.synapse-view{animation:synFade .24s ease}.synapse-section-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin:0 2px 14px}.synapse-section-heading h2{margin:0;color:var(--syn-gold);font-size:1.45rem}.synapse-section-heading p{margin:6px 0 0;max-width:720px;color:rgba(58,33,80,.72);line-height:1.5}.synapse-start-control,.fly-controls label{display:flex;flex-direction:column;gap:6px;color:var(--syn-ink);font-weight:700;font-size:.9rem}.synapse-start-control select,.fly-controls select{min-width:250px;padding:10px 12px;border:1px solid rgba(127,91,137,.22);border-radius:10px;background:rgba(255,255,255,.76);color:#2f243c;font:inherit}
+.synapse-stage{height:min(62vh,620px);min-height:480px;position:relative;overflow:hidden;border-radius:30px;border:1px solid var(--syn-border);background:radial-gradient(circle at 50% 48%,rgba(255,255,255,.42),transparent 26%),radial-gradient(circle at 24% 18%,rgba(234,220,241,.68),transparent 34%),linear-gradient(145deg,rgba(255,255,255,.30),rgba(170,131,175,.25));box-shadow:0 22px 60px rgba(74,44,86,.16),inset 0 1px 0 rgba(255,255,255,.72);backdrop-filter:blur(16px)}#brainCanvas{position:absolute;inset:0;width:100%;height:100%}.synapse-node-layer{position:absolute;inset:0;pointer-events:none}.synapse-node{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;border:0;background:transparent;padding:0;cursor:pointer;text-align:center;color:var(--syn-ink);transition:left .7s cubic-bezier(.2,.75,.25,1),top .7s cubic-bezier(.2,.75,.25,1),opacity .35s ease,transform .2s ease}.synapse-node:hover{transform:translate(-50%,-50%) scale(1.05)}.synapse-node .node-orb{display:grid;place-items:center;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.50);border:1px solid rgba(170,131,175,.48);box-shadow:0 0 0 7px rgba(255,255,255,.13),0 10px 28px rgba(95,58,108,.18)}.synapse-node img{width:54px;height:54px;border-radius:50%;object-fit:cover;display:block;background:rgba(255,255,255,.6)}.synapse-node .node-label{display:block;width:150px;margin:7px 0 0 -40px;font-size:.76rem;font-weight:700;text-shadow:0 1px 2px rgba(255,255,255,.9)}.synapse-node.is-center .node-orb{width:116px;height:116px;border:2px solid var(--syn-gold);box-shadow:0 0 0 9px rgba(184,138,67,.10),0 0 30px rgba(184,138,67,.30),0 16px 34px rgba(95,58,108,.18)}.synapse-node.is-center img{width:92px;height:92px}.synapse-node.is-center .node-label{width:190px;margin-left:-37px;font-size:.9rem}.synapse-stage-hint{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);max-width:420px;text-align:center;color:rgba(58,33,80,.72);font-weight:650;line-height:1.5}.stage-start-button{position:absolute;left:50%;top:56%;transform:translateX(-50%)}.stage-start-button:hover{transform:translateX(-50%) translateY(-1px)}
+.synapse-focus-card{display:grid;grid-template-columns:128px 1fr;gap:24px;align-items:center;margin-top:16px;padding:22px 26px;border-radius:26px;background:var(--syn-glass);border:1px solid var(--syn-border);box-shadow:0 14px 34px rgba(74,44,86,.11);backdrop-filter:blur(14px)}.focus-image-ring{width:112px;height:112px;border:2px solid var(--syn-gold);border-radius:50%;display:grid;place-items:center;box-shadow:0 0 24px rgba(184,138,67,.22)}.focus-image-ring img{width:88px;height:88px;border-radius:50%;object-fit:cover;background:rgba(255,255,255,.5)}.focus-kicker{margin:0 0 4px;color:var(--syn-gold);font-size:.76rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em}.focus-copy h3,.fly-result h3{margin:0;color:var(--syn-ink);font-size:1.4rem}.focus-meta{margin:5px 0;color:var(--syn-mauve-deep);font-weight:650}.focus-description{margin:9px 0 0;line-height:1.5;color:rgba(47,36,60,.8)}.focus-reasons{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.focus-reasons span{padding:5px 9px;border-radius:999px;background:rgba(170,131,175,.12);border:1px solid rgba(127,91,137,.16);font-size:.75rem;color:var(--syn-ink)}
+.fly-card,.vibe-map-card{border-radius:30px;background:var(--syn-glass);border:1px solid var(--syn-border);box-shadow:0 18px 46px rgba(74,44,86,.13);backdrop-filter:blur(16px);padding:28px}.fly-controls{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:18px;align-items:end}.fly-controls input[type=range]{accent-color:var(--syn-mauve-deep);width:100%}.synapse-gold-button{min-height:44px;border:1px solid rgba(184,138,67,.55);border-radius:12px;background:linear-gradient(135deg,rgba(216,182,111,.80),rgba(184,138,67,.82));color:#392a20;padding:0 18px;font:inherit;font-weight:800;cursor:pointer;box-shadow:0 9px 20px rgba(133,91,34,.15)}.fly-result{display:grid;grid-template-columns:128px 1fr;gap:22px;align-items:center;margin-top:26px;padding-top:24px;border-top:1px solid rgba(127,91,137,.16)}
+.vibe-map-card{display:grid;grid-template-columns:minmax(420px,1fr) minmax(250px,.55fr);gap:32px;align-items:center}.vibe-wheel{height:500px;position:relative;max-width:600px;margin:auto;width:100%}.vibe-wheel::before{content:"";position:absolute;width:330px;height:330px;border:2px solid rgba(170,131,175,.38);border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 0 36px rgba(170,131,175,.10)}.vibe-chip{position:absolute;transform:translate(-50%,-50%);font-weight:750;color:var(--syn-ink);white-space:nowrap}.vibe-chip::before{content:"";display:block;width:9px;height:9px;margin:0 auto 5px;border-radius:50%;background:var(--syn-mauve);box-shadow:0 0 10px rgba(170,131,175,.35)}.vibe-chip:nth-child(1)::before,.vibe-chip:nth-child(6)::before{background:var(--syn-gold)}.vibe-axis-copy{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;text-align:center;color:rgba(58,33,80,.76);line-height:1.4}.vibe-axis-copy hr{grid-column:1/-1;width:100%;border:0;border-top:1px solid rgba(127,91,137,.18)}
+@keyframes synFade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}@media(max-width:820px){.synapse-section-heading{align-items:stretch;flex-direction:column}.synapse-start-control select{width:100%;min-width:0}.synapse-stage{min-height:430px}.synapse-focus-card,.fly-result{grid-template-columns:1fr;text-align:center}.focus-image-ring{margin:auto}.fly-controls{grid-template-columns:1fr}.vibe-map-card{grid-template-columns:1fr}.vibe-wheel{height:420px}.vibe-wheel::before{width:270px;height:270px}.vibe-axis-copy{font-size:.82rem}}
+
+/* ===== Real MaleCNS morphology layer ===== */
+.fly-neural-card{position:relative;min-height:560px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(145deg,rgba(255,255,255,.34),rgba(170,131,175,.20))}
+.fly-neuron-canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.72;pointer-events:none}
+.fly-neuron-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(242,235,246,.88) 0%,rgba(242,235,246,.56) 39%,rgba(242,235,246,.10) 70%,rgba(242,235,246,.30) 100%)}
+.fly-controls-over{position:relative;z-index:2;max-width:760px;padding:24px;border-radius:24px;background:rgba(255,255,255,.48);border:1px solid rgba(255,255,255,.62);box-shadow:0 16px 38px rgba(74,44,86,.12);backdrop-filter:blur(12px)}
+.fly-neuron-provenance{position:absolute;right:22px;top:18px;z-index:2;max-width:320px;text-align:right;font-size:.72rem;color:rgba(58,33,80,.62);letter-spacing:.02em}
+.fly-result{position:relative;z-index:2;background:rgba(255,255,255,.42);border-radius:22px;padding:20px;margin-top:18px}
+.mcns-error{color:#79516f}
+@media(max-width:820px){.fly-neural-card{min-height:680px}.fly-neuron-shade{background:linear-gradient(180deg,rgba(242,235,246,.18),rgba(242,235,246,.72) 55%,rgba(242,235,246,.92))}.fly-neuron-provenance{left:18px;right:18px;text-align:left}.fly-controls-over{margin-top:250px}}
+
+/* Real MaleCNS connectivity path */
+.connectome-path{position:relative;z-index:3;margin:18px auto 0;max-width:760px;padding:14px 18px;border-radius:18px;background:rgba(255,255,255,.54);border:1px solid rgba(255,255,255,.68);box-shadow:0 12px 30px rgba(75,48,88,.10);backdrop-filter:blur(12px);color:#3b2946}
+.connectome-path .focus-kicker{margin:0 0 8px;color:#8b6a2d;font-size:.72rem;font-weight:800;letter-spacing:.12em}
+.path-chain{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;font-size:.88rem;font-weight:700}
+.path-chain span{padding:6px 9px;border-radius:999px;background:rgba(170,131,175,.16);border:1px solid rgba(120,76,133,.16)}
+.path-chain b{font-weight:700;color:#8a5d91}.path-chain em{font-style:normal;color:#9b762f}
+.connectome-path small{display:block;margin-top:8px;text-align:center;color:rgba(58,33,80,.66);line-height:1.4}
+.fly-neuron-canvas.is-signaling{animation:mcnsSignal 1.8s ease-out}
+@keyframes mcnsSignal{0%{filter:brightness(1)}35%{filter:brightness(1.35) drop-shadow(0 0 10px rgba(170,131,175,.35))}72%{filter:brightness(1.16) drop-shadow(0 0 16px rgba(191,153,74,.22))}100%{filter:brightness(1)}}
+
+/* ===== Organic Follow-a-Synapse layout ===== */
+.synapse-stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.04),transparent 24%),linear-gradient(90deg,rgba(255,255,255,.12),transparent 12%,transparent 88%,rgba(255,255,255,.10));mix-blend-mode:soft-light}
+.synapse-node.branch-anchor .node-orb{width:64px;height:64px;background:rgba(255,255,255,.56);border-color:rgba(127,91,137,.42);box-shadow:0 0 0 5px rgba(255,255,255,.10),0 7px 22px rgba(95,58,108,.15)}
+.synapse-node.branch-anchor img{width:49px;height:49px}
+.synapse-node.branch-anchor .node-label{width:132px;margin-left:-34px;font-size:.72rem;background:rgba(255,255,255,.30);border-radius:999px;padding:3px 6px;backdrop-filter:blur(4px)}
+.synapse-node.is-center::before{content:"";position:absolute;left:50%;top:50%;width:152px;height:152px;border-radius:50%;transform:translate(-50%,-50%);border:1px solid rgba(184,138,67,.16);box-shadow:0 0 42px rgba(184,138,67,.14);pointer-events:none}
+
+/* ===== Continuous neural-path traversal ===== */
+.synapse-world{position:absolute;inset:0;transform-origin:center center;will-change:transform;z-index:1}
+.synapse-world #brainCanvas,.synapse-world .synapse-node-layer{position:absolute;inset:0;width:100%;height:100%}
+.synapse-stage-vignette{position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;background:radial-gradient(ellipse at center,transparent 42%,rgba(127,91,137,.055) 76%,rgba(58,33,80,.10) 100%);box-shadow:inset 0 0 70px rgba(255,255,255,.18)}
+.synapse-stage-hint,.stage-start-button{z-index:4}
+.synapse-node-layer{z-index:3}
+#brainCanvas{z-index:1;filter:drop-shadow(0 0 3px rgba(170,131,175,.12))}
+.synapse-stage.is-traveling .synapse-node:not(.is-center) .node-label{opacity:.55}
+.synapse-stage.is-traveling .synapse-world{filter:saturate(1.04)}
+.synapse-node.branch-anchor .node-orb{box-shadow:0 0 0 5px rgba(255,255,255,.16),0 7px 22px rgba(95,58,108,.15),0 0 18px rgba(170,131,175,.14)}
+.synapse-node.is-center .node-orb{background:rgba(255,255,255,.66)}
+
+/* Neural-path shoring: make the navigable tissue visible without overpowering the site. */
+.synapse-stage{background:radial-gradient(circle at 50% 48%,rgba(255,255,255,.28),transparent 22%),radial-gradient(circle at 25% 20%,rgba(234,220,241,.58),transparent 34%),linear-gradient(145deg,rgba(255,255,255,.24),rgba(170,131,175,.30))}
+#brainCanvas{filter:drop-shadow(0 0 4px rgba(127,91,137,.18));}
+.synapse-world::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(ellipse at center,transparent 54%,rgba(127,91,137,.055) 100%)}
+.synapse-node-layer{z-index:4}
+.synapse-node .node-orb{backdrop-filter:blur(2px)}
+.synapse-node img.syn-image-missing{opacity:.18}
+
+/* ===== Organic neural field rebuild ===== */
+/* No grid/pattern layer: the field is made only from neural forms. */
+.synapse-stage::before,
+.synapse-stage::after{background:none!important;content:none!important}
+.synapse-world{position:absolute;inset:0;transform-origin:center center;will-change:transform}
+.neural-field{position:absolute;inset:-5%;width:110%;height:110%;z-index:0;overflow:visible;pointer-events:none}
+.synapse-world #brainCanvas{z-index:1;opacity:.52;filter:blur(.15px) drop-shadow(0 0 5px rgba(127,91,137,.18))}
+.synapse-world .synapse-node-layer{z-index:3}
+.neural-field .nf-distant{opacity:.22;filter:url(#nfBlur)}
+.neural-field .nf-middle{opacity:.46}
+.neural-field .nf-main{opacity:.88}
+.neural-field .nf-glow{fill:none;stroke:rgba(170,131,175,.20);stroke-width:13;stroke-linecap:round;stroke-linejoin:round;filter:url(#nfGlow)}
+.neural-field .nf-body{fill:none;stroke:url(#nfFiber);stroke-width:5.2;stroke-linecap:round;stroke-linejoin:round}
+.neural-field .nf-highlight{fill:none;stroke:rgba(245,231,250,.48);stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}
+.neural-field .nf-twig{fill:none;stroke:rgba(127,91,137,.42);stroke-width:1.35;stroke-linecap:round}
+.neural-field .nf-twig-soft{fill:none;stroke:rgba(170,131,175,.28);stroke-width:.9;stroke-linecap:round}
+.neural-field .nf-soma-glow{fill:rgba(170,131,175,.18);filter:url(#nfGlow)}
+.neural-field .nf-soma{fill:url(#nfSoma);stroke:rgba(127,91,137,.34);stroke-width:1.2}
+.neural-field .nf-soma-shine{fill:rgba(255,255,255,.20)}
+.synapse-stage-vignette{background:radial-gradient(ellipse at center,transparent 52%,rgba(127,91,137,.045) 82%,rgba(58,33,80,.075) 100%)!important}

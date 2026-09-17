@@ -1,0 +1,28 @@
+Auric Archive Synapse — MaleCNS data provenance
+
+Dataset: MaleCNS v1.0 (adult male Drosophila CNS)
+Official project: https://male-cns.janelia.org/
+Official downloads: https://male-cns.janelia.org/download/
+License: CC BY 4.0
+
+Morphology
+- Browser rendering loads source SWC skeletons from the public Janelia/Google Cloud MaleCNS v1.0 bucket.
+- Coordinates are source MaleCNS EM-space skeleton coordinates (8 nm units).
+- The website changes display projection, color, opacity, scale, and rotation only.
+
+Connectivity
+- mcns_connectome.json is a compact adapted subset of real MaleCNS v1.0 weighted connections around DNge104_R (body ID 12781).
+- The edge values were transcribed from a neuPrint-derived public subgraph export:
+  https://github.com/Sylviali-Maker/flybrain-sim/blob/main/outputs/subgraphs/DNge104_R_12781_subgraph.json
+- That export identifies dataset male-cns:v1.0 and describes its weights as ROI-level neuPrint weights aggregated per source-target pair.
+- This Auric Archive subset contains 48 directed edges across 46 body IDs.
+
+Auric Archive adaptation
+- Nail-polish Color/Vibe/finish data are NOT biological MaleCNS annotations.
+- User polish inputs constrain/rank a nail-polish candidate pool.
+- The MaleCNS weighted circuit then supplies a real directed input -> DNge104_R -> output path.
+- The selected MaleCNS output body ID and connection weight materially participate in selecting the final polish from that candidate pool.
+- Chaos changes how strongly connection weight biases path selection and how broad the semantic polish candidate window is.
+- The animated glow is an interface visualization of the chosen path, not measured neural activity.
+
+No endorsement by the MaleCNS research collaborators is implied.

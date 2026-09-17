@@ -3,7 +3,7 @@
    ========================================================= */
 
 // Update this value when you want browsers to force-refresh JSON files.
-const SITE_DATA_VERSION = '2026-06-30-image-loading';
+const SITE_DATA_VERSION = '2026-06-03';
 
 async function fetchPolishData() {
     const response = await fetch(`data.json?v=${SITE_DATA_VERSION}`);
@@ -14,6 +14,17 @@ async function fetchPolishData() {
 
     const rawData = await response.json();
     return Array.isArray(rawData) ? rawData.map(normalizePolishEntry) : [];
+}
+
+async function fetchBrandStatsData() {
+    const response = await fetch(`stat.json?v=${SITE_DATA_VERSION}`);
+
+    if (!response.ok) {
+        throw new Error(`Failed to load stat.json: ${response.status}`);
+    }
+
+    const rawData = await response.json();
+    return Array.isArray(rawData) ? rawData : [];
 }
 
 function getFirstMeaningfulValue(...values) {
@@ -115,6 +126,11 @@ function normalizePolishEntry(entry = {}) {
         ),
         region: getFirstMeaningfulValue(entry.region, entry.Region),
         local: getFirstMeaningfulValue(entry.local, entry.Local),
+        collab: getFirstMeaningfulValue(entry.collab, entry.Collab),
+        collabMonth: getFirstMeaningfulValue(
+            entry.collabMonth,
+            entry['Collab Month']
+        ),
         hasDupes: getFirstMeaningfulValue(entry.hasDupes, entry['Has Dupes']),
         dupeGroup: getFirstMeaningfulValue(entry.dupeGroup, entry['Dupe Group'])
     };
@@ -141,6 +157,40 @@ function escapeHTML(str) {
 
 function hasMeaningfulValue(value) {
     return String(value ?? '').trim() !== '';
+}
+
+/* ===== EXCLUSIVES ===== */
+
+function normalizeExclusiveCollab(value) {
+    const normalized = String(value ?? '').trim().toUpperCase();
+    if (normalized === 'PPU') return 'PPU';
+    if (normalized === 'HHC') return 'HHC';
+    if (normalized === 'LBOH') return 'LBoH';
+    return '';
+}
+
+function isExclusivePolish(polish) {
+    return Boolean(normalizeExclusiveCollab(polish?.collab));
+}
+
+function getExclusiveBadgeText(polish) {
+    const collab = normalizeExclusiveCollab(polish?.collab);
+    if (!collab) return '';
+    const month = String(polish?.collabMonth ?? '').trim();
+    return month ? `${collab} · ${month}` : collab;
+}
+
+function createExclusiveBadge(polish) {
+    const text = getExclusiveBadgeText(polish);
+    if (!text) return '';
+    return `<span class="exclusive-release-badge"><span class="exclusive-release-badge-sparkle" aria-hidden="true">✦</span><span>${escapeHTML(text)}</span></span>`;
+}
+
+function updateExclusiveBadge(container, polish) {
+    if (!container) return;
+    const badge = createExclusiveBadge(polish);
+    container.innerHTML = badge;
+    container.hidden = !badge;
 }
 
 /* ===== BADGES ===== */
@@ -248,7 +298,7 @@ function initializeTopActionButtons() {
     const pageShell = document.querySelector('.page-shell');
     if (!pageShell) return;
 
-    const topbar = pageShell.querySelector('.directory-topbar, .lucky-page-topbar, .dupes-page-topbar, .moods-page-topbar, .stats-page-topbar');
+    const topbar = pageShell.querySelector('.directory-topbar, .lucky-page-topbar, .dupes-page-topbar, .moods-page-topbar, .stats-page-topbar, .exclusives-page-topbar, .synapse-page-topbar');
     if (!topbar) return;
 
     topbar.classList.add('site-topbar');
@@ -556,15 +606,15 @@ function getPolishGallery(polish) {
 /* ===== MODAL SEQUENCE (NEXT/PREV POLISH) ===== */
 
 function getDetailModalSequence(polish, list = []) {
-    if (!polish) return Array.isArray(list) ? list : [];
+    if (!polish) return list;
 
-    const sequence = Array.isArray(list) ? list.filter(Boolean) : [];
-    const polishKey = getPolishKey(polish);
-    const includesCurrentPolish = sequence.some(item => getPolishKey(item) === polishKey);
+    const brand = (polish.brand || '').toLowerCase();
+    const name = (polish.name || '').toLowerCase();
 
-    // The directory detail modal should move through the visible directory results,
-    // in the current filtered/sorted table order. An earlier version narrowed this
-    // to only duplicate brand/name matches, which usually left the sequence with
-    // one item and kept the Previous/Next controls hidden.
-    return includesCurrentPolish ? sequence : [polish, ...sequence];
+    const matches = list.filter(item =>
+        (item.brand || '').toLowerCase() === brand &&
+        (item.name || '').toLowerCase() === name
+    );
+
+    return matches.length ? matches : list;
 }

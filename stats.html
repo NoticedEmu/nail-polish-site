@@ -1130,17 +1130,7 @@
 
         const STATS_REGIONS = ['North America', 'South America', 'Europe', 'Africa', 'Asia', 'Oceania'];
 
-        /*
-          Region data options:
-          1. Best long-term: add "Region": "North America" directly to each data.json polish entry.
-          2. Backup: add brand origins here. The stats page will use this only when a polish entry has no Region/Continent value.
-        */
-        const BRAND_REGION_MAP = {
-            // Example:
-            // 'Mooncat': 'North America',
-            // 'Phoenix': 'South America',
-            // 'Emily de Molly': 'Oceania'
-        };
+        // Brand geography is stored once per brand in stat.json, then joined to data.json by Brand.
 
         function normalizeRegionName(value) {
             const region = String(value ?? '').trim().toLowerCase();
@@ -1157,10 +1147,35 @@
         }
 
         function getPolishRegion(polish) {
-            const directRegion = normalizeRegionName(polish.region || polish.Region || polish.continent || polish.Continent);
-            if (directRegion) return directRegion;
-            const brand = normalizeLabel(polish.brand || polish.Brand, '');
-            return BRAND_REGION_MAP[brand] || '';
+            return normalizeRegionName(polish.region || polish.Region || polish.continent || polish.Continent);
+        }
+
+        function attachBrandGeography(polishes, brandStats) {
+            const geographyByBrand = new Map(
+                brandStats
+                    .filter(entry => entry && (entry.Brand || entry.brand))
+                    .map(entry => {
+                        const brand = normalizeLabel(entry.Brand || entry.brand, '');
+                        return [brand, {
+                            region: normalizeRegionName(entry.Region || entry.region || entry.Continent || entry.continent),
+                            local: normalizeLabel(entry.Local || entry.local, '')
+                        }];
+                    })
+            );
+
+            return polishes.map(polish => {
+                const brand = normalizeLabel(polish.brand || polish.Brand, '');
+                const geography = geographyByBrand.get(brand);
+                if (!geography) return polish;
+
+                return {
+                    ...polish,
+                    region: geography.region,
+                    Region: geography.region,
+                    local: geography.local,
+                    Local: geography.local
+                };
+            });
         }
 
         function getRegionItems(region) {
@@ -2123,7 +2138,10 @@
             initializeSharedPagesMenu();
 
             try {
-                const data = await fetchPolishData();
+                const [data, brandStats] = await Promise.all([
+                    fetchPolishData(),
+                    fetchBrandStatsData()
+                ]);
                 const cleanedData = data.filter(item => item && (item.brand || item.name || item.color || item.type));
 
                 if (!cleanedData.length) {
@@ -2131,8 +2149,9 @@
                     return;
                 }
 
-                allStatsPolishData = cleanedData;
-                statsPolishData = cleanedData;
+                const dataWithGeography = attachBrandGeography(cleanedData, brandStats);
+                allStatsPolishData = dataWithGeography;
+                statsPolishData = dataWithGeography;
 
                 initializeContinentMap();
                 document.getElementById('brandStatsSelect').onchange = renderSelectedBrandChart;
@@ -2142,8 +2161,8 @@
             } catch (error) {
                 console.error(error);
                 status.innerHTML = `
-                    There was a problem loading <strong>data.json</strong> for the stats page.
-                    Please make sure <strong>data.json</strong>, <strong>app.js</strong>, and
+                    There was a problem loading the stats data.
+                    Please make sure <strong>data.json</strong>, <strong>stat.json</strong>, <strong>app.js</strong>, and
                     <strong>pages.json</strong> are in the same place as <strong>stats.html</strong>.
                 `;
             }

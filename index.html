@@ -1126,6 +1126,8 @@
           <input type="text" id="numberFilter" placeholder="Type number..." />
         </div>
 
+        <button id="exclusiveFilterBtn" class="exclusive-filter-button" type="button" aria-pressed="false">✦ Exclusives</button>
+
         <button id="clearFiltersBtn">Clear Filters</button>
 
         <div class="search-toggle-wrap">
@@ -1314,6 +1316,7 @@
           <div class="surprise-result-details">
             <div id="surpriseResultBrand" class="surprise-result-brand"></div>
             <h2 id="surpriseModalTitle" class="surprise-result-name"></h2>
+            <div id="surpriseExclusiveBadge" class="exclusive-badge-slot" hidden></div>
 
             <div class="surprise-detail-row">
               <span class="surprise-detail-label">Color</span>
@@ -1402,6 +1405,7 @@
       const surpriseImageFallback = document.getElementById('surpriseImageFallback');
       const surpriseResultBrand = document.getElementById('surpriseResultBrand');
       const surpriseResultName = document.getElementById('surpriseModalTitle');
+      const surpriseExclusiveBadge = document.getElementById('surpriseExclusiveBadge');
       const surpriseResultColor = document.getElementById('surpriseResultColor');
       const surpriseResultType = document.getElementById('surpriseResultType');
       const surpriseResultSubtype = document.getElementById('surpriseResultSubtype');
@@ -1585,6 +1589,7 @@
 
         surpriseResultBrand.textContent = polish.brand || '';
         surpriseResultName.textContent = polish.name || '';
+        updateExclusiveBadge(surpriseExclusiveBadge, polish);
         surpriseResultColor.textContent = polish.color || '—';
         surpriseResultType.textContent = polish.type || '—';
         surpriseResultNumber.innerHTML = createNumberBadge(polish.type, polish.number);
@@ -1783,11 +1788,14 @@
             const rowHtml = `
           <tr>
             <td>
-              <a href="${escapeHTML(primaryImage)}" data-lightbox="${lightboxGroup}" data-title="${escapeHTML(titleText)}" class="swatch-thumb-link">
-                <span class="swatch-thumb-frame">
-                  <img src="${escapeHTML(primaryThumb)}" data-fallback-srcs="${escapeHTML(thumbFallbackCandidates.join('|'))}" alt="${escapeHTML(titleText)} swatch" class="swatch-thumb-image" loading="lazy" decoding="async" onload="handleDirectoryThumbLoad(this)" onerror="handleDirectoryThumbError(this)">
-                </span>
-              </a>
+              <span class="directory-swatch-cell">
+                ${isExclusivePolish(item) ? '<span class="exclusive-directory-sparkle" title="Exclusive release" aria-label="Exclusive release">✦</span>' : ''}
+                <a href="${escapeHTML(primaryImage)}" data-lightbox="${lightboxGroup}" data-title="${escapeHTML(titleText)}" class="swatch-thumb-link">
+                  <span class="swatch-thumb-frame">
+                    <img src="${escapeHTML(primaryThumb)}" data-fallback-srcs="${escapeHTML(thumbFallbackCandidates.join('|'))}" alt="${escapeHTML(titleText)} swatch" class="swatch-thumb-image" loading="lazy" decoding="async" onload="handleDirectoryThumbLoad(this)" onerror="handleDirectoryThumbError(this)">
+                  </span>
+                </a>
+              </span>
               ${lightboxAnchors}
             </td>
             <td>${escapeHTML(item.brand || '')}</td>
@@ -1807,6 +1815,7 @@
           });
 
           let selectedLetter = '';
+          let exclusiveOnly = false;
 
           const filterDisplayConfig = [
             { id: 'brandFilter', label: 'Brand' },
@@ -1834,6 +1843,10 @@
               activeFilters.push({ id: 'alphaFilter', label: 'Brand Starts With', value: selectedLetter });
             }
 
+            if (exclusiveOnly) {
+              activeFilters.push({ id: 'exclusiveFilter', label: 'Exclusive', value: 'Exclusive Releases' });
+            }
+
             activeFiltersWrap.hidden = activeFilters.length === 0;
 
             activeFiltersList.innerHTML = activeFilters.map(filter => `
@@ -1849,6 +1862,11 @@
               selectedLetter = '';
               $('.alpha-btn').removeClass('active');
               $('.alpha-btn[data-letter=""]').addClass('active');
+            } else if (filterId === 'exclusiveFilter') {
+              exclusiveOnly = false;
+              const exclusiveFilterBtn = document.getElementById('exclusiveFilterBtn');
+              exclusiveFilterBtn.classList.remove('is-active');
+              exclusiveFilterBtn.setAttribute('aria-pressed', 'false');
             } else {
               const element = document.getElementById(filterId);
               if (element) element.value = '';
@@ -1917,6 +1935,12 @@
             if (subtype && rowSubtype !== subtype) return false;
             if (number && !rowNumber.includes(number)) return false;
             if (selectedLetterLower && !rowBrand.startsWith(selectedLetterLower)) return false;
+
+            if (exclusiveOnly) {
+              const rowNode = settings.aoData?.[dataIndex]?.nTr;
+              const rowPolish = rowNode ? $(rowNode).data('polish') : null;
+              if (!isExclusivePolish(rowPolish)) return false;
+            }
 
             return true;
           });
@@ -2077,6 +2101,15 @@
             updateActiveFilterBubbles();
           });
 
+          const exclusiveFilterBtn = document.getElementById('exclusiveFilterBtn');
+          exclusiveFilterBtn.addEventListener('click', () => {
+            exclusiveOnly = !exclusiveOnly;
+            exclusiveFilterBtn.classList.toggle('is-active', exclusiveOnly);
+            exclusiveFilterBtn.setAttribute('aria-pressed', String(exclusiveOnly));
+            window.polishTable.draw();
+            updateActiveFilterBubbles();
+          });
+
           $('#clearFiltersBtn').on('click', function () {
             $('#brandFilter').val('');
             $('#typeFilter').val('');
@@ -2089,6 +2122,9 @@
             window.polishTable.search('');
 
             selectedLetter = '';
+            exclusiveOnly = false;
+            exclusiveFilterBtn.classList.remove('is-active');
+            exclusiveFilterBtn.setAttribute('aria-pressed', 'false');
             $('.alpha-btn').removeClass('active');
             $('.alpha-btn[data-letter=""]').addClass('active');
 

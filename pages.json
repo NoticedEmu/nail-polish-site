@@ -16,8 +16,16 @@
     "title": "Stats",
     "href": "stats.html"
   },
-{
+  {
     "title": "Moods",
     "href": "moods.html"
+  },
+  {
+    "title": "Exclusives",
+    "href": "exclusives.html"
+  },
+  {
+    "title": "Synapse",
+    "href": "synapse.html"
   }
 ]

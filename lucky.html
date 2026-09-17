@@ -625,6 +625,7 @@
                 <div class="lucky-result-details">
                     <div id="luckyResultBrand" class="lucky-result-brand"></div>
                     <h2 id="luckyModalTitle" class="lucky-result-name"></h2>
+                    <div id="luckyExclusiveBadge" class="exclusive-badge-slot" hidden></div>
 
                     <div class="lucky-detail-row">
                         <span class="lucky-detail-label">Color</span>
@@ -719,6 +720,7 @@
         const luckyImageButton = document.getElementById('luckyImageButton');
         const luckyResultBrand = document.getElementById('luckyResultBrand');
         const luckyResultName = document.getElementById('luckyModalTitle');
+        const luckyExclusiveBadge = document.getElementById('luckyExclusiveBadge');
         const luckyResultColor = document.getElementById('luckyResultColor');
         const luckyResultType = document.getElementById('luckyResultType');
         const luckyResultSubtype = document.getElementById('luckyResultSubtype');
@@ -864,6 +866,7 @@
 
             luckyResultBrand.textContent = polish.brand || '';
             luckyResultName.textContent = polish.name || '';
+            updateExclusiveBadge(luckyExclusiveBadge, polish);
             luckyResultColor.textContent = polish.color || '—';
             luckyResultType.textContent = polish.type || '—';
             luckyResultNumber.innerHTML = createNumberBadge(polish.type, polish.number);
