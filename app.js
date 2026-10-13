@@ -358,7 +358,7 @@ async function initializeSharedPagesMenu() {
 
         const visiblePages = pages.filter(page => {
             const hrefPath = normalizePagePath(page.href);
-            return hrefPath && hrefPath !== currentPage && hrefPath !== 'stats.html';
+            return hrefPath && hrefPath !== currentPage;
         });
 
         menus.forEach(menu => {
