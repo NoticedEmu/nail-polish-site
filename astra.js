@@ -42,30 +42,252 @@ if(focus!==null){let f=stars[focus],a=project(f);let relatives=shown.filter(s=>s
 for(const s of shown){const a=project(s);if(a.x< -25||a.x>width+25||a.y< -25||a.y>height+25)continue;let active=s.i===focus,hovered=s.i===hover,rad=(s.size+(active?2.7:hovered?1.4:0))*(.85+Math.min(view.scale,2)*.23),twinkle=.72+.22*Math.sin(t/900+s.phase);ctx.shadowBlur=active?25:8;ctx.shadowColor=active?'#f6dba5':palette[s.p.family];ctx.fillStyle=active?'#ffe5b5':palette[s.p.family];ctx.globalAlpha=active?1:twinkle;ctx.beginPath();ctx.arc(a.x,a.y,rad,0,7);ctx.fill();ctx.shadowBlur=0;ctx.globalAlpha=1;if(active){ctx.save();ctx.font=`${Math.max(18,rad*4.2)}px Georgia, serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.shadowBlur=18;ctx.shadowColor='rgba(246,219,165,.85)';ctx.fillStyle='#f5d48d';ctx.fillText('✦',a.x,a.y+1);ctx.restore()}if(hovered||active){ctx.font='12px system-ui';ctx.textAlign='center';ctx.fillStyle='#f8edf9';ctx.fillText(s.p.Nailpolish||'',a.x,Math.max(20,a.y-16))}}
 ctx.restore();if(target){view.x+=(target.x-view.x)*.08;view.y+=(target.y-view.y)*.08;view.scale+=(target.scale-view.scale)*.08;view.scale=Math.max(minimumScale,view.scale);if(Math.abs(target.x-view.x)+Math.abs(target.y-view.y)+Math.abs(target.scale-view.scale)<.01)target=null}anim=requestAnimationFrame(render)}
 function screenStar(x,y){let best=-1,dist=18;for(const s of stars){if(!s.visible)continue;const a=project(s),d=Math.hypot(a.x-x,a.y-y);if(d<dist){best=s.i;dist=d}}return best}
-function focusStar(index){if(index<0||!stars[index])return;focus=index;const s=stars[index];target={x:s.x,y:s.y,scale:5};const p=polish[index];let related=stars.filter(b=>b.i!==index).sort((a,b)=>similarity(b.p,p)-similarity(a.p,p)).slice(0,5);const panel=$('astraFocus');panel.replaceChildren();let title=document.createElement('h2');title.className='astra-polish-name';title.textContent=p.Nailpolish;panel.append(title);let meta=document.createElement('div');meta.className='astra-meta';meta.textContent=[p.Brand,p.Color,p.Type,p.Vibe].filter(Boolean).join(' · ');panel.append(meta);const src=p['image one']||p.thumb;if(src){const img=document.createElement('img');img.className='astra-polish-image';img.src=src;img.alt=p.Brand+' '+p.Nailpolish;img.loading='lazy';img.onerror=()=>img.remove();
- img.tabIndex=0;img.role='button';img.title='View full-size polish image';
- img.setAttribute('aria-label','Enlarge photo of '+p.Brand+' '+p.Nailpolish);
- img.addEventListener('click',()=>openImage(src,img.alt));
- img.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openImage(src,img.alt)}});
- panel.append(img)}if(p.Description){let desc=document.createElement('p');desc.className='astra-description';desc.textContent=p.Description;panel.append(desc)}let label=document.createElement('p');label.className='astra-kicker';label.textContent='NEIGHBORING STARS';panel.append(label);let rel=document.createElement('div');rel.className='astra-rel';for(const r of related){const btn=document.createElement('button');btn.textContent=r.p.Nailpolish;btn.title=r.p.Brand;btn.addEventListener('click',()=>focusStar(r.i));rel.append(btn)}panel.append(rel)}
-let imageOverlay=null,previousFocus=null;
-function closeImage(){
- if(!imageOverlay)return;
- imageOverlay.remove();imageOverlay=null;
- document.removeEventListener('keydown',imageOverlayKey);
- if(previousFocus?.isConnected)previousFocus.focus();
+function focusStar(index){if(index<0||!stars[index])return;focus=index;const s=stars[index];target={x:s.x,y:s.y,scale:5};const p=polish[index];let related=stars.filter(b=>b.i!==index).sort((a,b)=>similarity(b.p,p)-similarity(a.p,p)).slice(0,5);const panel=$('astraFocus');panel.replaceChildren();let title=document.createElement('h2');title.className='astra-polish-name';title.textContent=p.Nailpolish;panel.append(title);let meta=document.createElement('div');meta.className='astra-meta';meta.textContent=[p.Brand,p.Color,p.Type,p.Vibe].filter(Boolean).join(' · ');panel.append(meta);const src=p['image one']||p.imageOne||p.thumb;if(src){const img=document.createElement('img');img.className='astra-polish-image';img.src=src;img.alt=p.Brand+' '+p.Nailpolish;img.loading='lazy';img.onerror=()=>img.remove();
+ img.tabIndex=0;img.role='button';img.title='Open full polish details';
+ img.setAttribute('aria-label','Open full details for '+p.Brand+' '+p.Nailpolish);
+ img.addEventListener('click',()=>openPolishDetails(p));
+ img.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPolishDetails(p)}});
+ const frame=document.createElement('div');frame.className='astra-preview-frame';frame.append(img);panel.append(frame)}let label=document.createElement('p');label.className='astra-kicker';label.textContent='NEIGHBORING STARS';panel.append(label);let rel=document.createElement('div');rel.className='astra-rel';for(const r of related){const btn=document.createElement('button');btn.textContent=r.p.Nailpolish;btn.title=r.p.Brand;btn.addEventListener('click',()=>focusStar(r.i));rel.append(btn)}panel.append(rel)}
+
+// Directory modal markup and presentation imported from the supplied index.html.
+// It is instantiated inside Astra; the Directory page and shared scripts remain untouched.
+const directoryModalMarkup = `<div class="surprise-modal" hidden="" id="surpriseModal">
+<div class="surprise-modal-overlay"></div>
+<div aria-labelledby="surpriseModalTitle" aria-modal="true" class="surprise-modal-content" role="dialog">
+<div aria-hidden="true" class="modal-card-sparkles">
+<span class="sparkle six-point s1 white tiny top-glow"></span>
+<span class="sparkle eight-point s2 white tiny top-glow"></span>
+<span class="sparkle six-point s3 violet tiny top-glow"></span>
+<span class="sparkle eight-point s4 white small top-glow"></span>
+<span class="sparkle six-point s5 white tiny top-glow"></span>
+<span class="sparkle eight-point s6 violet tiny top-glow"></span>
+<span class="sparkle six-point s7 peach tiny top-glow"></span>
+<span class="sparkle eight-point s8 white tiny top-glow"></span>
+<span class="sparkle six-point s9 white small top-glow"></span>
+<span class="sparkle eight-point s10 violet tiny top-glow"></span>
+<span class="sparkle six-point s11 gold tiny top-glow"></span>
+<span class="sparkle eight-point s12 white tiny top-glow"></span>
+<span class="sparkle six-point s13 white tiny"></span>
+<span class="sparkle eight-point s14 violet small"></span>
+<span class="sparkle six-point s15 coral tiny"></span>
+<span class="sparkle eight-point s16 violet tiny"></span>
+<span class="sparkle six-point s17 white small"></span>
+<span class="sparkle eight-point s18 peach tiny"></span>
+<span class="sparkle six-point s19 violet tiny"></span>
+<span class="sparkle eight-point s20 white tiny"></span>
+<span class="sparkle six-point s21 white tiny"></span>
+<span class="sparkle eight-point s22 white small"></span>
+<span class="sparkle six-point s23 violet tiny"></span>
+<span class="sparkle eight-point s24 white tiny"></span>
+<span class="sparkle six-point s25 gold tiny"></span>
+<span class="sparkle eight-point s26 white tiny"></span>
+<span class="sparkle six-point s27 violet small"></span>
+<span class="sparkle eight-point s28 coral tiny"></span>
+<span class="sparkle six-point s29 white tiny"></span>
+<span class="sparkle eight-point s30 violet tiny"></span>
+<span class="sparkle six-point s31 peach small"></span>
+<span class="sparkle eight-point s32 white tiny"></span>
+<span class="sparkle six-point s33 violet tiny"></span>
+<span class="sparkle eight-point s34 gold tiny"></span>
+<span class="sparkle six-point s35 white small"></span>
+<span class="sparkle eight-point s36 white tiny"></span>
+<span class="sparkle six-point s37 coral tiny"></span>
+<span class="sparkle eight-point s38 white small"></span>
+<span class="sparkle six-point s39 violet tiny"></span>
+<span class="sparkle eight-point s40 peach tiny"></span>
+<span class="sparkle six-point s41 white small"></span>
+<span class="sparkle eight-point s42 gold tiny"></span>
+<span class="sparkle six-point s43 violet tiny"></span>
+<span class="sparkle eight-point s44 white tiny"></span>
+<span class="sparkle six-point s45 coral small"></span>
+<span class="sparkle eight-point s46 white tiny"></span>
+</div>
+<button aria-label="Close" class="surprise-close-button" id="surpriseCloseButton" type="button">
+          ×
+        </button>
+<div class="surprise-modal-body">
+<div class="surprise-image-wrap polish-image-panel">
+<div class="polish-main-image-shell">
+<div class="image-card">
+<button aria-label="Open swatch image" class="polish-main-image-button" id="surpriseImageButton" type="button">
+<img alt="" class="surprise-result-image polish-gallery-image" decoding="async" id="surpriseResultImage" src=""/>
+</button>
+</div>
+<div class="surprise-image-fallback" hidden="" id="surpriseImageFallback">
+                No swatch available
+              </div>
+<div class="polish-gallery-nav" hidden="" id="surpriseGalleryNav">
+<button aria-label="Previous swatch" class="polish-gallery-arrow prev" id="surprisePrevImage" type="button">
+                  ‹
+                </button>
+<button aria-label="Next swatch" class="polish-gallery-arrow next" id="surpriseNextImage" type="button">
+                  ›
+                </button>
+</div>
+</div>
+<div class="polish-image-hint" id="surpriseImageHint">
+              Click the swatch to zoom in
+            </div>
+</div>
+<div class="surprise-result-details">
+<div class="surprise-result-brand" id="surpriseResultBrand"></div>
+<h2 class="surprise-result-name" id="surpriseModalTitle"></h2>
+<div class="exclusive-badge-slot" hidden="" id="surpriseExclusiveBadge"></div>
+<div class="surprise-detail-row">
+<span class="surprise-detail-label">Color</span>
+<span id="surpriseResultColor"></span>
+</div>
+<div class="surprise-detail-row">
+<span class="surprise-detail-label">Type</span>
+<span id="surpriseResultType"></span>
+</div>
+<div class="surprise-detail-row" hidden="" id="surpriseSubtypeRow">
+<span class="surprise-detail-label">Sub Type</span>
+<span id="surpriseResultSubtype"></span>
+</div>
+<div class="surprise-detail-row">
+<span class="surprise-detail-label">Number</span>
+<span id="surpriseResultNumber"></span>
+</div>
+<div class="polish-description-block" hidden="" id="surpriseDescriptionBlock">
+<span class="polish-description-label">Description</span>
+<p class="polish-description-text" id="surpriseResultDescription"></p>
+</div>
+<div class="surprise-modal-actions" hidden="" id="surpriseModalActions">
+<button class="surprise-secondary-button" id="surpriseAgainButton" type="button">
+                Surprise Me Again
+              </button>
+<a class="dupe-entry-button" hidden="" href="#" id="surpriseDupesButton">
+                View Dupes
+              </a>
+</div>
+</div>
+</div>
+</div>
+<div class="polish-entry-nav" hidden="" id="surpriseEntryNav">
+<button aria-label="Previous polish" class="polish-entry-arrow prev" id="surprisePrevPolish" type="button">
+<span aria-hidden="true">‹</span> Previous Polish
+        </button>
+<button aria-label="Next polish" class="polish-entry-arrow next" id="surpriseNextPolish" type="button">
+          Next Polish <span aria-hidden="true">›</span>
+</button>
+</div>
+</div>
+<div class="image-viewer" hidden="" id="imageViewer">
+<div class="image-viewer-overlay"></div>
+<div aria-label="Expanded swatch image" aria-modal="true" class="image-viewer-content" role="dialog">
+<div class="image-viewer-frame">
+<img alt="" class="image-viewer-image" decoding="async" id="imageViewerImg" src=""/>
+<button aria-label="Close enlarged image" class="image-viewer-close" id="imageViewerClose" type="button">
+            ×
+          </button>
+<button aria-label="Previous swatch" class="image-viewer-arrow prev" hidden="" id="imageViewerPrev" type="button">
+            ‹
+          </button>
+<button aria-label="Next swatch" class="image-viewer-arrow next" hidden="" id="imageViewerNext" type="button">
+            ›
+          </button>
+</div>
+</div>
+</div>`;
+let directoryModal=null,directoryImageViewer=null,directoryImageList=[],directoryImageIndex=0;
+let directorySequence=[],directorySequenceIndex=0, directoryBeforeFocus=null, directoryPreviousOverflow='';
+const d=id=>document.getElementById(id);
+function initializeDirectoryModal(){
+ if(directoryModal)return;
+ const holder=document.createElement('div');holder.innerHTML=directoryModalMarkup;
+ while(holder.firstElementChild)document.body.append(holder.firstElementChild);
+ directoryModal=d('surpriseModal');directoryImageViewer=d('imageViewer');
+ d('surpriseCloseButton').addEventListener('click',closePolishDetails);
+ directoryModal.querySelector('.surprise-modal-overlay').addEventListener('click',closePolishDetails);
+ d('surprisePrevImage').addEventListener('click',()=>advanceDetailImage(-1));
+ d('surpriseNextImage').addEventListener('click',()=>advanceDetailImage(1));
+ d('surpriseImageButton').addEventListener('click',openDirectoryImageViewer);
+ d('imageViewerClose').addEventListener('click',closeDirectoryImageViewer);
+ directoryImageViewer.querySelector('.image-viewer-overlay').addEventListener('click',closeDirectoryImageViewer);
+ d('imageViewerPrev').addEventListener('click',()=>advanceDetailImage(-1));
+ d('imageViewerNext').addEventListener('click',()=>advanceDetailImage(1));
+ d('surprisePrevPolish').addEventListener('click',()=>navigateDirectoryPolish(-1));
+ d('surpriseNextPolish').addEventListener('click',()=>navigateDirectoryPolish(1));
+ document.addEventListener('keydown',e=>{
+  if(directoryModal.hidden)return;
+  if(e.key==='Escape'){if(!directoryImageViewer.hidden)closeDirectoryImageViewer();else closePolishDetails()}
+ });
 }
-function imageOverlayKey(e){if(e.key==='Escape')closeImage()}
-function openImage(src,alt){
- closeImage();previousFocus=document.activeElement;
- const overlay=document.createElement('div');overlay.className='astra-image-overlay';overlay.setAttribute('role','dialog');
- overlay.setAttribute('aria-modal','true');overlay.setAttribute('aria-label','Full-size polish image');
- const pic=document.createElement('img');pic.src=src;pic.alt=alt;pic.className='astra-image-full';
- const close=document.createElement('button');close.type='button';close.className='astra-image-close';
- close.setAttribute('aria-label','Close enlarged image');close.textContent='×';close.onclick=closeImage;
- overlay.append(pic,close);overlay.addEventListener('click',e=>{if(e.target===overlay)closeImage()});
- document.body.append(overlay);imageOverlay=overlay;close.focus();
- document.addEventListener('keydown',imageOverlayKey);
+function getDirectoryGallery(p){
+ const normalized=typeof normalizePolishEntry==='function'?normalizePolishEntry(p):p;
+ return typeof getPolishGallery==='function'?getPolishGallery(normalized):[p['image one'],p['image two'],p['image three']].filter(Boolean).map(src=>({src}));
+}
+function showDirectoryImage(){
+ const entry=directoryImageList[directoryImageIndex];const img=d('surpriseResultImage');
+ const fallback=d('surpriseImageFallback');const button=d('surpriseImageButton');
+ const nav=d('surpriseGalleryNav');
+ if(!entry){img.hidden=true;button.hidden=true;fallback.hidden=false;nav.hidden=true;img.removeAttribute('src');return}
+ img.src=entry.src;img.alt=entry.alt||d('surpriseModalTitle').textContent;
+ img.hidden=false;button.hidden=false;fallback.hidden=true;nav.hidden=directoryImageList.length<2;
+ img.onerror=()=>{img.hidden=true;button.hidden=true;fallback.hidden=false;nav.hidden=true};
+ if(!directoryImageViewer.hidden){d('imageViewerImg').src=entry.src;d('imageViewerImg').alt=img.alt}
+}
+function advanceDetailImage(dir){
+ if(directoryImageList.length<2)return;
+ directoryImageIndex=(directoryImageIndex+dir+directoryImageList.length)%directoryImageList.length;
+ showDirectoryImage();
+}
+function openDirectoryImageViewer(){
+ if(!directoryImageList.length)return;
+ const entry=directoryImageList[directoryImageIndex];d('imageViewerImg').src=entry.src;
+ d('imageViewerImg').alt=entry.alt||d('surpriseModalTitle').textContent;
+ d('imageViewerPrev').hidden=d('imageViewerNext').hidden=directoryImageList.length<2;
+ directoryImageViewer.hidden=false;d('imageViewerClose').focus();
+}
+function closeDirectoryImageViewer(){
+ directoryImageViewer.hidden=true;d('imageViewerImg').removeAttribute('src');d('surpriseImageButton').focus();
+}
+function renderDirectoryPolish(p){
+ const n=typeof normalizePolishEntry==='function'?normalizePolishEntry(p):p;
+ d('surpriseResultBrand').textContent=n.brand||p.Brand||'';
+ d('surpriseModalTitle').textContent=n.name||p.Nailpolish||'';
+ if(typeof updateExclusiveBadge==='function')updateExclusiveBadge(d('surpriseExclusiveBadge'),n);
+ d('surpriseResultColor').textContent=n.color||p.Color||'—';
+ d('surpriseResultType').textContent=n.type||p.Type||'—';
+ d('surpriseResultNumber').innerHTML=typeof createNumberBadge==='function'?createNumberBadge(n.type,n.number):String(n.number||'—');
+ const subtype=typeof getPolishSubtype==='function'?getPolishSubtype(n):n.subtype||'';
+ d('surpriseSubtypeRow').hidden=!subtype;d('surpriseResultSubtype').textContent=subtype;
+ const desc=typeof getPolishDescription==='function'?getPolishDescription(n):n.description||p.Description||'';
+ d('surpriseDescriptionBlock').hidden=!desc;d('surpriseResultDescription').textContent=desc;
+ const dupeGroup=String(n.dupeGroup||p['Dupe Group']||'').trim();
+ const hasDupes=dupeGroup||String(n.hasDupes||p['Has Dupes']||'').toLowerCase()==='yes';
+ const dupeButton=d('surpriseDupesButton');dupeButton.hidden=!(hasDupes&&dupeGroup);
+ if(!dupeButton.hidden){const params=new URLSearchParams({brand:n.brand||'',name:n.name||''});dupeButton.href='dupes.html?'+params.toString()}
+ d('surpriseAgainButton').hidden=true;
+ d('surpriseModalActions').hidden=dupeButton.hidden;
+ directoryImageList=getDirectoryGallery(p);directoryImageIndex=0;showDirectoryImage();
+ d('surpriseEntryNav').hidden=directorySequence.length<2;
+ directoryModal.classList.toggle('is-directory-detail',directorySequence.length>1);
+}
+function navigateDirectoryPolish(dir){
+ if(!directorySequence.length)return;
+ directorySequenceIndex=(directorySequenceIndex+dir+directorySequence.length)%directorySequence.length;
+ renderDirectoryPolish(directorySequence[directorySequenceIndex]);
+}
+function openPolishDetails(p){
+ initializeDirectoryModal();
+ directoryBeforeFocus=document.activeElement;
+ directoryPreviousOverflow=document.body.style.overflow;
+ // The Directory page uses its current visible rows for next/previous navigation.
+ // Astra uses the currently filtered stars in the same way.
+ directorySequence=stars.filter(s=>s.visible).map(s=>s.p);
+ directorySequenceIndex=directorySequence.indexOf(p);
+ if(directorySequenceIndex<0){directorySequence=[p];directorySequenceIndex=0}
+ directoryModal.hidden=false;document.body.style.overflow='hidden';
+ renderDirectoryPolish(p);d('surpriseCloseButton').focus();
+}
+function closePolishDetails(){
+ if(!directoryModal)return;
+ if(!directoryImageViewer.hidden)closeDirectoryImageViewer();
+ directoryModal.hidden=true;directoryModal.classList.remove('is-directory-detail');
+ document.body.style.overflow=directoryPreviousOverflow;
+ if(directoryBeforeFocus?.isConnected)directoryBeforeFocus.focus();
 }
 function applyFilters(){let q=$('astraSearch').value.trim().toLowerCase(),v=$('astraVibe').value,finish=$('astraFinish').value,exclusive=$('astraExclusives').classList.contains('is-active');let total=0;for(const s of stars){let p=s.p;s.visible=(!q||(p.Brand+' '+p.Nailpolish).toLowerCase().includes(q))&&(!v||p.Vibe===v)&&(!finish||p.Type===finish)&&(!exclusive||!!p.Collab);if(s.visible)total++}$('astraCount').textContent=`${total} / ${polish.length} stars`;if(focus!==null&&!stars[focus].visible){focus=null;target={x:0,y:0,scale:minimumScale};$('astraFocus').innerHTML='<div class="astra-placeholder"><div class="astra-emblem">✧</div><h2>Select a star</h2><p>Choose a point in the constellation.</p></div>'}}
 function makeOptions(id,vals){const select=$(id);for(const v of vals){let o=document.createElement('option');o.value=v;o.textContent=v;select.append(o)}}
