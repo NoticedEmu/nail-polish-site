@@ -4,17 +4,8 @@
     "href": "index.html"
   },
   {
-    "title": "I’m Feeling Lucky",
-    "href": "lucky.html",
-    "sparkle": true
-  },
-  {
     "title": "Dupes",
     "href": "dupes.html"
-  },
-  {
-    "title": "Stats",
-    "href": "stats.html"
   },
   {
     "title": "Moods",
@@ -25,11 +16,11 @@
     "href": "exclusives.html"
   },
   {
-    "title": "Synapse",
-    "href": "synapse.html"
-  },
-  {
     "title": "Astra",
     "href": "astra.html"
+  },
+  {
+    "title": "Stats",
+    "href": "stats.html"
   }
 ]
